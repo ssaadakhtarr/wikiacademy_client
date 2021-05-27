@@ -29,6 +29,7 @@ import VulPath from "./components/VulPath";
 import AddRoom from "./components/AddRoom"
 import Footer from "./components/Footer";
 import CircleProgress from "./components/CircleProgress";
+import AdminDashboard from "./components/AdminDashboard";
 
 
 // const neueHaas = {
@@ -127,6 +128,8 @@ function App() {
         <Route path="/footer" component={Footer} />
 
         <Route path="/circle" component={CircleProgress} />
+
+        <Route path="/admin-dashboard" component={AdminDashboard}/>
         
         <Route component={Error} />
       </Switch>
