@@ -157,19 +157,21 @@ function Signin() {
           <br></br>
           <Box style={{ backgroundColor: "#1a2332" }} padding={6}>
           <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+         
           <Avatar className={classes.avatar} >
               <LockOutlinedIcon />
             </Avatar>
           </div>
             
             <Typography
-              style={{ color: "white" }}
+              style={{ color: "white" , textTransform: "capitalize",}}
               component="h1"
               align="center"
               variant="h5"
             >
               Sign in
             </Typography>
+            <br></br>
             {showSuccess && (
               <Alert severity="success">Signed in Successfully!</Alert>
             )}

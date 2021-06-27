@@ -1,4 +1,5 @@
 import { Box, Typography } from "@material-ui/core";
+import Footer from "./Footer";
 import Nav from "./Nav";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
@@ -129,31 +130,23 @@ function Hacktivities() {
   };
   return (
     <div style={{backgroundColor: "#141d2b"}}>
-      {(user === null) && <Nav />}
-          {(user !== null) && <Nav2 />}  
+      {/* {(user === null) && <Nav />}
+          {(user !== null) && <Nav2 />}   */}
 
-      <Box style={boxStyle} padding={6}>
-      <Grid container spacing={3} style={{  
-  backgroundPosition: 'center',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-  color:"white"
-}}>
-      <Grid item xs={12} sm={9} className={classes.Isa}
-      >
+      <Box style={boxStyle}>
+        <Nav/>
+        <Box style={{textAlign: "center",}} padding={10}>
+        
+     
           <Typography  variant="h2" className={classes.Hack}>Hacktivities</Typography>
         <Typography style={{color: "#c6cede"}} variant="subtitle1" className={classes.HackA}>
           Find your favourite topic or enroll in a guided learning path
         </Typography> 
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <Typography variant="h5" className={classes.Room} >
-          Total Rooms
-        </Typography>
-         
-        </Grid>
+      
         {/* style={{paddingLeft:"1150px"}} */}
-        </Grid>
+        
+        </Box>
+      
       </Box>
       <AppBar color="transparent" position="static" className={classes.HackAA}>
         <Tabs 
@@ -185,20 +178,63 @@ function Hacktivities() {
         </Typography>
         </Box>
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Typography variant="h4">All Rooms</Typography>
-        <Typography variant="subtitle2">
+      <TabPanel style={{color: "white", textAlign: "center",}} value={value} index={1}>
+        <Typography variant="h3">Rooms</Typography>
+        <br></br>
+        <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "100px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+          <br></br>
+        <Typography style={{color: "#c6cede",}} variant="subtitle2">
           Each room belonging to a specific topic or tool
         </Typography>
         <Rooms />
       </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Typography variant="h4">Learning Paths</Typography>
-        <Typography variant="subtitle2">
-          Structured and guided paths to follow along
+      <TabPanel style={{color: "white", textAlign: "center",}} value={value} index={2}>
+        <Typography variant="h3">Learning Paths</Typography>
+        
+        <br></br>
+        <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "100px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+          <br></br>
+        <Typography style={{color: "#c6cede",}} variant="subtitle2">
+        Structured and guided paths to follow along
         </Typography>
+        
         <Paths />
       </TabPanel>
+      <Footer />
     </div>
   );
 }

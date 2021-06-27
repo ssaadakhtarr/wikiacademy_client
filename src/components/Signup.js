@@ -112,7 +112,7 @@ function Signup() {
 
         <Grid item xs={12} sm={12} md={12} lg={6}>
           <div className="registration">
-            <Box style={{ backgroundColor: "#263143",padding: "21% 5%", }} padding={4}>
+            <Box style={{ backgroundColor: "#263143",padding: "15% 5%", }} padding={4}>
               <div
                 style={{
                   display: "flex",
@@ -133,6 +133,7 @@ function Signup() {
               >
                 Sign Up
               </Typography>
+              <br></br>
               {showSuccess && (
                 <Alert severity="success">Registered Successfully!</Alert>
               )}

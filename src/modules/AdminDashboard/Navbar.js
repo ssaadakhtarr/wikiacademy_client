@@ -43,17 +43,17 @@ function Navbar() {
 
     return (
       <div className={classes.root}>
-        <AppBar style={{backgroundColor: "transparent"}} position="static">
+        <AppBar style={{backgroundColor: "transparent", padding: "0 2%"}} position="static">
           <Toolbar>
           
           <SideDrawer/>
 
-            <Box marginTop={1} marginBottom={1}>
+            <Box style={{paddingLeft: "2%",}} marginTop={1} marginBottom={1}>
             <a href="/">
               <img
                 style={{
-                  width: "300px",
-                  height: "75px",
+                  width: "240px",
+    height: "60px",
                 }}
                 src={Logo}
                 alt="logo"

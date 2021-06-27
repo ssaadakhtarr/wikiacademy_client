@@ -29,6 +29,12 @@ import BookIcon from '@material-ui/icons/Book';
 import Tooltip from "@material-ui/core/Tooltip";
 import {useStateValue} from "../StateProvider";
 import SidebarDashboard from "../modules/SidebarDashboard";
+import {FaBookOpen} from 'react-icons/fa';
+import {FaBlog} from 'react-icons/fa';
+import {FaTrophy} from'react-icons/fa';
+import {FaHome} from'react-icons/fa';
+import {MdDashboard} from 'react-icons/md';
+
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -215,15 +221,15 @@ export default function Nav2() {
   return (
     <MuiThemeProvider theme={theme}>
     <div className={classes.grow}>
-      <AppBar color="transparent" style={{ backgroundColor: "transparent" }} position="static">
+      <AppBar color="transparent" style={{color: "white", backgroundColor: "transparent", padding: "0 2%", }} position="static">
         
         <Toolbar>
           <Box marginTop={1} marginBottom={1}>
             <a href="/">
               <img
                 style={{
-                  width: "300px",
-                  height: "75px",
+                  width: "240px",
+    height: "60px",
                 }}
                 src={Logo}
                 alt="logo"
@@ -231,6 +237,28 @@ export default function Nav2() {
               />
             </a>
           </Box>
+          <Box className={classes.boxIcons} paddingLeft={2} style={{display:"flex"}}>
+              <Tooltip title="Dashboard" arrow>
+                <IconButton className={classes.boxIcons} href="/">
+                  <MdDashboard />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Leaderboard" arrow>
+                <IconButton className={classes.boxIcons} href="/leaderboard">
+                  <FaTrophy />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Hacktivities" arrow>
+                <IconButton className={classes.boxIcons} href="/hacktivities">
+                  <FaBookOpen />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Blog" arrow>
+                <IconButton className={classes.boxIcons} href="/blog">
+                  <FaBlog />
+                </IconButton>
+              </Tooltip>
+            </Box>
           {/* <Box marginLeft={2}>
                       <Tooltip title="Dashboard" arrow>
             

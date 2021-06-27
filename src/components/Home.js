@@ -18,6 +18,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Divider,
   Grid,
 } from "@material-ui/core";
 import ToolImage from "../img/tools.png";
@@ -33,6 +34,7 @@ import { withStyles } from "@material-ui/styles";
 import { useHistory } from "react-router-dom";
 import Rooms from "./Rooms";
 import Paths from "./Paths";
+import BlogCard from "../modules/Blog/BlogCard";
 /* Client\src\fonts\style.css */
 
 const JoinButton = withStyles({
@@ -137,7 +139,7 @@ function Home() {
       >
         
         <Nav />
-        <Box style={{padding: "20% 0"}}>
+        <Box style={{padding: "12% 0"}}>
         <div>
           <Typography
             style={{ fontWeight: "bold" }}
@@ -201,12 +203,14 @@ function Home() {
         </Box>
         
       </Box>
-      <Box style={{ backgroundColor: "#1e2633", color: "white", padding: "5% 0" }} >
+      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "5% 5%" }} >
         <div>
           <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>Learning Paths</Typography>
           {/* borderBottom:"4px solid #88cc14 " */}
           {/* <h1 style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '100%',fontWeight:"bold",fontSize:50}} className={classes.textb}>Learning Paths</h1> */}
+         
           {/* <div style={{position:"absolute",display: "inlineBlock",width: "290px",height: "5px",borderRadius: "20px",backgroundColor: "#88cc14",paddingTop:'-30px',paddingLeft:'35px',textAlign:"center"}}></div> */}
+          <br></br>
           <div
             style={{
               display: "flex",
@@ -218,7 +222,7 @@ function Home() {
             <div
               style={{
                 display: "inlineBlock",
-                width: "40%",
+                width: "100px",
                 height: "5px",
                 borderRadius: "20px",
                 backgroundColor: "#88cc14",
@@ -233,9 +237,12 @@ function Home() {
         <Paths/>
       </Box>
       
-      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "5% 0" }} >
+<Divider />
+      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "5% 5%" }} >
         <br></br>
+      
         <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>Learning Rooms</Typography>
+        <br></br>
         <div
           style={{
             display: "flex",
@@ -247,13 +254,14 @@ function Home() {
           <div
             style={{
               display: "inlineBlock",
-              width: "40%",
+              width: "100px",
               height: "5px",
               borderRadius: "20px",
               backgroundColor: "#88cc14",
             }}
           ></div>
         </div>
+        
         <br></br>
         {/* <div style={{position:"absolute",display: "inlineBlock",width: "290px",height: "5px",borderRadius: "20px",backgroundColor: "#88cc14",marginTop:'-30px',marginLeft:'525px'}}></div> */}
         <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}}>
@@ -261,6 +269,42 @@ function Home() {
         </Typography>
               <Rooms />
               </Box>
+              <Divider />
+      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "5% 5%" }}  >
+      <br></br>
+        <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>Featured Posts</Typography>
+        <br></br>
+        <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "100px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+          <br></br>
+          <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}} >
+            Featured posts from WikiSecurity Blog
+          </Typography>
+          <br></br>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
+            <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
+            <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
+            <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
+            <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
+          </Grid>
+      </Box>
       <Footer />
       {/* <img src={Image} /> */}
     </div>

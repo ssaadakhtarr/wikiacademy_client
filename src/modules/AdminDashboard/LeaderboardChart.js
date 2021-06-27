@@ -27,7 +27,7 @@ function LeaderboardChart() {
    
     return (
         <Paper style={{background: "linear-gradient(90deg, rgba(38,49,67,0.1) 0%, rgba(59,85,50,0.1) 100%)"
-            , color: "white  !important"}}>
+            , color: "white!important"}}>
           <Chart
   
             style={{color: "white"}}
@@ -38,6 +38,7 @@ function LeaderboardChart() {
             <ValueAxis max={7} />
   
             <BarSeries
+            style={{color: "#fff",}}
             color="#9fef00"
               valueField="population"
               argumentField="year"

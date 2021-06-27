@@ -1,7 +1,6 @@
 import { Box, Grid } from '@material-ui/core';
 import React from 'react';
 import LeaderboardChart from '../modules/AdminDashboard/LeaderboardChart';
-import LeaderboardTable from '../modules/AdminDashboard/LeaderboardTable';
 import Navbar from '../modules/AdminDashboard/Navbar';
 import SideDrawer from '../modules/AdminDashboard/SideDrawer';
 import TotalRoomsCard from '../modules/AdminDashboard/TotalRoomsCard';

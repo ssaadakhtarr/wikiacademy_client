@@ -20,10 +20,12 @@ const JoinButton = withStyles({
   root: {
     fontWeight: "bold",
     padding: "2%",
-    paddingTop: "3%",
+    paddingTop: "2%",
     backgroundColor: "transparent",
     color: "#9fef00",
+    border: "1px solid #9fef00",
     "&:hover": {
+      fontWeight: "bold",
       backgroundColor: "#9fef00",
       color: "#1e2633",
     },
@@ -32,17 +34,25 @@ const JoinButton = withStyles({
 
 const useStyles = makeStyles((theme)=>({
   root: {
-    maxWidth: 500,
+    backgroundColor: "#141d2b",
     
+  maxWidth: 400,
+  minHeight: 410,
+  maxHeight: 410,
+  transition: "0.5s all ease",
+  '&:hover': {
+      transform: "scale(1.01)",
+      boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5)",
   },
-  media: {
-    
-    height: 250,
-  },
-  gridList: {
-    width: "100%",
-    height: 450,
-  },
+},
+media: {
+  height: 200,
+},
+content: {
+
+  minHeight: 120,
+  
+},
 }));
 
 function Rooms() {
@@ -53,12 +63,12 @@ function Rooms() {
      
         <Grid container spacing={3}>
         
-      <Grid item xs={12} sm={12} md={6} lg={6}>
+      <Grid item xs={12} sm={12} md={4} lg={4}>
         <Box align="center" padding={4}>
           <Card className={classes.root}>
-            <CardActionArea >
+            <CardActionArea > 
               <CardMedia className={classes.media} image={nmapImage} />
-              <CardContent style={{backgroundColor: "#263143", color: "white",}}>
+              <CardContent className={classes.content} style={{backgroundColor: "#141d2b", color: "white",}}>
                 <Typography gutterBottom variant="h5" component="h2">
                   nmap
                 </Typography>
@@ -67,7 +77,7 @@ function Rooms() {
                 </Typography>
               </CardContent>
             </CardActionArea>
-            <CardActions style={{backgroundColor: "#263143"}}>
+            <CardActions style={{backgroundColor: "#141d2b"}}>
               <JoinButton onClick={() => history.push(`/room/nmap`)} size="small" color="primary">
                 Learn More
               </JoinButton>
@@ -77,12 +87,12 @@ function Rooms() {
       </Grid>
       
 
-      <Grid item xs={12} sm={12} md={6} lg={6}>
+      <Grid item xs={12} sm={12} md={4} lg={4}>
         <Box align="center" padding={4}>
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia className={classes.media} image={hydraImage} />
-              <CardContent style={{backgroundColor: "#263143", color: "white"}}>
+              <CardContent className={classes.content} style={{backgroundColor: "#141d2b", color: "white"}}>
                 <Typography gutterBottom variant="h5" component="h2">
                   Hydra
                 </Typography>
@@ -91,7 +101,7 @@ function Rooms() {
                 </Typography>
               </CardContent>
             </CardActionArea>
-            <CardActions style={{backgroundColor: "#263143"}}>
+            <CardActions style={{backgroundColor: "#141d2b"}}>
               <JoinButton size="small" color="primary">
                 Learn More
               </JoinButton>
@@ -99,12 +109,12 @@ function Rooms() {
           </Card>
         </Box>
       </Grid>
-      <Grid item xs={12} sm={12} md={6} lg={6}>
+      <Grid item xs={12} sm={12} md={4} lg={4}>
         <Box align="center" padding={4}>
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia className={classes.media} image={owaspImage} />
-              <CardContent style={{backgroundColor: "#263143", color: "white"}}>
+              <CardContent className={classes.content} style={{backgroundColor: "#141d2b", color: "white"}}>
                 <Typography gutterBottom variant="h5" component="h2">
                   OWASP Top 10
                 </Typography>
@@ -113,7 +123,7 @@ function Rooms() {
                 </Typography>
               </CardContent>
             </CardActionArea>
-            <CardActions style={{backgroundColor: "#263143"}}>
+            <CardActions style={{backgroundColor: "#141d2b"}}>
               <JoinButton size="small" color="primary">
                 Learn More
               </JoinButton>
@@ -122,12 +132,12 @@ function Rooms() {
         </Box>
       </Grid>
 
-      <Grid item xs={12} sm={12} md={6} lg={6}>
+      <Grid item xs={12} sm={12} md={4} lg={4}>
         <Box align="center" padding={4}>
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia className={classes.media} image={linuxImage} />
-              <CardContent style={{backgroundColor: "#263143", color: "white"}}>
+              <CardContent className={classes.content} style={{backgroundColor: "#141d2b", color: "white"}}>
                 <Typography gutterBottom variant="h5" component="h2">
                   Linux Fundamentals
                 </Typography>
@@ -136,7 +146,51 @@ function Rooms() {
                 </Typography>
               </CardContent>
             </CardActionArea>
-            <CardActions style={{backgroundColor: "#263143"}}>
+            <CardActions style={{backgroundColor: "#141d2b"}}>
+              <JoinButton size="small" color="primary">
+                Learn More
+              </JoinButton>
+            </CardActions>
+          </Card>
+        </Box>
+      </Grid>
+      <Grid item xs={12} sm={12} md={4} lg={4}>
+        <Box align="center" padding={4}>
+          <Card className={classes.root}>
+            <CardActionArea>
+              <CardMedia className={classes.media} image={linuxImage} />
+              <CardContent className={classes.content} style={{backgroundColor: "#141d2b", color: "white"}}>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Linux Fundamentals
+                </Typography>
+                <Typography style={{color: "#cad2e2"}} variant="body2" color="textSecondary" component="p">
+                  A room designed for complete newbies to get familiar with the basics of linux and command line.
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions style={{backgroundColor: "#141d2b"}}>
+              <JoinButton size="small" color="primary">
+                Learn More
+              </JoinButton>
+            </CardActions>
+          </Card>
+        </Box>
+      </Grid>
+      <Grid item xs={12} sm={12} md={4} lg={4}>
+        <Box align="center" padding={4}>
+          <Card className={classes.root}>
+            <CardActionArea>
+              <CardMedia className={classes.media} image={linuxImage} />
+              <CardContent className={classes.content} style={{backgroundColor: "#141d2b", color: "white"}}>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Linux Fundamentals
+                </Typography>
+                <Typography style={{color: "#cad2e2"}} variant="body2" color="textSecondary" component="p">
+                  A room designed for complete newbies to get familiar with the basics of linux and command line.
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions style={{backgroundColor: "#141d2b"}}>
               <JoinButton size="small" color="primary">
                 Learn More
               </JoinButton>

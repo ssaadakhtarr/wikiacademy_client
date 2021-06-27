@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState, Component, useEffect } from "react";
 import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom";
 import Axios from "axios";
 import "./App.css";
@@ -30,6 +30,13 @@ import AddRoom from "./components/AddRoom"
 import Footer from "./components/Footer";
 import CircleProgress from "./components/CircleProgress";
 import AdminDashboard from "./components/AdminDashboard";
+import UpdateUser from "./components/UpdateUser";
+import DeleteRooms from "./components/DeleteRooms";
+import PendingBlogs from "./components/PendingBlogs";
+import DeleteBlogs from "./components/DeleteBlogs";
+import Blog from "./components/Blog";
+import BlogPage from "./components/BlogPage";
+import AddBlog from "./components/AddBlog";
 
 
 // const neueHaas = {
@@ -102,7 +109,15 @@ function App() {
         }
       }}
     />
-  );
+  ); 
+
+      useEffect(() => {
+        Axios.post("http://localhost:3001/updateRank", {
+
+        }).then((response) => {
+          console.log(response.data);
+        })
+      }, [])
 
   return (
    
@@ -124,13 +139,23 @@ function App() {
         <Route path="/path/beginner" component={CompleteBegineer} />
         <Route path="/path/web-hacking" component={WebHackingPath} />
         <Route path="/path/vulnpath" component={VulPath} />
-        <Route path="/add/room" component={AddRoom} />
+        <Route path="/add-room" component={AddRoom} />
         <Route path="/footer" component={Footer} />
 
         <Route path="/circle" component={CircleProgress} />
 
         <Route path="/admin-dashboard" component={AdminDashboard}/>
-        
+        <Route path="/update-user" component={UpdateUser}/>
+        <Route path="/delete-room" component={DeleteRooms}/>
+        <Route path="/pending-blogs" component={PendingBlogs}/>
+        <Route path="/delete-blogs" component={DeleteBlogs}/>
+
+        <Route path="/blog" component={Blog}/>
+
+        <Route path="/test" component={BlogPage}/>
+
+        <Route path="/add-blog" component={AddBlog}/>
+
         <Route component={Error} />
       </Switch>
     

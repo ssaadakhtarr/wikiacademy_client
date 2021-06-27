@@ -137,7 +137,7 @@ function Profile() {
       <div className={classes.root}>
       <AppBar position="static" color="default">
         <Tabs
-          style={{backgroundColor: "black"}}
+          style={{backgroundColor: "#1e2633"}}
           value={value}
           onChange={handleChange}
           indicatorColor="primary"

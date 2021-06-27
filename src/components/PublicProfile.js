@@ -89,12 +89,13 @@ function PublicProfile() {
   };
   return (
     // <MuiThemeProvider theme={theme}>
-    <div>
+    <div style={{color: "white",}}>
       <Box
        
         style={{
-          color: "#fff",
+          
           backgroundImage: "url('https://wallpapercave.com/wp/wp2757874.gif')",
+          backgroundPosition: "center",
         }}
       >
         <Nav2 />

@@ -33,6 +33,10 @@ import ComputerIcon from "@material-ui/icons/Computer";
 import BookIcon from "@material-ui/icons/Book";
 import HomeIcon from "@material-ui/icons/Home";
 import ButtonAppBarCollapse from "./ButtonAppBarCollapse";
+import {FaTrophy} from'react-icons/fa';
+import {FaHome} from'react-icons/fa';
+import {FaBookOpen} from 'react-icons/fa';
+import {FaBlog} from 'react-icons/fa';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,12 +56,17 @@ const useStyles = makeStyles((theme) => ({
     width: "240px",
     height: "60px",
     [theme.breakpoints.down("xs")]: {
-      width: "140px",
-      height: "30px",
+      // width: "140px",
+      // height: "30px",
     },
   },
   title: {
     flexGrow: 1,
+  },
+  boxIcons: {
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
+    },
   },
   drop: {
     [theme.breakpoints.down("xs")]: {
@@ -79,7 +88,8 @@ const JoinButton = withStyles({
   root: {
     backgroundColor: "transparent",
     color: "#9fef00",
-    border: "1px solid #1a2332",
+    border: "1px solid #9fef00",
+    textTransform: "none",
     "&:hover": {
       backgroundColor: "#9fef00",
       color: "#1e2633",
@@ -91,7 +101,8 @@ const LoginButton = withStyles({
   root: {
     backgroundColor: "transparent",
     color: "#fff",
-    border: "1px solid #1a2332",
+    border: "1px solid #fff",
+    textTransform: "none",
     "&:hover": {
       backgroundColor: "#fff",
       color: "#1e2633",
@@ -118,7 +129,7 @@ const theme = createMuiTheme({
     },
   },
 });
-
+ 
 function Nav() {
   const history = useHistory();
   const classes = useStyles();
@@ -166,7 +177,7 @@ function Nav() {
         <AppBar
           elevation={2}
           style={{
-            
+            padding: "0 6%",
             width: "100%",
             overflowX: "hidden",
           }}
@@ -181,25 +192,25 @@ function Nav() {
               </a>
             </Box>
 
-            <Box paddingLeft={2} style={{display:"flex"}}>
+            <Box className={classes.boxIcons} paddingLeft={2} style={{display:"flex"}}>
               <Tooltip title="Home" arrow>
-                <IconButton href="/">
-                  <HomeIcon />
+                <IconButton className={classes.boxIcons} href="/">
+                  <FaHome />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Leaderboard" arrow>
-                <IconButton href="/leaderboard">
-                  <GradeIcon />
+                <IconButton className={classes.boxIcons} href="/leaderboard">
+                  <FaTrophy />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Hacktivities" arrow>
-                <IconButton href="/hacktivities">
-                  <ComputerIcon />
+                <IconButton className={classes.boxIcons} href="/hacktivities">
+                  <FaBookOpen />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Blog" arrow>
-                <IconButton href="/blog">
-                  <BookIcon />
+                <IconButton className={classes.boxIcons} href="/blog">
+                  <FaBlog />
                 </IconButton>
               </Tooltip>
             </Box>
@@ -256,6 +267,8 @@ function Nav() {
                   onClick={() => history.push("/signin")}
                   fullWidth
                   style={{
+                    backgroundColor: "#18181f",
+                    color: "#fff",
                     fontSize: "12px",
                     fontWeight: "600",
                   }}
@@ -266,9 +279,12 @@ function Nav() {
               </MenuItem>
               <MenuItem>
                 <JoinButton
+
                   onClick={() => history.push("/signup")}
                   fullWidth
                   style={{
+                    backgroundColor: "#9fef00",
+                    color: "#18181f",
                     fontSize: "12px",
                     fontWeight: "600",
                   }}
@@ -278,11 +294,13 @@ function Nav() {
                 </JoinButton>
               </MenuItem>
             </ButtonAppBarCollapse>
+
             <div className={classes.drop}>
               <LoginButton
               disableElevation
                 onClick={() => history.push("/signin")}
                 style={{
+                  marginRight: "2%",
                   fontSize: "12px",
                   fontWeight: "600",
                 }}

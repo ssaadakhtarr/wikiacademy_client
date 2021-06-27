@@ -19,10 +19,12 @@ const JoinButton = withStyles({
   root: {
     fontWeight: "bold",
     padding: "2%",
-    paddingTop: "3%",
+    paddingTop: "2%",
     backgroundColor: "transparent",
     color: "#9fef00",
+    border: "1px solid #9fef00",
     "&:hover": {
+      fontWeight: "bold",
       backgroundColor: "#9fef00",
       color: "#1e2633",
     },
@@ -31,13 +33,24 @@ const JoinButton = withStyles({
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 500,
+    backgroundColor: "#141d2b",
     
+  maxWidth: "100%",
+  height: "100%",
+  transition: "0.5s all ease",
+  '&:hover': {
+      transform: "scale(1.01)",
+      boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5)",
   },
-  media: {
-    
-    height: 250,
-  },
+},
+media: {
+  height: 200,
+},
+content: {
+
+  maxHeight: 120,
+  
+},
 
 });
 
