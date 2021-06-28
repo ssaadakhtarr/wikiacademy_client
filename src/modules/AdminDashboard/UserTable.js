@@ -40,10 +40,17 @@ const DeleteButton = withStyles({
 })(Button);
 
 
-function UserTable() {
+function UserTable({userData, search}) {
   
   const [data, setData] = React.useState([['1', 'ssaadakhtarr'], ['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar']]);
-
+  const [filter, setFilter] = React.useState([]);
+  userData.map((i) => {
+    if(i.username.includes(search)) {
+      filter.push(i);
+    } else if (search === '') {
+      setFilter(userData);
+    }
+  })
   return (
     <div>
     <Box style={{backgroundColor: "rgb(255,255,255,0.1)", color: "white"}}>
@@ -55,14 +62,14 @@ function UserTable() {
       </Grid>
     </Box>
     <br></br>
-    {data.map((current) => {
+    {filter.map((current) => {
       return(
         <div>
           <br></br>
         <Box style={{backgroundColor: "rgb(0,0,0,0.1)", color: "white"}}>
         <Grid container spacing={2}>
-        <Grid item xs={4}><Typography style={{marginTop: "2%"}}>{current[0]}</Typography></Grid>
-        <Grid item xs={4}><a style={{color: "#9fef00", }} href="/p/ssaadakhtarr"><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current[1]}</Typography></a></Grid>
+        <Grid item xs={4}><Typography style={{marginTop: "2%"}}>{current.id}</Typography></Grid>
+        <Grid item xs={4}><a style={{color: "#9fef00", }} href={'/p/'+current.username}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.username}</Typography></a></Grid>
         <Grid item xs={4}><Typography><DeleteButton>Delete</DeleteButton></Typography></Grid>
       </Grid>
       </Box>

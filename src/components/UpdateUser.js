@@ -7,15 +7,34 @@ import {
   OutlinedInput,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../modules/AdminDashboard/Navbar";
 import { ImSearch } from "react-icons/im";
 import UserTable from "../modules/AdminDashboard/UserTable";
+import Axios from "axios";
 
 
 function UpdateUser() {
   const [values, setValues] = React.useState();
+  const [userDetails, setUserDetails] = React.useState();
+  const [mounted, setMounted] = React.useState(false);
+  useEffect(() => {
+    Axios.get("http://localhost:3001/getUserData").then((response) => {
+      console.log(response.data);
+      if (response.data != undefined) {
+        setUserDetails(response.data);
+        setMounted(true);
 
+      }
+    })
+  }, [])
+
+
+  if (!mounted && userDetails === undefined) {
+    return ("loading");
+  }
+else {
+  console.log(userDetails)
   return (
     <div
       style={{
@@ -49,6 +68,7 @@ function UpdateUser() {
           endAdornment={
             <InputAdornment position="end">
               <IconButton
+              
                 aria-label="toggle password visibility"
                 style={{ color: "#9fef00" }}
                 edge="end"
@@ -62,12 +82,12 @@ function UpdateUser() {
       </FormControl>
       <br></br>
       <br></br>
-          <UserTable/>
+      {(userDetails != undefined) && (<UserTable userData={userDetails} search={values}/>)}
       </Container>
 
       
     </div>
   );
 }
-
+}
 export default UpdateUser;
