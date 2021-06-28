@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function RankDashboard() {
+function RankDashboard({rank}) {
     const classes = useStyles();
 
     return (
@@ -42,7 +42,7 @@ function RankDashboard() {
         
        
           <br></br>
-        <Typography style={{textAlign: "center",}} variant="h4">100th</Typography>
+        <Typography style={{textAlign: "center",}} variant="h4">{rank}</Typography>
         <br></br>
         <Typography style={{textAlign: "center", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body2">Rank</Typography>
 

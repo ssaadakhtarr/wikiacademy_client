@@ -68,9 +68,11 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function LevelDashboard() {
+function LevelDashboard({level,points}) {
     const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
+  const points1=Math.ceil(((parseInt(points))/1000))
+  console.log(points1)
 
   return (
     <Card style={{display: "inline-block", height: "100%", width: "100%", backgroundColor: "#1a2332", color: "#fff",}} className={classes.root}>
@@ -79,12 +81,14 @@ function LevelDashboard() {
         
       
           
-        <Typography style={{textAlign: "right",}} variant="body1">Next Rank - Level9 [0x9][Pr0]</Typography>
+        <Typography style={{textAlign: "right",}} variant="body1">LEVEL {level}</Typography>
 
     <MuiThemeProvider theme={theme}>
-        <LinearProgressWithLabel  style={{margin: "3% 0", borderRadius: "25px", height: "15px",backgroundColor: "#141d2b"}} value="25" />
+        <LinearProgressWithLabel  style={{margin: "3% 0", borderRadius: "25px", height: "15px",backgroundColor: "#141d2b"}} value={points1}/>
+        {console.log(Math.round((parseInt(points))/1000))}
+        {console.log(points)}
         </MuiThemeProvider>
-        <Typography style={{textAlign: "right",}} variant="body1">5336/6000 Points</Typography>
+        <Typography style={{textAlign: "right",}} variant="body1">{points}/6000 Points</Typography>
         <Typography style={{textAlign: "center", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body2">Progress</Typography>
         <br></br>
       </CardContent>

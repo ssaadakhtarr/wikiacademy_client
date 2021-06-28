@@ -31,6 +31,8 @@ import LevelOnlyDashboard from "../modules/LevelOnlyDashboard";
 import SidebarDashboard from "../modules/SidebarDashboard";
 import RoomsDashboard from "../modules/RoomsDashboard";
 import {MdDashboard} from 'react-icons/md';
+import React, { useEffect } from "react";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   
@@ -56,12 +58,32 @@ const boxStyle = {
 };
 
 function Dashboard() {
+  
   const classes = useStyles();
   const [{ User }, dispatch] = useStateValue();
   const user = JSON.parse(localStorage.getItem("user"));
+  const [userDashboard,setUserDashboard]=React.useState();
+  const [mounted, setMounted] = React.useState(false);
+ 
 
   const history = useHistory();
+  useEffect(() => {
+    axios.get(`http://localhost:3001/getDashboard/${user.id}`).then((response)=> {
+    console.log(response.data);
+    if(response.data !== undefined){
+      setUserDashboard(response.data);
+        setMounted(true);
+    }
+    })
 
+
+    }, []);
+
+
+    if (!mounted && userDashboard === undefined) {
+        return <div>Loading...</div>;
+      }
+      else{
   return (
     <div style={{ backgroundColor: "#141d2b" }}>
       <Box style={boxStyle}>
@@ -87,7 +109,7 @@ function Dashboard() {
             right: "10px",
             top: "0px",
             display: "block",
-            position: "relative",
+            paddingLeft:"55px",
           }}
         />
             Dashboard
@@ -121,31 +143,31 @@ function Dashboard() {
             <Grid container >
               <Grid item md={6} sm={6} xs={12}>
                 <Box margin={2}>
-                  <TotalUsersDashboard />
+                  {(userDashboard) && (<TotalUsersDashboard users={userDashboard?.users}/>)}
                 </Box>
               </Grid>
               <Grid item  md={6} sm={6} xs={12}>
                 <Box margin={2}>
-                <RankDashboard />
+                {(userDashboard) && (<RankDashboard rank={userDashboard?.rank}/>)}
                 </Box>
               </Grid>
               <Grid container >
                 <Grid item md={6} sm={6} xs={12}>
                   <Box fullWidth margin={2}>
-                    <LevelOnlyDashboard />
+                  {(userDashboard) && (<LevelOnlyDashboard level={userDashboard?.level}/>)}
                   </Box>
                 </Grid>
 
                 <Grid item md={6} sm={6} xs={12}>
                   <Box margin={2}>
-                  <QuestionsDashboard />
+                  {(userDashboard) && (<QuestionsDashboard points={userDashboard?.points}/>)}
                   </Box>
                 </Grid>
               </Grid>
             </Grid>
             <Grid item md={12} sm={12} xs={12}>
               <Box margin={2}>
-                <LevelDashboard />
+              {(userDashboard) && (<LevelDashboard level={userDashboard?.level} points={userDashboard?.points}/>)}
               </Box>
             </Grid>
             <Grid item md={12} sm={12} xs={12}>
@@ -175,5 +197,5 @@ function Dashboard() {
     </div>
   );
 }
-
+}
 export default Dashboard;

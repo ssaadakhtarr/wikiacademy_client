@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function TotalUsersDashboard() {
+function TotalUsersDashboard({users}) {
     const classes = useStyles();
     return (
         <div>
@@ -44,7 +44,7 @@ function TotalUsersDashboard() {
         
        
           <br></br>
-        <Typography style={{textAlign: "center",}} variant="h4">4502</Typography>
+        <Typography style={{textAlign: "center",}} variant="h4">{users}</Typography>
         <br></br>
         <Typography style={{textAlign: "center", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body2">Total Users</Typography>
     

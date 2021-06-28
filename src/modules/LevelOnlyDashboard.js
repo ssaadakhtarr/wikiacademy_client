@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function LevelOnlyDashboard() {
+function LevelOnlyDashboard({level}) {
     const classes = useStyles();
     return (
         <div>
@@ -42,7 +42,7 @@ function LevelOnlyDashboard() {
         
         
           <br></br>
-        <Typography style={{textAlign: "center",}} variant="h4">9</Typography>
+        <Typography style={{textAlign: "center",}} variant="h4">{level}</Typography>
         <br></br>
         <Typography style={{textAlign: "center", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body2">Level</Typography>
     

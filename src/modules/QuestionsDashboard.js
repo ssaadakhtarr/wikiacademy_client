@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function QuestionsDashboard() {
+function QuestionsDashboard({points}) {
     const classes = useStyles();
 
     return (
@@ -42,9 +42,9 @@ function QuestionsDashboard() {
         
        
           <br></br>
-        <Typography style={{textAlign: "center",}} variant="h4">26</Typography>
+        <Typography style={{textAlign: "center",}} variant="h4">{points}</Typography>
         <br></br>
-        <Typography style={{textAlign: "center", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body2">Questions Solved</Typography>
+        <Typography style={{textAlign: "center", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body2">Points</Typography>
     
 
       </CardContent>

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-function TotalUsersCard() {
+function TotalUsersCard({users}) {
     const classes = useStyles();
     return (
         <div>
@@ -45,7 +45,7 @@ function TotalUsersCard() {
         
         
           <br></br>
-        <Typography style={{textAlign: "center",}} variant="h4">943</Typography>
+        <Typography style={{textAlign: "center",}} variant="h4">{users}</Typography>
         <br></br>
         <Typography style={{textAlign: "center", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body2">Total Users</Typography>
     
