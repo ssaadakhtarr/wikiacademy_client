@@ -4,6 +4,7 @@ import React from 'react'
 import BlogPageNav from '../modules/Blog/BlogPageNav';
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Axios from 'axios';
 
 const CssTextField = withStyles({
     root: {
@@ -42,6 +43,25 @@ const CssTextField = withStyles({
   })(Button);
 
 function AddBlog() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [blogTitle, setBlogTitle] = React.useState('');
+  const [blogDesc, setBlogDesc] = React.useState('');
+  const [blogImg, setBlogImg] = React.useState('');
+  const [blogMaterial, setBlogMaterial] = React.useState('');
+  const [userId, setUserId] = React.useState(user.id);
+  
+  const postBlog = () => {
+    Axios.post("http://localhost:3001/addBlog", {
+      blogTitle: blogTitle,
+      blogDesc: blogDesc,
+      blogImg: blogImg,
+      blogMaterial: blogMaterial,
+      userId: userId,
+    }).then((response) => {
+      console.log(response.data);
+    })
+  }
+
     return (
         <div style={{backgroundColor: "#141d2b"}}>
             <BlogPageNav/>
@@ -65,6 +85,9 @@ function AddBlog() {
               variant="outlined"
               label="Blog Title"
               multiline="false"
+              onChange={(e) => {
+                setBlogTitle(e.target.value);
+              }}
             />
             <br></br>
             <br></br>
@@ -84,6 +107,9 @@ function AddBlog() {
               variant="outlined"
               label="Blog Description"
               multiline="false"
+              onChange={(e) => {
+                setBlogDesc(e.target.value);
+              }}
             />
              <br></br>
             <br></br>
@@ -103,6 +129,9 @@ function AddBlog() {
               variant="outlined"
               label="Blog Image"
               multiline="false"
+              onChange={(e) => {
+                setBlogImg(e.target.value);
+              }}
             />
             <br></br>
             <br></br>
@@ -110,11 +139,15 @@ function AddBlog() {
             <br></br>
             <CKEditor
               editor={ClassicEditor}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                setBlogMaterial(data);
+              }}
               
             />
             <br></br>
             <br></br>
-            <SendButton fullWidth>Post Blog</SendButton>
+            <SendButton fullWidth onClick={postBlog}>Post Blog</SendButton>
             </Box>
         </div>
     )

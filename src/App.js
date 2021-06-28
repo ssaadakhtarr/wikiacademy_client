@@ -154,7 +154,7 @@ function App() {
 
         <Route path="/test" component={BlogPage}/>
 
-        <Route path="/add-blog" component={AddBlog}/>
+        <ProtectedRoute path="/add-blog" component={AddBlog}/>
 
         <Route component={Error} />
       </Switch>

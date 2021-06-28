@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -32,8 +32,11 @@ const useStyles = makeStyles({
   },
 }); 
 
-export default function BlogCard() {
+export default function BlogCard({blogTitle, blogDesc, blogImg, username}) {
+
   const classes = useStyles();
+
+  
 
   return (
       <Box className={classes.root}>
@@ -42,15 +45,16 @@ export default function BlogCard() {
         <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://images-cdn.9gag.com/images/thumbnail-facebook/57098360_1614347994.7054_EWaWeH_n.jpg"
+          image={blogImg}
           title="Contemplative Reptile"
         />
         <CardContent  className={classes.content}>
           <Typography style={{color: "white",fontWeight: "bold",}} gutterBottom variant="h6" component="h2">
-          AttackerKB - Not all vulns are created equal
+          {blogTitle}
           </Typography>
           <Typography style={{color: "white",}} variant="body2" color="textSecondary" component="p">
-          Give your students their own browser based security environment. We have Kali Linux machines with all the necessary (industry used) security tools ready to be controlled directly in the browser.With this, the be controlled directly in the browser.With this, the</Typography>
+         {blogDesc}
+         </Typography>
         <br></br>
          <br></br>
         </CardContent>
@@ -59,7 +63,7 @@ export default function BlogCard() {
      
       <CardActions>
          < BiUserCircle style={{color: "#9fef00", fontSize: "40px"}}/>
-        <Typography style={{color: "#fff"}} variant="body1">ssaadakhtarr</Typography>
+        <Typography style={{color: "#fff"}} variant="body1">{username}</Typography>
         
       </CardActions>
     </Card>

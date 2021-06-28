@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import Footer from "./Footer";
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "../img/logo/neonWhite.png";
 import { FaBlog, FaTwitter } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
@@ -20,6 +20,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import {useHistory} from 'react-router-dom'
 import BlogCard from "../modules/Blog/BlogCard";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,6 +61,25 @@ const StyledButton = withStyles({
 function Blog() {
   const history = useHistory();
   const classes = useStyles();
+  const [blogData, setBlogData] = React.useState();
+  const [mounted, setMounted] = React.useState(false);
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/getBlogs").then((response)=> {
+    console.log(response.data);
+    if (response.data != undefined) {
+      console.log("mounted");
+      setMounted(true);
+      setBlogData(response.data);
+      console.log(response.data[0].blogTitle)
+    }
+    
+    })
+    }, []);
+
+    if (!mounted) {
+      return <div>Loading...</div>;
+    }
   return (
     <div style={{backgroundColor: "#141d2b"}}>
       <Box
@@ -75,7 +95,7 @@ function Blog() {
             <Box style={{ textAlign: "left" }}>
               <StyledButton>Home</StyledButton>
               <StyledButton>WikiSecurity</StyledButton>
-            </Box>
+            </Box> 
           </Grid>
           <Grid item xs={4}></Grid>
           <Grid item xs={4}>
@@ -97,26 +117,36 @@ function Blog() {
       
       {/* <Box padding={10} style={{margin: "0 150px", backgroundColor: "black",}}></Box> */}
       <Container maxWidth="lg">
-        <Grid container spacing={2}>
+      {/* {(mounted && blogData != undefined) && (<BlogCard blogTitle={blogData[0].blogTitle} blogDesc={blogData[0].blogDesc} blogImg={blogData[0].blogImg} username={blogData[0].username} />)} */}
+      {blogData && blogData.length > 0 ? blogData?.map((i) => {
+        return (<div>
+      
+           
+            <BlogCard blogTitle={i.blogTitle} blogDesc={i.blogDesc} blogImg={i.blogImg} username={i.username} />
+        
+          
+          </div>)
+      }): console.log("load")}
+        {/* <Grid container spacing={2}>
+          <Grid item xs={12} sm={12} md={12}>
+          <BlogCard />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+          <BlogCard/>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+          <BlogCard/>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+          <BlogCard/>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+          <BlogCard/>
+          </Grid>
           <Grid item xs={12} sm={12} md={12}>
           <BlogCard/>
           </Grid>
-          <Grid item xs={12} sm={12} md={6}>
-          <BlogCard/>
-          </Grid>
-          <Grid item xs={12} sm={12} md={6}>
-          <BlogCard/>
-          </Grid>
-          <Grid item xs={12} sm={12} md={6}>
-          <BlogCard/>
-          </Grid>
-          <Grid item xs={12} sm={12} md={6}>
-          <BlogCard/>
-          </Grid>
-          <Grid item xs={12} sm={12} md={12}>
-          <BlogCard/>
-          </Grid>
-        </Grid>
+        </Grid> */}
       </Container>
 
       <Fab
