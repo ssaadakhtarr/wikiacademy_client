@@ -32,7 +32,7 @@ const useStyles = makeStyles({
   },
 }); 
 
-export default function BlogCard({blogTitle, blogDesc, blogImg, username}) {
+export default function BlogCard({blogTitle, blogDesc, blogImg, username,url}) {
 
   const classes = useStyles();
 
@@ -41,7 +41,7 @@ export default function BlogCard({blogTitle, blogDesc, blogImg, username}) {
   return (
       <Box className={classes.root}>
     <Card className={classes.root}>
-        <a className={classes.root} style={{textDecoration: "none"}} href="/test">
+        <a className={classes.root} style={{textDecoration: "none"}} href={url}>
         <CardActionArea>
         <CardMedia
           className={classes.media}

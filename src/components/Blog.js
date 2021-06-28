@@ -122,7 +122,7 @@ function Blog() {
         return (<div>
       
            
-            <BlogCard blogTitle={i.blogTitle} blogDesc={i.blogDesc} blogImg={i.blogImg} username={i.username} />
+            <BlogCard blogTitle={i.blogTitle} blogDesc={i.blogDesc} blogImg={i.blogImg} username={i.username} url={"/blogs/"+i.blogTitle} />
         
           
           </div>)
