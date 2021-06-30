@@ -16,6 +16,7 @@ import Leaderboard from "./components/Leaderboard";
 import Hacktivities from "./components/Hacktivities";
 import ToolsPath from "./components/ToolsPath";
 import CompleteBegineer from "./components/CompleteBegineer";
+import Faq from "./components/Faq"
 
 import Paths from "./components/Paths";
 import Room from "./components/Room";
@@ -37,7 +38,7 @@ import DeleteBlogs from "./components/DeleteBlogs";
 import Blog from "./components/Blog";
 import BlogPage from "./components/BlogPage";
 import AddBlog from "./components/AddBlog";
-
+import AdminLogin from "./components/AdminLogin";
 
 // const neueHaas = {
 //   fontFamily: 'Neue Haas Unica',
@@ -141,6 +142,9 @@ function App() {
         <Route path="/path/vulnpath" component={VulPath} />
         <Route path="/add-room" component={AddRoom} />
         <Route path="/footer" component={Footer} />
+        <Route path="/faq" component={Faq} />
+        <Route path="/admin-Login" component={AdminLogin}/>
+        
 
         <Route path="/circle" component={CircleProgress} />
 
