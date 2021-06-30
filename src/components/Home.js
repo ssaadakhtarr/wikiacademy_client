@@ -35,6 +35,9 @@ import { useHistory } from "react-router-dom";
 import Rooms from "./Rooms";
 import Paths from "./Paths";
 import BlogCard from "../modules/Blog/BlogCard";
+import {FaTwitter} from 'react-icons/fa';
+import { FaInstagram } from "react-icons/fa";
+import { FaDiscord } from "react-icons/fa";
 /* Client\src\fonts\style.css */
 
 const JoinButton = withStyles({
@@ -235,8 +238,31 @@ function Home() {
           </Typography>
         </div>
         <Paths/>
+        <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+        <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "1200px",
+                height: "2px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+
       </Box>
-      <Divider />
+      {/* <Divider /> */}
       <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "5% 5%" }} >
       <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>FAQs</Typography>
           <br></br>
@@ -260,11 +286,96 @@ function Home() {
           </div>
           <br></br>
           <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}} >
-            Structured and guided paths to follow along
+            Frequently Asked Questions to help you get started!
           </Typography>
+          <br></br>
+          <Typography style={{textAlign: "center",  }}><JoinButton href="/faq" style={{border: "1px solid #9fef00", textTransform: "none", fontWeight: "bold", }}>See Our FAQ Section</JoinButton></Typography>
+          <br></br>
+          <br></br>
+          <br></br>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "800px",
+                height: "2px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>Social Networks</Typography>
+          <br></br>
+          <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              display: "inlineBlock",
+              width: "100px",
+              height: "5px",
+              borderRadius: "20px",
+              backgroundColor: "#88cc14",
+            }}
+          ></div>
+        </div>
+        <br></br>
+        <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}}>
+          Follow us on social media and get connected with other learners!
+        </Typography>
+        <br></br>
+      <div style={{textAlign: "center", color: "white"}}>
+      <IconButton className={classes.icons}>
+            <FaTwitter style={{color: "white"}} />
+          </IconButton>
+          <IconButton className={classes.icons}>
+            <FaInstagram style={{color: "white"}} />
+          </IconButton>
+          <IconButton className={classes.icons}>
+            <FaDiscord style={{color: "white"}} />
+          </IconButton>
+      </div>
+      <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+      <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "1200px",
+                height: "2px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+
       </Box>
-<Divider />
-      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "5% 5%" }} >
+{/* <Divider /> */}
+      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "2% 5%" }} >
         <br></br>
       
         <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>Learning Rooms</Typography>
@@ -294,9 +405,85 @@ function Home() {
           Each room belonging to a specific topic or tool
         </Typography>
               <Rooms />
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "1200px",
+                height: "2px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+
               </Box>
-              <Divider />
-      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "5% 5%" }}  >
+              <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "2% 5%" }} >
+              <br></br>
+        <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>About Us</Typography>
+        <br></br>
+        <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "100px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+          <br></br>
+          <Box style={{margin: "0 25%"}}>
+          <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}} >
+            We have initialized a project which focuses on the learning of Cyber Security. In this website we have broken down major and large topics into byte-sized minified lessons to make your learning experience easy and user friendly.
+          </Typography>
+          
+          </Box>
+          <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "1200px",
+                height: "2px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+        
+              </Box>
+              {/* <Divider /> */}
+      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "2% 5%" }}  >
       <br></br>
         <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>Featured Posts</Typography>
         <br></br>

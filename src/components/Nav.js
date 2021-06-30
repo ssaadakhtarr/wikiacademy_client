@@ -182,6 +182,7 @@ function Nav() {
             padding: "0 6%",
             width: "100%",
             overflowX: "hidden",
+            color: "white",
           }}
           color="transparent"
           position="static"
@@ -194,7 +195,7 @@ function Nav() {
               </a>
             </Box>
 
-            <Box className={classes.boxIcons} paddingLeft={2} style={{display:"flex"}}>
+            <Box className={classes.boxIcons} paddingLeft={2} style={{display:"flex", color: "white", }}>
               <Tooltip title="Home" arrow>
                 <IconButton className={classes.boxIcons} href="/">
                   <FaHome />
