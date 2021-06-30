@@ -28,14 +28,15 @@ const useStyles = makeStyles((theme) => ({
 
 function SidebarDashboard() {
     const classes = useStyles();
+    const user = JSON.parse(localStorage.getItem("user"));
     return (
         <div style={{color: "#a4b1cd"}}>
             <br></br>
             
             
             <div style={{textAlign: "center"}}><CgProfile style={{color: "#9fef00",  fontSize: "80px"}}/></div>
-          <Typography style={{color: "#fff", textAlign: "center"}} variant="h6">Saad Akhtar</Typography>
-          <Typography style={{color: "#9fef00", textAlign: "center", fontWeight: "bold", letterSpacing: "2px"}} variant="body2">ssaadakhtarr</Typography>
+          <Typography style={{color: "#fff", textAlign: "center"}} variant="h6">{user.firstName}</Typography>
+          <Typography style={{color: "#9fef00", textAlign: "center", fontWeight: "bold", letterSpacing: "2px"}} variant="body2">{user.username}</Typography>
           <br></br><br></br><br></br><br></br>
           <div style={{ padding: ".625rem 1.5rem", textAlign: "left" }}>
             <Typography style={{textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold"}} variant="body2">Learn</Typography>
