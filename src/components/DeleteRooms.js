@@ -7,21 +7,41 @@ import {
   OutlinedInput,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../modules/AdminDashboard/Navbar";
 import { ImSearch } from "react-icons/im";
 import UserTable from "../modules/AdminDashboard/UserTable";
 import RoomsTable from "../modules/AdminDashboard/RoomsTable";
+import axios from "axios";
 
 
 function DeleteRooms() {
   const [values, setValues] = React.useState();
+  const [roomDetails, setRoomDetails] = React.useState();
+  const [mounted, setMounted] = React.useState(false);
+  useEffect(() => {
+    axios.get("http://localhost:3001/getAllRooms").then((response) => {
+      console.log(response.data);
+      if (response.data != undefined) {
+        setRoomDetails(response.data);
+        setMounted(true);
 
+      }
+    })
+  }, [])
+
+
+  if (!mounted && roomDetails === undefined) {
+    return ("loading");
+  }
+else {
   return (
+   
     <div
       style={{
         backgroundImage: "url('https://wallpapercave.com/wp/wp2757874.gif')",
         backgroundPosition: "center",
+        minHeight: "1000px",
       }}
     >
       <Navbar />
@@ -63,12 +83,15 @@ function DeleteRooms() {
       </FormControl>
       <br></br>
       <br></br>
-        <RoomsTable/>
+      {console.log(roomDetails)}
+      {(roomDetails != undefined) && (<RoomsTable roomData={roomDetails}/>)}
       </Container>
 
       
     </div>
   );
+
+}
 }
 
 export default DeleteRooms;

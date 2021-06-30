@@ -25,13 +25,13 @@ const StyledButton = withStyles({
 
 function BlogPage() {
   const history=useHistory();
-  const {blogname}=useParams();
+  const {blogid}=useParams();
   const [mounted, setMounted] = React.useState(false);
   const [blogPage, setBlogPage] = React.useState();
 
   useEffect(() => {
     axios.post("http://localhost:3001/getBlogPage",{ 
-      blogname:blogname,
+      blogid:blogid,
     }).then((response)=>{
       console.log(response.data)
       if (response.data != undefined) {
@@ -67,7 +67,7 @@ function BlogPage() {
             backgroundImage:
               `url(${blogPage[0].blogImg})`,
             backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
+            // backgroundRepeat: "no-repeat",
             height: "600px",
           }}
         ></Box>

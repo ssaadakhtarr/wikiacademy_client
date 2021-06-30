@@ -236,7 +236,33 @@ function Home() {
         </div>
         <Paths/>
       </Box>
-      
+      <Divider />
+      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "5% 5%" }} >
+      <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>FAQs</Typography>
+          <br></br>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "100px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+          <br></br>
+          <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}} >
+            Structured and guided paths to follow along
+          </Typography>
+      </Box>
 <Divider />
       <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "5% 5%" }} >
         <br></br>

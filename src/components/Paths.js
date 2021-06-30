@@ -78,7 +78,7 @@ export default function Paths() {
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia className={classes.media} image={ToolImage} />
-              <CardContent style={{backgroundColor: "#141d2b", color: "white"}}>
+              <CardContent style={{backgroundColor: "#141d2b", color: "white", minHeight: "80px"}}>
                 <Typography gutterBottom variant="h5" component="h2">
                   Tools
                 </Typography>
@@ -102,7 +102,7 @@ export default function Paths() {
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia className={classes.media} image={VulnImage} />
-              <CardContent style={{backgroundColor: "#141d2b", color: "white"}}>
+              <CardContent style={{backgroundColor: "#141d2b", color: "white", minHeight: "80px"}}>
                 <Typography gutterBottom variant="h5" component="h2">
                   Vulnerabilities
                 </Typography>
@@ -125,7 +125,7 @@ export default function Paths() {
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia className={classes.media} image={WebImage} />
-              <CardContent style={{backgroundColor: "#141d2b", color: "white"}}>
+              <CardContent style={{backgroundColor: "#141d2b", color: "white", minHeight: "80px"}}>
                 <Typography gutterBottom variant="h5" component="h2">
                   Web Hacking Fundamentals
                 </Typography>
@@ -149,7 +149,7 @@ export default function Paths() {
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia className={classes.media} image={BegImage} />
-              <CardContent style={{backgroundColor: "#141d2b", color: "white"}}>
+              <CardContent style={{backgroundColor: "#141d2b", color: "white", minHeight: "80px"}}>
                 <Typography gutterBottom variant="h5" component="h2">
                   Complete Beginner
                 </Typography>

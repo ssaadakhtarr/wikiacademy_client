@@ -20,7 +20,7 @@ function UpdateUser() {
   const [mounted, setMounted] = React.useState(false);
   useEffect(() => {
     Axios.get("http://localhost:3001/getUserData").then((response) => {
-      console.log(response.data);
+      console.log(response.data[1]);
       if (response.data != undefined) {
         setUserDetails(response.data);
         setMounted(true);
@@ -40,6 +40,7 @@ else {
       style={{
         backgroundImage: "url('https://wallpapercave.com/wp/wp2757874.gif')",
         backgroundPosition: "center",
+        minHeight: "1000px",
       }}
     >
       <Navbar />

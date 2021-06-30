@@ -49,7 +49,7 @@ function AddBlog() {
   const [blogImg, setBlogImg] = React.useState('');
   const [blogMaterial, setBlogMaterial] = React.useState('');
   const [userId, setUserId] = React.useState(user.id);
-  
+  const nowEnable = blogTitle.length > 0 && blogDesc.length > 0 && blogImg.length > 0 && blogMaterial.length > 0;
   const postBlog = () => {
     Axios.post("http://localhost:3001/addBlog", {
       blogTitle: blogTitle,
@@ -64,7 +64,7 @@ function AddBlog() {
 
     return (
         <div style={{backgroundColor: "#141d2b"}}>
-            <BlogPageNav/>
+            <BlogPageNav />
             
             <Box style={{ padding: " 5% 20%"}}>
             <Typography style={{color: "#9fef00", textAlign: "center"}} variant="h2">Add New Blog</Typography>
@@ -147,7 +147,7 @@ function AddBlog() {
             />
             <br></br>
             <br></br>
-            <SendButton fullWidth onClick={postBlog}>Post Blog</SendButton>
+            <SendButton disabled={!nowEnable} fullWidth onClick={postBlog}>Post Blog</SendButton>
             </Box>
         </div>
     )

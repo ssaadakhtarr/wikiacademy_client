@@ -93,8 +93,8 @@ function Blog() {
         <Grid container spacing={2}>
           <Grid item xs={4}>
             <Box style={{ textAlign: "left" }}>
-              <StyledButton>Home</StyledButton>
-              <StyledButton>WikiSecurity</StyledButton>
+              <StyledButton href="/blog">Home</StyledButton>
+              <StyledButton href="/">WikiSecurity</StyledButton>
             </Box> 
           </Grid>
           <Grid item xs={4}></Grid>
@@ -122,7 +122,7 @@ function Blog() {
         return (<div>
       
            
-            <BlogCard blogTitle={i.blogTitle} blogDesc={i.blogDesc} blogImg={i.blogImg} username={i.username} url={"/blogs/"+i.blogTitle} />
+            <BlogCard blogTitle={i.blogTitle} blogDesc={i.blogDesc} blogImg={i.blogImg} username={i.username} url={"/blogs/"+i.blogId} />
         
           
           </div>)

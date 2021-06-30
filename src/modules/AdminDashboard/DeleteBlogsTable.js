@@ -8,6 +8,40 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Box, Button, Grid, Typography } from '@material-ui/core';
+import { useHistory  } from 'react-router-dom';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Axios from 'axios';
+
+
+const JoinButton = withStyles({
+  root: {
+    backgroundColor: "transparent",
+    color: "#9fef00",
+    border: "1px solid #9fef00",
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#9fef00",
+      color: "#1e2633",
+    },
+  },
+})(Button);
+
+const LoginButton = withStyles({
+  root: {
+    backgroundColor: "transparent",
+    color: "#fff",
+    border: "1px solid #fff",
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#fff",
+      color: "#1e2633",
+    },
+  },
+})(Button);
 
 
 
@@ -56,31 +90,78 @@ const DeleteButton = withStyles({
 })(Button);
 
 
-function PendingBlogsTable() {
-  
+function DeleteBlogsTable(blogData) {
+  console.log(blogData);
+  const history = useHistory();
   const [data, setData] = React.useState([['1', 'ssaadakhtarr'], ['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar']]);
+  const [open, setOpen] = React.useState(false);
+  const [blogId, setBlogId] = React.useState();
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const discardBlog = (id) => {
+    Axios.post("http://localhost:3001/discardBlog", {
+      id: id,
+    }).then((response) => {
+      console.log(response.data);
+
+    })
+    window.location.reload(false);
+  }
   return (
     <div>
     <Box style={{backgroundColor: "rgb(255,255,255,0.1)", color: "white"}}>
       <Grid container spacing={2}>
-        <Grid item xs={4}><Typography variant="h6" style={{fontWeight: "bold"}}>ID</Typography></Grid>
-        <Grid item xs={4}><Typography variant="h6" style={{fontWeight: "bold"}}>Blog Name</Typography></Grid>
+        <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>ID</Typography></Grid>
+        <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Blog Name</Typography></Grid>
+        <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Details</Typography></Grid>
        
-        <Grid item xs={4}><Typography variant="h6" style={{fontWeight: "bold"}}>Delete</Typography></Grid>
+        <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Delete</Typography></Grid>
       </Grid>
     </Box>
     <br></br>
-    {data.map((current) => {
+    {blogData.blogData.map((current) => {
       return(
         <div>
           <br></br>
         <Box style={{backgroundColor: "rgb(0,0,0,0.1)", color: "white"}}>
         <Grid container spacing={2}>
-        <Grid item xs={4}><Typography style={{marginTop: "2%"}}>{current[0]}</Typography></Grid>
-        <Grid item xs={4}><a style={{color: "#9fef00", }} href="/p/ssaadakhtarr"><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current[1]}</Typography></a></Grid>
-        
-        <Grid item xs={4}><Typography><DeleteButton>Delete</DeleteButton></Typography></Grid>
+        <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.blogId}</Typography></Grid>
+        <Grid item xs={3}><Typography style={{color: "#9fef00", marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.blogTitle}</Typography></Grid>
+        <Grid item xs={3}><Typography><EditButton onClick={()=>{
+          history.push(`/blogs/${current.blogId}`)
+        }}>View</EditButton></Typography></Grid>
+        <Grid item xs={3}><Typography><DeleteButton onClick={ ()=>{
+          
+          discardBlog(current.blogId);
+        }}>Delete</DeleteButton>
+        <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+           {" By proceeding the blog will be permanently deleted!"}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <JoinButton style={{backgroundColor: "#9fef00", color: "black"}} onClick={handleClose} color="primary">
+            Cancel
+          </JoinButton>
+          <DeleteButton style={{backgroundColor: "#f54e4e", color: "black"}} color="primary" autoFocus>
+            Delete
+          </DeleteButton>
+        </DialogActions>
+      </Dialog>
+      </Typography></Grid>
       </Grid>
       </Box>
        <br></br>
@@ -93,4 +174,4 @@ function PendingBlogsTable() {
   );
 }
 
-export default PendingBlogsTable;
+export default DeleteBlogsTable;

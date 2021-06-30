@@ -8,6 +8,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
+import {FaBlog} from'react-icons/fa';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +51,9 @@ function BlogPageNav() {
       >
         <Toolbar>
             <a href="/"><img style={{ width: "200px" }} src={Logo} /></a>
-          
+            <IconButton href="/blog" className={classes.icons}>
+            <FaBlog style={{marginLeft: "2%", color: "white"}} />
+          </IconButton>
           <Typography variant="h6" className={classes.title}>
          
           </Typography>

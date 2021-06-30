@@ -8,7 +8,39 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Box, Button, Grid, Typography } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Axios from 'axios';
+import {useHistory} from 'react-router-dom'
 
+const JoinButton = withStyles({
+  root: {
+    backgroundColor: "transparent",
+    color: "#9fef00",
+    border: "1px solid #9fef00",
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#9fef00",
+      color: "#1e2633",
+    },
+  },
+})(Button);
+
+const LoginButton = withStyles({
+  root: {
+    backgroundColor: "transparent",
+    color: "#fff",
+    border: "1px solid #fff",
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#fff",
+      color: "#1e2633",
+    },
+  },
+})(Button);
 
 
 const EditButton = withStyles({
@@ -56,32 +88,74 @@ const DeleteButton = withStyles({
 })(Button);
 
 
-function PendingBlogsTable() {
-  
+function PendingBlogsTable({pendingBlogs}) {
+  console.log(pendingBlogs.length)
+  const history = useHistory();
   const [data, setData] = React.useState([['1', 'ssaadakhtarr'], ['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar']]);
+  const [open, setOpen] = React.useState(false);
+  const [blogId, setBlogId] = React.useState();
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const discardBlog = (id) => {
+    Axios.post("http://localhost:3001/discardBlog", {
+      id: id,
+    }).then((response) => {
+      console.log(response.data);
+
+    })
+    window.location.reload(false);
+  }
+  const approveBlog = (id) => {
+    
+    Axios.post("http://localhost:3001/approveBlog", {
+      id: id,
+      
+    }).then((response) => {
+      console.log(response.data);
+    })
+    window.location.reload(false);
+    // window.location.reload(false);
+  }
 
   return (
     <div>
     <Box style={{backgroundColor: "rgb(255,255,255,0.1)", color: "white"}}>
       <Grid container spacing={2}>
         <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>ID</Typography></Grid>
-        <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Blog Name</Typography></Grid>
+        <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Blog Title</Typography></Grid>
         <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Details</Typography></Grid>
         <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Approval</Typography></Grid>
       </Grid>
     </Box>
     <br></br>
-    {data.map((current) => {
+    {(pendingBlogs.length === 0) && (<div><br></br><Typography variant="h4" style={{color: "#9fef00", fontWeight: "bold"}}>There are no pending blogs!</Typography></div>)}
+    {pendingBlogs.map((current) => {
       return(
         <div>
           <br></br>
         <Box style={{backgroundColor: "rgb(0,0,0,0.1)", color: "white"}}>
         <Grid container spacing={2}>
-        <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current[0]}</Typography></Grid>
-        <Grid item xs={3}><a style={{color: "#9fef00", }} href="/p/ssaadakhtarr"><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current[1]}</Typography></a></Grid>
-        <Grid item xs={3}><Typography><EditButton>View</EditButton></Typography></Grid>
-        <Grid item xs={3}><Typography><DeleteButton>Discard</DeleteButton>  <ApproveButton>Approve</ApproveButton></Typography></Grid>
+        <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.blogId}</Typography></Grid>
+        <Grid item xs={3}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px", color: "#9fef00"}}>{current.blogTitle}</Typography></Grid>
+        <Grid item xs={3}><Typography><EditButton onClick={()=>{
+          history.push(`/blogs/${current.blogId}`)
+        }}>View</EditButton></Typography></Grid>
+        <Grid item xs={3}><Typography><DeleteButton onClick={()=>{
+          
+          discardBlog(current.blogId);
+        }}>Discard</DeleteButton>  
+        <ApproveButton onClick={()=>{
+          
+          approveBlog(current.blogId);
+        }}>Approve</ApproveButton></Typography></Grid>
       </Grid>
+
       </Box>
        <br></br>
        
