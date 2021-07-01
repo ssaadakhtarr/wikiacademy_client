@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "../img/home.jpg";
 import "../App.css";
 import Nav from "./Nav";
@@ -38,6 +38,7 @@ import BlogCard from "../modules/Blog/BlogCard";
 import {FaTwitter} from 'react-icons/fa';
 import { FaInstagram } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
+import axios from "axios";
 /* Client\src\fonts\style.css */
 
 const JoinButton = withStyles({
@@ -127,6 +128,30 @@ const useStyles = makeStyles((theme) => ({
 function Home() {
   const history = useHistory();
   const classes = useStyles();
+  const [blogData, setBlogData] = React.useState();
+  const [roomData, setRoomData] = React.useState();
+  const [mounted, setMounted] = React.useState(false);
+  
+  useEffect(() => {
+    axios.get("http://localhost:3001/getHomeData").then((response) => {
+      console.log(response.data);
+      if (response.data != undefined) {
+       
+        setMounted(true);
+        setBlogData(response.data.newArr);
+        setRoomData(response.data.result_1);
+      }
+    })
+  }, [])
+
+  if (!mounted || blogData === undefined || roomData === undefined) {
+    return <div>Loading...</div>;
+  }
+  else {
+
+  console.log(blogData);
+  console.log(roomData);
+  
   return (
     <div className="foo">
       
@@ -263,7 +288,118 @@ function Home() {
 
       </Box>
       {/* <Divider /> */}
-      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "5% 5%" }} >
+      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "2% 5%" }} >
+              <br></br>
+        <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>About Us</Typography>
+        <br></br>
+        <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "100px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+          <br></br>
+          <Box style={{margin: "0 25%"}}>
+          <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}} >
+            We have initialized a project which focuses on the learning of Cyber Security. In this website we have broken down major and large topics into byte-sized minified lessons to make your learning experience easy and user friendly.
+          </Typography>
+          
+          </Box>
+          <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "1200px",
+                height: "2px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+        
+              </Box>
+{/* <Divider /> */}
+      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "2% 5%" }} >
+        <br></br>
+      
+        <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>Learning Rooms</Typography>
+        <br></br>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              display: "inlineBlock",
+              width: "100px",
+              height: "5px",
+              borderRadius: "20px",
+              backgroundColor: "#88cc14",
+            }}
+          ></div>
+        </div>
+        
+        <br></br>
+        {/* <div style={{position:"absolute",display: "inlineBlock",width: "290px",height: "5px",borderRadius: "20px",backgroundColor: "#88cc14",marginTop:'-30px',marginLeft:'525px'}}></div> */}
+        <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}}>
+          Each room belonging to a specific topic or tool
+        </Typography>
+        {console.log(roomData[0].roomName)}
+             {roomData.map((i) => {
+               return  <Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline} />
+             })}
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "1200px",
+                height: "2px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+
+              </Box>
+              <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "5% 5%" }} >
       <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>FAQs</Typography>
           <br></br>
           <div
@@ -374,114 +510,6 @@ function Home() {
           </div>
 
       </Box>
-{/* <Divider /> */}
-      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "2% 5%" }} >
-        <br></br>
-      
-        <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>Learning Rooms</Typography>
-        <br></br>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <div
-            style={{
-              display: "inlineBlock",
-              width: "100px",
-              height: "5px",
-              borderRadius: "20px",
-              backgroundColor: "#88cc14",
-            }}
-          ></div>
-        </div>
-        
-        <br></br>
-        {/* <div style={{position:"absolute",display: "inlineBlock",width: "290px",height: "5px",borderRadius: "20px",backgroundColor: "#88cc14",marginTop:'-30px',marginLeft:'525px'}}></div> */}
-        <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}}>
-          Each room belonging to a specific topic or tool
-        </Typography>
-              <Rooms />
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "inlineBlock",
-                width: "1200px",
-                height: "2px",
-                borderRadius: "20px",
-                backgroundColor: "#88cc14",
-              }}
-            ></div>
-          </div>
-
-              </Box>
-              <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "2% 5%" }} >
-              <br></br>
-        <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>About Us</Typography>
-        <br></br>
-        <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "inlineBlock",
-                width: "100px",
-                height: "5px",
-                borderRadius: "20px",
-                backgroundColor: "#88cc14",
-              }}
-            ></div>
-          </div>
-          <br></br>
-          <Box style={{margin: "0 25%"}}>
-          <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}} >
-            We have initialized a project which focuses on the learning of Cyber Security. In this website we have broken down major and large topics into byte-sized minified lessons to make your learning experience easy and user friendly.
-          </Typography>
-          
-          </Box>
-          <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "inlineBlock",
-                width: "1200px",
-                height: "2px",
-                borderRadius: "20px",
-                backgroundColor: "#88cc14",
-              }}
-            ></div>
-          </div>
-        
-              </Box>
               {/* <Divider /> */}
       <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "2% 5%" }}  >
       <br></br>
@@ -510,18 +538,23 @@ function Home() {
             Featured posts from WikiSecurity Blog
           </Typography>
           <br></br>
-          <Grid container spacing={2}>
+          {/* <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
             <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
             <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
             <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
             <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
-          </Grid>
+          </Grid> */}
+          {blogData.map((i) => {
+            
+            return <BlogCard blogTitle={i.blogTitle} blogDesc={i.blogDesc} blogImg={i.blogImg} username={i.username} url={"/blogs/"+i.blogId} />
+          })}
       </Box>
       <Footer />
       {/* <img src={Image} /> */}
     </div>
   );
+}
 }
 
 export default Home;

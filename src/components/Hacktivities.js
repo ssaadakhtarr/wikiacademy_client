@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import React from "react";
+import React, { useEffect } from "react";
 import Paths from "./Paths";
 import Rooms from "./Rooms";
 import Logo from "../img/logo/neonWhite.png";
@@ -14,6 +14,7 @@ import Nav2 from "./Nav2";
 import "../App.css";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import axios from "axios";
 
 
 function TabPanel(props) {
@@ -125,9 +126,32 @@ function Hacktivities() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
+  const [blogData, setBlogData] = React.useState();
+  const [roomData, setRoomData] = React.useState();
+  const [mounted, setMounted] = React.useState(false);
+  
+  useEffect(() => {
+    axios.get("http://localhost:3001/getHomeData").then((response) => {
+      console.log(response.data);
+      if (response.data != undefined) {
+       
+        setMounted(true);
+        setBlogData(response.data.newArr);
+        setRoomData(response.data.result_1);
+      }
+    })
+  }, [])
+
+  
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
+
   };
+
+  if (!mounted || blogData === undefined || roomData === undefined) {
+    return <div>Loading...</div>;
+  } else {
   return (
     <div style={{backgroundColor: "#141d2b"}}>
       {/* {(user === null) && <Nav />}
@@ -161,21 +185,29 @@ function Hacktivities() {
         </Tabs>
       </AppBar>
       <TabPanel style={{ color: "#fff"}} value={value} index={0}>
-        <Box padding={10} style={{display:"flex",justifyContent:"center",flexDirection:"column",allignItems:"center"}}>
+        <Box padding={10} style={{textAlign: "center", display:"flex",justifyContent:"center",flexDirection:"column",allignItems:"center"}}>
+        <div style={{textAlign: "center", width: "100%"}}>
         <img
           style={{
-            
+          width: "50%",  
           }}
-
+          
           src={Logo}
-          className={classes.HackImg}
+         
         />
-        <Typography variant="h4" className={classes.HackAZ}>Learn hacking with WikiSecurity!</Typography>
+        </div>
         <br></br>
-        <Typography variant="body" className={classes.HackAX}>
-          Uplift your hacking and security skills by enrolling in a guided path
-          or join a room of your choice!.
+        <br></br>
+        <Typography variant="h3" className={classes.HackAZ}>Learn hacking with WikiSecurity!</Typography>
+        <br></br>
+        <div style={{margin: "0 25%"}}>
+        <Typography style={{color: "#c6cede"}} variant="h6" className={classes.HackAX}>
+          Welcome to the Hacktivities section! Here in this section you can start learning by joining a specific room of your choice or you can also enroll in the guided paths in order to get started.
+
+          Scroll to the Rooms or Paths section to learn more.
         </Typography>
+        </div>
+        
         </Box>
       </TabPanel>
       <TabPanel style={{color: "white", textAlign: "center",}} value={value} index={1}>
@@ -203,7 +235,9 @@ function Hacktivities() {
         <Typography style={{color: "#c6cede",}} variant="subtitle2">
           Each room belonging to a specific topic or tool
         </Typography>
-        <Rooms />
+        {roomData.map((i)=>{
+         return <Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline}/>
+        })}
       </TabPanel>
       <TabPanel style={{color: "white", textAlign: "center",}} value={value} index={2}>
         <Typography variant="h3">Learning Paths</Typography>
@@ -237,6 +271,7 @@ function Hacktivities() {
       <Footer />
     </div>
   );
+}
 }
 
 export default Hacktivities;

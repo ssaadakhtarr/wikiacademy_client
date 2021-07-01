@@ -15,6 +15,7 @@ import linuxImage from "../img/rooms/linux.png";
 import {useHistory} from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import GridList from '@material-ui/core/GridList';
+import renderHTML from "react-render-html";
 
 const JoinButton = withStyles({
   root: {
@@ -55,13 +56,34 @@ content: {
 },
 }));
 
-function Rooms() {
+function Rooms({roomImg, roomName, roomDesc}) {
     const classes = useStyles();
     const history = useHistory();
   return (
     <div>
+
+<Box align="center" padding={4}>
+          <Card className={classes.root}>
+            <CardActionArea > 
+              <CardMedia className={classes.media} image={roomImg} />
+              <CardContent className={classes.content} style={{backgroundColor: "#141d2b", color: "white",}}>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {roomName}
+                </Typography>
+                <Typography style={{color: "#cad2e2"}} variant="body2" color="textSecondary" component="p">
+                {renderHTML(roomDesc)}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions style={{backgroundColor: "#141d2b"}}>
+              <JoinButton onClick={() => history.push(`/room/nmap`)} size="small" color="primary">
+                Learn More
+              </JoinButton>
+            </CardActions>
+          </Card>
+        </Box>
      
-        <Grid container spacing={3}>
+        {/* <Grid container spacing={3}>
         
       <Grid item xs={12} sm={12} md={4} lg={4}>
         <Box align="center" padding={4}>
@@ -198,7 +220,7 @@ function Rooms() {
           </Card>
         </Box>
       </Grid>
-    </Grid>
+    </Grid> */}
  
     </div>
   ); 
