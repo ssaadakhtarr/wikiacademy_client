@@ -32,8 +32,8 @@ const CssTextField = withStyles({
     root: {
         fontWeight: "bold",
        textTransform: "none",
-      backgroundColor: "transparent",
-      color: "#9fef00",
+      backgroundColor: "#9fef00",
+      color: "#1e2633",
       border: "1px solid #9fef00",
       "&:hover": {
         backgroundColor: "#9fef00",

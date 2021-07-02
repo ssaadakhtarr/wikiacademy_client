@@ -24,6 +24,8 @@ import { withStyles } from "@material-ui/styles";
 import CheckIcon from '@material-ui/icons/Check';
 import PropTypes from 'prop-types';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {SiNintendogamecube} from 'react-icons/si';
 
 function LinearProgressWithLabel(props) {
   return (
@@ -200,6 +202,13 @@ function Room() {
   };
 
   console.log(previousData);
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#9fef00'
+      }
+    }
+  });
 
   return (
     <div style={{ backgroundColor: "#141d2b", color: "#cad2e2",}}>
@@ -216,9 +225,14 @@ function Room() {
           color: "white",
         }}
         
+      
+
+
+
       >
         <Box padding={2} style={{backgroundColor: "rgba(0, 0, 0, 0.6)",}} >
-        <Typography  variant="h2">{roomDetails.roomName}</Typography>
+          
+        <Typography  variant="h2"><span><SiNintendogamecube style={{fontSize: "70%"}}/></span> {roomDetails.roomName}</Typography>
         <Typography style={{color: '#c5c8cc'}} variant="body1">{roomDetails.roomTagline}</Typography>
         </Box>
       </Box>
@@ -229,14 +243,15 @@ function Room() {
       <Container spacing={2} component="main" maxWidth="lg">
         <br></br>
         {(isJoined) && (<div>
-          <div className={classes.root}>
-      <LinearProgressWithLabel style={{color: "white",backgroundColor: "#9fef00"}} value={progress} />
+          <div style={{backgroundColor: "#141d2b"}} className={classes.root}>
+          <MuiThemeProvider theme={theme}><LinearProgressWithLabel  style={{margin: "3% 0", borderRadius: "25px", height: "15px",backgroundColor: "#1a2332"}} value={progress} /></MuiThemeProvider>
     </div>
     <br></br>
 
           {pageCount === 1 && (
           <Box style={{ backgroundColor: "#1a2332" }} padding={4} boxShadow={2}>
-            {renderHTML(roomDetails.roomDescription)}
+            <Typography>{renderHTML(roomDetails.roomDescription)}</Typography>
+            
           </Box>
         )}
         <br></br>
@@ -2018,11 +2033,12 @@ function Room() {
         {!isJoined && (
           <div>
         
-        <Box style={{padding:"150px", textAlign: "center"}}>
-          <Typography variant="body1">To see the room material </Typography>
-        <Button onClick={handleJoinRoom} style={{ backgroundColor: "#9fef00", color: "#1e2633"}} variant="contained">
+        <Box style={{border: "1px solid #9fef00", padding:"150px", textAlign: "center"}}>
+          <Typography style={{color: "#9fef00"}} variant="h3">Join the room to access the tasks!</Typography>
+          <br></br>
+        <Typography><Button onClick={handleJoinRoom} style={{fontWeight: "bold", backgroundColor: "#9fef00", color: "#1e2633"}} variant="contained">
           Join Room
-        </Button>
+        </Button></Typography>
         </Box>
         </div>
       )}

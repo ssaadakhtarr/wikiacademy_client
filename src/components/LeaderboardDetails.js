@@ -74,6 +74,7 @@ const DeleteButton = withStyles({
 
 
 function LeaderboardDetails(userData) {
+  console.log(userData);
   const [data, setData] = React.useState([['1', 'ssaadakhtarr'], ['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar'],['2', 'asadakhtar']]);
   const [open, setOpen] = React.useState(false);
   const [temp, setTemp] = React.useState('');
@@ -123,7 +124,7 @@ function LeaderboardDetails(userData) {
       </Grid>
     </Box>
     <br></br>
-    {userData.map((current) => {
+    {userData.userData.map((current) => {
       return(
       
         <div>
@@ -131,7 +132,7 @@ function LeaderboardDetails(userData) {
           <br></br>
         <Box style={{backgroundColor: "rgb(0,0,0,0.1)", color: "white"}}>
         <Grid container spacing={2}>
-        <Grid item xs={3}><Typography style={{marginTop: "2%"}}></Typography></Grid>
+        <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.rank}</Typography></Grid>
         <Grid item xs={3}><a style={{color: "#9fef00", }} href={'/p/'+current.username}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.username}</Typography></a></Grid>
         <Grid item xs={2}><Typography style={{marginTop: "2%"}}></Typography></Grid>
       </Grid>

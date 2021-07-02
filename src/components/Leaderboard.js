@@ -95,7 +95,7 @@ function Leaderboard() {
   const user = JSON.parse(localStorage.getItem("user"));
   const classes = useStyles();
   const [values, setValues] = React.useState();
-  const [LeaderboardDetails, getLeaderBoardDetails] = React.useState();
+  const [LeaderboardData, getLeaderBoardDetails] = React.useState();
   const [mounted, setMounted] = React.useState(false);
   useEffect(() => {
     axios.get("http://localhost:3001/getLeaderboard").then((response) => {
@@ -108,11 +108,11 @@ function Leaderboard() {
   }, [])
 
 
-  if (!mounted && LeaderboardDetails === undefined) {
+  if (!mounted && LeaderboardData === undefined) {
     return ("loading")
   }
 else {
-  console.log(LeaderboardDetails)
+  console.log(LeaderboardData)
  
   return(
     <div style={{ backgroundColor: "#141d2b" }}>
@@ -166,8 +166,8 @@ else {
       </FormControl>
       <br></br>
       <br></br>
-      {console.log(LeaderboardDetails)}
-      {(LeaderboardDetails != undefined) && (<LeaderboardDetails userData={LeaderboardDetails}/>)}
+      {console.log(LeaderboardData)}
+      {(LeaderboardData != undefined) && (<LeaderboardDetails userData={LeaderboardData}/>)}
       </Container>
     </div>
   );
