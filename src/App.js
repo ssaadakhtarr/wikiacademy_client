@@ -16,7 +16,8 @@ import Leaderboard from "./components/Leaderboard";
 import Hacktivities from "./components/Hacktivities";
 import ToolsPath from "./components/ToolsPath";
 import CompleteBegineer from "./components/CompleteBegineer";
-import Faq from "./components/Faq"
+import Faq from "./components/Faq";
+
 
 import Paths from "./components/Paths";
 import Room from "./components/Room";
@@ -39,6 +40,8 @@ import Blog from "./components/Blog";
 import BlogPage from "./components/BlogPage";
 import AddBlog from "./components/AddBlog";
 import AdminLogin from "./components/AdminLogin";
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+// import Loader from "react-loader-spinner";
 
 // const neueHaas = {
 //   fontFamily: 'Neue Haas Unica',
@@ -121,9 +124,8 @@ function App() {
       }, [])
 
   return (
-   
-    
-    
+    <div>
+
       <Switch>
         <NormalRoute path="/" component={Home} exact/>
         <NormalRoute path="/signup" component={Signup} />
@@ -163,7 +165,7 @@ function App() {
 
         <Route component={Error} />
       </Switch>
-    
+      </div>
   
   );
 }
