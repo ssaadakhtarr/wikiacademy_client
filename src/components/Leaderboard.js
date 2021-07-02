@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "./Nav";
 import Box from "@material-ui/core/Box";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
@@ -14,6 +14,19 @@ import { Typography } from "@material-ui/core";
 import { useStateValue } from "../StateProvider";
 import Nav2 from "./Nav2";
 import Footer from "./Footer";
+import Cookies from "universal-cookie";
+import axios from "axios";
+import { ImSearch } from "react-icons/im";
+import UserTable from "../modules/AdminDashboard/UserTable";
+import LeaderboardDetails from "../components/LeaderboardDetails";
+import {
+  Container,
+FormControl,
+IconButton,
+InputAdornment,
+InputLabel,
+OutlinedInput,
+} from "@material-ui/core";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -78,16 +91,35 @@ const boxStyle = {
 };
 
 function Leaderboard() {
+  const cookies = new Cookies();
   const user = JSON.parse(localStorage.getItem("user"));
-
   const classes = useStyles();
-  return (
+  const [values, setValues] = React.useState();
+  const [LeaderboardDetails, getLeaderBoardDetails] = React.useState();
+  const [mounted, setMounted] = React.useState(false);
+  useEffect(() => {
+    axios.get("http://localhost:3001/getLeaderboard").then((response) => {
+      if (response.data != undefined) {
+        getLeaderBoardDetails(response.data);
+        setMounted(true);
+
+      }
+    })
+  }, [])
+
+
+  if (!mounted && LeaderboardDetails === undefined) {
+    return ("loading")
+  }
+else {
+  console.log(LeaderboardDetails)
+ 
+  return(
     <div style={{ backgroundColor: "#141d2b" }}>
-      
       <Box style={boxStyle}>
       {/* {user === null && <Nav />}
       {user !== null && <Nav2 />} */}
-      <Nav/>
+      {(cookies.get("userId") ? <Nav2/>:<Nav/>)}
       <Box padding={10}>
       <Typography variant="h2" className={classes.textVS}>
           Leaderboard
@@ -95,63 +127,50 @@ function Leaderboard() {
         <Typography style={{color: "#c6cede"}} variant="subtitle1" className={classes.HackA}>
         Welcome to the wall of fame - Here are our top 10 users
         </Typography> 
-        {/* {user !== null && (
-          <Typography variant="h6">
-            You are ranked{" "}
-            <span style={{ color: "#9fef00" }}>#{user.rank}</span>
-          </Typography>
-        )} */}
-      </Box>
         
-      </Box>
-      <Box style={{ color: "white" }} padding={5}>
-        {/* <Typography className={classes.Leader}>
-          Welcome to the wall of fame - Here are our top 10 users
-        </Typography> */}
-        <Grid container spacing={3}>
-          <Grid item xs={1} sm={1} md={1} lg={1}></Grid>
-          <Grid item xs={10} sm={10} md={10} lg={10}>
-            <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="customized table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell align="center">Rank</StyledTableCell>
-                    <StyledTableCell align="center">Username</StyledTableCell>
-                    <StyledTableCell align="center">Points</StyledTableCell>
-                    <StyledTableCell align="center">Level</StyledTableCell>
-                    <StyledTableCell align="center">Rooms In</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <StyledTableRow key={row.name}>
-                      <StyledTableCell component="th" align="center">
-                        {row.rank}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {row.username}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {row.points}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {row.level}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {row.rooms}
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-          <Grid item xs={1}></Grid>
-        </Grid>
-      </Box>
-      <Footer />
+        {(cookies.get("userId") ? <Typography style={{color: "#c6cede",fontSize:"30px",paddingTop:"20px"}} variant="subtitle1" className={classes.HackA}>Your current rank is {user.rank}</Typography>:<Typography style={{color: "#c6cede"}} variant="subtitle1" className={classes.HackA}>Rank will be displayed of Login ones</Typography>)}
+</Box>
+</Box>
+<Container style={{textAlign: "center"}} maxWidth="lg">
+      <FormControl  variant="outlined">
+        <InputLabel
+          style={{ color: "#9fef00" }}
+          fullWidth
+          htmlFor="outlined-adornment-password"
+        >
+          Search
+        </InputLabel>
+        <OutlinedInput
+          fullWidth
+          style={{ color: "#9fef00" }}
+          id="outlined-adornment-password"
+          type="text"
+          value={values}
+          onChange={(e) => {
+            setValues(e.target.value);
+          }}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+              
+                aria-label="toggle password visibility"
+                style={{ color: "#9fef00" }}
+                edge="end"
+              >
+                <ImSearch />
+              </IconButton>
+            </InputAdornment>
+          }
+          labelWidth={55}
+        />
+      </FormControl>
+      <br></br>
+      <br></br>
+      {console.log(LeaderboardDetails)}
+      {(LeaderboardDetails != undefined) && (<LeaderboardDetails userData={LeaderboardDetails}/>)}
+      </Container>
     </div>
   );
 }
-
+}
 export default Leaderboard;
