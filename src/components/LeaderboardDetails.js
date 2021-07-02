@@ -134,7 +134,11 @@ function LeaderboardDetails(userData) {
         <Grid container spacing={2}>
         <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.rank}</Typography></Grid>
         <Grid item xs={3}><a style={{color: "#9fef00", }} href={'/p/'+current.username}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.username}</Typography></a></Grid>
+        <Grid item xs={2}><Typography style={{marginTop: "2%"}}>{current.points}</Typography></Grid>
+        <Grid item xs={2}><Typography style={{marginTop: "2%"}}>{current.level}</Typography></Grid>
         <Grid item xs={2}><Typography style={{marginTop: "2%"}}></Typography></Grid>
+        
+        
       </Grid>
       </Box>
  

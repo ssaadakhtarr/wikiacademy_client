@@ -128,42 +128,12 @@ else {
         Welcome to the wall of fame - Here are our top 10 users
         </Typography> 
         
-        {(cookies.get("userId") ? <Typography style={{color: "#c6cede",fontSize:"30px",paddingTop:"20px"}} variant="subtitle1" className={classes.HackA}>Your current rank is {user.rank}</Typography>:<Typography style={{color: "#c6cede"}} variant="subtitle1" className={classes.HackA}>Rank will be displayed of Login ones</Typography>)}
+        
 </Box>
 </Box>
 <Container style={{textAlign: "center"}} maxWidth="lg">
-      <FormControl  variant="outlined">
-        <InputLabel
-          style={{ color: "#9fef00" }}
-          fullWidth
-          htmlFor="outlined-adornment-password"
-        >
-          Search
-        </InputLabel>
-        <OutlinedInput
-          fullWidth
-          style={{ color: "#9fef00" }}
-          id="outlined-adornment-password"
-          type="text"
-          value={values}
-          onChange={(e) => {
-            setValues(e.target.value);
-          }}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-              
-                aria-label="toggle password visibility"
-                style={{ color: "#9fef00" }}
-                edge="end"
-              >
-                <ImSearch />
-              </IconButton>
-            </InputAdornment>
-          }
-          labelWidth={55}
-        />
-      </FormControl>
+<br></br>
+{(cookies.get("userId") ? <Typography style={{color: "#c6cede",fontSize:"30px",paddingTop:"20px"}} variant="subtitle1" className={classes.HackA}>Your current rank is {user.rank}</Typography>:<Typography style={{color: "#c6cede"}} variant="subtitle1" className={classes.HackA}></Typography>)}
       <br></br>
       <br></br>
       {console.log(LeaderboardData)}
