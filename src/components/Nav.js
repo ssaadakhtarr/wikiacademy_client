@@ -267,7 +267,8 @@ function Nav() {
             <ButtonAppBarCollapse>
               <MenuItem>
                 <LoginButton
-                  onClick={() => history.push("/signin")}
+                  // onClick={() => history.push("/signin")}
+                  href="/signin"
                   fullWidth
                   style={{
                     backgroundColor: "#18181f",
@@ -301,7 +302,8 @@ function Nav() {
             <div className={classes.drop}>
               <LoginButton
               disableElevation
-                onClick={() => history.push("/signin")}
+                // onClick={() => history.push("/signin")}
+                href="/signin"
                 style={{
                   marginRight: "2%",
                   fontSize: "12px",

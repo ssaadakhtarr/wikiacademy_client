@@ -39,7 +39,15 @@ import {FaTwitter} from 'react-icons/fa';
 import { FaInstagram } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 import axios from "axios";
+import HashLoader from "react-spinners/HashLoader";
+import { css } from "@emotion/react";
 /* Client\src\fonts\style.css */
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 const JoinButton = withStyles({
   root: {
@@ -145,7 +153,10 @@ function Home() {
   }, [])
 
   if (!mounted || blogData === undefined || roomData === undefined) {
-    return <div>Loading...</div>;
+    return (
+      null
+    );
+
   }
   else {
 

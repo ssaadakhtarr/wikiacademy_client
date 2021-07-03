@@ -39,6 +39,16 @@ import Blog from "./components/Blog";
 import BlogPage from "./components/BlogPage";
 import AddBlog from "./components/AddBlog";
 import AdminLogin from "./components/AdminLogin";
+import HashLoader from "react-spinners/HashLoader";
+import { css } from "@emotion/react";
+import {Box} from "@material-ui/core";
+/* Client\src\fonts\style.css */
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 // const neueHaas = {
 //   fontFamily: 'Neue Haas Unica',
@@ -55,6 +65,7 @@ import AdminLogin from "./components/AdminLogin";
 
 function App() {
   const [{User}, dispatch] = useStateValue();
+  const [loading, setLoading] = React.useState(true);
   console.log("In app.js User is: ");
   console.log(User);
   if (User !== null) {
@@ -120,6 +131,27 @@ function App() {
         })
       }, [])
 
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 3000);
+      }, [])
+
+
+      if(loading) {
+        return  (
+          <div style={{backgroundColor: "#141d2b",height: '100vh', minHeight : '100vh'}}>
+        <Box style={{backgroundColor: "#141d2b", position:"fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", }} >
+        <HashLoader color={"#9fef00"} loading={true} css={override} size={150} />
+        </Box>
+       
+      </div>
+        );
+      } else {
+
+      
+
+
   return (
    
     
@@ -166,6 +198,7 @@ function App() {
     
   
   );
+}
 }
 
 export default App;
