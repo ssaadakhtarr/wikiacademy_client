@@ -235,6 +235,7 @@ function Signup() {
                       <Field
                             name="password"
                             label="Password"
+                            type="password"
                             component={renderTextFieldEdit}
                             // className={classes.colorChange}
                             

@@ -19,6 +19,9 @@ import { withStyles } from "@material-ui/styles";
 import { Box } from "@material-ui/core";
 import {useStateValue} from "../StateProvider";
 import logo from "../img/logo/neonWhite.png";
+import { Formik, Form,ErrorMessage,Field } from "formik";
+import * as Yup from "yup";
+import { renderTextFieldEdit } from "./Textfield";
 
 
 
@@ -140,9 +143,32 @@ function Signin() {
       }
     });
   }, []);
+  const validate = Yup.object({
+    userName: Yup.string()
+      .max(15, "Must be 15 character or less")
+      .required("Required"),
+      password: Yup.string()
+      .min(6,"Password must be atleast 6 characters")
+      .required("Password is Required"),
+  })
 
   return (
-    <main style={{ backgroundColor: "#141d2b" }}>
+    <Formik
+    initialValues={{
+      userName:"",
+      password: "",
+    }}
+    enableReinitialize={true}
+    validationSchema={validate}
+    onSubmit={values => {
+      console.log(values)
+    }}
+  >
+    {({values}) => (
+    <div>
+    {console.log(values)}
+          <Form>
+          <main style={{ backgroundColor: "#141d2b" }}>
       {/* <Nav /> */}
      
       <Box style={{paddingTop: "5%", textAlign: "center",}}>
@@ -179,53 +205,23 @@ function Signin() {
               <Alert severity="error">Invalid Username/Password!</Alert>
             )}
             <br></br>
-            <TextField
-              required
-              fullWidth
-              className={classes.textField}
-              id="outlined-basic"
-              label="Username"
-              variant="filled"
-              InputProps={{
-                style: {
-                  color: "#fff",
-                  backgroundColor: "#141d2b",
-                },
-              }}
-              InputLabelProps={{
-                style: {fontWeight: "bold",
-                letterSpacing: "1.5px", color: "#9fef00",fontSize: "12px", textTransform: "uppercase" },
-              }}
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
+            <Field
+                            name="userName"
+                            label="UserName"
+                            component={renderTextFieldEdit}
+                            // className={classes.colorChange}
+                            
+                          />
             <br></br>
             <br></br>
-            <TextField
-              type="password"
-              required
-              fullWidth
-              id="outlined-basic"
-              label="Password"
-              variant="filled"
-              InputProps={{
-                style: {
-                  color: "#fff",
-                  backgroundColor: "#141d2b",
-                },
-              }}
-              InputLabelProps={{
-                style: {fontWeight: "bold",
-                letterSpacing: "1.5px", color: "#9fef00", fontSize: "12px", textTransform: "uppercase"},
-              }}
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />{" "}
+            <Field
+                            name="password"
+                            label="Password"
+                            type="password"
+                            component={renderTextFieldEdit}
+                            // className={classes.colorChange}
+                            
+                          />{" "}
             <br></br>
             <br></br>
             <FormControlLabel
@@ -278,6 +274,12 @@ function Signin() {
       </Container>
       <Box padding={5}></Box>
     </main>
+
+
+          </Form>
+    </div>
+    )}
+    </Formik>
   );
 }
 
