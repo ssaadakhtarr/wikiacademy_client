@@ -160,9 +160,7 @@ function Signin() {
     }}
     enableReinitialize={true}
     validationSchema={validate}
-    onSubmit={values => {
-      console.log(values)
-    }}
+    onSubmit={login}
   >
     {({values}) => (
     <div>
@@ -233,7 +231,7 @@ function Signin() {
             {/* <br></br> */}
             <br></br>
             <Button 
-              disabled={!nowEnable}
+              //disabled={!nowEnable}
               style={{
                 fontWeight: "bold",
                   letterSpacing: "1.5px",
@@ -243,7 +241,8 @@ function Signin() {
               }}
               fullWidth
               variant="contained"
-              onClick={login}
+              type="submit"
+              //onClick={login}
             >
               Login
             </Button>

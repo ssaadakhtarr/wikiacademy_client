@@ -127,9 +127,7 @@ function Signup() {
       }}
       enableReinitialize={true}
       validationSchema={validate}
-      onSubmit={values => {
-        console.log(values)
-      }}
+      onSubmit={register}
     >
       {({values}) => (
         <div>
@@ -262,7 +260,7 @@ function Signup() {
                         }}
                         fullWidth
                         variant="contained"
-                        //onClick={register}
+                        onClick={register}
                       >
                         Signup
                       </Button>
