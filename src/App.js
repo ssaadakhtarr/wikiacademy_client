@@ -129,14 +129,14 @@ function App() {
         Axios.post("http://localhost:3001/updateRank", {
 
         }).then((response) => {
-          console.log(response.data);
+         
         })
       }, [])
 
       useEffect(() => {
         const timer = setTimeout(() => {
           setLoading(false);
-        }, 3000);
+        }, 2500);
       }, [])
 
 

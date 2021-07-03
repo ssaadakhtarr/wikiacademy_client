@@ -16,7 +16,10 @@ import Nav from "./Nav";
 import Alert from "@material-ui/lab/Alert";
 import { Box } from "@material-ui/core";
 import logo from "../img/logo/neonWhite.png";
-import Footer from "./Footer"
+import Footer from "./Footer";
+import { Formik, Form,ErrorMessage,Field } from "formik";
+import * as Yup from "yup";
+import { renderTextFieldEdit } from "./Textfield";
 
 //Styles here
 const useStyles = makeStyles((theme) => ({
@@ -95,238 +98,199 @@ function Signup() {
       }
     });
   };
+  const validate = Yup.object({
+    firstName: Yup.string()
+      .max(15, "Must be 15 character or less")
+      .required("Required"),
+    lastName: Yup.string()
+      .max(20, "Must be 20 character or less")
+      .required("Required"),
+      userName: Yup.string()
+      .max(20, "Must be 20 character or less")
+      .required("Required"),
+    email: Yup.string()
+    .email("Email is invalid")
+    .required("Email is Required"),
+    password: Yup.string()
+      .min(6,"Password must be atleast 6 characters")
+      .required("Password is Required"),
+  });
 
   return (
-    <main style={{minHeight: "100%", backgroundColor: "#263143" }}>
-      <Grid container spacing={0}>
-        <Grid item xs={12} sm={12} md={12} lg={6}>
-          
-            <Box style={{backgroundImage:
-                "url('https://wallpapercave.com/wp/wp2757874.gif')", padding: "50% 5%",}}>
-              <a href="/">
-                <img style={{ width: "100%", height: "20%" }} src={logo} />
-              </a>
-            </Box>
-        
-        </Grid>
-
-        <Grid item xs={12} sm={12} md={12} lg={6}>
-          <div className="registration">
-            <Box style={{ backgroundColor: "#263143",padding: "15% 5%", }} padding={4}>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Avatar className={classes.avatar}>
-                  <LockOutlinedIcon />
-                </Avatar>
-              </div>
-              <Typography
-                style={{ color: "white", fontWeight: "400",}}
-                component="h1"
-                align="center"
-                variant="h5"
-              >
-                Sign Up
-              </Typography>
-              <br></br>
-              {showSuccess && (
-                <Alert severity="success">Registered Successfully!</Alert>
-              )}
-              {showError && (
-                <Alert severity="error">Email/Username already exists!</Alert>
-              )}
-              <br></br>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6} md={6} lg={6}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="outlined-basic"
-                    label="FirstName"
-                    variant="filled"
-                    InputProps={{
-                      style: {
-                        color: "#fff",
-                        backgroundColor: "#1e2633",
-                      },
+    <Formik
+      initialValues={{
+        firstName: "",
+        lastName: "",
+        userName:"",
+        email: "",
+        password: "",
+      }}
+      enableReinitialize={true}
+      validationSchema={validate}
+      onSubmit={values => {
+        console.log(values)
+      }}
+    >
+      {({values}) => (
+        <div>
+        {console.log(values)}
+          <Form>
+            <main style={{ minHeight: "100%", backgroundColor: "#263143" }}>
+              <Grid container spacing={0}>
+                <Grid item xs={12} sm={12} md={12} lg={6}>
+                  <Box
+                    style={{
+                      backgroundImage:
+                        "url('https://wallpapercave.com/wp/wp2757874.gif')",
+                      padding: "50% 5%",
                     }}
-                    InputLabelProps={{
-                      style: {
-                        fontWeight: "bold",
-                  letterSpacing: "1.5px",
-                        color: "#9fef00",
-                        fontSize: "12px",
-                        textTransform: "uppercase",
-                      },
-                    }}
-                    onChange={(e) => {
-                      setFirstNameReg(e.target.value);
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6} md={6} lg={6}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="outlined-basic"
-                    label="LastName"
-                    variant="filled"
-                    InputProps={{
-                      style: {
-                        color: "#fff",
-                        backgroundColor: "#1e2633",
-                      },
-                    }}
-                    InputLabelProps={{
-                      style: {
-                        fontWeight: "bold",
-                  letterSpacing: "1.5px",
-                        color: "#9fef00",
-                        fontSize: "12px",
-                        textTransform: "uppercase",
-                      },
-                    }}
-                    onChange={(e) => {
-                      setLastNameReg(e.target.value);
-                    }}
-                  />
-                </Grid>
-              </Grid>
-              <br></br>
-              <TextField
-                required
-                fullWidth
-                id="outlined-basic"
-                label="Username"
-                variant="filled"
-                InputProps={{
-                  style: {
-                    color: "#fff",
-                    backgroundColor: "#1e2633",
-                  },
-                }}
-                InputLabelProps={{
-                  style: {
-                    fontWeight: "bold",
-                  letterSpacing: "1.5px",
-                    color: "#9fef00",
-                    fontSize: "12px",
-                    textTransform: "uppercase",
-                  },
-                }}
-                onChange={(e) => {
-                  setUsernameReg(e.target.value);
-                }}
-              />{" "}
-              <br></br>
-              <br></br>
-              <TextField
-                type="email"
-                required
-                fullWidth
-                inputProps={{
-                  pattern: "^[a-z0-9](.?[a-z0-9]){5,}@g(oogle)?mail.com$",
-                }}
-                id="outlined-basic"
-                label="Email"
-                variant="filled"
-                InputProps={{
-                  style: {
-                    color: "#fff",
-                    backgroundColor: "#1e2633",
-                  },
-                }}
-                InputLabelProps={{
-                  style: {
-                    fontWeight: "bold",
-                  letterSpacing: "1.5px",
-                    color: "#9fef00",
-                    fontSize: "12px",
-                    textTransform: "uppercase",
-                  },
-                }}
-                onChange={(e) => {
-                  setEmailReg(e.target.value);
-                }}
-              />{" "}
-              <br></br>
-              <br></br>
-              <TextField
-                type="password"
-                required
-                fullWidth
-                id="outlined-basic"
-                label="Password"
-                variant="filled"
-                InputProps={{
-                  style: {
-                    color: "#fff",
-                    backgroundColor: "#1e2633",
-                  },
-                }}
-                InputLabelProps={{
-                  style: {
-                    fontWeight: "bold",
-                  letterSpacing: "1.5px",
-                    color: "#9fef00",
-                    fontSize: "12px",
-                    textTransform: "uppercase",
-                  },
-                }}
-                onChange={(e) => {
-                  setPasswordReg(e.target.value);
-                }}
-              />{" "}
-              <br></br>
-              <br></br>
-              <FormControlLabel
-                style={{ color: "white" }}
-                control={<Checkbox value="allowExtraEmails" color="default" />}
-                label="
-                By registering you agree to our Terms and Conditions"
-              />
-              <Button
-                disabled={!nowEnable}
-                style={{
-                  fontWeight: "bold",
-                  letterSpacing: "1.5px",
-                  backgroundColor: "#9fef00",
-                  color: "#1e2633",
-                  marginTop: 10,
-                }}
-                fullWidth
-                variant="contained"
-                onClick={register}
-              >
-                Signup
-              </Button>
-              <br></br>
-              <br></br>
-              <Grid container justify="flex-end">
-                <Grid item>
-                  <Link
-                    style={{ color: "#9fef00" }}
-                    href="/signin"
-                    variant="body2"
                   >
-                    Already have an account? Sign in
-                  </Link>
-                  <br></br>
-                  <br></br>
-                  <br></br>
+                    <a href="/">
+                      <img
+                        style={{ width: "100%", height: "20%" }}
+                        src={logo}
+                      />
+                    </a>
+                  </Box>
+                </Grid>
+
+                <Grid item xs={12} sm={12} md={12} lg={6}>
+                  <div className="registration">
+                    <Box
+                      style={{ backgroundColor: "#263143", padding: "15% 5%" }}
+                      padding={4}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Avatar className={classes.avatar}>
+                          <LockOutlinedIcon />
+                        </Avatar>
+                      </div>
+                      <Typography
+                        style={{ color: "white", fontWeight: "400" }}
+                        component="h1"
+                        align="center"
+                        variant="h5"
+                      >
+                        Sign Up
+                      </Typography>
+                      <br></br>
+                      {showSuccess && (
+                        <Alert severity="success">
+                          Registered Successfully!
+                        </Alert>
+                      )}
+                      {showError && (
+                        <Alert severity="error">
+                          Email/Username already exists!
+                        </Alert>
+                      )}
+                      <br></br>
+                      <Grid container spacing={2}>
+                        <Grid item xs={12} sm={6} md={6} lg={6}>
+                         
+                          <Field
+                            name="firstName"
+                            label="FirstName"
+                            component={renderTextFieldEdit}
+                            // className={classes.colorChange}
+                            
+                          />{" "}
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6} lg={6}>
+                        <Field
+                            name="lastName"
+                            label="LastName"
+                            component={renderTextFieldEdit}
+                            // className={classes.colorChange}
+                            
+                          />
+                        </Grid>
+                      </Grid>
+                      <br></br>
+                      <Field
+                            name="userName"
+                            label="UserName"
+                            component={renderTextFieldEdit}
+                            // className={classes.colorChange}
+                            
+                          />{" "}
+                      <br></br>
+                      <br></br>
+                      <Field
+                            name="email"
+                            label="Email"
+                            component={renderTextFieldEdit}
+                            // className={classes.colorChange}
+                            
+                          />{" "}
+                      <br></br>
+                      <br></br>
+                      <Field
+                            name="password"
+                            label="Password"
+                            component={renderTextFieldEdit}
+                            // className={classes.colorChange}
+                            
+                          />{" "}
+                      <br></br>
+                      <br></br>
+                      <FormControlLabel
+                        style={{ color: "white" }}
+                        control={
+                          <Checkbox value="allowExtraEmails" color="default" />
+                        }
+                        label="
+                By registering you agree to our Terms and Conditions"
+                      />
+                      <Button
+                      type="submit"
+                        // disabled={!nowEnable}
+                        style={{
+                          fontWeight: "bold",
+                          letterSpacing: "1.5px",
+                          backgroundColor: "#9fef00",
+                          color: "#1e2633",
+                          marginTop: 10,
+                        }}
+                        fullWidth
+                        variant="contained"
+                        //onClick={register}
+                      >
+                        Signup
+                      </Button>
+                      <br></br>
+                      <br></br>
+                      <Grid container justify="flex-end">
+                        <Grid item>
+                          <Link
+                            style={{ color: "#9fef00" }}
+                            href="/signin"
+                            variant="body2"
+                          >
+                            Already have an account? Sign in
+                          </Link>
+                          <br></br>
+                          <br></br>
+                          <br></br>
+                        </Grid>
+                      </Grid>
+                    </Box>
+                  </div>
                 </Grid>
               </Grid>
-            </Box>
-          </div>
-        </Grid>
-      </Grid>
-      <Footer/>
-    </main>
+              <Footer />
+            </main>
+          </Form>
+        </div>
+      )}
+    </Formik>
   );
 }
 

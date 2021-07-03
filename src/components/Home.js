@@ -142,9 +142,7 @@ function Home() {
   
   useEffect(() => {
     axios.get("http://localhost:3001/getHomeData").then((response) => {
-      console.log(response.data);
-      if (response.data != undefined) {
-       
+      if (response.data !== undefined) {
         setMounted(true);
         setBlogData(response.data.newArr);
         setRoomData(response.data.result_1);
@@ -154,9 +152,8 @@ function Home() {
 
   if (!mounted || blogData === undefined || roomData === undefined) {
     return (
-      null
+    null
     );
-
   }
   else {
 
