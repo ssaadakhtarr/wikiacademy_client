@@ -6,7 +6,7 @@ import {
   IconButton,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import Nav2 from "./Nav2";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
@@ -21,6 +21,7 @@ import Tab from "@material-ui/core/Tab";
 import PropTypes from "prop-types";
 import { useHistory, useParams } from "react-router-dom";
 import Rooms from "./Rooms.js"
+import axios from "axios";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -79,14 +80,54 @@ const theme = createMuiTheme({
 function PublicProfile() {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("user"));
+  const [userId, setUserId] = React.useState(user.id);
   const { username } = useParams();
   console.log(username);
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [blogData, setBlogData] = React.useState();
+  const [roomData, setRoomData] = React.useState();
+  const [mounted, setMounted] = React.useState(false);
+  const [roomsIn, setRoomsIn] = React.useState();
+  
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  // useEffect(() => {
+  //   axios.get("http://localhost:3001/getHomeData").then((response) => {
+  //  //   console.log(response.data);
+  //     if (response.data != undefined) {
+       
+  //       setMounted(true);
+  //       setBlogData(response.data.newArr);
+  //       setRoomData(response.data.result_1);
+  //     }
+  //   })
+  // }, [])
+
+  useEffect(() => {
+    axios.post("http://localhost:3001/getJoinedRooms", {
+      userId: userId,
+    }).then((response) => {
+      console.log(response.data);
+      if (response.data != undefined) {
+        setMounted(true);
+        setRoomData(response.data);
+        setRoomsIn(response.data.length);
+      }
+    })
+  }, [])
+
+  if (!mounted || roomData === undefined) {
+    return (
+      null
+    );
+
+  }
+  else {
+    console.log(roomData);
   return (
     // <MuiThemeProvider theme={theme}>
     <div style={{color: "white",}}>
@@ -123,7 +164,7 @@ function PublicProfile() {
             <Typography variant="h6">Rank</Typography>
           </Grid>
           <Grid xs={3} sm={3}>
-            <Typography variant="h6">{user.roomsIn}</Typography>
+            <Typography variant="h6">{roomsIn}</Typography>
             <Typography variant="h6">Rooms In</Typography>
           </Grid>
           <Grid xs={3} sm={3}>
@@ -216,7 +257,9 @@ function PublicProfile() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <Rooms />
+          {roomData.map((i) => {
+            return (<Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline}/>);
+          })}
         </TabPanel>
         <TabPanel value={value} index={1}>
           Hello there
@@ -229,5 +272,5 @@ function PublicProfile() {
     // </MuiThemeProvider>
   );
 }
-
+}
 export default PublicProfile;
