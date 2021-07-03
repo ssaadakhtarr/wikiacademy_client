@@ -16,7 +16,8 @@ import Leaderboard from "./components/Leaderboard";
 import Hacktivities from "./components/Hacktivities";
 import ToolsPath from "./components/ToolsPath";
 import CompleteBegineer from "./components/CompleteBegineer";
-import Faq from "./components/Faq"
+import Faq from "./components/Faq";
+
 
 import Paths from "./components/Paths";
 import Room from "./components/Room";
@@ -49,6 +50,7 @@ const override = css`
   margin: 0 auto;
   border-color: red;
 `;
+
 
 // const neueHaas = {
 //   fontFamily: 'Neue Haas Unica',
@@ -153,9 +155,8 @@ function App() {
 
 
   return (
-   
-    
-    
+    <div>
+
       <Switch>
         <NormalRoute path="/" component={Home} exact/>
         <NormalRoute path="/signup" component={Signup} />
@@ -195,7 +196,7 @@ function App() {
 
         <Route component={Error} />
       </Switch>
-    
+      </div>
   
   );
 }
