@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,6 +10,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { Box, Grid } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/styles';
+import axios from 'axios';
 
 
 const RoomButton = withStyles({
@@ -83,21 +84,56 @@ const theme = createMuiTheme({
 
 function RoomsDashboard() {
     const classes = useStyles();
+    const user = JSON.parse(localStorage.getItem("user"));
+    const [userId, setUserId] = React.useState(user.id);
+    const [roomData, setRoomData] = React.useState();
+  const [mounted, setMounted] = React.useState(false);
+  useEffect(() => {
+    axios.post("http://localhost:3001/getJoinedRooms", {
+      userId: userId,
+    }).then((response) => {
+      console.log(response.data);
+      if (response.data != undefined) {
+        setMounted(true);
+        setRoomData(response.data);
+        
+      }
+    })
+  }, [])
+
+  if (!mounted || roomData === undefined) {
+    return (
+      null
+    );
+
+  }
+  else {
+    console.log(roomData);
+
+
     return (
         <div>
             <Card style={{ height: "100%", width: "100%", backgroundColor: "#1a2332", color: "#fff",}} className={classes.root}>
       <CardContent>
       <Typography style={{textAlign: "left", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body1">Rooms Joined</Typography>
-      <br></br>
+
+          {roomData.map((i) => {
+            return (<div>
+              <br></br>
           <Box padding={2} style={{backgroundColor: "#212a3a"}}>
           <Grid container spacing={2}>
-            <Grid item lg={2} md={2} sm={2} xs={2}><Typography style={{marginTop: "8%", textAlign: "left"}}>nmap</Typography></Grid>
+            <Grid item lg={2} md={2} sm={2} xs={2}><Typography style={{marginTop: "8%", textAlign: "left"}}>{i.roomName}</Typography></Grid>
             <Grid item lg={8} md={8} sm={8} xs={8}><Box style={{}}> <MuiThemeProvider theme={theme}><LinearProgressWithLabel  style={{margin: "3% 0", borderRadius: "25px", height: "15px",backgroundColor: "#141d2b"}} value="25" /></MuiThemeProvider></Box></Grid>
-            <Grid item lg={2} md={2} sm={2} xs={2}><Box style={{textAlign: "right"}}><RoomButton variant="contained">Continue</RoomButton></Box></Grid>
+            <Grid item lg={2} md={2} sm={2} xs={2}><Box style={{textAlign: "right"}}><RoomButton href={`/room/${i.roomName}`} variant="contained">Continue</RoomButton></Box></Grid>
             </Grid>
             </Box>
             <br></br>
-            <Box padding={2} style={{backgroundColor: "#212a3a"}}>
+      
+            </div>);
+          })}
+
+
+            {/* <Box padding={2} style={{backgroundColor: "#212a3a"}}>
           <Grid container spacing={2}>
             <Grid item lg={2} md={2} sm={2} xs={2}><Typography style={{marginTop: "8%", textAlign: "left"}}>Linux fundamentals</Typography></Grid>
             <Grid item lg={8} md={8} sm={8} xs={8}><Box style={{}}> <MuiThemeProvider theme={theme}><LinearProgressWithLabel  style={{margin: "3% 0", borderRadius: "25px", height: "15px",backgroundColor: "#141d2b"}} value="25" /></MuiThemeProvider></Box></Grid>
@@ -112,7 +148,7 @@ function RoomsDashboard() {
             <Grid item lg={2} md={2} sm={2} xs={2}><Box style={{textAlign: "right"}}><RoomButton variant="contained">Continue</RoomButton></Box></Grid>
             </Grid>
             </Box>
-            <br></br>
+            <br></br> */}
         
       
 
@@ -121,6 +157,7 @@ function RoomsDashboard() {
     </Card>
         </div>
     )
+}
 }
 
 export default RoomsDashboard
