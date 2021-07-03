@@ -22,6 +22,8 @@ import PropTypes from "prop-types";
 import { useHistory, useParams } from "react-router-dom";
 import Rooms from "./Rooms.js"
 import axios from "axios";
+import Cookies from "universal-cookie";
+import Nav from "./Nav";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -78,6 +80,7 @@ const theme = createMuiTheme({
 });
 
 function PublicProfile() {
+  const cookies = new Cookies();
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("user"));
   const [userId, setUserId] = React.useState(user.id);
@@ -89,7 +92,7 @@ function PublicProfile() {
   const [roomData, setRoomData] = React.useState();
   const [mounted, setMounted] = React.useState(false);
   const [roomsIn, setRoomsIn] = React.useState();
-  
+  const [userData, setUserData] = React.useState();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -118,16 +121,25 @@ function PublicProfile() {
         setRoomsIn(response.data.length);
       }
     })
+
+    axios.post("http://localhost:3001/getPublicProfile", {
+      username: username,
+    }).then((response) => {
+      console.log(response.data);
+      if(response.data != undefined) {
+        setUserData(response.data);
+      }
+    })
   }, [])
 
-  if (!mounted || roomData === undefined) {
+  if (!mounted || roomData === undefined || userData === undefined) {
     return (
       null
     );
 
   }
   else {
-    console.log(roomData);
+    console.log(userData);
   return (
     // <MuiThemeProvider theme={theme}>
     <div style={{color: "white",}}>
@@ -139,13 +151,13 @@ function PublicProfile() {
           backgroundPosition: "center",
         }}
       >
-        <Nav2 />
+          {(cookies.get("userId") ? <Nav2/>:<Nav/>)}
         <Box style={{paddingTop: "5%"}}>
         <Typography
           style={{marginBottom: "5%", textAlign: "center", color: "#9fef00" }}
           variant="h4"
         >
-          {user.username}{" "}
+          {userData[0].username}{" "}
           <span style={{ fontSize: "30px", fontWeight: "600", color: "#fff" }}>
             [NOOB]
           </span>
@@ -160,7 +172,7 @@ function PublicProfile() {
       >
         <Grid container spacing={2}>
           <Grid xs={3} sm={3}>
-            <Typography variant="h6">{user.rank}</Typography>
+            <Typography variant="h6">{userData[0].rank}</Typography>
             <Typography variant="h6">Rank</Typography>
           </Grid>
           <Grid xs={3} sm={3}>
@@ -168,11 +180,11 @@ function PublicProfile() {
             <Typography variant="h6">Rooms In</Typography>
           </Grid>
           <Grid xs={3} sm={3}>
-            <Typography variant="h6">{user.level}</Typography>
+            <Typography variant="h6">{userData[0].level}</Typography>
             <Typography variant="h6">Level</Typography>
           </Grid>
           <Grid xs={3} sm={3}>
-            <Typography variant="h6">{user.points}</Typography>
+            <Typography variant="h6">{userData[0].points}</Typography>
             <Typography variant="h6">Points</Typography>
           </Grid>
         </Grid>
@@ -195,34 +207,34 @@ function PublicProfile() {
           </span>
         </Typography> */}
         <Box style={{ textAlign: "center",}}>
-          {user.twitter !== null && (
+          {userData[0].twitter !== null && (
             <IconButton
               
-              href={`https://www.twitter.com/${user.twitter}`}
+              href={`https://www.twitter.com/${userData[0].twitter}`}
               target="_blank"
             >
               <TwitterIcon style={{color: "white"}} />
             </IconButton>
           )}
-          {user.instagram !== null && (
+          {userData[0].instagram !== null && (
             <IconButton
-              href={`https://www.instagram.com/${user.github}`}
+              href={`https://www.instagram.com/${userData[0].github}`}
               target="_blank"
             >
               <InstagramIcon style={{color: "white"}} />
             </IconButton>
           )}
-          {user.github !== null && (
+          {userData[0].github !== null && (
             <IconButton
-              href={`https://www.github.com/${user.github}`}
+              href={`https://www.github.com/${userData[0].github}`}
               target="_blank"
             >
               <GitHubIcon style={{color: "white"}}/>
             </IconButton>
           )}
-          {user.linkedin !== null && (
+          {userData[0].linkedin !== null && (
             <IconButton
-              href={`https://www.linkedin.com/${user.linkedin}`}
+              href={`https://www.linkedin.com/${userData[0].linkedin}`}
               target="_blank"
             >
               <LinkedInIcon style={{color: "white"}} />

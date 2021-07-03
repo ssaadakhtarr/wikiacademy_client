@@ -62,13 +62,14 @@ function Dashboard() {
   const classes = useStyles();
   const [{ User }, dispatch] = useStateValue();
   const user = JSON.parse(localStorage.getItem("user"));
+  const [userId, setUserId] = React.useState(user.id);
   const [userDashboard,setUserDashboard]=React.useState();
   const [mounted, setMounted] = React.useState(false);
   
 
   const history = useHistory();
   useEffect(() => {
-    axios.get(`http://localhost:3001/getDashboard/${user.id}`).then((response)=> {
+    axios.get(`http://localhost:3001/getDashboard/${userId}`).then((response)=> {
     console.log(response.data);
     if(response.data !== undefined){
       setUserDashboard(response.data);

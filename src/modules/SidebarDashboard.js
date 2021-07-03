@@ -35,8 +35,10 @@ function SidebarDashboard() {
             
             
             <div style={{textAlign: "center"}}><CgProfile style={{color: "#9fef00",  fontSize: "80px"}}/></div>
-          <Typography style={{color: "#fff", textAlign: "center"}} variant="h6">{user.firstName}</Typography>
+          {(user != null) && (<div>
+            <Typography style={{color: "#fff", textAlign: "center"}} variant="h6">{user.firstName}</Typography>
           <Typography style={{color: "#9fef00", textAlign: "center", fontWeight: "bold", letterSpacing: "2px"}} variant="body2">{user.username}</Typography>
+          </div>)}
           <br></br><br></br><br></br><br></br>
           <div style={{ padding: ".625rem 1.5rem", textAlign: "left" }}>
             <Typography style={{textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold"}} variant="body2">Learn</Typography>

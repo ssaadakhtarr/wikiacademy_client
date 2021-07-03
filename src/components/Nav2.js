@@ -130,13 +130,14 @@ export default function Nav2() {
       console.log(response.data);
       if (!response.data.auth) {
         console.log(localStorage.getItem("token"));
+        history.push("/signin");
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         dispatch({
           type: 'User_Details_Remove',
           data: null
         })
-        history.push("/signin");
+        
         console.log(localStorage.getItem("token"));
       }
     });
