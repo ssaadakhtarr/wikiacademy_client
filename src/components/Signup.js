@@ -126,12 +126,12 @@ function Signup() {
         password: "",
       }}
       enableReinitialize={true}
-      validationSchema={validate}
       onSubmit={register}
+      validationSchema={validate}
     >
       {({values}) => (
         <div>
-        {console.log(values)}
+        {/* {console.log(values)} */}
           <Form>
             <main style={{ minHeight: "100%", backgroundColor: "#263143" }}>
               <Grid container spacing={0}>
@@ -260,7 +260,8 @@ function Signup() {
                         }}
                         fullWidth
                         variant="contained"
-                        onClick={register}
+                        //onClick={register}
+                        //onSubmit={register}
                       >
                         Signup
                       </Button>

@@ -153,20 +153,8 @@ function Signin() {
   })
 
   return (
-    <Formik
-    initialValues={{
-      userName:"",
-      password: "",
-    }}
-    enableReinitialize={true}
-    validationSchema={validate}
-    onSubmit={login}
-  >
-    {({values}) => (
     <div>
-    {console.log(values)}
-          <Form>
-          <main style={{ backgroundColor: "#141d2b" }}>
+      <main style={{ backgroundColor: "#141d2b" }}>
       {/* <Nav /> */}
      
       <Box style={{paddingTop: "5%", textAlign: "center",}}>
@@ -203,23 +191,53 @@ function Signin() {
               <Alert severity="error">Invalid Username/Password!</Alert>
             )}
             <br></br>
-            <Field
-                            name="userName"
-                            label="UserName"
-                            component={renderTextFieldEdit}
-                            // className={classes.colorChange}
-                            
-                          />
+            <TextField
+              required
+              fullWidth
+              className={classes.textField}
+              id="outlined-basic"
+              label="Username"
+              variant="filled"
+              InputProps={{
+                style: {
+                  color: "#fff",
+                  backgroundColor: "#141d2b",
+                },
+              }}
+              InputLabelProps={{
+                style: {fontWeight: "bold",
+                letterSpacing: "1.5px", color: "#9fef00",fontSize: "12px", textTransform: "uppercase" },
+              }}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
             <br></br>
             <br></br>
-            <Field
-                            name="password"
-                            label="Password"
-                            type="password"
-                            component={renderTextFieldEdit}
-                            // className={classes.colorChange}
-                            
-                          />{" "}
+            <TextField
+              type="password"
+              required
+              fullWidth
+              id="outlined-basic"
+              label="Password"
+              variant="filled"
+              InputProps={{
+                style: {
+                  color: "#fff",
+                  backgroundColor: "#141d2b",
+                },
+              }}
+              InputLabelProps={{
+                style: {fontWeight: "bold",
+                letterSpacing: "1.5px", color: "#9fef00", fontSize: "12px", textTransform: "uppercase"},
+              }}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />{" "}
             <br></br>
             <br></br>
             <FormControlLabel
@@ -231,7 +249,7 @@ function Signin() {
             {/* <br></br> */}
             <br></br>
             <Button 
-              //disabled={!nowEnable}
+              disabled={!nowEnable}
               style={{
                 fontWeight: "bold",
                   letterSpacing: "1.5px",
@@ -241,8 +259,7 @@ function Signin() {
               }}
               fullWidth
               variant="contained"
-              type="submit"
-              //onClick={login}
+              onClick={login}
             >
               Login
             </Button>
@@ -275,10 +292,7 @@ function Signin() {
     </main>
 
 
-          </Form>
     </div>
-    )}
-    </Formik>
   );
 }
 
