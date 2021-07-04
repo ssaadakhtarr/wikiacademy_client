@@ -17,7 +17,7 @@ import Alert from "@material-ui/lab/Alert";
 import { Box } from "@material-ui/core";
 import logo from "../img/logo/neonWhite.png";
 import Footer from "./Footer";
-import { Formik, Form,ErrorMessage,Field } from "formik";
+import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { renderTextFieldEdit } from "./Textfield";
 
@@ -63,40 +63,43 @@ function Signup() {
   const history = new useHistory();
   const classes = useStyles();
 
-  const [firstNameReg, setFirstNameReg] = useState("");
-  const [lastNameReg, setLastNameReg] = useState("");
-  const [usernameReg, setUsernameReg] = useState("");
-  const [emailReg, setEmailReg] = useState("");
-  const [passwordReg, setPasswordReg] = useState("");
+  // const [firstNameReg, setFirstNameReg] = useState("");
+  // const [lastNameReg, setLastNameReg] = useState("");
+  // const [usernameReg, setUsernameReg] = useState("");
+  // const [emailReg, setEmailReg] = useState("");
+  // const [passwordReg, setPasswordReg] = useState("");
 
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [initialState, setInitialState] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+  });
 
-  const nowEnable =
-    firstNameReg.length > 0 &&
-    lastNameReg.length > 0 &&
-    usernameReg.length > 0 &&
-    emailReg.length > 0 &&
-    emailReg.match("^[a-z0-9](.?[a-z0-9]){5,}@g(oogle)?mail.com$") &&
-    passwordReg.length > 0;
+  // const nowEnable =
+  //   firstNameReg.length > 0 &&
+  //   lastNameReg.length > 0 &&
+  //   usernameReg.length > 0 &&
+  //   emailReg.length > 0 &&
+  //   emailReg.match("^[a-z0-9](.?[a-z0-9]){5,}@g(oogle)?mail.com$") &&
+  //   passwordReg.length > 0;
 
-  const register = () => {
-    Axios.post("http://localhost:3001/register", {
-      firstName: firstNameReg,
-      lastName: lastNameReg,
-      username: usernameReg,
-      email: emailReg,
-      password: passwordReg,
-    }).then((response) => {
-      if (response.data.message === "User already exists") {
-        setShowSuccess(false);
-        setShowError(true);
-        return;
-      } else if (response.data.message === "Success") {
-        setShowSuccess(true);
-        setShowError(false);
+  const register = (values) => {
+    Axios.post("http://localhost:3001/register", values).then(
+      (response) => {
+        if (response.data.message === "User already exists") {
+          setShowSuccess(false);
+          setShowError(true);
+          return;
+        } else if (response.data.message === "Success") {
+          setShowSuccess(true);
+          setShowError(false);
+        }
       }
-    });
+    );
   };
   const validate = Yup.object({
     firstName: Yup.string()
@@ -105,33 +108,25 @@ function Signup() {
     lastName: Yup.string()
       .max(20, "Must be 20 character or less")
       .required("Required"),
-      userName: Yup.string()
+    username: Yup.string()
       .max(20, "Must be 20 character or less")
       .required("Required"),
-    email: Yup.string()
-    .email("Email is invalid")
-    .required("Email is Required"),
+    email: Yup.string().email("Email is invalid").required("Email is Required"),
     password: Yup.string()
-      .min(6,"Password must be atleast 6 characters")
+      .min(6, "Password must be atleast 6 characters")
       .required("Password is Required"),
   });
 
   return (
     <Formik
-      initialValues={{
-        firstName: "",
-        lastName: "",
-        userName:"",
-        email: "",
-        password: "",
-      }}
+      initialValues={initialState}
       enableReinitialize={true}
-      onSubmit={register}
       validationSchema={validate}
+      onSubmit={(values) => register(values)}
     >
-      {({values}) => (
+      {({ values }) => (
         <div>
-        {/* {console.log(values)} */}
+          {console.log(values)}
           <Form>
             <main style={{ minHeight: "100%", backgroundColor: "#263143" }}>
               <Grid container spacing={0}>
@@ -192,52 +187,46 @@ function Signup() {
                       <br></br>
                       <Grid container spacing={2}>
                         <Grid item xs={12} sm={6} md={6} lg={6}>
-                         
                           <Field
                             name="firstName"
                             label="FirstName"
                             component={renderTextFieldEdit}
                             // className={classes.colorChange}
-                            
                           />{" "}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6} lg={6}>
-                        <Field
+                          <Field
                             name="lastName"
                             label="LastName"
                             component={renderTextFieldEdit}
                             // className={classes.colorChange}
-                            
                           />
                         </Grid>
                       </Grid>
                       <br></br>
                       <Field
-                            name="userName"
-                            label="UserName"
-                            component={renderTextFieldEdit}
-                            // className={classes.colorChange}
-                            
-                          />{" "}
+                        name="username"
+                        label="UserName"
+                        component={renderTextFieldEdit}
+                        // className={classes.colorChange}
+                      />{" "}
                       <br></br>
                       <br></br>
                       <Field
-                            name="email"
-                            label="Email"
-                            component={renderTextFieldEdit}
-                            // className={classes.colorChange}
-                            
-                          />{" "}
+                        name="email"
+                        label="Email"
+                        component={renderTextFieldEdit}
+                        // className={classes.colorChange}
+                      />{" "}
                       <br></br>
                       <br></br>
                       <Field
-                            name="password"
-                            label="Password"
-                            type="password"
-                            component={renderTextFieldEdit}
-                            // className={classes.colorChange}
-                            
-                          />{" "}
+                        name="password"
+                        label="Password"
+                        type="password"
+                        component={renderTextFieldEdit}
+                        // className={classes.colorChange}
+                      />{" "}
                       <br></br>
                       <br></br>
                       <FormControlLabel
@@ -249,7 +238,7 @@ function Signup() {
                 By registering you agree to our Terms and Conditions"
                       />
                       <Button
-                      type="submit"
+                        type="submit"
                         // disabled={!nowEnable}
                         style={{
                           fontWeight: "bold",

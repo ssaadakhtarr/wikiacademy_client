@@ -8,13 +8,10 @@ import {
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import axios from "axios";
-import React from "react";
-import {useStateValue} from "../StateProvider";
+import React, { useState } from "react";
+import { useStateValue } from "../StateProvider";
 import Axios from "axios";
-
-
-
-
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,35 +53,37 @@ const ProfileButton = withStyles({
 })(Button);
 
 function GeneralProfile() {
-  const [{User}, dispatch] = useStateValue();
-  const user = JSON.parse(localStorage.getItem('user'));
+  const [{ User }, dispatch] = useStateValue();
+  const user = JSON.parse(localStorage.getItem("user"));
   const fullName = user.firstName + " " + user.lastName;
   const [name, setName] = React.useState(fullName);
   const [username, setUsername] = React.useState(user.username);
   const [email, setEmail] = React.useState(user.email);
-  const [currentPassword, setCurrentPassword] = React.useState('');
-  const [newPassword, setNewPassword] = React.useState('');
+  const [currentPassword, setCurrentPassword] = React.useState("");
+  const [newPassword, setNewPassword] = React.useState("");
+  const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const id = user.id;
 
   const handleName = (e) => {
     setName(e.target.value);
-  }
+  };
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
-  }
+  };
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
-  }
+  };
 
   const handleCurrentPassword = (e) => {
     setCurrentPassword(e.target.value);
-  }
+  };
 
   const handleNewPassword = (e) => {
     setNewPassword(e.target.value);
-  }
+  };
 
   const updateDetails = () => {
     Axios.post("http://localhost:3001/updateDetails", {
@@ -94,8 +93,15 @@ function GeneralProfile() {
       email: email,
     }).then((response) => {
       console.log(response);
-    })
-  }
+      if(response.data.message==="User already exists"){
+        setShowSuccess(false)
+        setShowError(true)
+      }else{
+        setShowError(false)
+        setShowSuccess(true)
+      }
+    });
+  };
 
   const changePassword = () => {
     Axios.post("http://localhost:3001/changePassword", {
@@ -104,72 +110,135 @@ function GeneralProfile() {
       newPassword: newPassword,
     }).then((response) => {
       console.log(response);
-    })
-  }
-  
+    });
+  };
+
   const classes = useStyles();
   return (
-    <div style={{padding: "0", backgroundColor: "#141d2b", justifyContent: "center"}}>
-      
-        <Box padding={5} style={{color: "#fff", backgroundColor: "#1a2332",  maxWidth: "1400px",}} >
+    <div
+      style={{
+        padding: "0",
+        backgroundColor: "#141d2b",
+        justifyContent: "center",
+      }}
+    >
+      <Box
+        padding={5}
+        style={{
+          color: "#fff",
+          backgroundColor: "#1a2332",
+          maxWidth: "1400px",
+        }}
+      >
         <Typography variant="h5">Update Details</Typography>
         <Typography style={{ color: "#898c94" }} variant="subtitle1">
           Change your details
         </Typography>
+      
+        <br></br>
+        {showSuccess && (
+          <Alert severity="success">Changes saved!</Alert>
+        )}
+        {showError && (
+          <Alert severity="error">Email/Username already exists!</Alert>
+        )}
         <br></br>
         <br></br>
         <Typography variant="body">Full Name</Typography>
-        <TextField InputProps={{
-                style: {
-                  color: "#fff",
-                  backgroundColor: "#141d2b",
-                },
-              }}
-              InputLabelProps={{
-                style: {fontWeight: "bold",
-                letterSpacing: "1.5px", color: "#9fef00", fontSize: "12px", textTransform: "uppercase"},
-              }} onChange={handleName} defaultValue={name} size="small" fullWidth variant="outlined" />
+        <TextField
+          InputProps={{
+            style: {
+              color: "#fff",
+              backgroundColor: "#141d2b",
+            },
+          }}
+          InputLabelProps={{
+            style: {
+              fontWeight: "bold",
+              letterSpacing: "1.5px",
+              color: "#9fef00",
+              fontSize: "12px",
+              textTransform: "uppercase",
+            },
+          }}
+          onChange={handleName}
+          defaultValue={name}
+          size="small"
+          fullWidth
+          variant="outlined"
+        />
         <br></br>
         <br></br>
         <Typography variant="body">Username</Typography>
-        <TextField InputProps={{
-                style: {
-                  color: "#fff",
-                  backgroundColor: "#141d2b",
-                },
-              }}
-              InputLabelProps={{
-                style: {fontWeight: "bold",
-                letterSpacing: "1.5px", color: "#9fef00", fontSize: "12px", textTransform: "uppercase"},
-              }} onChange={handleUsername} defaultValue={username} size="small" fullWidth variant="outlined" />
+        <TextField
+          InputProps={{
+            style: {
+              color: "#fff",
+              backgroundColor: "#141d2b",
+            },
+          }}
+          InputLabelProps={{
+            style: {
+              fontWeight: "bold",
+              letterSpacing: "1.5px",
+              color: "#9fef00",
+              fontSize: "12px",
+              textTransform: "uppercase",
+            },
+          }}
+          onChange={handleUsername}
+          defaultValue={username}
+          size="small"
+          fullWidth
+          variant="outlined"
+        />
         <br></br>
         <br></br>
         <Typography variant="body">Email</Typography>
-        <TextField InputProps={{
-                style: {
-                  color: "#fff",
-                  backgroundColor: "#141d2b",
-                },
-              }}
-              InputLabelProps={{
-                style: {fontWeight: "bold",
-                letterSpacing: "1.5px", color: "#9fef00", fontSize: "12px", textTransform: "uppercase"},
-              }} onChange={handleEmail} defaultValue={email} size="small" fullWidth variant="outlined" />
+        <TextField
+          InputProps={{
+            style: {
+              color: "#fff",
+              backgroundColor: "#141d2b",
+            },
+          }}
+          InputLabelProps={{
+            style: {
+              fontWeight: "bold",
+              letterSpacing: "1.5px",
+              color: "#9fef00",
+              fontSize: "12px",
+              textTransform: "uppercase",
+            },
+          }}
+          onChange={handleEmail}
+          defaultValue={email}
+          size="small"
+          fullWidth
+          variant="outlined"
+        />
         <br></br>
         <br></br>
         <ProfileButton
-        onClick={updateDetails}
+          onClick={updateDetails}
           fullWidth
           style={{ padding: "10px", textTransform: "none" }}
         >
           Save Changes
         </ProfileButton>
-      </Box>
         
-      
+      </Box>
+
       <br></br>
       <br></br>
-      <Box   padding={5} style={{maxWidth: "1400px",color: "#fff", backgroundColor: "#1a2332", }} >
+      <Box
+        padding={5}
+        style={{
+          maxWidth: "1400px",
+          color: "#fff",
+          backgroundColor: "#1a2332",
+        }}
+      >
         <Typography variant="h5">Change Password</Typography>
         <Typography style={{ color: "#898c94" }} variant="subtitle1">
           Change your password and choose a strong combination
@@ -178,33 +247,57 @@ function GeneralProfile() {
         <br></br>
         <br></br>
         <Typography variant="body">Current Password</Typography>
-        <TextField InputProps={{
-                style: {
-                  color: "#fff",
-                  backgroundColor: "#141d2b",
-                },
-              }}
-              InputLabelProps={{
-                style: {fontWeight: "bold",
-                letterSpacing: "1.5px", color: "#9fef00", fontSize: "12px", textTransform: "uppercase"},
-              }} onChange={handleCurrentPassword} size="small" type="password" fullWidth variant="outlined" />
+        <TextField
+          InputProps={{
+            style: {
+              color: "#fff",
+              backgroundColor: "#141d2b",
+            },
+          }}
+          InputLabelProps={{
+            style: {
+              fontWeight: "bold",
+              letterSpacing: "1.5px",
+              color: "#9fef00",
+              fontSize: "12px",
+              textTransform: "uppercase",
+            },
+          }}
+          onChange={handleCurrentPassword}
+          size="small"
+          type="password"
+          fullWidth
+          variant="outlined"
+        />
         <br></br>
         <br></br>
         <Typography variant="body">New Password</Typography>
-        <TextField InputProps={{
-                style: {
-                  color: "#fff",
-                  backgroundColor: "#141d2b",
-                },
-              }}
-              InputLabelProps={{
-                style: {fontWeight: "bold",
-                letterSpacing: "1.5px", color: "#9fef00", fontSize: "12px", textTransform: "uppercase"},
-              }} onChange={handleNewPassword} size="small" type="password" fullWidth variant="outlined" />
+        <TextField
+          InputProps={{
+            style: {
+              color: "#fff",
+              backgroundColor: "#141d2b",
+            },
+          }}
+          InputLabelProps={{
+            style: {
+              fontWeight: "bold",
+              letterSpacing: "1.5px",
+              color: "#9fef00",
+              fontSize: "12px",
+              textTransform: "uppercase",
+            },
+          }}
+          onChange={handleNewPassword}
+          size="small"
+          type="password"
+          fullWidth
+          variant="outlined"
+        />
         <br></br>
         <br></br>
         <ProfileButton
-        onClick={changePassword}
+          onClick={changePassword}
           fullWidth
           style={{ padding: "10px", textTransform: "none" }}
         >
