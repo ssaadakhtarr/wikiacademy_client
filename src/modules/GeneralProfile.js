@@ -52,13 +52,14 @@ const ProfileButton = withStyles({
   },
 })(Button);
 
-function GeneralProfile() {
+function GeneralProfile(userData) {
+  console.log(userData);
   const [{ User }, dispatch] = useStateValue();
   const user = JSON.parse(localStorage.getItem("user"));
-  const fullName = user.firstName + " " + user.lastName;
+  const fullName = userData.userData.firstName + " " + userData.userData.lastName;
   const [name, setName] = React.useState(fullName);
-  const [username, setUsername] = React.useState(user.username);
-  const [email, setEmail] = React.useState(user.email);
+  const [username, setUsername] = React.useState(userData.userData.username);
+  const [email, setEmail] = React.useState(userData.userData.email);
   const [currentPassword, setCurrentPassword] = React.useState("");
   const [newPassword, setNewPassword] = React.useState("");
   const [showError, setShowError] = useState(false);

@@ -138,7 +138,7 @@ function Dashboard() {
                 backgroundColor: "#111927",
               }}
             >
-              <SidebarDashboard />
+              <SidebarDashboard firstName={userDashboard.firstName} username={userDashboard.username} title={userDashboard.title} />
             </Box>
           </Grid>
 

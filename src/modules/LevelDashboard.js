@@ -71,7 +71,14 @@ const useStyles = makeStyles((theme) => ({
 function LevelDashboard({level,points}) {
     const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
-  const points1=Math.ceil(((parseInt(points))/1000))
+  const points1=Math.ceil(((parseInt(points))/1000));
+
+  const [levelPoints, setLevelPoints] = React.useState({1: 0, 2: 3000, 3: 8000, 4: 15000, 5: 25000, 6: 40000, 7: 80000, 8: 150000, 9: 300000, 10: 1000000});
+  const [nextLevel, setNextLevel] = React.useState(level + 1);
+  const [difference, setDifference] = React.useState(levelPoints[nextLevel]-levelPoints[level]);
+  const [extraPoints, setExtraPoints] = React.useState(points-levelPoints[level]);
+  const [value, setValue] = React.useState((extraPoints*100)/difference);
+
   console.log(points1)
 
   return (
@@ -80,15 +87,15 @@ function LevelDashboard({level,points}) {
       <div style={{textAlign: "center"}}><GiChart style={{color: "#9fef00",  fontSize: "70px"}}/></div>
         
       
-          
-        <Typography style={{textAlign: "right",}} variant="body1">LEVEL {level}</Typography>
+      <br></br>
+        <Typography style={{textAlign: "center", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body1">LEVEL {level}</Typography>
 
     <MuiThemeProvider theme={theme}>
-        <LinearProgressWithLabel  style={{margin: "3% 0", borderRadius: "25px", height: "15px",backgroundColor: "#141d2b"}} value={points1}/>
-        {console.log(Math.round((parseInt(points))/1000))}
-        {console.log(points)}
+        <LinearProgressWithLabel  style={{margin: "3% 0", borderRadius: "25px", height: "15px",backgroundColor: "#141d2b"}} value={value}/>
+        {/* {console.log(Math.round((parseInt(points))/1000))}
+        {console.log(points)} */}
         </MuiThemeProvider>
-        <Typography style={{textAlign: "right",}} variant="body1">{points}/6000 Points</Typography>
+        <Typography style={{textAlign: "right",}} variant="body1">{points} / {levelPoints[nextLevel]} points</Typography>
         <Typography style={{textAlign: "center", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body2">Progress</Typography>
         <br></br>
       </CardContent>

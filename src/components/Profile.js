@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav2 from "./Nav2";
 import { useStateValue } from "../StateProvider";
 import {
@@ -27,6 +27,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import PersonIcon from '@material-ui/icons/Person';
 import FlareIcon from '@material-ui/icons/Flare';
 import {useHistory} from "react-router-dom";
+import axios from "axios";
 
 
 function TabPanel(props) {
@@ -95,7 +96,7 @@ const ProfileButton = withStyles({
 })(Button);
 
 function Profile() {
-  const history = useHistory();
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -107,6 +108,30 @@ function Profile() {
   const user = JSON.parse(localStorage.getItem('user'));
   const username = user.username;
   const [age, setAge] = React.useState("");
+  const [userId, setUserId] = React.useState(user.id);
+  const [userDashboard,setUserDashboard]=React.useState();
+  const [mounted, setMounted] = React.useState(false);
+  
+
+  const history = useHistory();
+  useEffect(() => {
+    axios.get(`http://localhost:3001/getDashboard/${userId}`).then((response)=> {
+    console.log(response.data);
+    if(response.data !== undefined){
+      setUserDashboard(response.data);
+        setMounted(true);
+    }
+    })
+
+
+    }, []);
+
+
+    if (!mounted && userDashboard === undefined) {
+        return <div>Loading...</div>;
+      }
+      else{
+  
 
   return (
     <div className={classes.root}  style={{backgroundColor: "#141d2b"}}>
@@ -169,7 +194,7 @@ function Profile() {
         </Tabs>
         </AppBar>
         <TabPanel style={{backgroundColor: "#141d2b"}} value={value} index={0}>
-          <GeneralProfile />
+          <GeneralProfile userData={userDashboard} />
         </TabPanel>
         <TabPanel style={{backgroundColor: "#141d2b"}} value={value} index={1}>
           <AboutProfile />
@@ -182,6 +207,7 @@ function Profile() {
       
     </div>
   );
+}
 }
 
 export default Profile;
