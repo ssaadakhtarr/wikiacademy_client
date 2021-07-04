@@ -76,7 +76,7 @@ function Rooms({roomImg, roomName, roomDesc}) {
               </CardContent>
             </CardActionArea>
             <CardActions style={{backgroundColor: "#141d2b"}}>
-              <JoinButton onClick={() => history.push(`/room/nmap`)} size="small" color="primary">
+              <JoinButton onClick={() => history.push(`/room/${roomName}`)} size="small" color="primary">
                 Learn More
               </JoinButton>
             </CardActions>

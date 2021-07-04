@@ -151,8 +151,10 @@ function Home() {
   }, [])
 
   if (!mounted || blogData === undefined || roomData === undefined) {
+    console.log(blogData);
+    console.log(roomData);
     return (
-    null
+    "load"
     );
   }
   else {

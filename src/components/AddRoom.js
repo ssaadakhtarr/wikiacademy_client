@@ -55,8 +55,8 @@ const SendButton = withStyles({
   root: {
       fontWeight: "bold",
      textTransform: "none",
-    backgroundColor: "transparent",
-    color: "#9fef00",
+    backgroundColor: "#9fef00",
+    color: "#1e2633",
     border: "1px solid #9fef00",
     "&:hover": {
       backgroundColor: "#9fef00",
@@ -88,6 +88,13 @@ function AddRoom() {
   const [ans5, setAns5] = React.useState("");
   const [taskNo, setTaskNo] = React.useState(0);
 
+  const [roomSent, setRoomSent] = React.useState(false);
+  const [task1Sent, setTask1Sent] = React.useState(false);
+  const [task2Sent, setTask2Sent] = React.useState(false);
+  const [task3Sent, setTask3Sent] = React.useState(false);
+  const [task4Sent, setTask4Sent] = React.useState(false);
+  const [task5Sent, setTask5Sent] = React.useState(false);
+
   const handlePage = (event, value) => {
     setTaskNo(value-1);
     setPageNumber(value);
@@ -107,7 +114,24 @@ function AddRoom() {
   
   const handleTask1 = () => {
     
-
+    switch (taskNo) {
+      case 1:
+        setTask1Sent(true);
+        break;
+      case 2:
+        setTask2Sent(true);
+        break;
+      case 3:
+        setTask3Sent(true);
+        break;
+      case 4:
+        setTask4Sent(true);
+        break;
+      case 5:
+        setTask5Sent(true);
+        break;
+    }
+    console.log("clicked");
     Axios.post("http://localhost:3001/sendTask", {
       roomName: roomName,
       taskNo: taskNo,
@@ -131,6 +155,7 @@ function AddRoom() {
 
 
   const handleRoomDetails = () => {
+    setRoomSent(true);
     Axios.post("http://localhost:3001/sendRoomDetails", {
       roomName: roomName,
       roomTagline: roomTagline,
@@ -138,6 +163,7 @@ function AddRoom() {
       roomDescription: roomDescription,
     }).then((response) => {
       console.log(response)
+      
     })
   }
 
@@ -155,6 +181,7 @@ function AddRoom() {
           <div>
             <Typography style={{color: "#9fef00"}} variant="h4">Room Details</Typography><br></br>
             <CssTextField
+            disabled={roomSent}
             fullWidth
             InputProps={{
               style: {
@@ -175,6 +202,7 @@ function AddRoom() {
             <br></br>
             <br></br>
             <CssTextField
+            disabled={roomSent}
             fullWidth
             InputProps={{
               style: {
@@ -196,6 +224,7 @@ function AddRoom() {
             <br></br>
             <br></br>
             <CssTextField
+            disabled={roomSent}
             fullWidth
             InputProps={{
               style: {
@@ -218,6 +247,7 @@ function AddRoom() {
             <br></br>
             <Typography style={{color: "#9fef00"}} variant="h4">Room Description</Typography><br></br>
             <CKEditor
+            disabled={roomSent}
               editor={ClassicEditor}
               onChange={(event, editor) => {
                 const data = editor.getData();
@@ -225,7 +255,7 @@ function AddRoom() {
               }}
             />
             <br></br>
-            <SendButton fullWidth onClick={handleRoomDetails} > Send Room Details</SendButton>
+            <SendButton disabled={roomSent} fullWidth onClick={handleRoomDetails} > Send Room Details</SendButton>
             <br></br>
             <br></br>
           </div>
@@ -236,6 +266,7 @@ function AddRoom() {
             
             <Typography style={{color: "#9fef00"}} variant="h4">Task {taskNo}</Typography><br></br>
             <CssTextField
+            disabled={task1Sent}
             fullWidth
             InputProps={{
               style: {
@@ -257,6 +288,7 @@ function AddRoom() {
             <br></br>
             <Typography style={{color: "#9fef00"}} variant="h4">Task {taskNo} Description</Typography><br></br>
             <CKEditor
+            disabled={task1Sent}
               editor={ClassicEditor}
               onChange={(event, editor) => {
                 const data = editor.getData();
@@ -269,6 +301,7 @@ function AddRoom() {
             <Grid container spacing={2}>
               <Grid item xs={8}>
               <CssTextField
+              disabled={task1Sent}
             fullWidth
             InputProps={{
               style: {
@@ -289,6 +322,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task1Sent}
             fullWidth
             InputProps={{
               style: {
@@ -309,6 +343,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={8}>
               <CssTextField
+              disabled={task1Sent}
             fullWidth
             InputProps={{
               style: {
@@ -329,6 +364,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task1Sent}
             fullWidth
             InputProps={{
               style: {
@@ -339,7 +375,7 @@ function AddRoom() {
             InputLabelProps={{
               style: {fontWeight: "bold",
               letterSpacing: "1.5px", color: "#9fef00",fontSize: "12px", textTransform: "uppercase" },
-            }}ield
+            }}
               variant="outlined"
               label="Answer 2"
               onChange={(e) => {
@@ -352,6 +388,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task1Sent}
             fullWidth
             InputProps={{
               style: {
@@ -372,6 +409,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task1Sent}
             fullWidth
             InputProps={{
               style: {
@@ -393,6 +431,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task1Sent}
             fullWidth
             InputProps={{
               style: {
@@ -413,6 +452,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task1Sent}
             fullWidth
             InputProps={{
               style: {
@@ -434,6 +474,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task1Sent}
             fullWidth
             InputProps={{
               style: {
@@ -454,6 +495,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task1Sent}
             fullWidth
             InputProps={{
               style: {
@@ -484,7 +526,7 @@ function AddRoom() {
             <br></br>
             
           
-            <SendButton fullWidth onClick={handleTask1}>Submit</SendButton>
+            <SendButton disabled={task1Sent} fullWidth onClick={handleTask1}>Submit</SendButton>
 
             <br></br>
              <br></br>
@@ -494,6 +536,7 @@ function AddRoom() {
             
             <Typography style={{color: "#9fef00"}} variant="h4">Task {taskNo}</Typography><br></br>
             <CssTextField
+            disabled={task2Sent}
             fullWidth
             InputProps={{
               style: {
@@ -515,6 +558,7 @@ function AddRoom() {
             <br></br>
             <Typography style={{color: "#9fef00"}} variant="h4">Task {taskNo} Description</Typography><br></br>
             <CKEditor
+            disabled={task2Sent}
               editor={ClassicEditor}
               onChange={(event, editor) => {
                 const data = editor.getData();
@@ -527,6 +571,7 @@ function AddRoom() {
             <Grid container spacing={2}>
               <Grid item xs={8}>
               <CssTextField
+              disabled={task2Sent}
             fullWidth
             InputProps={{
               style: {
@@ -547,6 +592,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task2Sent}
             fullWidth
             InputProps={{
               style: {
@@ -567,6 +613,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={8}>
               <CssTextField
+              disabled={task2Sent}
             fullWidth
             InputProps={{
               style: {
@@ -587,6 +634,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task2Sent}
             fullWidth
             InputProps={{
               style: {
@@ -610,6 +658,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task2Sent}
             fullWidth
             InputProps={{
               style: {
@@ -630,6 +679,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task2Sent}
             fullWidth
             InputProps={{
               style: {
@@ -651,6 +701,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task2Sent}
             fullWidth
             InputProps={{
               style: {
@@ -671,6 +722,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task2Sent}
             fullWidth
             InputProps={{
               style: {
@@ -692,6 +744,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task2Sent}
             fullWidth
             InputProps={{
               style: {
@@ -712,6 +765,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task2Sent}
             fullWidth
             InputProps={{
               style: {
@@ -742,7 +796,7 @@ function AddRoom() {
             <br></br>
             
           
-            <SendButton fullWidth onClick={handleTask1}>Submit</SendButton>
+            <SendButton disabled={task2Sent} fullWidth onClick={handleTask1}>Submit</SendButton>
 
             <br></br>
              <br></br>
@@ -753,6 +807,7 @@ function AddRoom() {
             
             <Typography style={{color: "#9fef00"}} variant="h4">Task {taskNo}</Typography><br></br>
             <CssTextField
+            disabled={task3Sent}
             fullWidth
             InputProps={{
               style: {
@@ -774,6 +829,7 @@ function AddRoom() {
             <br></br>
             <Typography style={{color: "#9fef00"}} variant="h4">Task {taskNo} Description</Typography><br></br>
             <CKEditor
+            disabled={task3Sent}
               editor={ClassicEditor}
               onChange={(event, editor) => {
                 const data = editor.getData();
@@ -786,6 +842,7 @@ function AddRoom() {
             <Grid container spacing={2}>
               <Grid item xs={8}>
               <CssTextField
+              disabled={task3Sent}
             fullWidth
             InputProps={{
               style: {
@@ -806,6 +863,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task3Sent}
             fullWidth
             InputProps={{
               style: {
@@ -826,6 +884,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={8}>
               <CssTextField
+              disabled={task3Sent}
             fullWidth
             InputProps={{
               style: {
@@ -846,6 +905,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task3Sent}
             fullWidth
             InputProps={{
               style: {
@@ -869,6 +929,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task3Sent}
             fullWidth
             InputProps={{
               style: {
@@ -889,6 +950,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task3Sent}
             fullWidth
             InputProps={{
               style: {
@@ -910,6 +972,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task3Sent}
             fullWidth
             InputProps={{
               style: {
@@ -930,6 +993,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task3Sent}
             fullWidth
             InputProps={{
               style: {
@@ -951,6 +1015,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task3Sent}
             fullWidth
             InputProps={{
               style: {
@@ -971,6 +1036,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task3Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1001,7 +1067,7 @@ function AddRoom() {
             <br></br>
             
           
-            <SendButton fullWidth onClick={handleTask1}>Submit</SendButton>
+            <SendButton disabled={task3Sent} fullWidth onClick={handleTask1}>Submit</SendButton>
 
             <br></br>
              <br></br>
@@ -1010,6 +1076,7 @@ function AddRoom() {
             
             <Typography style={{color: "#9fef00"}} variant="h4">Task {taskNo}</Typography><br></br>
             <CssTextField
+            disabled={task4Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1031,6 +1098,7 @@ function AddRoom() {
             <br></br>
             <Typography style={{color: "#9fef00"}} variant="h4">Task {taskNo} Description</Typography><br></br>
             <CKEditor
+            disabled={task4Sent}
               editor={ClassicEditor}
               onChange={(event, editor) => {
                 const data = editor.getData();
@@ -1043,6 +1111,7 @@ function AddRoom() {
             <Grid container spacing={2}>
               <Grid item xs={8}>
               <CssTextField
+              disabled={task4Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1063,6 +1132,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task4Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1083,6 +1153,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={8}>
               <CssTextField
+              disabled={task4Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1103,6 +1174,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task4Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1126,6 +1198,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task4Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1146,6 +1219,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task4Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1167,6 +1241,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task4Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1187,6 +1262,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task4Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1208,6 +1284,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task4Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1228,6 +1305,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task4Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1258,7 +1336,7 @@ function AddRoom() {
             <br></br>
             
           
-            <SendButton fullWidth onClick={handleTask1}>Submit</SendButton>
+            <SendButton disabled={task4Sent} fullWidth onClick={handleTask1}>Submit</SendButton>
 
             <br></br>
              <br></br>
@@ -1267,6 +1345,7 @@ function AddRoom() {
             
             <Typography style={{color: "#9fef00"}} variant="h4">Task {taskNo}</Typography><br></br>
             <CssTextField
+            disabled={task5Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1288,6 +1367,7 @@ function AddRoom() {
             <br></br>
             <Typography style={{color: "#9fef00"}} variant="h4">Task {taskNo} Description</Typography><br></br>
             <CKEditor
+            disabled={task5Sent}
               editor={ClassicEditor}
               onChange={(event, editor) => {
                 const data = editor.getData();
@@ -1300,6 +1380,7 @@ function AddRoom() {
             <Grid container spacing={2}>
               <Grid item xs={8}>
               <CssTextField
+              disabled={task5Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1320,6 +1401,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task5Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1340,6 +1422,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={8}>
               <CssTextField
+              disabled={task5Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1360,6 +1443,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task5Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1383,6 +1467,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task5Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1403,6 +1488,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task5Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1424,6 +1510,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task5Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1444,6 +1531,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task5Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1465,6 +1553,7 @@ function AddRoom() {
 
               <Grid item xs={8}>
               <CssTextField
+              disabled={task5Sent}
             fullWidth
             InputProps={{
               style: {
@@ -1485,6 +1574,7 @@ function AddRoom() {
               </Grid>
               <Grid item xs={4}>
               <CssTextField
+              disabled={task5Sent}
             fullWidth
             InputProps={{
               style: {
