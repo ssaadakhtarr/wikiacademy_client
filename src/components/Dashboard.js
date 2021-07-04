@@ -132,7 +132,8 @@ function Dashboard() {
                 position: "relative",
                 float: "top",
                 bottom: "5%",
-                backgroundColor: "#111927",
+                //backgroundColor: "#111927",
+                backgroundColor: "#111927"
               }}
             >
               <SidebarDashboard />
