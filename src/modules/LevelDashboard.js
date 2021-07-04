@@ -75,7 +75,7 @@ function LevelDashboard({level,points}) {
   console.log(points1)
 
   return (
-    <Card style={{display: "inline-block", height: "100%", width: "100%", backgroundColor: "#1a2332", color: "#fff",}} className={classes.root}>
+    <Card style={{display: "inline-block", height: "100%", width: "100%", backgroundColor: "#111927", color: "#fff",}} className={classes.root}>
       <CardContent>
       <div style={{textAlign: "center"}}><GiChart style={{color: "#9fef00",  fontSize: "70px"}}/></div>
         

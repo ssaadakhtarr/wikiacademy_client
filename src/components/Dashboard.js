@@ -93,9 +93,9 @@ function Dashboard() {
           <Typography
           
             style={{
-              float: "left",
-            left: "420px",
-            top: "2px",
+            //   float: "left",
+            // left: "420px",
+            // top: "2px",
             
             position: "relative",
               textAlign: "center",
@@ -104,13 +104,16 @@ function Dashboard() {
               fontWeight: "bold",
             }}
             variant="h5"
-          ><MdDashboard
+          >{" "} <MdDashboard
           style={{
-            float: "left",
-            right: "10px",
-            top: "0px",
-            display: "block",
-            paddingLeft:"55px",
+            
+            position: "relative",
+            top: "3",
+            // float: "left",
+            // right: "10px",
+            // top: "0px",
+            // display: "block",
+            // paddingLeft:"55px",
           }}
         />
             Dashboard

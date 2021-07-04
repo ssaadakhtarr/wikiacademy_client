@@ -131,6 +131,10 @@ function App() {
         }).then((response) => {
          
         })
+
+        Axios.post("http://localhost:3001/updateTitle").then((response) => {
+          
+        })
       }, [])
 
       useEffect(() => {

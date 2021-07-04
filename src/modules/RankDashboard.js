@@ -36,7 +36,7 @@ function RankDashboard({rank}) {
 
     return (
         <div>
-            <Card style={{ height: "100%", width: "100%", backgroundColor: "#1a2332", color: "#fff",}} className={classes.root}>
+            <Card style={{ height: "100%", width: "100%", backgroundColor: "#111927", color: "#fff",}} className={classes.root}>
       <CardContent>
       <div style={{textAlign: "center"}}><GiRank3 style={{color: "#9fef00",  fontSize: "70px"}}/></div>
         

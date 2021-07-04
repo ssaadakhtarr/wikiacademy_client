@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {RiQuestionnaireFill} from 'react-icons/ri';
+import {TiStarFullOutline} from 'react-icons/ti';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,9 +36,9 @@ function QuestionsDashboard({points}) {
 
     return (
         <div>
-            <Card style={{ height: "100%", width: "100%", backgroundColor: "#1a2332", color: "#fff",}} className={classes.root}>
+            <Card style={{ height: "100%", width: "100%", backgroundColor: "#111927", color: "#fff",}} className={classes.root}>
       <CardContent>
-      <div style={{textAlign: "center"}}><RiQuestionnaireFill style={{color: "#9fef00",  fontSize: "70px"}}/></div>
+      <div style={{textAlign: "center"}}><TiStarFullOutline style={{color: "#9fef00",  fontSize: "70px"}}/></div>
         
         
        

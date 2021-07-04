@@ -36,7 +36,7 @@ function TotalUsersDashboard({users}) {
     const classes = useStyles();
     return (
         <div>
-            <Card style={{ height: "100%", idth: "100%", backgroundColor: "#1a2332", color: "#fff",}} className={classes.root}>
+            <Card style={{ height: "100%", idth: "100%", backgroundColor: "#111927", color: "#fff",}} className={classes.root}>
       <CardContent>
           <div style={{textAlign: "center"}}><FaUsers style={{color: "#9fef00",  fontSize: "70px"}}/></div>
           

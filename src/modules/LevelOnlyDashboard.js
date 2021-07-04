@@ -35,7 +35,7 @@ function LevelOnlyDashboard({level}) {
     const classes = useStyles();
     return (
         <div>
-            <Card style={{ height: "100%", width: "100%", backgroundColor: "#1a2332", color: "#fff",}} className={classes.root}>
+            <Card style={{ height: "100%", width: "100%", backgroundColor: "#111927", color: "#fff",}} className={classes.root}>
       <CardContent>
       <div style={{textAlign: "center"}}><SiOpslevel style={{color: "#9fef00",  fontSize: "70px"}}/></div>
        

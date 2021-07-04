@@ -14,6 +14,7 @@ const useStyles = makeStyles({
   root: {
       backgroundColor: "#141d2b",
       
+    minWidth: 350,  
     maxWidth: "100%",
     height: "100%",
     transition: "0.5s all ease",
@@ -39,7 +40,7 @@ export default function BlogCard({blogTitle, blogDesc, blogImg, username,url}) {
   
 
   return (
-      <Box className={classes.root}>
+    <Box align="center" padding={3}>
     <Card className={classes.root}>
         <a className={classes.root} style={{textDecoration: "none"}} href={url}>
         <CardActionArea>

@@ -381,10 +381,17 @@ function Home() {
         <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}}>
           Each room belonging to a specific topic or tool
         </Typography>
+        <Grid container spacing={1}>
         {console.log(roomData[0].roomName)}
              {roomData.map((i) => {
-               return  <Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline} />
+               return(<div>
+                
+                   <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
+                   <Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline} />
+                 </Grid>
+               </div>);
              })}
+              </Grid>
               <br></br>
               <br></br>
               <br></br>
@@ -555,10 +562,17 @@ function Home() {
             <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
             <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
           </Grid> */}
+          <Grid container spacing={2}>
           {blogData.map((i) => {
-            
-            return <BlogCard blogTitle={i.blogTitle} blogDesc={i.blogDesc} blogImg={i.blogImg} username={i.username} url={"/blogs/"+i.blogId} />
+            return (<div>
+                
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
+              <BlogCard blogTitle={i.blogTitle} blogDesc={i.blogDesc} blogImg={i.blogImg} username={i.username} url={"/blogs/"+i.blogId} />
+            </Grid>
+          </div>);
+
           })}
+          </Grid>
       </Box>
       <Footer />
       {/* <img src={Image} /> */}
