@@ -68,7 +68,6 @@ function Dashboard() {
   const [userDashboard,setUserDashboard]=React.useState();
   const [mounted, setMounted] = React.useState(false);
   
-
   const history = useHistory();
   useEffect(() => {
     axios.get(`http://localhost:3001/getDashboard/${userId}`).then((response)=> {
@@ -96,7 +95,6 @@ function Dashboard() {
     })
 
     }, []);
-
 
     if (!mounted && userDashboard === undefined) {
         return <div>Loading...</div>;
