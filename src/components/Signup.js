@@ -79,6 +79,12 @@ function Signup() {
     password: "",
   });
 
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
   // const nowEnable =
   //   firstNameReg.length > 0 &&
   //   lastNameReg.length > 0 &&
@@ -232,14 +238,14 @@ function Signup() {
                       <FormControlLabel
                         style={{ color: "white" }}
                         control={
-                          <Checkbox value="allowExtraEmails" color="default" />
+                          <Checkbox value="allowExtraEmails" color="default" checked={checked} onChange={handleChange}/>
                         }
                         label="
                 By registering you agree to our Terms and Conditions"
                       />
                       <Button
                         type="submit"
-                        // disabled={!nowEnable}
+                        disabled={!checked}
                         style={{
                           fontWeight: "bold",
                           letterSpacing: "1.5px",

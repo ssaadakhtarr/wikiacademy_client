@@ -172,8 +172,7 @@ function Nav() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          color:"white",
-          
+          color:"white"
         }}
       >
         <AppBar

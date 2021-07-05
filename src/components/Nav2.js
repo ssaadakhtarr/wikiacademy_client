@@ -38,6 +38,10 @@ import {MdDashboard} from 'react-icons/md';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    color:"white",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -238,7 +242,7 @@ export default function Nav2() {
               />
             </a>
           </Box>
-          <Box className={classes.boxIcons} paddingLeft={2} style={{display:"flex"}}>
+          <Box className={classes.boxIcons} paddingLeft={2} style={{display:"flex",  color: "white",}}>
               <Tooltip title="Dashboard" arrow>
                 <IconButton className={classes.boxIcons} href="/">
                   <MdDashboard />
