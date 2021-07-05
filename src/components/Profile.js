@@ -197,7 +197,7 @@ function Profile() {
           <GeneralProfile userData={userDashboard} />
         </TabPanel>
         <TabPanel style={{backgroundColor: "#141d2b"}} value={value} index={1}>
-          <AboutProfile />
+          <AboutProfile userData={userDashboard} />
         </TabPanel>
         <TabPanel style={{backgroundColor: "#141d2b"}} value={value} index={2}>
           <OtherProfile />

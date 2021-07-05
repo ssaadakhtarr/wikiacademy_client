@@ -66,25 +66,26 @@ const SubmitButton = withStyles({
   },
 })(Button);
 
-function AboutProfile() {
+function AboutProfile(userData) {
+  console.log(userData.userData);
   const [{User}, dispatch] = useStateValue();
   const user = JSON.parse(localStorage.getItem('user'));
   console.log("in aboutprofile.js user is: ")
   console.log(user)
   const classes = useStyles();
-  const id = user.id;
-  const [gender, setGender] = React.useState(user.gender);
-  const [occupation, setOccupation] = React.useState(user.occupation);
-  const [areaOfInterest, setAreaOfInterest] = React.useState(user.areaOfInterest);
-  const [selectedDate, setSelectedDate] = React.useState(user.dateOfBirth);
-  const [summary, setSummary] = React.useState(user.summary);
-  const [twitter, setTwitter] = React.useState(user.twitter);
-  const [instagram, setInstagram] = React.useState(user.instagram);
-  const [github, setGithub] = React.useState(user.github);
-  const [linkedin, setLinkedin] = React.useState(user.linkedin);
+  const id = userData.userData.id;
+  const [gender, setGender] = React.useState(userData.userData.gender);
+  const [occupation, setOccupation] = React.useState(userData.userData.occupation);
+  const [areaOfInterest, setAreaOfInterest] = React.useState(userData.userData.areaOfInterest);
+  const [selectedDate, setSelectedDate] = React.useState(userData.userData.dateOfBirth.slice(0,10));
+  const [summary, setSummary] = React.useState(userData.userData.summary);
+  const [twitter, setTwitter] = React.useState(userData.userData.twitter);
+  const [instagram, setInstagram] = React.useState(userData.userData.instagram);
+  const [github, setGithub] = React.useState(userData.userData.github);
+  const [linkedin, setLinkedin] = React.useState(userData.userData.linkedin);
 
-console.log(user.dateOfBirth.slice(0,10));
-console.log(user.dateOfBirth);
+console.log(userData.userData.dateOfBirth.slice(0,10));
+console.log(userData.userData.dateOfBirth);
   
   const handleDateChange = (e) => {
     setSelectedDate(e.target.value);
