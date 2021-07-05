@@ -26,6 +26,8 @@ import PropTypes from 'prop-types';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import {SiNintendogamecube} from 'react-icons/si';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function LinearProgressWithLabel(props) {
   return (
@@ -102,6 +104,18 @@ function Room() {
   const [previousData, setPreviousData] = React.useState();
 
   const [progress, setProgress] = React.useState(0);
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
   
   console.log(roomname);
 
@@ -313,6 +327,11 @@ function Room() {
                 if (checkAns === fullDetails[0].questions[0].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -323,6 +342,12 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                 
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try again!'
+                  })
                 }
               }}
             >
@@ -371,6 +396,10 @@ function Room() {
                 if (checkAns === fullDetails[0].questions[1].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -381,6 +410,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -428,6 +462,10 @@ function Room() {
                 if (checkAns === fullDetails[0].questions[2].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -438,6 +476,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -485,6 +528,10 @@ function Room() {
                 if (checkAns === fullDetails[0].questions[3].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -495,6 +542,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -542,6 +594,10 @@ function Room() {
                 if (checkAns === fullDetails[0].questions[4].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -552,6 +608,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -626,6 +687,10 @@ function Room() {
                 if (checkAns === fullDetails[1].questions[0].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -636,6 +701,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -684,6 +754,10 @@ function Room() {
                 if (checkAns === fullDetails[1].questions[1].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -694,6 +768,12 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
+                  
                 }
               }}
             >
@@ -741,6 +821,10 @@ function Room() {
                 if (checkAns === fullDetails[1].questions[2].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -751,6 +835,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -798,6 +887,10 @@ function Room() {
                 if (checkAns === fullDetails[1].questions[3].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -808,6 +901,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -855,6 +953,10 @@ function Room() {
                 if (checkAns === fullDetails[1].questions[4].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -865,6 +967,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -938,6 +1045,10 @@ function Room() {
                 if (checkAns === fullDetails[2].questions[0].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -948,8 +1059,13 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
-              }}
+              }} 
             >
               {previousData[10].isAnswered === 1 ? <CheckIcon/> : `Submit`}
             </StyledButton>
@@ -996,6 +1112,10 @@ function Room() {
                 if (checkAns === fullDetails[2].questions[1].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1006,6 +1126,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1053,6 +1178,10 @@ function Room() {
                 if (checkAns === fullDetails[2].questions[2].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1063,6 +1192,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1110,6 +1244,10 @@ function Room() {
                 if (checkAns === fullDetails[2].questions[3].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1120,6 +1258,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1167,6 +1310,10 @@ function Room() {
                 if (checkAns === fullDetails[2].questions[4].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1177,6 +1324,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1251,6 +1403,10 @@ function Room() {
                 if (checkAns === fullDetails[3].questions[0].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1261,6 +1417,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1309,6 +1470,10 @@ function Room() {
                 if (checkAns === fullDetails[3].questions[1].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1319,6 +1484,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1366,6 +1536,10 @@ function Room() {
                 if (checkAns === fullDetails[3].questions[2].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1376,6 +1550,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1423,6 +1602,10 @@ function Room() {
                 if (checkAns === fullDetails[3].questions[3].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1433,6 +1616,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1480,6 +1668,10 @@ function Room() {
                 if (checkAns === fullDetails[3].questions[4].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1490,6 +1682,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1563,6 +1760,10 @@ function Room() {
                 if (checkAns === fullDetails[4].questions[0].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1573,6 +1774,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1621,6 +1827,10 @@ function Room() {
                 if (checkAns === fullDetails[4].questions[1].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1631,6 +1841,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1678,6 +1893,10 @@ function Room() {
                 if (checkAns === fullDetails[4].questions[2].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1688,6 +1907,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1735,6 +1959,10 @@ function Room() {
                 if (checkAns === fullDetails[4].questions[3].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1745,6 +1973,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >
@@ -1792,6 +2025,10 @@ function Room() {
                 if (checkAns === fullDetails[4].questions[4].answers) {
                   setChangeButton(true);
                   setProgress(progress + 4);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'You are correct!'
+                  })
                   Axios.post("http://localhost:3001/isAnswered", {
                     userId: userId,
                     roomsId: roomDetails.roomsId,
@@ -1802,6 +2039,11 @@ function Room() {
                       setPreviousData(response.data);
                     }
                   });
+                } else {
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'You are wrong! Try Again!'
+                  })
                 }
               }}
             >

@@ -33,6 +33,8 @@ import RoomsDashboard from "../modules/RoomsDashboard";
 import {MdDashboard} from 'react-icons/md';
 import React, { useEffect } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const useStyles = makeStyles((theme) => ({
   
@@ -58,7 +60,7 @@ const boxStyle = {
 };
 
 function Dashboard() {
-  
+  const MySwal = withReactContent(Swal)
   const classes = useStyles();
   const [{ User }, dispatch] = useStateValue();
   const user = JSON.parse(localStorage.getItem("user"));
@@ -76,7 +78,22 @@ function Dashboard() {
         setMounted(true);
     }
     })
-
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Signed in successfully'
+    })
 
     }, []);
 
