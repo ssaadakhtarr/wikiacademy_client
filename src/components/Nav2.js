@@ -242,7 +242,7 @@ export default function Nav2() {
               />
             </a>
           </Box>
-          <Box className={classes.boxIcons} paddingLeft={2} style={{display:"flex",  color: "white",}}>
+          <Box className={classes.boxIcons} paddingLeft={2} style={{display:"flex",  color: "white"}}>
               <Tooltip title="Dashboard" arrow>
                 <IconButton className={classes.boxIcons} href="/">
                   <MdDashboard />
