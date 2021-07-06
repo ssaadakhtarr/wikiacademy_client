@@ -136,7 +136,7 @@ function Hacktivities() {
       if (response.data != undefined) {
        
         setMounted(true);
-        setBlogData(response.data.newArr);
+        setBlogData(response.data.result);
         setRoomData(response.data.result_1);
       }
     })

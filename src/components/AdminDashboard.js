@@ -12,6 +12,12 @@ import axios from 'axios';
 function AdminDashboard() {
     const [dashboardDetails,setDashboardDetails]=React.useState();
     const [mounted, setMounted] = React.useState(false);
+  
+    const [LeaderboardData, getLeaderBoardDetails] = React.useState();
+ 
+ 
+
+  
 
     useEffect(() => {
         axios.get("http://localhost:3001/getAdminData").then((response)=> {
@@ -21,8 +27,16 @@ function AdminDashboard() {
             setMounted(true);
         }
         })
+        axios.get("http://localhost:3001/getLeaderboard").then((response) => {
+      console.log(response.data);
+      if (response.data != undefined) {
+        getLeaderBoardDetails(response.data);
+        setMounted(true);
+
+      }
+    })
         }, []);
-        if (!mounted && dashboardDetails === undefined) {
+        if (!mounted || dashboardDetails === undefined || LeaderboardData === undefined) {
             return <div>Loading...</div>;
           }
           else{
@@ -47,7 +61,7 @@ function AdminDashboard() {
                    </Grid>
                </Grid>
                <br></br>
-               <LeaderboardChart />
+               <LeaderboardChart leaderboard={LeaderboardData}/>
            </Box>
 
         </div>

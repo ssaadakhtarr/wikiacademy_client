@@ -20,28 +20,50 @@ const data = [
   { year: '2010', population: 6.930 },
 ];
 
-    
+    console.log(data);
 
 
-function LeaderboardChart() {
-   
+function LeaderboardChart(leaderboard) {
+   console.log(leaderboard);
+   const chartData = [];
+   leaderboard.leaderboard.map((i) => {
+     chartData.push({points: i.points, username: i.username})
+   })
+
+
+  //  function compare( a, b ) {
+  //   if ( a.rank < b.rank ){
+  //     return -1;
+  //   }
+  //   if ( a.rank > b.rank ){
+  //     return 1;
+  //   }
+  //   return 0;
+  // }
+  // chartData.sort(compare);
+   console.log(chartData);
+   if (chartData.length > 0) {
+
+  
     return (
-        <Paper style={{background: "linear-gradient(90deg, rgba(38,49,67,0.1) 0%, rgba(59,85,50,0.1) 100%)"
-            , color: "white!important"}}>
+      
+        <Paper style={{color: "#fff",background: "linear-gradient(90deg, rgba(38,49,67,1) 0%, rgba(59,85,50,1) 100%)"
+            ,}}>
+              
           <Chart
   
             style={{color: "white"}}
-            data={data}
-            rotated
+            data={chartData.reverse()}
+            rotated={true}
           >
             <ArgumentAxis  />
-            <ValueAxis max={7} />
+            <ValueAxis max={10} />
   
             <BarSeries
             style={{color: "#fff",}}
             color="#9fef00"
-              valueField="population"
-              argumentField="year"
+              valueField="points"
+              argumentField="username"
             />
             <Title text="Top Users" />
             <Animation />
@@ -49,5 +71,5 @@ function LeaderboardChart() {
         </Paper>
       );
 }
-
+}
 export default LeaderboardChart

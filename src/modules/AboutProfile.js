@@ -21,6 +21,22 @@ import {useStateValue} from "../StateProvider";
 
 const IconStyle = { marginTop: "10px", marginRight: "10px" };
 
+const useOutlinedInputStyles = makeStyles(theme => ({
+  root: {
+    "& $notchedOutline": {
+      borderColor: "red"
+    },
+    "&:hover $notchedOutline": {
+      borderColor: "blue"
+    },
+    "&$focused $notchedOutline": {
+      borderColor: "green"
+    }
+  },
+  focused: {},
+  notchedOutline: {}
+}));
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -47,11 +63,20 @@ const useStyles = makeStyles((theme) => ({
   },},
   select: {
     color: "#9fef00",
+    "&:before": {
+      borderColor: "red"
+    },
+  },
+    formControl: {
+      "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+        borderColor: "red"
+      }
+    },
    
     "& .MuiSvgIcon-root": {
       color: "#9fef00",
     },
-},
+
 }));
 
 const SubmitButton = withStyles({
@@ -67,6 +92,7 @@ const SubmitButton = withStyles({
 })(Button);
 
 function AboutProfile(userData) {
+  const outlinedInputClasses = useOutlinedInputStyles();
   console.log(userData.userData);
   const [{User}, dispatch] = useStateValue();
   const user = JSON.parse(localStorage.getItem('user'));

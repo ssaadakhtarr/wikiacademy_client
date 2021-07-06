@@ -22,8 +22,9 @@ const JoinButton = withStyles({
     fontWeight: "bold",
     padding: "2%",
     paddingTop: "2%",
-    backgroundColor: "transparent",
-    color: "#9fef00",
+    backgroundColor: "#9fef00",
+    color: "#1e2633",
+    margin: "0 4%",
     border: "1px solid #9fef00",
     "&:hover": {
       fontWeight: "bold",
@@ -70,13 +71,13 @@ function Rooms({roomImg, roomName, roomDesc}) {
                 <Typography gutterBottom variant="h5" component="h2">
                   {roomName}
                 </Typography>
-                <Typography style={{color: "#cad2e2"}} variant="body2" color="textSecondary" component="p">
+                <Typography style={{color: "#cad2e2",}} variant="body2" color="textSecondary" component="p">
                 {renderHTML(roomDesc)}
                 </Typography>
               </CardContent>
             </CardActionArea>
-            <CardActions style={{backgroundColor: "#141d2b"}}>
-              <JoinButton onClick={() => history.push(`/room/${roomName}`)} size="small" color="primary">
+            <CardActions style={{backgroundColor: "#141d2b", }}>
+              <JoinButton fullWidth onClick={() => history.push(`/room/${roomName}`)} size="small" color="primary">
                 Learn More
               </JoinButton>
             </CardActions>

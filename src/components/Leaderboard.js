@@ -99,6 +99,7 @@ function Leaderboard() {
   const [mounted, setMounted] = React.useState(false);
   useEffect(() => {
     axios.get("http://localhost:3001/getLeaderboard").then((response) => {
+      console.log(response.data);
       if (response.data != undefined) {
         getLeaderBoardDetails(response.data);
         setMounted(true);

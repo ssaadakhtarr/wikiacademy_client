@@ -5,6 +5,8 @@ import BlogPageNav from '../modules/Blog/BlogPageNav';
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Axios from 'axios';
+import Swal from 'sweetalert2'
+import { useHistory } from 'react-router-dom';
 
 const CssTextField = withStyles({
     root: {
@@ -43,6 +45,7 @@ const CssTextField = withStyles({
   })(Button);
 
 function AddBlog() {
+  const history = useHistory();
   const user = JSON.parse(localStorage.getItem('user'));
   const [blogTitle, setBlogTitle] = React.useState('');
   const [blogDesc, setBlogDesc] = React.useState('');
@@ -51,6 +54,7 @@ function AddBlog() {
   const [userId, setUserId] = React.useState(user.id);
   const nowEnable = blogTitle.length > 0 && blogDesc.length > 0 && blogImg.length > 0 && blogMaterial.length > 0;
   const postBlog = () => {
+    
     Axios.post("http://localhost:3001/addBlog", {
       blogTitle: blogTitle,
       blogDesc: blogDesc,
@@ -59,6 +63,16 @@ function AddBlog() {
       userId: userId,
     }).then((response) => {
       console.log(response.data);
+    })
+    Swal.fire({
+      icon: 'success',
+      title: 'Your blog is successfully added!',
+      text: 'Your blog will be visible after an admin approves it!',
+    
+    }).then((result) => {
+      if (result.isConfirmed) {
+        history.push("/blog");
+      }
     })
   }
 

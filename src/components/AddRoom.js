@@ -10,6 +10,8 @@ import { useStateValue } from "../StateProvider";
 import Axios from "axios";
 import Navbar from "../modules/AdminDashboard/Navbar";
 import { withStyles } from "@material-ui/styles";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
@@ -66,6 +68,7 @@ const SendButton = withStyles({
 })(Button);
 
 function AddRoom() {
+  const history = useHistory();
   const [{ Cke }, dispatch] = useStateValue();
   const classes = useStyles();
   const [pageNumber, setPageNumber] = React.useState(1);
@@ -114,48 +117,84 @@ function AddRoom() {
   
   const handleTask1 = () => {
     
-    switch (taskNo) {
-      case 1:
-        setTask1Sent(true);
-        break;
-      case 2:
-        setTask2Sent(true);
-        break;
-      case 3:
-        setTask3Sent(true);
-        break;
-      case 4:
-        setTask4Sent(true);
-        break;
-      case 5:
-        setTask5Sent(true);
-        break;
-    }
-    console.log("clicked");
-    Axios.post("http://localhost:3001/sendTask", {
-      roomName: roomName,
-      taskNo: taskNo,
-      taskName: taskName,
-      taskDescription: taskDescription,
-      ques1: ques1,
-      ques2: ques2,
-      ques3: ques3,
-      ques4: ques4,
-      ques5: ques5,
-      ans1: ans1,
-      ans2: ans2,
-      ans3: ans3,
-      ans4: ans4,
-      ans5: ans5,
-    }).then((response) => {
-      console.log(response);
-    });
+   
+
+
+    Swal.fire({
+      title: 'Save the task details?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, save it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        switch (taskNo) {
+          case 1:
+            setTask1Sent(true);
+            break;
+          case 2:
+            setTask2Sent(true);
+            break;
+          case 3:
+            setTask3Sent(true);
+            break;
+          case 4:
+            setTask4Sent(true);
+            break;
+          case 5:
+            setTask5Sent(true);
+            break;
+        }
+        console.log("clicked");
+        Axios.post("http://localhost:3001/sendTask", {
+          roomName: roomName,
+          taskNo: taskNo,
+          taskName: taskName,
+          taskDescription: taskDescription,
+          ques1: ques1,
+          ques2: ques2,
+          ques3: ques3,
+          ques4: ques4,
+          ques5: ques5,
+          ans1: ans1,
+          ans2: ans2,
+          ans3: ans3,
+          ans4: ans4,
+          ans5: ans5,
+        }).then((response) => {
+          console.log(response);
+        })
+        Swal.fire(
+          'Saved',
+          'Task data has been saved successfully!',
+          'success'
+        ).then((res) => {
+        if (res.isConfirmed) {
+          setTaskNo(taskNo + 1);
+          setPageNumber(pageNumber + 1);
+        }    
+       
+        })
+      }
+    })
     
   };
 
 
   const handleRoomDetails = () => {
-    setRoomSent(true);
+    
+
+    Swal.fire({
+      title: 'Save the room details?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, save it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setRoomSent(true);
     Axios.post("http://localhost:3001/sendRoomDetails", {
       roomName: roomName,
       roomTagline: roomTagline,
@@ -164,6 +203,24 @@ function AddRoom() {
     }).then((response) => {
       console.log(response)
       
+    })
+        Swal.fire(
+          'Saved',
+          'Room data has been saved successfully!',
+          'success'
+        ).then((res) => {
+        if (res.isConfirmed) {
+          if (pageNumber === 6) {
+            history.push("/admin-dashboard")
+          } else {
+            setTaskNo(taskNo + 1);
+          setPageNumber(pageNumber + 1);
+          }
+          
+        }    
+       
+        })
+      }
     })
   }
 
@@ -1611,12 +1668,12 @@ function AddRoom() {
              <br></br>
           </div>)}
 
-            <MuiThemeProvider  theme={theme}>
+            {/* <MuiThemeProvider  theme={theme}>
               <Box padding={2} style={{textAlign: "center", backgroundColor: "rgb(255,255,255,0.1)"}}>
               <Pagination color="secondary" style={{color: "#9fef00"}} defaultPage="1" page={pageNumber} onChange={handlePage} count={6} />
               </Box>
        
-        </MuiThemeProvider>
+        </MuiThemeProvider> */}
       </Box>
     </div>
   );

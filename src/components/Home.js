@@ -144,7 +144,7 @@ function Home() {
     axios.get("http://localhost:3001/getHomeData").then((response) => {
       if (response.data !== undefined) {
         setMounted(true);
-        setBlogData(response.data.newArr);
+        setBlogData(response.data.result);
         setRoomData(response.data.result_1);
       }
     })
@@ -179,14 +179,14 @@ function Home() {
         <Nav />
         <Box style={{padding: "12% 0"}}>
         <div>
-          <Typography
+          <h1
             style={{ fontWeight: "bold" }}
             variant="h2"
             gutterBottom
             align="center"
           >
             Cyber Security Training
-          </Typography>
+          </h1>
           <Typography
             style={{ padding: "0 18%", color: "#cad2e2" }}
             variant="h6"
