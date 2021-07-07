@@ -272,8 +272,8 @@ function Nav() {
                   style={{
                     backgroundColor: "#18181f",
                     color: "#fff",
-                    fontSize: "12px",
-                    fontWeight: "600",
+                    fontSize: "14px",
+                    fontWeight: "800",
                   }}
                   variant="contained"
                 >
@@ -288,8 +288,8 @@ function Nav() {
                   style={{
                     backgroundColor: "#9fef00",
                     color: "#18181f",
-                    fontSize: "12px",
-                    fontWeight: "600",
+                    fontSize: "14px",
+                    fontWeight: "800",
                   }}
                   variant="contained"
                 >
@@ -305,8 +305,8 @@ function Nav() {
                 href="/signin"
                 style={{
                   marginRight: "2%",
-                  fontSize: "12px",
-                  fontWeight: "600",
+                  fontSize: "14px",
+                  fontWeight: "800",
                 }}
                 variant="contained"
               >
@@ -316,8 +316,8 @@ function Nav() {
               disableElevation
                 onClick={() => history.push("/signup")}
                 style={{
-                  fontSize: "12px",
-                  fontWeight: "600",
+                  fontSize: "14px",
+                  fontWeight: "800",
                 }}
                 variant="contained"
               >

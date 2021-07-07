@@ -37,10 +37,10 @@ const JoinButton = withStyles({
 const useStyles = makeStyles((theme)=>({
   root: {
     backgroundColor: "#141d2b",
-    minWidth: 350,
-  maxWidth: 400,
-  minHeight: 410,
-  maxHeight: 410,
+    minWidth: 360,
+  maxWidth: 360,
+  minHeight: 425,
+  maxHeight: 425,
   transition: "0.5s all ease",
   '&:hover': {
       transform: "scale(1.01)",
@@ -71,7 +71,7 @@ function Rooms({roomImg, roomName, roomDesc}) {
                 <Typography gutterBottom variant="h5" component="h2">
                   {roomName}
                 </Typography>
-                <Typography style={{color: "#cad2e2",}} variant="body2" color="textSecondary" component="p">
+                <Typography style={{color: "#cad2e2",}} variant="body1" color="textSecondary" component="p">
                 {renderHTML(roomDesc)}
                 </Typography>
               </CardContent>

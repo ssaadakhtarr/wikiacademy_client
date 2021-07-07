@@ -179,14 +179,14 @@ function Home() {
         <Nav />
         <Box style={{padding: "12% 0"}}>
         <div>
-          <h1
+          <Typography
             style={{ fontWeight: "bold" }}
             variant="h2"
             gutterBottom
             align="center"
           >
             Cyber Security Training
-          </h1>
+          </Typography>
           <Typography
             style={{ padding: "0 18%", color: "#cad2e2" }}
             variant="h6"
@@ -206,8 +206,8 @@ function Home() {
               color: "#1e2633",
               border: "1px solid #1a2332",
               padding: "1rem",
-              fontSize: "12px",
-              fontWeight: "600",
+              fontSize: "14px",
+              fontWeight: "800",
               letterSpacing: "1px",
               minWidth: "15%",
             }}
@@ -268,7 +268,7 @@ function Home() {
             ></div>
           </div>
           <br></br>
-          <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}} >
+          <Typography variant="h6" style={{textAlign: "center", color: "#cad2e2"}} >
             Structured and guided paths to follow along
           </Typography>
         </div>
@@ -322,7 +322,7 @@ function Home() {
           </div>
           <br></br>
           <Box style={{margin: "0 25%"}}>
-          <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}} >
+          <Typography variant="h6" style={{textAlign: "center", color: "#cad2e2"}} >
             We have initialized a project which focuses on the learning of Cyber Security. In this website we have broken down major and large topics into byte-sized minified lessons to make your learning experience easy and user friendly.
           </Typography>
           
@@ -378,7 +378,7 @@ function Home() {
         
         <br></br>
         {/* <div style={{position:"absolute",display: "inlineBlock",width: "290px",height: "5px",borderRadius: "20px",backgroundColor: "#88cc14",marginTop:'-30px',marginLeft:'525px'}}></div> */}
-        <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}}>
+        <Typography variant="h6" style={{textAlign: "center", color: "#cad2e2"}}>
           Each room belonging to a specific topic or tool
         </Typography>
         <Grid container spacing={1}>
@@ -438,7 +438,7 @@ function Home() {
             ></div>
           </div>
           <br></br>
-          <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}} >
+          <Typography variant="h6" style={{textAlign: "center", color: "#cad2e2"}} >
             Frequently Asked Questions to help you get started!
           </Typography>
           <br></br>
@@ -488,19 +488,19 @@ function Home() {
           ></div>
         </div>
         <br></br>
-        <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}}>
+        <Typography variant="h6" style={{textAlign: "center", color: "#cad2e2"}}>
           Follow us on social media and get connected with other learners!
         </Typography>
         <br></br>
       <div style={{textAlign: "center", color: "white"}}>
       <IconButton className={classes.icons}>
-            <FaTwitter style={{color: "white"}} />
+            <FaTwitter style={{color: "white", fontSize: "30px",}} />
           </IconButton>
           <IconButton className={classes.icons}>
-            <FaInstagram style={{color: "white"}} />
+            <FaInstagram style={{color: "white", fontSize: "30px",}} />
           </IconButton>
           <IconButton className={classes.icons}>
-            <FaDiscord style={{color: "white"}} />
+            <FaDiscord style={{color: "white", fontSize: "30px",}} />
           </IconButton>
       </div>
       <br></br>
@@ -551,7 +551,7 @@ function Home() {
             ></div>
           </div>
           <br></br>
-          <Typography variant="body1" style={{textAlign: "center", color: "#cad2e2"}} >
+          <Typography variant="h6" style={{textAlign: "center", color: "#cad2e2"}} >
             Featured posts from WikiSecurity Blog
           </Typography>
           <br></br>

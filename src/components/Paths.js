@@ -82,14 +82,14 @@ export default function Paths() {
                 <Typography gutterBottom variant="h5" component="h2">
                   Tools
                 </Typography>
-                <Typography style={{color: "#cad2e2"}} variant="body2" color="textSecondary" component="p">
+                <Typography style={{color: "#cad2e2"}} variant="body1" color="textSecondary" component="p">
                   Learn about security related tools that will help you work
                   efficiently and start hacking like a pro!.
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions style={{backgroundColor: "#141d2b"}}>
-              <JoinButton size="small" onClick={handleTools}>
+              <JoinButton fullWidth size="small" onClick={handleTools}>
                 Learn More
               </JoinButton>
             </CardActions>
@@ -106,14 +106,14 @@ export default function Paths() {
                 <Typography gutterBottom variant="h5" component="h2">
                   Vulnerabilities
                 </Typography>
-                <Typography style={{color: "#cad2e2"}} variant="body2" color="textSecondary" component="p">
+                <Typography style={{color: "#cad2e2"}} variant="body1" color="textSecondary" component="p">
                   Learn about top Vulnerabilities including OWASP Top 10 and
                   enhance your hacking skills!.
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions style={{backgroundColor: "#141d2b"}}>
-              <JoinButton size="small" color="primary" onClick={handleVulnerabilities}>
+              <JoinButton fullWidth size="small" color="primary" onClick={handleVulnerabilities}>
                 Learn More
               </JoinButton>
             </CardActions>
@@ -129,14 +129,14 @@ export default function Paths() {
                 <Typography gutterBottom variant="h5" component="h2">
                   Web Hacking Fundamentals
                 </Typography>
-                <Typography style={{color: "#cad2e2"}} variant="body2" color="textSecondary" component="p">
+                <Typography style={{color: "#cad2e2"}} variant="body1" color="textSecondary" component="p">
                   Learn about website hacking and penetration testing and hack
                   websites ethically!.
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions style={{backgroundColor: "#141d2b"}}>
-              <JoinButton size="small" color="primary" onClick={handleWeb}>
+              <JoinButton fullWidth size="small" color="primary" onClick={handleWeb}>
                 Learn More
               </JoinButton>
             </CardActions>
@@ -150,17 +150,17 @@ export default function Paths() {
             <CardActionArea>
               <CardMedia className={classes.media} image={BegImage} />
               <CardContent style={{backgroundColor: "#141d2b", color: "white", minHeight: "80px"}}>
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography gutterBottom variant="h5" >
                   Complete Beginner
                 </Typography>
-                <Typography style={{color: "#cad2e2"}} variant="body2" color="textSecondary" component="p">
+                <Typography style={{color: "#cad2e2"}} variant="body1" color="textSecondary" component="p">
                   A path designed for complete newbies to get into the field of
                   hacking!.
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions style={{backgroundColor: "#141d2b"}}>
-              <JoinButton size="small" color="primary" onClick={handleBegineer}>
+              <JoinButton fullWidth size="small" color="primary" onClick={handleBegineer}>
                 Learn More
               </JoinButton>
             </CardActions>
