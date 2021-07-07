@@ -64,7 +64,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   boxIcons: {
-    [theme.breakpoints.down("xs")]: {
+    color: "#fff",
+    [theme.breakpoints.down("sm")]: {
       display: "none",
     },
   },

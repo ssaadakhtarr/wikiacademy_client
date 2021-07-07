@@ -171,7 +171,7 @@ function App() {
         <ProtectedRoute path="/profile" component={Profile} />
         <Route path="/leaderboard" component={Leaderboard} />
         <Route path="/hacktivities" component={Hacktivities} />
-        <Route path="/room/:roomname" component={Room} />
+        <ProtectedRoute path="/room/:roomname" component={Room} />
         <ProtectedRoute path="/p/:username" component={PublicProfile} />
         <Route path="/path/tools" component={ToolsPath} />
         <Route path="/path/beginner" component={CompleteBegineer} />
