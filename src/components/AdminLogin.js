@@ -91,42 +91,39 @@ function AdminLogin() {
   const nowEnable = username.length > 0 && password.length > 0;
 
   const login = () => {
-    Axios.post("http://localhost:3001/login", {
-      username: username,
-      password: password,
+    console.log(username, password)
+    Axios.post("http://localhost:3001/adminLogin", {
+      username,
+      password,
     }).then((response) => {
-      if (!response.data.auth) {
-        setLoginStatus(false);
+
         if (
-          response.data.message === "wrong username/password" ||
-          response.data.message === "no user exists"
+          response.data.status === "fail"
         ) {
           setShowError(true);
           setShowSuccess(false);
         }
-      } else {
-        localStorage.setItem("token", response.data.token);
-        dispatch({
-          type: "User_Details",
-          data: response.data.result[0]
-        })
+       else {
+        // localStorage.setItem("token", response.data.token);
+        history.push('/admin-dashboard')
+        
         
         setUserDetails(response.data.result);
         setLoginStatus(true);
 
-        Axios.get("http://localhost:3001/isUserAuth", {
-          headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-        })
-          .then((response) => {
-            if (response.data.auth) {
-              setShowError(false);
-              setShowSuccess(true);
-              history.push("/dashboard");
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        // Axios.get("http://localhost:3001/isUserAuth", {
+        //   headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+        // })
+        //   .then((response) => {
+        //     if (response.data.auth) {
+        //       setShowError(false);
+        //       setShowSuccess(true);
+        //       history.push("/dashboard");
+        //     }
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   });
       }
     });
   };
