@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Nav from "./Nav";
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
@@ -6,6 +6,8 @@ import ToolImage from "../img/tools.png";
 import { makeStyles } from '@material-ui/core/styles';
 import ToolPath from "../img/toolpath.png";
 import Web from "../img/web.jpg";
+import axios from 'axios';
+import Rooms from "./Rooms";
 
 
 
@@ -67,88 +69,98 @@ const useStyles = makeStyles((theme)=>({
 
 function ToolsPath() {
     const classes = useStyles();
+    const pathName = "tools";
+    const [roomData, setRoomData] = React.useState();
+  const [mounted, setMounted] = React.useState(false);
+  
+  useEffect(() => {
+    axios.get(`http://localhost:3001/getPath/${pathName}`).then((response) => {
+      console.log(response.data);
+      if (response.data !== undefined) {
+        setMounted(true);
+        setRoomData(response.data);
+        
+      }
+  
+    })
+  }, [])
+  if (!mounted || roomData === undefined) {
+    
     return (
-        <div>
-            <Nav />
-            <Box style={boxStyle} padding={6}>
-        <Typography  variant="h3" className={classes.center}>Tools
-        <Button variant="contained" size="small" style={{position: 'relative',
-        color: 'white',
-        backgroundColor: "blue",
-        borderColor: "#039671",
-        marginLeft:'30px',}} classeName={classes.Button}>
-                Learning Pathway
-              </Button></Typography>
-        <Typography variant="subtitle1">
-        Network security tools can be either software- or hardware-based and help security teams protect their organization's networks, critical infrastructure, and sensitive data from attacks.These include tools such as firewalls, intrusion detection systems and network-based antivirus programs.
+    "load"
+    );
+  }
+  else {
+
+  
+    return (
+        <div >
+          <Box  style={{
+          textAlign: "center",
+          backgroundImage: "url('https://wallpapercave.com/wp/wp2757874.gif')",
+          backgroundPosition: "center",
+          width: "100%",
+          color: "white",
+        }}>
+              <Nav />
+              <Box padding={10}>
+              <Typography  variant="h2" className={classes.center}>Tools
         </Typography>
-      </Box>
-    <Grid container spacing={3}>
-      <Grid item xs={12} sm={12} md={4} lg={4}>
-        <Box align="center" padding={4}>
-          <Card className={classes.root}>
-            <CardActionArea>
-              <CardMedia className={classes.media} image={ToolImage} />
-              <CardContent>
-               {/*  <Typography gutterBottom variant="h5" component="h2">
-                  Tools
-                </Typography> */}
-                <Typography variant="body2" color="textSecondary" component="p">
-                  <h3>Learn all the tools used in cyber security</h3>
-                  <ul>
-                      <li><p style={{position:"absolute",marginRight:"15px",marginTop:"4px"}}>Wire Shark</p></li>
-                      <li><p style={{position:"absolute",marginRight:"15px",marginTop:"4px"}}>Nmap</p></li>
-                      <li><p style={{position:"absolute",marginRight:"15px",marginTop:"4px"}}>Metasploit</p></li>
-                      <li><p style={{position:"absolute",marginRight:"15px",marginTop:"4px"}}>Nikto</p></li>
-                  </ul>
-
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button variant="contained" size="large" style={{position: 'relative',color: 'white',backgroundColor: "#039671",borderColor: "#039671" ,width:'100%'}}>
-                Enroll Now
-              </Button>
-            </CardActions>
-          </Card>
-        </Box>
-      </Grid>
-      <Grid item item xs={12} sm={12} md={7} lg={7}>
-          <Box style={{backgroundColor: "#fff", color: "black"}} padding={6} margin={4}>
-          <h1 style={{fontWeight:"bold"}} className={classes.Intro}>Introduction</h1>
-          <div className={classes.Line}></div>
-          {/* <Typography variant="h1" style={{fontWeight:"bold"}} className={classes.Intro}>Introduction </Typography> */}
-          {/* <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}> */}
-      {/* <div style={{display: "inlineBlock",width: "370px",height: "5px",borderRadius: "20px",backgroundColor: "#88cc14"}}> */}
-
-      {/* </div> */}
-    {/* </div> */}
-          {/* <h1 >Introduction</h1> */}
-          
-          {/* <img src="waves" alt="waves12" style={{position: "absolute",width: "100%",bottom: "-128px",opacity: "0.4",verticalAlign: "middle",borderStyle: "none"}}></img> */}
-          {/* <div style={{position:"absolute",display: "inlineBlock",width: "190px",height: "5px",borderRadius: "20px",backgroundColor: "#88cc14",marginTop:'-80px'}}></div> */}
-<h3>
-Network security tools can be either software- or hardware-based and help security teams protect their organization's networks, critical infrastructure, and sensitive data from attacks. ... These include tools such as firewalls, intrusion detection systems and network-based antivirus programs.
-<ul>
-   <li>Network Security Monitoring tools</li>
-   <li>Encryption Tools</li>
-   <li>Network Defence Wireless Tools</li>
-   <li>Packet Sniffers</li>
-   <li>Antivirus Software</li>
-   <li>Firewall</li>
-   <li>PKI Services</li>
-   <li>Managed Detection Services</li>
-   <li>Penetration Testing</li>  
-    </ul>
-    Application security, information security, network security, disaster recovery, operational security, etc. are the different parts of cybersecurity. It needs to be maintained for various types of cyber threats like Ransomware, Malware, Social Engineering, and Phishing.
-
-
-</h3>
+        <Typography style={{color: "#c6cede"}} variant="subtitle1">
+          A path designed to learn about various security tools and have proficiency in hacking and automation.
+        </Typography>
+              </Box>
           </Box>
-      </Grid>
-      </Grid>
-        </div>
-    )
+          
+          <Box style={{backgroundColor: "#1e2633", textAlign : "center", color: "white", padding: "4%",}}>
+          <Typography  variant="h3" className={classes.center}>Description
+        </Typography>
+        <br></br>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "100px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+          <br></br>
+          <Typography variant="h6">
+          Network security tools can be either software- or hardware-based and help security teams protect their organization's networks, critical infrastructure, and sensitive data from attacks. ... These include tools such as firewalls, intrusion detection systems and network-based antivirus programs.
+          </Typography>
+          </Box>
+      
+
+      {/* Tools room are displayed below */}
+      <Box style={{backgroundColor: "#1e2633",}}>
+          <Grid container spacing={1}>
+        {console.log(roomData)}
+             {roomData.map((i) => {
+               return(<div>
+                
+                   <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
+                   <Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline} />
+                 </Grid>
+               </div>);
+             })}
+              </Grid>
+              </Box>
+              
+        
+     
+            </div>
+    ) 
+}
 }
 
 export default ToolsPath

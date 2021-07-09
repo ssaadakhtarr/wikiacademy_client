@@ -83,7 +83,7 @@ function PublicProfile() {
   const cookies = new Cookies();
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("user"));
-  const [userId, setUserId] = React.useState(user.id);
+  // const [userId, setUserId] = React.useState(user.id);
   const { username } = useParams();
   console.log(username);
   const classes = useStyles();
@@ -112,7 +112,7 @@ function PublicProfile() {
 
   useEffect(() => {
     axios.post("http://localhost:3001/getJoinedRooms", {
-      userId: userId,
+      username: username,
     }).then((response) => {
       console.log(response.data);
       if (response.data != undefined) {
@@ -159,7 +159,7 @@ function PublicProfile() {
         >
           {userData[0].username}{" "}
           <span style={{ fontSize: "30px", fontWeight: "600", color: "#fff" }}>
-            [NOOB]
+            {"[" + userData[0].title + "]"}
           </span>
         </Typography>
         <Box
@@ -269,12 +269,21 @@ function PublicProfile() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
+        <Grid container spacing={1}>
           {roomData.map((i) => {
-            return (<Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline}/>);
+             
+            return (<div>
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
+              <Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline}/>
+       </Grid>
+            </div>);
           })}
+          </Grid>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Hello there
+          <Box style={{minHeight: "100vh", height: "100vh", textAlign: "center"}} padding={20}>
+            <Typography variant="h3">{`${userData[0].username} has no certificates yet!`}</Typography>
+          </Box>
         </TabPanel>
         <TabPanel value={value} index={2}>
           Hello there

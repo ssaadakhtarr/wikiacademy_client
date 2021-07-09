@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Nav from "./Nav";
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import ToolImage from "../img/tools.png";
 import { makeStyles } from '@material-ui/core/styles';
 import VulnImage from "../img/vulnerabilities.jpg";
+import axios from 'axios';
+import Rooms from "./Rooms";
 
 
 
@@ -56,80 +58,98 @@ const useStyles = makeStyles((theme)=>({
 
 function VulPath() {
     const classes = useStyles();
-    return (
-        <div>
-            <Nav />
-            <Box style={boxStyle} padding={6}>
-        <Typography  variant="h3" className={classes.center}>Vulnerabilities
-        <Button variant="contained" size="small" style={{position: 'relative',color: 'white',backgroundColor: "blue",borderColor: "#039671",marginLeft:'30px'}}>
-                Learning Pathway
-              </Button></Typography>
-        <Typography variant="subtitle1">
-        A Security Vulnerability is a weakness, flaw, or error found within a security system that has the potential to be leveraged by a threat agent in order to compromise a secure network.
-        </Typography>
-      </Box>
-    <Grid container spacing={3}>
-      <Grid item xs={12} sm={12} md={4} lg={4}>
-        <Box align="center" padding={4}>
-          <Card className={classes.root}>
-            <CardActionArea>
-              <CardMedia className={classes.media} image={VulnImage} />
-              <CardContent>
-               {/*  <Typography gutterBottom variant="h5" component="h2">
-                  Tools
-                </Typography> */}
-                <Typography variant="body2" color="textSecondary" component="p">
-                  <h3>Learn to exploit all the vulnerabilities in the field cyber security</h3>
-                  <ul>
-                      <li><p style={{position:"absolute",marginRight:"15px",marginTop:"4px"}}>Human Social</p></li>
-                      <li><p style={{position:"absolute",marginRight:"15px",marginTop:"4px"}}>Physical</p></li>
-                      <li><p style={{position:"absolute",marginRight:"15px",marginTop:"4px"}}>Economic</p></li>
-                      <li><p style={{position:"absolute",marginRight:"15px",marginTop:"4px"}}>Environmental</p></li>
-                  </ul>
-
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button variant="contained" size="large" style={{position: 'relative',color: 'white',backgroundColor: "#039671",borderColor: "#039671" ,width:'100%'}}>
-                Enroll Now
-              </Button>
-            </CardActions>
-          </Card>
-        </Box>
-      </Grid>
-      <Grid item item xs={12} sm={12} md={7} lg={7}>
-          <Box style={{backgroundColor: "#fff", color: "black"}} padding={6} margin={4}>
-          <h1 style={{fontWeight:"bold"}} className={classes.Intro}>Introduction</h1>
-          
-          {/* <img src="waves" alt="waves12" style={{position: "absolute",width: "100%",bottom: "-128px",opacity: "0.4",verticalAlign: "middle",borderStyle: "none"}}></img> */}
-          <div style={{}} className={classes.Line}></div>
-<h3>
-In computer security, a vulnerability is a weakness which can be exploited by a threat actor, such as an attacker, to cross privilege boundaries within a computer system. To exploit a vulnerability, an attacker must have at least one applicable tool or technique that can connect to a system weakness. 
-According to the CWE/SANS Top 25 list, there are three main types of security vulnerabilities:
-<ul>
-  <li>Faulty defenses</li>
-  <li>Poor resource management</li>
-  <li>Insecure connection between elements</li>
-    </ul>
-    <h4>Top 5 cyber security vulnerabilities</h4>
-    There are some cyber security vulnerabilities that are targeted by attackers more often. Below you can find a list of top 5 cyber security vulnerabilities that caused the most harm to organizations in this decade:
-    <ul>
-        <li>Substandard back-up and recovery</li>
-        <li>Weak authentication management</li>
-        <li>Poor network monitoring</li>
-        <li>End-user errors and/or misuses</li>
-        <li>Inadequate end-point security</li>
+    const pathName = "vuln";
+    const [roomData, setRoomData] = React.useState();
+  const [mounted, setMounted] = React.useState(false);
+  
+  useEffect(() => {
+    axios.get(`http://localhost:3001/getPath/${pathName}`).then((response) => {
+      console.log(response.data);
+      if (response.data !== undefined) {
+        setMounted(true);
+        setRoomData(response.data);
         
-    </ul>
+      }
+  
+    })
+  }, [])
+  if (!mounted || roomData === undefined) {
+    
+    return (
+    "load"
+    );
+  }
+  else {
 
 
-</h3>
+    return (
+      <div >
+      <Box  style={{
+      textAlign: "center",
+      backgroundImage: "url('https://wallpapercave.com/wp/wp2757874.gif')",
+      backgroundPosition: "center",
+      width: "100%",
+      color: "white",
+    }}>
+          <Nav />
+          <Box padding={10}>
+          <Typography  variant="h2" className={classes.center}>Vulnerabilities
+    </Typography>
+    <Typography style={{color: "#c6cede"}} variant="subtitle1">
+      A path designed to learn about different vulnerabilities and finding them on real world websites.
+    </Typography>
           </Box>
-      </Grid>
-      </Grid>
+      </Box>
+      
+      <Box style={{backgroundColor: "#1e2633", textAlign : "center", color: "white", padding: "4%",}}>
+      <Typography  variant="h3" className={classes.center}>Description
+    </Typography>
+    <br></br>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "inlineBlock",
+            width: "100px",
+            height: "5px",
+            borderRadius: "20px",
+            backgroundColor: "#88cc14",
+          }}
+        ></div>
+      </div>
+      <br></br>
+      <Typography variant="h6">
+      Network security tools can be either software- or hardware-based and help security teams protect their organization's networks, critical infrastructure, and sensitive data from attacks. ... These include tools such as firewalls, intrusion detection systems and network-based antivirus programs.
+      </Typography>
+      </Box>
+  
+
+  {/* Tools room are displayed below */}
+  <Box style={{backgroundColor: "#1e2633",}}>
+      <Grid container spacing={1}>
+    {console.log(roomData)}
+         {roomData.map((i) => {
+           return(<div>
+            
+               <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
+               <Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline} />
+             </Grid>
+           </div>);
+         })}
+          </Grid>
+          </Box>
+          
+    
+ 
         </div>
+
     )
 }
-
+}
 export default VulPath

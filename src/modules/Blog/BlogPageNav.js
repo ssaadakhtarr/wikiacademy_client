@@ -58,10 +58,10 @@ function BlogPageNav() {
          
           </Typography>
          
-          <IconButton className={classes.icons}>
+          <IconButton style={{color: "white"}} className={classes.icons}>
             <FaTwitter />
-          </IconButton>
-          <IconButton className={classes.icons}>
+          </IconButton >
+          <IconButton style={{color: "white"}} className={classes.icons}>
             <FaDiscord style={{}} />
           </IconButton>
           

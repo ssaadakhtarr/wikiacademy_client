@@ -14,9 +14,10 @@ const useStyles = makeStyles({
   root: {
       backgroundColor: "#141d2b",
       
-    minWidth: 350,  
-    maxWidth: "100%",
-    height: "100%",
+      minWidth: 360,
+      maxWidth: 360,
+      minHeight: 400,
+      maxHeight: 425,
     transition: "0.5s all ease",
     '&:hover': {
         transform: "scale(1.01)",

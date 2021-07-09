@@ -117,9 +117,9 @@ function LeaderboardDetails(userData) {
       <Grid container spacing={2}>
         <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Rank</Typography></Grid>
         <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Username</Typography></Grid>
-        <Grid item xs={2}><Typography variant="h6" style={{fontWeight: "bold"}}>Points</Typography></Grid>
-        <Grid item xs={2}><Typography variant="h6" style={{fontWeight: "bold"}}>Level</Typography></Grid>
-        <Grid item xs={2}><Typography variant="h6" style={{fontWeight: "bold"}}>Room</Typography></Grid>
+        <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Points</Typography></Grid>
+        <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Level</Typography></Grid>
+        
         
       </Grid>
     </Box>
@@ -134,9 +134,9 @@ function LeaderboardDetails(userData) {
         <Grid container spacing={2}>
         <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.rank}</Typography></Grid>
         <Grid item xs={3}><a style={{color: "#9fef00", }} href={'/p/'+current.username}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.username}</Typography></a></Grid>
-        <Grid item xs={2}><Typography style={{marginTop: "2%"}}>{current.points}</Typography></Grid>
-        <Grid item xs={2}><Typography style={{marginTop: "2%"}}>{current.level}</Typography></Grid>
-        <Grid item xs={2}><Typography style={{marginTop: "2%"}}></Typography></Grid>
+        <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.points}</Typography></Grid>
+        <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.level}</Typography></Grid>
+        
         
         
       </Grid>

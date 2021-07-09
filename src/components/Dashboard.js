@@ -64,19 +64,19 @@ function Dashboard() {
   const classes = useStyles();
   const [{ User }, dispatch] = useStateValue();
   const user = JSON.parse(localStorage.getItem("user"));
-  const [userId, setUserId] = React.useState(user.id);
+  // const [userId, setUserId] = React.useState(user.id);
   const [userDashboard,setUserDashboard]=React.useState();
   const [mounted, setMounted] = React.useState(false);
   
   const history = useHistory();
   useEffect(() => {
-    axios.get(`http://localhost:3001/getDashboard/${userId}`).then((response)=> {
-    console.log(response.data);
-    if(response.data !== undefined){
-      setUserDashboard(response.data);
-        setMounted(true);
-    }
-    })
+    (user !== null && (axios.get(`http://localhost:3001/getDashboard/${user.id}`).then((response)=> {
+      console.log(response.data);
+      if(response.data !== undefined){
+        setUserDashboard(response.data);
+          setMounted(true);
+      }
+      })))
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -111,7 +111,7 @@ function Dashboard() {
             //   float: "left",
             // left: "420px",
             // top: "2px",
-            
+            fontSize: "40px",
             position: "relative",
               textAlign: "center",
               textTransform: "none",
@@ -123,7 +123,8 @@ function Dashboard() {
           style={{
             
             position: "relative",
-            top: "3",
+            top: "5",
+            right: "7",
             // float: "left",
             // right: "10px",
             // top: "0px",
@@ -191,7 +192,7 @@ function Dashboard() {
             </Grid>
             <Grid item md={12} sm={12} xs={12}>
               <Box margin={2} md={12}>
-                <RoomsDashboard />
+                <RoomsDashboard name={userDashboard.username}/>
               </Box>
             </Grid>
           </Grid>

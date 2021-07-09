@@ -167,12 +167,12 @@ function App() {
         <NormalRoute path="/signin" component={Signin} />
         <NormalRoute path="/password-reset" component={Forgot} />
         <ProtectedRoute path="/private" />
-        <Route path="/dashboard" component={Dashboard} />
+        <ProtectedRoute path="/dashboard" component={Dashboard} />
         <ProtectedRoute path="/profile" component={Profile} />
         <Route path="/leaderboard" component={Leaderboard} />
         <Route path="/hacktivities" component={Hacktivities} />
         <ProtectedRoute path="/room/:roomname" component={Room} />
-        <ProtectedRoute path="/p/:username" component={PublicProfile} />
+        <Route path="/p/:username" component={PublicProfile} />
         <Route path="/path/tools" component={ToolsPath} />
         <Route path="/path/beginner" component={CompleteBegineer} />
         <Route path="/path/web-hacking" component={WebHackingPath} />

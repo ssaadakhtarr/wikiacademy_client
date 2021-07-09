@@ -99,14 +99,14 @@ function Blog() {
           </Grid>
           <Grid item xs={4}></Grid>
           <Grid item xs={4}>
-            <Box style={{ textAlign: "right" }}>
-              <IconButton style={{ margin: "0 1%" }}>
+            <Box style={{ textAlign: "right"}}>
+              <IconButton style={{ margin: "0 1%", color: "white", }}>
                 <FaTwitter />
               </IconButton>
-              <IconButton style={{ margin: "0 1%" }}>
+              <IconButton style={{ margin: "0 1%" , color: "white",}}>
                 <FaDiscord style={{}} />
               </IconButton>
-              <IconButton style={{ margin: "0 1%" }}>
+              <IconButton style={{ margin: "0 1%" , color: "white",}}>
                 <FaInstagram style={{}} />
               </IconButton>
             </Box>
@@ -116,17 +116,19 @@ function Blog() {
       <br></br>
       
       {/* <Box padding={10} style={{margin: "0 150px", backgroundColor: "black",}}></Box> */}
-      <Container maxWidth="lg">
+      <Box style={{padding: "0 1%"}}>
       {/* {(mounted && blogData != undefined) && (<BlogCard blogTitle={blogData[0].blogTitle} blogDesc={blogData[0].blogDesc} blogImg={blogData[0].blogImg} username={blogData[0].username} />)} */}
+      <Grid container spacing={1}>
       {blogData && blogData.length > 0 ? blogData?.map((i) => {
         return (<div>
       
-           
+      <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
             <BlogCard blogTitle={i.blogTitle} blogDesc={i.blogDesc} blogImg={i.blogImg} username={i.username} url={"/blogs/"+i.blogId} />
-        
+            </Grid>
           
           </div>)
       }): console.log("load")}
+      </Grid>
         {/* <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12}>
           <BlogCard />
@@ -147,7 +149,7 @@ function Blog() {
           <BlogCard/>
           </Grid>
         </Grid> */}
-      </Container>
+      </Box>
 
       <Fab
       onClick={() => {

@@ -82,15 +82,17 @@ const theme = createMuiTheme({
     }
   });
 
-function RoomsDashboard() {
+function RoomsDashboard(name) {
     const classes = useStyles();
+    const username = name.name;
     const user = JSON.parse(localStorage.getItem("user"));
-    const [userId, setUserId] = React.useState(user.id);
+    // const [userId, setUserId] = React.useState(user.id);
     const [roomData, setRoomData] = React.useState();
   const [mounted, setMounted] = React.useState(false);
   useEffect(() => {
+    console.log(username);
     axios.post("http://localhost:3001/getJoinedRooms", {
-      userId: userId,
+      username: username,
     }).then((response) => {
       console.log(response.data);
       if (response.data != undefined) {

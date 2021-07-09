@@ -352,7 +352,7 @@ function Home() {
         
               </Box>
 {/* <Divider /> */}
-      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "2% 5%" }} >
+      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "2% 1%" }} >
         <br></br>
       
         <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>Learning Rooms</Typography>
@@ -383,13 +383,16 @@ function Home() {
         </Typography>
         <Grid container spacing={1}>
         {console.log(roomData[0].roomName)}
-             {roomData.map((i) => {
-               return(<div>
+             {roomData.map((i, index) => {
+               if (index < 6) {
+                return(<div>
                 
-                   <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-                   <Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline} />
-                 </Grid>
-               </div>);
+                  <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
+                  <Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline} />
+                </Grid>
+              </div>);
+               }
+               
              })}
               </Grid>
               <br></br>
@@ -528,7 +531,7 @@ function Home() {
 
       </Box>
               {/* <Divider /> */}
-      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "2% 5%" }}  >
+      <Box style={{ backgroundColor: "#141d2b", color: "white", padding: "2% 1%" }}  >
       <br></br>
         <Typography variant="h3" style={{textAlign: "center"}} className={classes.textb}>Featured Posts</Typography>
         <br></br>
@@ -563,14 +566,17 @@ function Home() {
             <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
           </Grid> */}
           <Grid container spacing={2}>
-          {blogData.map((i) => {
-            return (<div>
+          {blogData.map((i, index) => {
+            if (index < 6) {
+              return (<div>
                 
-              <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-              <BlogCard blogTitle={i.blogTitle} blogDesc={i.blogDesc} blogImg={i.blogImg} username={i.username} url={"/blogs/"+i.blogId} />
-            </Grid>
-          </div>);
-
+                <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
+                <BlogCard blogTitle={i.blogTitle} blogDesc={i.blogDesc} blogImg={i.blogImg} username={i.username} url={"/blogs/"+i.blogId} />
+              </Grid>
+            </div>);
+  
+            }
+            
           })}
           </Grid>
       </Box>
