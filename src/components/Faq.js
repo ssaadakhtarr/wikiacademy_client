@@ -3,7 +3,7 @@ import Image from "../img/home.jpg";
 import "../App.css";
 import Nav from "./Nav";
 import Footer from "./Footer";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import {  createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import purple from "@material-ui/core/colors/purple";
 import Typography from "@material-ui/core/Typography";

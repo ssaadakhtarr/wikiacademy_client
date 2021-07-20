@@ -1,6 +1,6 @@
 import React from "react";
 import NeueHaas from "../fonts/NeueHaasUnica-Regular.woff2";
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from "@material-ui/core";
 
 
@@ -35,10 +35,10 @@ function Error() {
 
   return(
     <div>
-      <ThemeProvider theme={theme}>
+      <MuiThemeProvider theme={theme}>
     <CssBaseline />
     <h1>404 page not found</h1>
-  </ThemeProvider>
+  </MuiThemeProvider>
     </div>
   )
 }

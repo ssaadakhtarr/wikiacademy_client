@@ -8,7 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Box } from '@material-ui/core';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {  createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+
+
+
 import {GiChart} from 'react-icons/gi';
 
 const theme = createMuiTheme({

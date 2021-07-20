@@ -34,6 +34,10 @@ import {FaBlog} from 'react-icons/fa';
 import {FaTrophy} from'react-icons/fa';
 import {FaHome} from'react-icons/fa';
 import {MdDashboard} from 'react-icons/md';
+import { ThemeProvider } from '@material-ui/styles';
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {

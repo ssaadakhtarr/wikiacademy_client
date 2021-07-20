@@ -2,8 +2,9 @@ import React from "react";
 import {
   createMuiTheme,
   makeStyles,
-  MuiThemeProvider,
+  
 } from "@material-ui/core/styles";
+import { ThemeProvider } from '@material-ui/styles';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -37,6 +38,7 @@ import {FaTrophy} from'react-icons/fa';
 import {FaHome} from'react-icons/fa';
 import {FaBookOpen} from 'react-icons/fa';
 import {FaBlog} from 'react-icons/fa';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {

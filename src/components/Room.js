@@ -25,6 +25,7 @@ import CheckIcon from "@material-ui/icons/Check";
 import PropTypes from "prop-types";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from '@material-ui/styles';
 import { SiNintendogamecube } from "react-icons/si";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
