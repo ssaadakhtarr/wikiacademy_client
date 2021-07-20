@@ -11,7 +11,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useStateValue } from "../StateProvider";
 import Axios from "axios";
-import Alert from "@material-ui/lab/Alert";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -137,12 +137,12 @@ function GeneralProfile(userData) {
         </Typography>
       
         <br></br>
-        {showSuccess && (
+        {/* {showSuccess && (
           <Alert severity="success">Changes saved!</Alert>
         )}
         {showError && (
           <Alert severity="error">Email/Username already exists!</Alert>
-        )}
+        )} */}
         <br></br>
         <br></br>
         <Typography variant="body">Full Name</Typography>

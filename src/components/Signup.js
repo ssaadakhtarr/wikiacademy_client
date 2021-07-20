@@ -13,7 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useHistory } from "react-router-dom";
 import Nav from "./Nav";
-import Alert from "@material-ui/lab/Alert";
+
 import { Box } from "@material-ui/core";
 import logo from "../img/logo/neonWhite.png";
 import Footer from "./Footer";
@@ -196,7 +196,7 @@ function Signup() {
                         Sign Up
                       </Typography>
                       <br></br>
-                      {showSuccess && (
+                      {/* {showSuccess && (
                         <Alert severity="success">
                           Registered Successfully!
                         </Alert>
@@ -205,7 +205,7 @@ function Signup() {
                         <Alert severity="error">
                           Email/Username already exists!
                         </Alert>
-                      )}
+                      )} */}
                       <br></br>
                       <Grid container spacing={2}>
                         <Grid item xs={12} sm={6} md={6} lg={6}>
