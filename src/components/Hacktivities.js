@@ -236,7 +236,7 @@ function Hacktivities() {
           </Box>
         </TabPanel>
         <TabPanel
-          style={{ color: "white", textAlign: "center",padding:"0",}}
+          style={{ color: "white", textAlign: "center",padding:"1%",}}
           value={value}
           index={1}
         >
@@ -264,7 +264,7 @@ function Hacktivities() {
           <Typography style={{ color: "#c6cede" }} variant="h6">
             Each room belonging to a specific topic or tool
           </Typography>
-          <Grid container spacing={1}>
+          <Grid style={{textAlign: "center",}} container spacing={1}>
             {roomData.map((i) => {
               return (
                 <div>

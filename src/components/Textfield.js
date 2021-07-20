@@ -12,9 +12,10 @@ const displayErrorMessageEdit = (touched, errors, field) => {
   if (errors.hasOwnProperty(theField) && touched.hasOwnProperty(theField)) {
     const msg = Object.getOwnPropertyDescriptor(errors, theField);
     return (
-      <span style={{ color: "red", display: "flex", marginTop: "2px" }}>
+      <span style={{fontSize: "15px", color: "red", display: "flex", marginTop: "2px" }}>
         {" "}
-        <WarningIcon fontSize="small" />
+        <WarningIcon style={{margin: "0 1%",}} fontSize="small" />
+        {" "}
         {msg.value}
       </span>
     );

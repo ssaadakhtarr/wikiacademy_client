@@ -63,7 +63,7 @@ function Rooms({roomImg, roomName, roomDesc}) {
   return (
  
 
-<Box align="center" padding={3}>
+<Box align="center" padding={2}>
           <Card className={classes.root}>
             <CardActionArea > 
               <CardMedia className={classes.media} image={roomImg} />

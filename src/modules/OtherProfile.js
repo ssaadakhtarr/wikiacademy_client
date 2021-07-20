@@ -8,7 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { withStyles } from "@material-ui/styles";
 import Axios from "axios";
-import Alert from "@material-ui/lab/Alert";
+
 import { useHistory } from "react-router-dom";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import WarningIcon from '@material-ui/icons/Warning';
@@ -80,9 +80,9 @@ function OtherProfile() {
         <DialogTitle style={{textAlign: "center"}} id="alert-dialog-title">{"Confirm Password"}</DialogTitle>
         <DialogContent  >
           <DialogContentText id="alert-dialog-description">
-          {showError && (
+          {/* {showError && (
               <Alert severity="error">Invalid Username/Password!</Alert>
-            )}
+            )} */}
             <br></br>
             <TextField defaultValue="" type="password" onChange={handlePassword} size="small" variant="outlined" />
           </DialogContentText>

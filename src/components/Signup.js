@@ -57,6 +57,15 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  sideLogo: {
+    paddingBottom: "80%",
+    [theme.breakpoints.down("md")]: {
+      paddingBottom: "100%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      paddingBottom: "40%",
+    },
+  }
 }));
 
 function Signup() {
@@ -134,26 +143,33 @@ function Signup() {
         <div>
           {console.log(values)}
           <Form>
-            <main style={{ minHeight: "100%", backgroundColor: "#263143" }}>
+            <main style={{ backgroundColor: "#263143" }}>
               <Grid container spacing={0}>
-                <Grid item xs={12} sm={12} md={12} lg={6}>
+                <Grid item xs={12} sm={12} md={6} lg={6}>
                   <Box
+                  className={classes.sideLogo}
                     style={{
+                      
+                      textAlign: "center",
+                      
                       backgroundImage:
                         "url('https://wallpapercave.com/wp/wp2757874.gif')",
-                      padding: "50% 5%",
+                      paddingTop: "40%",
+                      paddingLeft: "5%",
+                      paddingRight: "5%",
+                      
                     }}
                   >
                     <a href="/">
                       <img
-                        style={{ width: "100%", height: "20%" }}
+                        style={{ width: "100vh", height: "25vh" }}
                         src={logo}
                       />
                     </a>
                   </Box>
                 </Grid>
 
-                <Grid item xs={12} sm={12} md={12} lg={6}>
+                <Grid item xs={12} sm={12} md={6} lg={6}>
                   <div className="registration">
                     <Box
                       style={{ backgroundColor: "#263143", padding: "15% 5%" }}
