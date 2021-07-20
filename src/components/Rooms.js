@@ -7,14 +7,14 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Box, Grid, GridListTile } from "@material-ui/core";
+import { Box, Grid } from "@material-ui/core";
 import nmapImage from "../img/rooms/nmap.png";
 import hydraImage from "../img/rooms/hydra.jpg";
 import owaspImage from "../img/rooms/owasp.jpg";
 import linuxImage from "../img/rooms/linux.png";
 import {useHistory} from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
-import GridList from '@material-ui/core/GridList';
+
 import renderHTML from "react-render-html";
 
 const JoinButton = withStyles({
