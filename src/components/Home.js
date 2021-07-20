@@ -146,6 +146,7 @@ function Home() {
 
   useEffect(() => {
     axios.get(`${routes}/getHomeData`).then((response) => {
+      console.log(response.data);
       if (response.data !== undefined) {
         setMounted(true);
         setBlogData(response.data.result);
@@ -667,11 +668,12 @@ function Home() {
             <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
             <Grid item xs={12} sm={12} md={6} lg={4}><BlogCard/></Grid>
           </Grid> */}
+          
           <Grid container spacing={2}>
-            {!blogData ? (
+            {blogData === undefined ? (
               <SkeletonTheme color="#202020" highlightColor="#444">
                 <p>
-                  <Skeleton count={1} height={250} />
+                  <Skeleton count={3}  />
                 </p>
               </SkeletonTheme>
             ) : blogData.map((i, index) => {
