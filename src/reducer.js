@@ -1,6 +1,7 @@
 export const initialState = {
     User: null,
-    Cke: ''
+    Cke: '',
+    Admin: null,
 }
 
 const reducer = (state, action) => {
@@ -22,6 +23,11 @@ const reducer = (state, action) => {
                 ...state,
                 Cke:action.data
             }
+        case 'Admin_Details':
+                return {
+                    ...state,
+                    Admin:action.data
+                }
         
             
         default: 

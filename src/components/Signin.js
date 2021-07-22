@@ -22,6 +22,7 @@ import logo from "../img/logo/neonWhite.png";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { renderTextFieldEdit } from "./Textfield";
+import Cookies from "universal-cookie";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,8 +71,9 @@ const useStyles = makeStyles((theme) => ({
 
 function Signin() {
   const [{ User }, dispatch] = useStateValue();
+  const user = JSON.parse(localStorage.getItem('user'));
   console.log(User);
-
+  const cookies = new Cookies();
   const history = useHistory();
   const classes = useStyles();
 
@@ -106,10 +108,18 @@ function Signin() {
           setShowSuccess(false);
         }
       } else {
+        console.log(cookies.get("userId"));
+        console.log(response.data.result[0].username);
+        const sessionCookie = cookies.get("userId");
+        const username = response.data.result[0].username;
+        Axios.post("http://localhost:3001/setSession", {
+          username: username,
+          sessionCookie: sessionCookie,
+        }).then((response)=>{console.log(response);})
         localStorage.setItem("token", response.data.token);
         dispatch({
           type: "User_Details",
-          data: response.data.result[0],
+          data: {...response.data.result[0], session: sessionCookie},
         });
 
         setUserDetails(response.data.result);
@@ -122,7 +132,10 @@ function Signin() {
             if (response.data.auth) {
               setShowError(false);
               setShowSuccess(true);
-              history.push("/dashboard");
+              if (user && cookies.get("userId") == user.session) {
+                history.push("/dashboard");
+              }
+              
             }
           })
           .catch((err) => {

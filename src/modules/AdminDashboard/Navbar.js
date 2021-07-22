@@ -10,6 +10,8 @@ import { Box, Drawer } from '@material-ui/core';
 import Logo from "../../img/logo/neonWhite.png";
 import { withStyles } from '@material-ui/styles';
 import SideDrawer from './SideDrawer';
+import axios from 'axios';
+import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +42,19 @@ const LogoutButton = withStyles({
 
 function Navbar() {
     const classes = useStyles();
+    const history = useHistory();
+
+    const adminLogout = () => {
+      axios.post("http://localhost:3001/adminLogout").then((response)=>{
+        console.log(response);
+        if (!response.data.auth) {
+        
+          history.push("/admin-login");
+          localStorage.removeItem("admin");
+         
+        }
+      })
+    }
 
     return (
       <div className={classes.root}>
@@ -65,7 +80,7 @@ function Navbar() {
             
           </Typography>
           <div>
-          <LogoutButton color="inherit">Logout</LogoutButton>
+          <LogoutButton color="inherit" onClick={adminLogout}>Logout</LogoutButton>
 
           </div>
           </Toolbar>

@@ -19,6 +19,7 @@ import { withStyles } from "@material-ui/styles";
 import { Box } from "@material-ui/core";
 import {useStateValue} from "../StateProvider";
 import logo from "../img/logo/neonWhite.png";
+import Cookies from "universal-cookie";
 
 
 
@@ -69,9 +70,9 @@ const useStyles = makeStyles((theme) => ({
 
 function AdminLogin() {
 
-  const [{User}, dispatch] = useStateValue();
-  console.log(User);
-
+  const [{Admin}, dispatch] = useStateValue();
+ 
+  const cookies = new Cookies();
   const history = useHistory();
   const classes = useStyles();
 
@@ -104,7 +105,25 @@ function AdminLogin() {
           setShowSuccess(false);
         }
        else {
-        // localStorage.setItem("token", response.data.token);
+        const sessionCookie = cookies.get("userId");
+        const username = response.data.result[0].username;
+        console.log(response.data.result)
+        
+        Axios.post("http://localhost:3001/setAdminSession", {
+          username: username,
+          sessionCookie: sessionCookie,
+        }).then((response)=>{
+          console.log(response);
+          // if (response.data !== undefined) {
+          //   localStorage.setItem("admin", JSON.stringify(response.data[0]))
+          // }
+        
+
+        })
+        dispatch({
+          type: "Admin_Details",
+          data: {...response.data[0], session: sessionCookie},
+        });
         history.push('/admin-dashboard')
         
         

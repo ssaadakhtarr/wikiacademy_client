@@ -1,4 +1,4 @@
-import { Box, Typography } from "@material-ui/core";
+import { Box, Button, TextField, Typography } from "@material-ui/core";
 import Footer from "./Footer";
 import Nav from "./Nav";
 import PropTypes from "prop-types";
@@ -15,6 +15,47 @@ import "../App.css";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
+import Labs from "./Labs";
+import { withStyles } from "@material-ui/styles";
+import Swal from "sweetalert2";
+import Cookies from "universal-cookie";
+
+const SubmitButton = withStyles({
+  root: {
+    fontSize: "15px",
+    fontWeight: "bold",
+    textTransform: "none",
+    backgroundColor: "#9fef00",
+    color: "#1e2633",
+    border: "1px solid #9fef00",
+    "&:hover": {
+      backgroundColor: "#9fef00",
+      color: "#1e2633",
+    },
+  },
+})(Button);
+
+const CssTextField = withStyles({
+  root: {
+    "& label.Mui-focused": {
+      color: "#9fef00",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#9fef00",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#9fef00",
+      },
+      "&:hover fieldset": {
+        borderColor: "#9fef00",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#9fef00",
+      },
+    },
+  },
+})(TextField);
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -118,12 +159,24 @@ const boxStyle2 = {
 
 function Hacktivities() {
   const user = JSON.parse(localStorage.getItem("user"));
+  const cookies = new Cookies();
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
+  const [submitFlag, setSubmitFlag] = React.useState("");
   const [blogData, setBlogData] = React.useState();
   const [roomData, setRoomData] = React.useState();
   const [mounted, setMounted] = React.useState(false);
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
 
   useEffect(() => {
     axios.get("http://localhost:3001/getHomeData").then((response) => {
@@ -140,6 +193,36 @@ function Hacktivities() {
     setValue(newValue);
   };
 
+  const checkFlag = () => {
+    axios
+      .post("http://localhost:3001/checkFlag", {
+        submitFlag: submitFlag,
+        userId: user.id,
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status === "Already submitted") {
+          Swal.fire({
+            icon: "error",
+            title: "Already submitted!",
+            text: "This flag is already submitted.",
+          });
+        } else if (response.data.status === "Invalid flag") {
+          Swal.fire({
+            icon: "error",
+            title: "Invalid Flag!",
+            text: "This flag is not valid.",
+          });
+        } else if (response.data.status === "Flag submitted") {
+          Swal.fire({
+            icon: "success",
+            title: "Congratulations",
+            text: "You have submitted a valid flag!",
+          });
+        }
+      });
+  };
+
   if (!mounted || blogData === undefined || roomData === undefined) {
     return <div>Loading...</div>;
   } else {
@@ -149,7 +232,7 @@ function Hacktivities() {
           {(user !== null) && <Nav2 />}   */}
 
         <Box style={boxStyle}>
-          <Nav />
+          {cookies.get("userId") ? <Nav2 /> : <Nav/>}
           <Box style={{ textAlign: "center" }} padding={10}>
             <Typography variant="h2" className={classes.Hack}>
               Hacktivities
@@ -163,9 +246,6 @@ function Hacktivities() {
             </Typography>
 
             {/* style={{paddingLeft:"1150px"}} */}
-          
-          
-          
           </Box>
         </Box>
         <AppBar
@@ -193,6 +273,11 @@ function Hacktivities() {
               style={{ textTransform: "none", color: "#fff", fontSize: "120%" }}
               label="Paths"
               {...a11yProps(2)}
+            />
+            <Tab
+              style={{ textTransform: "none", color: "#fff", fontSize: "120%" }}
+              label="Labs"
+              {...a11yProps(3)}
             />
           </Tabs>
         </AppBar>
@@ -236,7 +321,7 @@ function Hacktivities() {
           </Box>
         </TabPanel>
         <TabPanel
-          style={{ color: "white", textAlign: "center",padding:"1%",}}
+          style={{ color: "white", textAlign: "center", padding: "1%" }}
           value={value}
           index={1}
         >
@@ -264,7 +349,7 @@ function Hacktivities() {
           <Typography style={{ color: "#c6cede" }} variant="h6">
             Each room belonging to a specific topic or tool
           </Typography>
-          <Grid style={{textAlign: "center",}} container spacing={1}>
+          <Grid style={{ textAlign: "center" }} container spacing={1}>
             {roomData.map((i) => {
               return (
                 <div>
@@ -307,11 +392,80 @@ function Hacktivities() {
             ></div>
           </div>
           <br></br>
-          <Typography style={{ color: "#c6cede" }} variant="subtitle2">
+          <Typography style={{ color: "#c6cede" }} variant="h6">
             Structured and guided paths to follow along
           </Typography>
 
           <Paths />
+        </TabPanel>
+        <TabPanel
+          style={{ color: "white", textAlign: "center" }}
+          value={value}
+          index={3}
+        >
+          <Typography variant="h3">Hands-on Labs</Typography>
+
+          <br></br>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "100px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+          <br></br>
+          <Typography style={{ color: "#c6cede" }} variant="h6">
+            Hands-on practice exercises on real world scenarios
+          </Typography>
+          <br></br>
+          {(cookies.get("userId") && (<div>
+            <CssTextField
+            InputProps={{
+              style: {
+                color: "#fff",
+                backgroundColor: "transparent",
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                fontWeight: "bold",
+                letterSpacing: "1px",
+                color: "#9fef00",
+                fontSize: "15px",
+                textTransform: "none",
+              },
+            }}
+            variant="outlined"
+            label="Got a flag?"
+            onChange={(e) => {
+              setSubmitFlag(e.target.value);
+            }}
+          />
+          <SubmitButton
+            onClick={checkFlag}
+            style={{ padding: "13px 2%", marginLeft: "3%" }}
+          >
+            Submit
+          </SubmitButton>
+          <br></br>
+          </div>))}
+          <Labs
+            img={`https://www.breachlock.com/wp-content/uploads/2019/09/V_C_3.jpg`}
+            name={"Information Disclosure"}
+            desc={"Trivial level lab to find information disclosure bugs."}
+            path={"1/test.html"}
+          />
         </TabPanel>
         <Footer />
       </div>
