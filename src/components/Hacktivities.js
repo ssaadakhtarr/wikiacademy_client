@@ -39,6 +39,7 @@ const CssTextField = withStyles({
   root: {
     "& label.Mui-focused": {
       color: "#9fef00",
+     
     },
     "& .MuiInput-underline:after": {
       borderBottomColor: "#9fef00",
@@ -431,6 +432,7 @@ function Hacktivities() {
           <br></br>
           {(cookies.get("userId") && (<div>
             <CssTextField
+            style={{ width: "50%",}}
             InputProps={{
               style: {
                 color: "#fff",

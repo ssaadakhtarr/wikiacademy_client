@@ -7,6 +7,6 @@ function getCookie(name) {
       if (getCookie("userId") && window.localStorage.getItem("user")) {
           return
       } else {
-          window.location.href = "/";
+          window.location.href = "/signin";
       }
   }

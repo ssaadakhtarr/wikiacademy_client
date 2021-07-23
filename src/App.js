@@ -151,7 +151,10 @@ function App() {
         if (cookies.get("isAdmin") === "true") {
           return <Component {...props} />;
           
-        } else {
+         } else if (cookies.get("isAdmin") === "true" && (admin && cookies.get("userId") == admin.session)) {
+          return <Redirect to={{ pathname: "/admin-dashboard" }} />;
+         }
+         else {
           return <Redirect to={{ pathname: "/error" }} />;
         }
       }}
