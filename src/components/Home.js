@@ -44,6 +44,8 @@ import { css } from "@emotion/react";
 import routes from "../GetRoute.js";
 import PropTypes from "prop-types";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 
 /* Client\src\fonts\style.css */
 
@@ -143,6 +145,25 @@ function Home() {
   const [blogData, setBlogData] = React.useState();
   const [roomData, setRoomData] = React.useState();
   const [mounted, setMounted] = React.useState(false);
+  const [progress, setProgress] = React.useState(0);
+
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress === 100) {
+          return 0;
+        }
+        const diff = Math.random() * 10;
+        return Math.min(oldProgress + diff, 100);
+      });
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+  
 
   useEffect(() => {
     axios.get(`${routes}/getHomeData`).then((response) => {
@@ -176,6 +197,8 @@ function Home() {
           }}
         >
           <Nav />
+          {/* <LinearProgress variant="determinate" value={progress} /> */}
+
           <Box style={{ padding: "12% 0" }}>
             <div>
               <Typography
@@ -436,15 +459,16 @@ function Home() {
               roomData.map((i, index) => {
                 if (index < 6) {
                   return (
-                    <div>
+                    
                       <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
                         <Rooms
                           roomImg={i.roomImage}
                           roomName={i.roomName}
-                          roomDesc={i.roomTagline}
+                          roomDesc={i.roomTagline.slice(0,140)}
+                          roomTitle={i.roomTitle}
                         />
                       </Grid>
-                    </div>
+                    
                   );
                 }
               })
@@ -679,7 +703,7 @@ function Home() {
             ) : blogData.map((i, index) => {
               if (index < 6) {
                 return (
-                  <div>
+                  
                     <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
                       <BlogCard
                         blogTitle={i.blogTitle}
@@ -689,7 +713,7 @@ function Home() {
                         url={"/blogs/" + i.blogId}
                       />
                     </Grid>
-                  </div>
+                
                 );
               }
             })}

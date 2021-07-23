@@ -23,6 +23,7 @@ import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { renderTextFieldEdit } from "./Textfield";
 import Cookies from "universal-cookie";
+import Swal from "sweetalert2";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,6 +97,18 @@ function Signin() {
 
   const nowEnable = username.length > 0 && password.length > 0;
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
   const login = (values) => {
     Axios.post("http://localhost:3001/login", values).then((response) => {
       if (!response.data.auth) {
@@ -104,6 +117,10 @@ function Signin() {
           response.data.message === "wrong username/password" ||
           response.data.message === "no user exists"
         ) {
+          Toast.fire({
+            icon: "error",
+            title: "Invalid username/password",
+          });
           setShowError(true);
           setShowSuccess(false);
         }
@@ -130,6 +147,7 @@ function Signin() {
         })
           .then((response) => {
             if (response.data.auth) {
+              
               setShowError(false);
               setShowSuccess(true);
               if (user && cookies.get("userId") == user.session) {

@@ -253,12 +253,12 @@ function AddRoom() {
       <Typography
         style={{
           textAlign: "center",
-          color: "#9fef00",
-          textTransform: "uppercase",
+          color: "#fff",
+          textTransform: "none",
           fontWeight: "bold",
           letterSpacing: "2px",
         }}
-        variant="h4"
+        variant="h3"
       >
         Add Room
       </Typography>
@@ -266,7 +266,7 @@ function AddRoom() {
       <Box boxShadow={2} padding={10}>
         {pageNumber === 1 && (
           <div>
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Room Details
             </Typography>
             <br></br>
@@ -430,7 +430,7 @@ function AddRoom() {
             />
             <br></br>
             <br></br>
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Room Description
             </Typography>
             <br></br>
@@ -458,7 +458,7 @@ function AddRoom() {
 
         {pageNumber === 2 && (
           <div>
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Task {taskNo}
             </Typography>
             <br></br>
@@ -488,7 +488,7 @@ function AddRoom() {
             />
             <br></br>
             <br></br>
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Task {taskNo} Description
             </Typography>
             <br></br>
@@ -502,7 +502,7 @@ function AddRoom() {
             />
             <br></br>
 
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Questions
             </Typography>
             <br></br>
@@ -787,7 +787,7 @@ function AddRoom() {
         )}
         {pageNumber === 3 && (
           <div>
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Task {taskNo}
             </Typography>
             <br></br>
@@ -817,7 +817,7 @@ function AddRoom() {
             />
             <br></br>
             <br></br>
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Task {taskNo} Description
             </Typography>
             <br></br>
@@ -831,7 +831,7 @@ function AddRoom() {
             />
             <br></br>
 
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Questions
             </Typography>
             <br></br>
@@ -1118,7 +1118,7 @@ function AddRoom() {
 
         {pageNumber === 4 && (
           <div>
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Task {taskNo}
             </Typography>
             <br></br>
@@ -1148,7 +1148,7 @@ function AddRoom() {
             />
             <br></br>
             <br></br>
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Task {taskNo} Description
             </Typography>
             <br></br>
@@ -1162,7 +1162,7 @@ function AddRoom() {
             />
             <br></br>
 
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Questions
             </Typography>
             <br></br>
@@ -1448,7 +1448,7 @@ function AddRoom() {
         )}
         {pageNumber === 5 && (
           <div>
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Task {taskNo}
             </Typography>
             <br></br>
@@ -1478,7 +1478,7 @@ function AddRoom() {
             />
             <br></br>
             <br></br>
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Task {taskNo} Description
             </Typography>
             <br></br>
@@ -1492,7 +1492,7 @@ function AddRoom() {
             />
             <br></br>
 
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Questions
             </Typography>
             <br></br>
@@ -1778,7 +1778,7 @@ function AddRoom() {
         )}
         {pageNumber === 6 && (
           <div>
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Task {taskNo}
             </Typography>
             <br></br>
@@ -1808,7 +1808,7 @@ function AddRoom() {
             />
             <br></br>
             <br></br>
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Task {taskNo} Description
             </Typography>
             <br></br>
@@ -1822,7 +1822,7 @@ function AddRoom() {
             />
             <br></br>
 
-            <Typography style={{ color: "#9fef00" }} variant="h4">
+            <Typography style={{ color: "#fff" }} variant="h4">
               Questions
             </Typography>
             <br></br>

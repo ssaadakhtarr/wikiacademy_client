@@ -262,7 +262,7 @@ function App() {
           <Route path="/path/beginner" component={CompleteBegineer} />
           <Route path="/path/web-hacking" component={WebHackingPath} />
           <Route path="/path/vulnpath" component={VulPath} />
-          <Route path="/add-room" component={AddRoom} />
+          <AdminRoute path="/add-room" component={AddRoom} />
           <Route path="/footer" component={Footer} />
           <Route path="/faq" component={Faq} />
           <AdminLoginRoute path="/admin-Login" component={AdminLogin} />

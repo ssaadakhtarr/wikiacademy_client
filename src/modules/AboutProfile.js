@@ -104,13 +104,14 @@ function AboutProfile(userData) {
   const [occupation, setOccupation] = React.useState(userData.userData.occupation);
   const [areaOfInterest, setAreaOfInterest] = React.useState(userData.userData.areaOfInterest);
   const [selectedDate, setSelectedDate] = React.useState(userData.userData.dateOfBirth.slice(0,10));
+  // (userData.userData.dateOfBirth !== null ? setSelectedDate(userData.userData.dateOfBirth.slice(0,10)) : setSelectedDate(null))
   const [summary, setSummary] = React.useState(userData.userData.summary);
   const [twitter, setTwitter] = React.useState(userData.userData.twitter);
   const [instagram, setInstagram] = React.useState(userData.userData.instagram);
   const [github, setGithub] = React.useState(userData.userData.github);
   const [linkedin, setLinkedin] = React.useState(userData.userData.linkedin);
 
-console.log(userData.userData.dateOfBirth.slice(0,10));
+
 console.log(userData.userData.dateOfBirth);
   
   const handleDateChange = (e) => {

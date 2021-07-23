@@ -20,6 +20,7 @@ import Footer from "./Footer";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { renderTextFieldEdit } from "./Textfield";
+import Swal from "sweetalert2";
 
 //Styles here
 const useStyles = makeStyles((theme) => ({
@@ -88,6 +89,19 @@ function Signup() {
     password: "",
   });
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+
   const [checked, setChecked] = useState(false);
 
   const handleChange = (event) => {
@@ -106,10 +120,18 @@ function Signup() {
     Axios.post("http://localhost:3001/register", values).then(
       (response) => {
         if (response.data.message === "User already exists") {
+          Toast.fire({
+            icon: "error",
+            title: "Email/username already exists",
+          });
           setShowSuccess(false);
           setShowError(true);
           return;
         } else if (response.data.message === "Success") {
+          Toast.fire({
+            icon: "success",
+            title: "You are successfully registered",
+          });
           setShowSuccess(true);
           setShowError(false);
         }

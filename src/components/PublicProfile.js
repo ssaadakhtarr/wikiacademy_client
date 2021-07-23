@@ -132,15 +132,16 @@ function PublicProfile() {
     })
   }, [])
 
-  if (!mounted || roomData === undefined || userData === undefined) {
-    return (
-      null
-    );
+  // if (!mounted  || userData === undefined) {
+  //   return (
+  //     null
+  //   );
 
-  }
-  else {
-    console.log(userData);
+  // }
+  
+  
   return (
+   
     // <MuiThemeProvider theme={theme}>
     <div style={{color: "white",}}>
       <Box
@@ -157,9 +158,9 @@ function PublicProfile() {
           style={{marginBottom: "5%", textAlign: "center", color: "#9fef00" }}
           variant="h4"
         >
-          {userData[0].username}{" "}
+          {(userData !== undefined ? userData[0].username : "loading...")}{" "}
           <span style={{ fontSize: "30px", fontWeight: "600", color: "#fff" }}>
-            {"[" + userData[0].title + "]"}
+            {userData !== undefined ? "[" + userData[0].title + "]" : "loading..."}
           </span>
         </Typography>
         <Box
@@ -172,19 +173,19 @@ function PublicProfile() {
       >
         <Grid container spacing={2}>
           <Grid xs={3} sm={3}>
-            <Typography variant="h6">{userData[0].rank}</Typography>
+            <Typography variant="h6">{userData !== undefined ? userData[0].rank : "loading..."}</Typography>
             <Typography variant="h6">Rank</Typography>
           </Grid>
           <Grid xs={3} sm={3}>
-            <Typography variant="h6">{roomsIn}</Typography>
+            <Typography variant="h6">{roomsIn !== undefined ? roomsIn : "loading..."}</Typography>
             <Typography variant="h6">Rooms In</Typography>
           </Grid>
           <Grid xs={3} sm={3}>
-            <Typography variant="h6">{userData[0].level}</Typography>
+            <Typography variant="h6">{userData !== undefined ? userData[0].level : "loading..."}</Typography>
             <Typography variant="h6">Level</Typography>
           </Grid>
           <Grid xs={3} sm={3}>
-            <Typography variant="h6">{userData[0].points}</Typography>
+            <Typography variant="h6">{userData !== undefined ? userData[0].points : "loading..."}</Typography>
             <Typography variant="h6">Points</Typography>
           </Grid>
         </Grid>
@@ -206,7 +207,7 @@ function PublicProfile() {
             [NOOB]
           </span>
         </Typography> */}
-        <Box style={{ textAlign: "center",}}>
+        {(userData !== undefined) ? <Box style={{ textAlign: "center",}}>
           {userData[0].twitter !== null && (
             <IconButton
               
@@ -240,7 +241,7 @@ function PublicProfile() {
               <LinkedInIcon style={{color: "white"}} />
             </IconButton>
           )}
-        </Box>
+        </Box> : "loading..."}
         <br></br>
         <AppBar
           style={{ alignItems: "center", backgroundColor: "#141d2b" }}
@@ -268,22 +269,23 @@ function PublicProfile() {
             />
           </Tabs>
         </AppBar>
-        <TabPanel value={value} index={0}>
+        <TabPanel value={value} index={0} style={{minHeight: "100vh"}}>
         <Grid container spacing={1}>
-          {roomData.map((i) => {
+          {roomData !== undefined && roomData.length === 0 && "No rooms joined." }
+          {(roomData !== undefined && roomData.length !== 0) && roomData.map((i) => {
              
-            return (<div>
-              <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-              <Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline}/>
-       </Grid>
-            </div>);
-          })}
+             return (
+               <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
+               <Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline.slice(0,140)} roomTitle={i.roomTitle}/>
+        </Grid>
+             );
+           })}
           </Grid>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Box style={{minHeight: "100vh", height: "100vh", textAlign: "center"}} padding={20}>
+          {userData !== undefined ? <Box style={{minHeight: "100vh", height: "100vh", textAlign: "center"}} padding={20}>
             <Typography variant="h3">{`${userData[0].username} has no certificates yet!`}</Typography>
-          </Box>
+          </Box> : "loading..."}
         </TabPanel>
         <TabPanel value={value} index={2}>
           Hello there
@@ -293,5 +295,5 @@ function PublicProfile() {
     // </MuiThemeProvider>
   );
 }
-}
+
 export default PublicProfile;

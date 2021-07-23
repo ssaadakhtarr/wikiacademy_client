@@ -57,7 +57,7 @@ content: {
 },
 }));
 
-function Rooms({roomImg, roomName, roomDesc}) {
+function Rooms({roomImg, roomTitle, roomDesc, roomName}) {
     const classes = useStyles();
     const history = useHistory();
   return (
@@ -69,7 +69,7 @@ function Rooms({roomImg, roomName, roomDesc}) {
               <CardMedia className={classes.media} image={roomImg} />
               <CardContent className={classes.content} style={{backgroundColor: "#141d2b", color: "white",}}>
                 <Typography gutterBottom variant="h5" component="h2">
-                  {roomName}
+                  {roomTitle}
                 </Typography>
                 <Typography style={{color: "#cad2e2",}} variant="body1" color="textSecondary" component="p">
                 {renderHTML(roomDesc)}

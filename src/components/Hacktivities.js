@@ -97,9 +97,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   Hack: {
-    [theme.breakpoints.down("xs")]: {
-      fontSize: "1.5em",
-    },
+    // [theme.breakpoints.down("xs")]: {
+    //   fontSize: "1.5em",
+    // },
   },
   HackImg: {
     width: "50%",
@@ -322,7 +322,7 @@ function Hacktivities() {
           </Box>
         </TabPanel>
         <TabPanel
-          style={{ color: "white", textAlign: "center", padding: "1%" }}
+          style={{ color: "white", textAlign: "center", padding: "2%" }}
           value={value}
           index={1}
         >
@@ -350,18 +350,20 @@ function Hacktivities() {
           <Typography style={{ color: "#c6cede" }} variant="h6">
             Each room belonging to a specific topic or tool
           </Typography>
-          <Grid style={{ textAlign: "center" }} container spacing={1}>
+          <br></br>
+          <Grid style={{ textAlign: "center" }} container spacing={3}>
             {roomData.map((i) => {
               return (
-                <div>
+                
                   <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
                     <Rooms
                       roomImg={i.roomImage}
+                      roomTitle={i.roomTitle}
+                      roomDesc={i.roomTagline.slice(0,140)}
                       roomName={i.roomName}
-                      roomDesc={i.roomTagline}
                     />
                   </Grid>
-                </div>
+                
               );
             })}
           </Grid>

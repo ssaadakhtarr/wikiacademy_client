@@ -137,12 +137,12 @@ function WebHackingPath() {
       <Grid container spacing={1}>
     {console.log(roomData)}
          {roomData.map((i) => {
-           return(<div>
+           return(
             
                <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-               <Rooms roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline} />
+               <Rooms roomTitle={i.roomTitle} roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline.slice(0,140)} />
              </Grid>
-           </div>);
+           );
          })}
           </Grid>
           </Box>

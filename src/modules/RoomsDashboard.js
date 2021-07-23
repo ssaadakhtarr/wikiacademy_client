@@ -123,7 +123,7 @@ function RoomsDashboard(name) {
       <CardContent>
       <Typography style={{textAlign: "left", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body1">Rooms Joined</Typography>
 
-          {roomData.map((i) => {
+          {roomData.length > 0 && roomData.map((i) => {
             console.log(i.progBar);
             return (<div>
               <br></br>
