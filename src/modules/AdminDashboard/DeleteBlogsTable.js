@@ -80,10 +80,10 @@ const DeleteButton = withStyles({
       fontWeight: "bold",
      textTransform: "none",
     backgroundColor: "transparent",
-    color: "#f54e4e",
-    border: "1px solid #f54e4e",
+    color: "#d93237",
+    border: "1px solid #d93237",
     "&:hover": {
-      backgroundColor: "#f54e4e",
+      backgroundColor: "#d93237",
       color: "#1e2633",
     },
   },

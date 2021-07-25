@@ -81,7 +81,7 @@ function AddBlog() {
             <BlogPageNav />
             
             <Box style={{ padding: " 5% 20%"}}>
-            <Typography style={{color: "#9fef00", textAlign: "center"}} variant="h2">Add New Blog</Typography>
+            <Typography style={{color: "#fff", textAlign: "left"}} variant="h4">Add New Blog</Typography>
             <br></br>
             <CssTextField
             fullWidth
@@ -149,7 +149,7 @@ function AddBlog() {
             />
             <br></br>
             <br></br>
-            <Typography style={{color: "#9fef00", fontWeight: "bold", textTransform: "uppercase"}} variant="h4">Blog</Typography>
+            <Typography style={{color: "#fff", fontWeight: "bold", textTransform: "none"}} variant="h4">Blog</Typography>
             <br></br>
             <CKEditor
               editor={ClassicEditor}

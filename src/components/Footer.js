@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import fLogo from '../img/logo/neonWhiteHalf.png'
 import { Typography } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -61,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Footer() {
     const classes = useStyles();
+    const history = useHistory();
     return (
         <main style={{ backgroundColor: "#1e2633" ,color:"white"}}>
         
@@ -69,7 +71,7 @@ function Footer() {
             <Grid item xs={12} sm={3} md={3} lg={3} className={classes.textL}>
           <Paper className={classes.logoText} style={{ backgroundColor: "#1e2633",color:"white"} }
           elevation={0}>
-          <a href="/">
+          <Link onClick={()=>{history.push("/")}}>
           <img
                 
                 src={fLogo}
@@ -77,7 +79,7 @@ function Footer() {
                 // className={classes.flogo}
                 className={classes.Img}
               />
-              </a>
+              </Link>
               <br></br>
               <Typography variant="caption">Copyright WikiSecurity Academy 2021</Typography>
               <Typography variant="caption">2A/7 WikiSec Technilogies,Pakistan</Typography>
@@ -88,12 +90,12 @@ function Footer() {
           elevation={0}>
               <Typography variant="h5" className={classes.textLA}>Learn</Typography>
               
-              <a href="/hacktivities" className={classes.textLAS}>Hacktivites</a>
+              <Link to="/" className={classes.textLAS}>Home</Link>
               <br></br>
               
-              <a href="/leaderboard" className={classes.textLAS}>Leaderboard</a>
+              <Link to="/leaderboard" className={classes.textLAS}>Leaderboard</Link>
               <br></br>
-              <a href="/hacktivities" className={classes.textLAS}>Hacktivites</a>
+              <Link to="/hacktivities" className={classes.textLAS}>Hacktivites</Link>
               <br></br>
              
           </Paper>
@@ -103,11 +105,11 @@ function Footer() {
           elevation={0}>
             <Typography variant="h5" className={classes.textLA}>Docs</Typography>
               
-              <a href="/about" className={classes.textLAS}>About Us</a>
+              <Link to="/#about" className={classes.textLAS}>About Us</Link>
               <br></br>
-              <a href="/blog" className={classes.textLAS}>Blog</a>
+              <Link to="/blog" className={classes.textLAS}>Blog</Link>
               <br></br>
-              <a href="/faq" className={classes.textLAS}>FAQ</a>
+              <Link to="/faq" className={classes.textLAS}>FAQ</Link>
               <br></br>
               
               
@@ -118,11 +120,11 @@ function Footer() {
           elevation={0}>
             <Typography variant="h5" className={classes.textLA}>Social</Typography>
               
-              <a href="/#" className={classes.textLAS}>Twitter</a>
+              <a target="blank" href="https://www.twitter.com/wikisecurityacademy" className={classes.textLAS}>Twitter</a>
               <br></br>
-              <a href="/# " className={classes.textLAS}>Instagram</a>
+              <a target="blank" href="https://www.instagram.com/wikisecurityacademy" className={classes.textLAS}>Instagram</a>
               <br></br>
-              <a href="/#" className={classes.textLAS}>Discord</a>
+              <a target="blank" href="https://www.discord.com/wikisecurityacademy" className={classes.textLAS}>Discord</a>
               <br></br>
               
           </Paper>

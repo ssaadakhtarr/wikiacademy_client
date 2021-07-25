@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createMuiTheme, fade, makeStyles, MuiThemeProvider } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -17,7 +17,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import Logo from "../img/logo/neonWhite.png";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
-import { Box, Grid, Icon } from "@material-ui/core";
+import { Box, Grid, Icon, LinearProgress, Link } from "@material-ui/core";
 import MedalIcon from "../img/trophy1.png";
 import BlogIcon from "../img/blog1.png";
 import LearningIcon from "../img/learn.png";
@@ -130,6 +130,31 @@ const theme = createMuiTheme({
 export default function Nav2() {
   const [{User}, dispatch] = useStateValue();
   const history = useHistory();
+  const [progress, setProgress] = React.useState(0);
+  const [loading, setLoading] = React.useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+  }, []);
+
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress === 100) {
+          return ;
+        }
+        const diff = Math.random() * 50;
+        return Math.min(oldProgress + diff, 100);
+      });
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
   const profile = () => {
     history.push("/profile");
   };
@@ -190,6 +215,24 @@ export default function Nav2() {
     </Menu>
   );
 
+  const theme = createMuiTheme({
+    overrides: {
+      MuiIconButton: {
+        root: {
+          color: "white",
+          "&:hover": {
+            color: "#9fef00",
+          },
+        },
+      },
+    },
+    palette: {
+      secondary: {
+          main: '#9fef00'
+      }
+   }
+  });
+
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
@@ -229,12 +272,15 @@ export default function Nav2() {
 
   return (
     <MuiThemeProvider theme={theme}>
+      {(loading) && (<MuiThemeProvider theme={theme}>
+            <LinearProgress style={{backgroundColor: "#1a2332",}} color="secondary" value={progress} variant="determinate"/> 
+          </MuiThemeProvider>)}
     <div className={classes.grow}>
       <AppBar color="transparent" style={{color: "white", backgroundColor: "transparent", padding: "0 2%", }} position="static">
         
         <Toolbar>
           <Box marginTop={1} marginBottom={1}>
-            <a href="/">
+            <Link href="/">
               <img
                 style={{
                   width: "240px",
@@ -244,26 +290,26 @@ export default function Nav2() {
                 alt="logo"
                 className={classes.logo}
               />
-            </a>
+            </Link>
           </Box>
           <Box className={classes.boxIcons} paddingLeft={2} style={{display:"flex",  color: "white"}}>
               <Tooltip title="Dashboard" arrow>
-                <IconButton className={classes.boxIcons} href="/">
+                <IconButton className={classes.boxIcons} onClick={()=>{history.push("/dashboard")}}>
                   <MdDashboard />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Leaderboard" arrow>
-                <IconButton className={classes.boxIcons} href="/leaderboard">
+                <IconButton className={classes.boxIcons} onClick={()=>{history.push("/leaderboard")}}>
                   <FaTrophy />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Hacktivities" arrow>
-                <IconButton className={classes.boxIcons} href="/hacktivities">
+                <IconButton className={classes.boxIcons} onClick={()=>{history.push("/hacktivities")}}>
                   <FaBookOpen />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Blog" arrow>
-                <IconButton className={classes.boxIcons} href="/blog">
+                <IconButton className={classes.boxIcons} onClick={()=>{history.push("/blog")}}>
                   <FaBlog />
                 </IconButton>
               </Tooltip>

@@ -41,15 +41,34 @@ else {
       style={{
         backgroundImage: "url('https://wallpapercave.com/wp/wp2757874.gif')",
         backgroundPosition: "center",
-        minHeight: "1000px",
+        minHeight: "100vh",
       }}
     >
       <Navbar />
       <br></br>
       <Container style={{textAlign: "center"}} maxWidth="lg">
-          <Typography style={{color: "#9fef00", textTransform: "uppercase", fontWeight: "bold", letterSpacing: "2px"}} variant="h4">Delete Room</Typography>
-          <br></br>
-
+          <Typography style={{color: "#fff", textTransform: "none", fontWeight: "bold", letterSpacing: "2px"}} variant="h3">Delete Rooms</Typography>
+          {/* <br></br> */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "320px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+          {/* <br></br> */}
+{/* 
       <FormControl  variant="outlined">
         <InputLabel
           style={{ color: "#9fef00" }}
@@ -80,7 +99,7 @@ else {
           }
           labelWidth={55}
         />
-      </FormControl>
+      </FormControl> */}
       <br></br>
       <br></br>
       {console.log(roomDetails)}

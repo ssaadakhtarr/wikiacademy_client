@@ -11,6 +11,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useStateValue } from "../StateProvider";
 import Axios from "axios";
+import Swal from "sweetalert2";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -66,6 +67,20 @@ function GeneralProfile(userData) {
   const [showSuccess, setShowSuccess] = useState(false);
   const id = user.id;
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+
+
   const handleName = (e) => {
     setName(e.target.value);
   };
@@ -94,13 +109,41 @@ function GeneralProfile(userData) {
       email: email,
     }).then((response) => {
       console.log(response);
-      if(response.data.message==="User already exists"){
-        setShowSuccess(false)
-        setShowError(true)
-      }else{
+      // if(response.data.message==="User already exists"){
+      //   setShowSuccess(false)
+      //   setShowError(true)
+      //   Toast.fire({
+      //     icon: "error",
+      //     title: "Email/username already exists",
+      //   });
+    //  }else{
+      if (response.data.status === "success") {
+        
         setShowError(false)
         setShowSuccess(true)
+        Toast.fire({
+          icon: "success",
+          title: "Your details have been updated",
+        });
+        window.location.reload();
+      } else if (response.data.status === "email failure") {
+        Toast.fire({
+          icon: "error",
+          title: "This email already exists",
+        });
+      } else if (response.data.status === "username failure") {
+        Toast.fire({
+          icon: "error",
+          title: "This username already exists",
+        });
+      } else if (response.data.status === "both failure") {
+        Toast.fire({
+          icon: "error",
+          title: "This username/email already exists",
+        });
       }
+        
+      //}
     });
   };
 
@@ -111,6 +154,19 @@ function GeneralProfile(userData) {
       newPassword: newPassword,
     }).then((response) => {
       console.log(response);
+      if (response.data.status === "success") {
+        
+        Toast.fire({
+          icon: "success",
+          title: "Password changed successfully!",
+        });
+        
+      } else if (response.data.status === "failure") {
+        Toast.fire({
+          icon: "error",
+          title: "Wrong current password",
+        });
+      }
     });
   };
 

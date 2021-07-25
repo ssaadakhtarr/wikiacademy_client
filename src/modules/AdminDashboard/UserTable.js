@@ -63,10 +63,10 @@ const DeleteButton = withStyles({
       fontWeight: "bold",
      textTransform: "none",
     backgroundColor: "transparent",
-    color: "#f54e4e",
-    border: "1px solid #f54e4e",
+    color: "#d93237",
+    border: "1px solid #d93237",
     "&:hover": {
-      backgroundColor: "#f54e4e",
+      backgroundColor: "#d93237",
       color: "#1e2633",
     },
   },
@@ -141,7 +141,7 @@ function UserTable({userData, search}) {
         <Box style={{backgroundColor: "rgb(0,0,0,0.1)", color: "white"}}>
         <Grid container spacing={2}>
         <Grid item xs={4}><Typography style={{marginTop: "2%"}}>{current.id}</Typography></Grid>
-        <Grid item xs={4}><a style={{color: "#9fef00", }} href={'/p/'+current.username}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.username}</Typography></a></Grid>
+        <Grid item xs={4}><a style={{color: "#9fef00", }} target="blank" href={'/p/'+current.username}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.username}</Typography></a></Grid>
         <Grid item xs={4}><Typography>
         <DeleteButton  onClick={()=>{
             setTemp(current.username)

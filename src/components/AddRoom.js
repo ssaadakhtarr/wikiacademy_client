@@ -262,6 +262,24 @@ function AddRoom() {
       >
         Add Room
       </Typography>
+      <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "240px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
 
       <Box boxShadow={2} padding={10}>
         {pageNumber === 1 && (

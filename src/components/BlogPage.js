@@ -82,7 +82,8 @@ function BlogPage() {
           <Grid container spacing={0}>
             <Grid item xs={0} sm={1} md={1} lg={2}></Grid>
             <Grid item xs={12} sm={10} md={10} lg={8}>
-              <Box style={{backgroundColor: "#141d2b", padding:"0 2%"}}>
+              <Box style={{backgroundColor: "#141d2b", padding:"0 2%", fontSize: "1.2rem"}}>
+                
                 {renderHTML(blogPage[0].blogMaterial)}
               </Box>
               <br></br>

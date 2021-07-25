@@ -23,8 +23,10 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: "#141d2b",
     
-  maxWidth: "100%",
-  height: "100%",
+    minWidth: 360,
+    maxWidth: 360,
+    minHeight: 425,
+    maxHeight: 425,
   transition: "0.5s all ease",
   '&:hover': {
       transform: "scale(1.01)",
@@ -35,8 +37,8 @@ media: {
   height: 200,
 },
 content: {
-
-  maxHeight: 120,
+minHeight: 560,
+ 
   
 },
 
@@ -52,12 +54,12 @@ function Labs({img, name, desc, path}) {
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia className={classes.media}  image={img}/>
-              <CardContent style={{backgroundColor: "#141d2b", color: "white", minHeight: "80px"}}>
+              <CardContent className={classes.content} style={{backgroundColor: "#141d2b", color: "white", minHeight: "80px"}}>
                 <Typography gutterBottom variant="h5" component="h2">
                   {name}
                 </Typography>
                 <Typography style={{color: "#cad2e2"}} variant="body1" color="textSecondary" component="p">
-                  {desc}
+                  {desc}                                         
                 </Typography>
               </CardContent>
             </CardActionArea>

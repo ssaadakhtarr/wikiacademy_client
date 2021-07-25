@@ -36,6 +36,7 @@
     "sweetalert2": "^11.0.18",
     "sweetalert2-react-content": "^4.1.0",
     "universal-cookie": "^4.0.4",
+    "victory": "^35.9.3",
     "web-vitals": "^1.0.1",
     "yup": "^0.32.9"
   },

@@ -251,7 +251,7 @@ function Room() {
             <span>
               <SiNintendogamecube style={{ fontSize: "70%" }} />
             </span>{" "}
-            {roomDetails.roomName}
+            {roomDetails.roomTitle}
           </Typography>
           <Typography style={{ color: "#c5c8cc" }} variant="body1">
             {roomDetails.roomTagline}
@@ -2195,7 +2195,7 @@ function Room() {
                   Previous
                 </StyledButton>
               )}
-              {pageCount < 6 && (
+              {fullDetails !== undefined && pageCount < 6 && (
                 <StyledButton
                   style={{ marginLeft: "5px" }}
                   onClick={() => {

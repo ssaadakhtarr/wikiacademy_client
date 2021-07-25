@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
 import {BiUserCircle} from'react-icons/bi';
+import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles({
       minWidth: 360,
       maxWidth: 360,
       minHeight: 400,
-      maxHeight: 425,
+      maxHeight: 400,
     transition: "0.5s all ease",
     '&:hover': {
         transform: "scale(1.01)",
@@ -28,8 +29,9 @@ const useStyles = makeStyles({
     height: 200,
   },
   content: {
-    maxHeight: 160,
-    maxHeight: 160,
+    minHeight: 100,
+    maxHeight: 100,
+    
     
   },
 }); 
@@ -37,25 +39,27 @@ const useStyles = makeStyles({
 export default function BlogCard({blogTitle, blogDesc, blogImg, username,url}) {
 
   const classes = useStyles();
-
+  const history = useHistory();
   
 
   return (
     <Box align="center" padding={3}>
     <Card className={classes.root}>
-        <a className={classes.root} style={{textDecoration: "none"}} href={url}>
+        <a className={classes.root} style={{textDecoration: "none"}} onClick={()=>{
+          history.push(url)
+        }}>
         <CardActionArea>
         <CardMedia
           className={classes.media}
           image={blogImg}
-          title="Contemplative Reptile"
+          title={blogTitle}
         />
         <CardContent  className={classes.content}>
-          <Typography style={{color: "white",fontWeight: "bold",}} gutterBottom variant="h6" component="h2">
-          {blogTitle}
+          <Typography style={{color: "white",fontWeight: "bold",}} gutterBottom variant="h5" component="h2">
+          {blogTitle.slice(0,25)}
           </Typography>
-          <Typography style={{color: "white",}} variant="body2" color="textSecondary" component="p">
-         {blogDesc}
+          <Typography style={{color: "#ccc",}} variant="body1" color="textSecondary" component="p">
+         {blogDesc.slice(0,120)}
          </Typography>
         <br></br>
          <br></br>

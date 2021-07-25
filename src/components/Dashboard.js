@@ -91,7 +91,7 @@ function Dashboard() {
     
     Toast.fire({
       icon: 'success',
-      title: 'Signed in successfully'
+      title: 'Signed in'
     })
 
     }, []);

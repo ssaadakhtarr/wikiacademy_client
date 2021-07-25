@@ -38,7 +38,7 @@ function TotalUsersCard({users}) {
     const classes = useStyles();
     return (
         <div>
-            <Card style={{ height: "100%", width: "100%",background: "linear-gradient(90deg, rgba(38,49,67,1) 0%, rgba(59,85,50,1) 100%)", color: "#fff",}} className={classes.root}>
+            <Card style={{ height: "100%", width: "100%",background: "linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 100%)", color: "#fff",}} className={classes.root}>
       <CardContent>
       <div style={{textAlign: "center"}}><FaUsers style={{color: "#9fef00",  fontSize: "70px"}}/></div>
        

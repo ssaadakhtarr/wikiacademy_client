@@ -103,10 +103,21 @@ function Profile() {
     setValue(newValue);
   };
 
+  useEffect(() => {
+    axios.post("http://localhost:3001/getUsername", {
+      userId: userId,
+    }).then((response) => {
+      console.log(response.data);
+      if (response.data !== undefined) {
+        setUsername(response.data[0].username);
+      }
+    })
+  }, [])
+
   const classes = useStyles();
   const [{ User }, dispatch] = useStateValue();
   const user = JSON.parse(localStorage.getItem('user'));
-  const username = user.username;
+  const [username, setUsername] = React.useState('');
   const [age, setAge] = React.useState("");
   const [userId, setUserId] = React.useState(user.id);
   const [userDashboard,setUserDashboard]=React.useState();

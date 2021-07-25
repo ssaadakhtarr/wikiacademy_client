@@ -18,6 +18,8 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import Axios from "axios";
 import {useStateValue} from "../StateProvider";
+import Swal from "sweetalert2";
+
 
 const IconStyle = { marginTop: "10px", marginRight: "10px" };
 
@@ -96,10 +98,10 @@ function AboutProfile(userData) {
   console.log(userData.userData);
   const [{User}, dispatch] = useStateValue();
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log("in aboutprofile.js user is: ")
-  console.log(user)
+  // console.log("in aboutprofile.js user is: ")
+  // console.log(user)
   const classes = useStyles();
-  const id = userData.userData.id;
+  const [id, setId] = React.useState(user.id);
   const [gender, setGender] = React.useState(userData.userData.gender);
   const [occupation, setOccupation] = React.useState(userData.userData.occupation);
   const [areaOfInterest, setAreaOfInterest] = React.useState(userData.userData.areaOfInterest);
@@ -110,6 +112,18 @@ function AboutProfile(userData) {
   const [instagram, setInstagram] = React.useState(userData.userData.instagram);
   const [github, setGithub] = React.useState(userData.userData.github);
   const [linkedin, setLinkedin] = React.useState(userData.userData.linkedin);
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
 
 
 console.log(userData.userData.dateOfBirth);
@@ -160,6 +174,13 @@ console.log(userData.userData.dateOfBirth);
       areaOfInterest: areaOfInterest,
       summary: summary,
     }).then((response) => {
+      if (response.data.status === "success") {
+        Toast.fire({
+          icon: "success",
+          title: "Your details have been updated",
+        });
+      }
+      
       console.log(response);
     })
   }
@@ -172,6 +193,12 @@ console.log(userData.userData.dateOfBirth);
       github: github,
       linkedin: linkedin,
     }).then((response) => {
+      if (response.data.status === "success") {
+        Toast.fire({
+          icon: "success",
+          title: "Your details have been updated",
+        });
+      }
       console.log(response);
     })
   }

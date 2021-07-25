@@ -49,11 +49,28 @@ else {
     >
       <Navbar />
       <br></br>
-      <Typography style={{textAlign: "center", color: "#9fef00", textTransform: "uppercase", fontWeight: "bold", letterSpacing: "2px"}} variant="h5">Pending Blogs</Typography>
-
-      <br></br>
+      <Typography style={{textAlign: "center", color: "#fff", textTransform: "none", fontWeight: "bold", letterSpacing: "2px"}} variant="h3">Pending Blogs</Typography>
+      <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "340px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+      
       <Container style={{textAlign: "center"}} maxWidth="lg">
-      <FormControl  variant="outlined">
+      {/* <FormControl  variant="outlined">
         <InputLabel
           style={{ color: "#9fef00" }}
           fullWidth
@@ -83,7 +100,7 @@ else {
           }
           labelWidth={55}
         />
-      </FormControl>
+      </FormControl> */}
       <br></br>
       <br></br>
       {(blogPendingDetails != undefined) && (<PendingBlogsTable pendingBlogs={blogPendingDetails}/>)}

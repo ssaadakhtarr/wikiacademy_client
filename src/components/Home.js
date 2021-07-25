@@ -20,6 +20,7 @@ import {
   CardMedia,
   Divider,
   Grid,
+  MuiThemeProvider,
 } from "@material-ui/core";
 import ToolImage from "../img/tools.png";
 import { green } from "@material-ui/core/colors";
@@ -45,6 +46,7 @@ import routes from "../GetRoute.js";
 import PropTypes from "prop-types";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Labs from "./Labs";
 
 
 /* Client\src\fonts\style.css */
@@ -138,6 +140,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+const theme = createMuiTheme({
+  palette: {
+     secondary: {
+         main: '#9fef00'
+     }
+  }
+})
 
 function Home() {
   const history = useHistory();
@@ -146,15 +155,22 @@ function Home() {
   const [roomData, setRoomData] = React.useState();
   const [mounted, setMounted] = React.useState(false);
   const [progress, setProgress] = React.useState(0);
+  const [loading, setLoading] = React.useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+  }, []);
 
 
   React.useEffect(() => {
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
         if (oldProgress === 100) {
-          return 0;
+          return ;
         }
-        const diff = Math.random() * 10;
+        const diff = Math.random() * 50;
         return Math.min(oldProgress + diff, 100);
       });
     }, 500);
@@ -186,6 +202,7 @@ function Home() {
 
     return (
       <div className="foo">
+         
         <Box
           style={{
             textAlign: "center",
@@ -196,8 +213,12 @@ function Home() {
             color: "white",
           }}
         >
+          {/* {(loading) && (<MuiThemeProvider theme={theme}>
+            <LinearProgress  color="secondary" value={progress} variant="determinate"/> 
+          </MuiThemeProvider>)} */}
           <Nav />
-          {/* <LinearProgress variant="determinate" value={progress} /> */}
+          
+          
 
           <Box style={{ padding: "12% 0" }}>
             <div>
@@ -340,12 +361,13 @@ function Home() {
             padding: "2% 5%",
           }}
         >
-          <br></br>
+        
 
           <Typography
             variant="h3"
             style={{ textAlign: "center" }}
-            className={classes.textb}
+            className={classes.textb + " about"}
+          
           >
             About Us
           </Typography>
@@ -457,7 +479,7 @@ function Home() {
               </SkeletonTheme>
             ) : (
               roomData.map((i, index) => {
-                if (index < 6) {
+                if (index < 3) {
                   return (
                     
                       <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
@@ -475,7 +497,23 @@ function Home() {
             )}
           </Grid>
           <br></br>
-          <br></br>
+          <Typography style={{ textAlign: "center" }}>
+            <JoinButton
+              onClick={()=>{
+                history.push("/hacktivities")
+              }}
+              style={{
+                border: "1px solid #9fef00",
+                textTransform: "none",
+                fontWeight: "bold",
+              }}
+            >
+              See All Rooms
+            </JoinButton>
+          </Typography>
+          
+          {/* <br></br>
+          <br></br> */}
           <br></br>
           <br></br>
           <div
@@ -501,7 +539,7 @@ function Home() {
           style={{
             backgroundColor: "#141d2b",
             color: "white",
-            padding: "5% 5%",
+            padding: "3% 5%",
           }}
         >
           <Typography
@@ -540,7 +578,9 @@ function Home() {
           <br></br>
           <Typography style={{ textAlign: "center" }}>
             <JoinButton
-              href="/faq"
+              onClick={()=>{
+                history.push("/faq")
+              }}
               style={{
                 border: "1px solid #9fef00",
                 textTransform: "none",
@@ -564,7 +604,112 @@ function Home() {
             <div
               style={{
                 display: "inlineBlock",
-                width: "800px",
+                width: "1200px",
+                height: "2px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+
+          <br></br>
+          <br></br>
+          {/* insert here */}
+          <Typography
+            variant="h3"
+            style={{ textAlign: "center" }}
+            className={classes.textb}
+          >
+            Hands-on Labs
+          </Typography>
+          <br></br>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "100px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+
+          <br></br>
+          
+          {/* <div style={{position:"absolute",display: "inlineBlock",width: "290px",height: "5px",borderRadius: "20px",backgroundColor: "#88cc14",marginTop:'-30px',marginLeft:'525px'}}></div> */}
+          <Typography
+            variant="h6"
+            style={{ textAlign: "center", color: "#cad2e2" }}
+          >
+            Practical labs to help you understand vulnerabilites more efficiently.
+          </Typography>
+
+          <br></br>
+          {/* <Grid container spacing={2}>
+            <Grid item xs={12} sm={12} md={6} lg={4} xl={4}> */}
+            <Labs
+            img={`https://www.breachlock.com/wp-content/uploads/2019/09/V_C_3.jpg`}
+            name={"Information Disclosure"}
+            desc={"Trivial level lab to find information disclosure bugs. This lab will help you get started in the basics of web application hacking."}
+            path={"1/test.html"}
+          />
+            {/* </Grid>
+          
+          </Grid> */}
+          
+          <br></br>
+          <Typography style={{ textAlign: "center" }}>
+            <JoinButton
+              onClick={()=>{
+                history.push("/hacktivities")
+              }}
+              style={{
+                border: "1px solid #9fef00",
+                textTransform: "none",
+                fontWeight: "bold",
+              }}
+            >
+              See All Labs
+            </JoinButton>
+          </Typography>
+
+
+          <br></br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <br></br>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "1200px",
                 height: "2px",
                 borderRadius: "20px",
                 backgroundColor: "#88cc14",
@@ -609,19 +754,19 @@ function Home() {
           </Typography>
           <br></br>
           <div style={{ textAlign: "center", color: "white" }}>
-            <IconButton className={classes.icons}>
+            <IconButton className={classes.icons} target="blank" href="https://www.twitter.com/wikisecurityacademy">
               <FaTwitter style={{ color: "white", fontSize: "30px" }} />
             </IconButton>
-            <IconButton className={classes.icons}>
+            <IconButton className={classes.icons} target="blank" href="https://www.instagram.com/wikisecurityacademy">
               <FaInstagram style={{ color: "white", fontSize: "30px" }} />
             </IconButton>
-            <IconButton className={classes.icons}>
+            <IconButton className={classes.icons} target="blank" href="https://www.discord.com/wikisecurityacademy">
               <FaDiscord style={{ color: "white", fontSize: "30px" }} />
             </IconButton>
           </div>
           <br></br>
           <br></br>
-          <br></br>
+       
           <br></br>
           <div
             style={{
@@ -650,7 +795,7 @@ function Home() {
             padding: "2% 1%",
           }}
         >
-          <br></br>
+         
           <Typography
             variant="h3"
             style={{ textAlign: "center" }}
@@ -701,7 +846,7 @@ function Home() {
                 </p>
               </SkeletonTheme>
             ) : blogData.map((i, index) => {
-              if (index < 6) {
+              if (index < 3) {
                 return (
                   
                     <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
@@ -719,6 +864,20 @@ function Home() {
             })}
             
           </Grid>
+          <Typography style={{ textAlign: "center" }}>
+            <JoinButton
+              onClick={()=>{
+                history.push("/blog")
+              }}
+              style={{
+                border: "1px solid #9fef00",
+                textTransform: "none",
+                fontWeight: "bold",
+              }}
+            >
+              See All Blogs
+            </JoinButton>
+          </Typography>
         </Box>
         <Footer />
         {/* <img src={Image} /> */}

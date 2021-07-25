@@ -76,10 +76,10 @@ const DeleteButton = withStyles({
     fontWeight: "bold",
     textTransform: "none",
     backgroundColor: "transparent",
-    color: "#f54e4e",
-    border: "1px solid #f54e4e",
+    color: "#d93237",
+    border: "1px solid #d93237",
     "&:hover": {
-      backgroundColor: "#f54e4e",
+      backgroundColor: "#d93237",
       color: "#1e2633",
     },
   },
@@ -219,6 +219,7 @@ function PendingBlogsTable({ pendingBlogs }) {
                 <Grid item xs={3}>
                   <Typography>
                     <DeleteButton
+                    style={{marginRight: "2%"}}
                       onClick={() => {
                         discardBlog(current.blogId);
                       }}
@@ -226,6 +227,7 @@ function PendingBlogsTable({ pendingBlogs }) {
                       Discard
                     </DeleteButton>
                     <ApproveButton
+                    style={{marginLeft: "2%"}}
                       onClick={() => {
                         approveBlog(current.blogId);
                       }}

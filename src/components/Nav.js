@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   createMuiTheme,
   makeStyles,
@@ -11,9 +11,9 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Logo from "../img/logo/neonWhite.png";
 import "../App.css";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import { Icon, IconButton } from "@material-ui/core";
+import { Icon, IconButton, LinearProgress } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import MedalIcon from "../img/trophy1.png";
 import BlogIcon from "../img/blog1.png";
@@ -131,6 +131,11 @@ const theme = createMuiTheme({
       },
     },
   },
+  palette: {
+    secondary: {
+        main: '#9fef00'
+    }
+ }
 });
  
 function Nav() {
@@ -138,6 +143,31 @@ function Nav() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const [progress, setProgress] = React.useState(0);
+  const [loading, setLoading] = React.useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+  }, []);
+
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress === 100) {
+          return ;
+        }
+        const diff = Math.random() * 50;
+        return Math.min(oldProgress + diff, 100);
+      });
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -170,6 +200,9 @@ function Nav() {
 
   return (
     <MuiThemeProvider theme={theme}>
+      {(loading) && (<MuiThemeProvider theme={theme}>
+            <LinearProgress style={{backgroundColor: "#1a2332",}} color="secondary" value={progress} variant="determinate"/> 
+          </MuiThemeProvider>)}
       <div
         style={{
           display: "flex",
@@ -192,29 +225,37 @@ function Nav() {
           {/* style={{display:"flex",justifyContent:"space-between",alignItems:"center"}} */}
           <Toolbar>
             <Box marginTop={1} marginBottom={1}>
-              <a href="/">
+              <Link to="/">
                 <img src={Logo} alt="logo" className={classes.logo} />
-              </a>
+              </Link>
             </Box>
 
             <Box className={classes.boxIcons} paddingLeft={2} style={{display:"flex", color: "white", }}>
               <Tooltip title="Home" arrow>
-                <IconButton className={classes.boxIcons} href="/">
+                <IconButton className={classes.boxIcons} onClick={()=>{
+                history.push("/")
+              }}>
                   <FaHome />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Leaderboard" arrow>
-                <IconButton className={classes.boxIcons} href="/leaderboard">
+                <IconButton className={classes.boxIcons} onClick={()=>{
+                history.push("/leaderboard")
+              }}>
                   <FaTrophy />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Hacktivities" arrow>
-                <IconButton className={classes.boxIcons} href="/hacktivities">
+                <IconButton className={classes.boxIcons} onClick={()=>{
+                history.push("/hacktivities")
+              }}>
                   <FaBookOpen />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Blog" arrow>
-                <IconButton className={classes.boxIcons} href="/blog">
+                <IconButton className={classes.boxIcons} onClick={()=>{
+                history.push("/blog")
+              }}>
                   <FaBlog />
                 </IconButton>
               </Tooltip>
@@ -270,7 +311,9 @@ function Nav() {
               <MenuItem>
                 <LoginButton
                   // onClick={() => history.push("/signin")}
-                  href="/signin"
+                  onClick={()=>{
+                    history.push("/signin")
+                  }}
                   fullWidth
                   style={{
                     backgroundColor: "#18181f",
@@ -305,7 +348,9 @@ function Nav() {
               <LoginButton
               disableElevation
                 // onClick={() => history.push("/signin")}
-                href="/signin"
+                onClick={()=>{
+                  history.push("/signin")
+                }}
                 style={{
                   marginRight: "2%",
                   fontSize: "14px",

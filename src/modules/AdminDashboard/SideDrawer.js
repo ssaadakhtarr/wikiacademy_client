@@ -20,7 +20,7 @@ import {AiOutlineAppstoreAdd} from 'react-icons/ai';
 import {RiChatDeleteLine} from 'react-icons/ri';
 import {AiOutlineExclamationCircle} from 'react-icons/ai';
 import {MdDelete} from 'react-icons/md';
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 
 
@@ -55,7 +55,7 @@ function SideDrawer() {
 
   const list = (anchor) => (
     <div
-    style={{backgroundColor: "rgb(17, 25, 39)", color: "white"}}
+    style={{backgroundColor: "rgb(17, 25, 39)", color: "white", minHeight: "100vh", height: "100vh",}}
       className={clsx(classes.list, {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
@@ -81,45 +81,46 @@ function SideDrawer() {
           </ListItem> */}
         
         <ListItem button key="Dashboard">
-          <a style={{textDecoration: "none", display: "flex", color: "white",}} href="/admin-dashboard">
+          <Button onClick={()=>{history.push("/admin-dashboard")}} style={{textDecoration: "none", display: "flex", color: "white",}} >
             <ListItemIcon><MdDashboard style={{fontSize: "30px", color: "#9fef00"}}/></ListItemIcon>   
             <ListItemText primary="Dashboard" />
-          </a>
+          </Button>
         </ListItem>
        
         <ListItem button key="Update User">
-          <a style={{textDecoration: "none", display: "flex", color: "white",}} href="/update-user">
+          <Button onClick={()=>{history.push("/update-user")}} style={{textDecoration: "none", display: "flex", color: "white",}}>
             <ListItemIcon><AiOutlineUserSwitch style={{fontSize: "30px", color: "#9fef00"}}/></ListItemIcon>   
             <ListItemText primary="Update User" />
-          </a>
+          </Button>
         </ListItem>
         <ListItem button key="Add Room">
-          <a style={{textDecoration: "none", display: "flex", color: "white",}} href="/add-room">
+          <Button onClick={()=>{history.push("/add-room")}} style={{textDecoration: "none", display: "flex", color: "white",}} >
             <ListItemIcon><AiOutlineAppstoreAdd style={{fontSize: "30px", color: "#9fef00"}}/></ListItemIcon>   
             <ListItemText primary="Add Room" />
-          </a>
+          </Button>
         </ListItem>
         <ListItem button key="Delete Room">
-          <a style={{textDecoration: "none", display: "flex", color: "white",}} href="/delete-room">
+          <Button onClick={()=>{history.push("/delete-room")}} style={{textDecoration: "none", display: "flex", color: "white",}} >
             <ListItemIcon><RiChatDeleteLine style={{fontSize: "30px", color: "#9fef00"}}/></ListItemIcon>   
             <ListItemText primary="Delete Room" />
-          </a>
+          </Button>
         </ListItem>
         <ListItem button key="Pending Blogs">
-          <a style={{textDecoration: "none", display: "flex", color: "white",}} href="/pending-blogs">
+          <Button onClick={()=>{history.push("/pending-blogs")}} style={{textDecoration: "none", display: "flex", color: "white",}}>
             <ListItemIcon><AiOutlineExclamationCircle style={{fontSize: "30px", color: "#9fef00"}}/></ListItemIcon>   
             <ListItemText primary="Pending Blogs" />
-          </a>
+          </Button>
         </ListItem>
         <ListItem button key="Delete Blogs">
-          <a style={{textDecoration: "none", display: "flex", color: "white",}} href="/delete-blogs">
+          <Button onClick={()=>{history.push("/delete-blogs")}} style={{textDecoration: "none", display: "flex", color: "white",}} >
             <ListItemIcon><MdDelete style={{fontSize: "30px", color: "#9fef00"}}/></ListItemIcon>   
             <ListItemText primary="Delete Blogs" />
-          </a>
+          </Button>
         </ListItem>
-        <br></br>
+        {/* <br></br> */}
       </List>
-      <Divider />
+      {/* <Divider /> */}
+      {/* <br></br>
       <br></br>
       <br></br>
       <br></br>
@@ -127,8 +128,7 @@ function SideDrawer() {
       <br></br>
       <br></br>
       <br></br>
-      <br></br>
-      <br></br>
+      <br></br> */}
 
       
       {/* <List>

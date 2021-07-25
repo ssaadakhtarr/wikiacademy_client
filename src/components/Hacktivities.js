@@ -467,7 +467,7 @@ function Hacktivities() {
           <Labs
             img={`https://www.breachlock.com/wp-content/uploads/2019/09/V_C_3.jpg`}
             name={"Information Disclosure"}
-            desc={"Trivial level lab to find information disclosure bugs."}
+            desc={"Trivial level lab to find information disclosure bugs. This lab will help you get started in the basics of web application hacking."}
             path={"1/test.html"}
           />
         </TabPanel>

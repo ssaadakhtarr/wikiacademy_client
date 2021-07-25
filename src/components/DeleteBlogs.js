@@ -51,11 +51,28 @@ else {
     >
       <Navbar />
       <br></br>
-      <Typography style={{textDecoration: "none", textAlign: "center", color: "#9fef00", textTransform: "none", fontWeight: "bold", letterSpacing: "2px"}} variant="h4"><MdDelete style={{fontSize: "30px", color: "#9fef00"}}/> Delete Blogs</Typography>
-
-      <br></br>
+      <Typography style={{textDecoration: "none", textAlign: "center", color: "#fff", textTransform: "none", fontWeight: "bold", letterSpacing: "2px"}} variant="h3">Delete Blogs</Typography>
+      <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "inlineBlock",
+                width: "320px",
+                height: "5px",
+                borderRadius: "20px",
+                backgroundColor: "#88cc14",
+              }}
+            ></div>
+          </div>
+      {/* <br></br> */}
       <Container style={{textAlign: "center"}} maxWidth="lg">
-      <FormControl  variant="outlined">
+      {/* <FormControl  variant="outlined">
         <InputLabel
           style={{ color: "#9fef00" }}
           fullWidth
@@ -85,7 +102,7 @@ else {
           }
           labelWidth={55}
         />
-      </FormControl>
+      </FormControl> */}
       <br></br>
       <br></br>
       <DeleteBlogsTable blogData={blogDetails}/>
