@@ -33,7 +33,7 @@ export const renderTextFieldEdit = ({
     InputProps={{
       style: {
         color: "#fff",
-        backgroundColor: "#1e2633",
+        backgroundColor: "#141d2b",
       },
     }}
     InputLabelProps={{

@@ -96,12 +96,12 @@ function Dashboard() {
 
     }, []);
 
-    if (!mounted && userDashboard === undefined) {
-        return <div>Loading...</div>;
-      }
-      else{
+    // if (!mounted && userDashboard === undefined) {
+    //     return <div>Loading...</div>;
+    //   }
+    //   else{
   return (
-    <div style={{ backgroundColor: "#141d2b" }}>
+    <div style={{ backgroundColor: "#141d2b", minHeight: "100vh"}}>
       <Box style={boxStyle}>
         <Nav2 />
         <Box  style={{ padding: "3% 0" }}>
@@ -154,7 +154,7 @@ function Dashboard() {
                 backgroundColor: "#111927",
               }}
             >
-              <SidebarDashboard firstName={userDashboard.firstName} username={userDashboard.username} title={userDashboard.title} />
+              {userDashboard !== undefined ? <SidebarDashboard firstName={userDashboard.firstName} username={userDashboard.username} title={userDashboard.title} level={userDashboard.level} /> : "loading..."}
             </Box>
           </Grid>
 
@@ -163,36 +163,36 @@ function Dashboard() {
             <Grid container >
               <Grid item md={6} sm={6} xs={12}>
                 <Box margin={2}>
-                  {(userDashboard) && (<TotalUsersDashboard users={userDashboard?.users}/>)}
+                  {(userDashboard !== undefined) ? (<TotalUsersDashboard users={userDashboard?.users}/>) : "loading..."}
                 </Box>
               </Grid>
               <Grid item  md={6} sm={6} xs={12}>
                 <Box margin={2}>
-                {(userDashboard) && (<RankDashboard rank={userDashboard?.rank}/>)}
+                {(userDashboard !== undefined) ? (<RankDashboard rank={userDashboard?.rank}/>) : "loading..."}
                 </Box>
               </Grid>
               <Grid container >
                 <Grid item md={6} sm={6} xs={12}>
                   <Box fullWidth margin={2}>
-                  {(userDashboard) && (<LevelOnlyDashboard level={userDashboard?.level}/>)}
+                  {(userDashboard !== undefined) ? (<LevelOnlyDashboard level={userDashboard?.level}/>) : "loading..."}
                   </Box>
                 </Grid>
 
                 <Grid item md={6} sm={6} xs={12}>
                   <Box margin={2}>
-                  {(userDashboard) && (<QuestionsDashboard points={userDashboard?.points}/>)}
+                  {(userDashboard !== undefined) ? (<QuestionsDashboard points={userDashboard?.points}/>) : "loading..."}
                   </Box>
                 </Grid>
               </Grid>
             </Grid>
             <Grid item md={12} sm={12} xs={12}>
               <Box margin={2}>
-              {(userDashboard) && (<LevelDashboard level={userDashboard?.level} points={userDashboard?.points}/>)}
+              {(userDashboard !== undefined) ? (<LevelDashboard level={userDashboard?.level} points={userDashboard?.points}/>) : "loading..."}
               </Box>
             </Grid>
             <Grid item md={12} sm={12} xs={12}>
               <Box margin={2} md={12}>
-                <RoomsDashboard name={userDashboard.username}/>
+                {(userDashboard !== undefined) ? <RoomsDashboard name={userDashboard.username}/> : "loading..."}
               </Box>
             </Grid>
           </Grid>
@@ -217,5 +217,5 @@ function Dashboard() {
     </div>
   );
 }
-}
+// }
 export default Dashboard;

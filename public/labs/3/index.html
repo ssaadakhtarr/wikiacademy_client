@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <title>Cross-Site Scripting (XSS)</title>
+</head>
+
+<body onload="checkRoute()">
+
+    <div>
+        <h1>Search Query Here</h1>
+    </div>
+
+    <form action="" method="GET">
+
+        <div class="input-group">
+            <div class="form-outline">
+                <input type="text" id="form1" name="q" class="form-control" />
+            </div>
+            <br />
+            <br />
+            <input type="submit" value="Search" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var q = getQueryParameter('q');
+
+            if (q) {
+
+                search(q, function (error, results) {
+                    showQueryAndResults(q, results);
+                });
+            }
+        });
+
+        function search(q, callback) {
+
+            callback(null, results);
+        }
+
+        function showQueryAndResults(q, results) {
+
+            var resultsEl = document.querySelector('#results');
+            var html = '';
+
+            html += '<p>Your search query: ' + q + '</p>';
+ 
+
+            for (var index = 0; index < results.length; index++) {
+                html += '<li>' + results[index] + '</li>';
+            }
+
+            html += '</ul>';
+
+            resultsEl.innerHTML = html;
+        }
+
+        function getQueryParameter(name) {
+
+            var pairs = window.location.search.substring(1).split('&');
+            var pair;
+
+            for (var index = 0; index < pairs.length; index++) {
+
+                pair = pairs[index].split('=');
+
+                if (decodeURIComponent(pair[0]) === name) {
+                    return decodeURIComponent(pair[1]);
+                }
+            }
+
+            return false;
+        }
+
+        (function () {
+            var _old_alert = window.alert;
+            window.alert = function () {
+             
+                _old_alert.apply(window, arguments);
+                // run some code after the alert
+                document.body.innerHTML += "<br>Congratulations! You have solved this lab. Here is the flag.<br>";
+                document.body.innerHTML += "<br>$FLAG{ul25w9nemhjx6dufu9ug98oq2sk74i9w}<br>";
+            };
+        })();
+    </script>
+</body>
+
+</html>

@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+import {Link} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -182,12 +182,12 @@ function Signup() {
                       
                     }}
                   >
-                    <a href="/">
+                    <Link to="/">
                       <img
                         style={{ width: "100vh", height: "25vh" }}
                         src={logo}
                       />
-                    </a>
+                    </Link>
                   </Box>
                 </Grid>
 
@@ -213,7 +213,7 @@ function Signup() {
                         style={{ color: "white", fontWeight: "400" }}
                         component="h1"
                         align="center"
-                        variant="h5"
+                        variant="h4"
                       >
                         Sign Up
                       </Typography>
@@ -304,7 +304,7 @@ function Signup() {
                         <Grid item>
                           <Link
                             style={{ color: "#9fef00" }}
-                            href="/signin"
+                            to="/signin"
                             variant="body2"
                           >
                             Already have an account? Sign in

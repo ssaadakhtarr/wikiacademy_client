@@ -31,10 +31,10 @@ function DeleteRooms() {
   }, [])
 
 
-  if (!mounted && roomDetails === undefined) {
-    return ("loading");
-  }
-else {
+//   if (!mounted && roomDetails === undefined) {
+//     return ("loading");
+//   }
+// else {
   return (
    
     <div
@@ -102,8 +102,8 @@ else {
       </FormControl> */}
       <br></br>
       <br></br>
-      {console.log(roomDetails)}
-      {(roomDetails != undefined) && (<RoomsTable roomData={roomDetails}/>)}
+      {/* {console.log(roomDetails)} */}
+      {(roomDetails != undefined) ? (<RoomsTable roomData={roomDetails}/>) : "loading..."}
       </Container>
 
       
@@ -111,6 +111,6 @@ else {
   );
 
 }
-}
+// }
 
 export default DeleteRooms;

@@ -39,7 +39,6 @@ const CssTextField = withStyles({
   root: {
     "& label.Mui-focused": {
       color: "#9fef00",
-     
     },
     "& .MuiInput-underline:after": {
       borderBottomColor: "#9fef00",
@@ -224,257 +223,289 @@ function Hacktivities() {
       });
   };
 
-  if (!mounted || blogData === undefined || roomData === undefined) {
-    return <div>Loading...</div>;
-  } else {
-    return (
-      <div style={{ backgroundColor: "#141d2b" }}>
-        {/* {(user === null) && <Nav />}
+  // if (!mounted || blogData === undefined || roomData === undefined) {
+  //   return <div>Loading...</div>;
+  // } else {
+  return (
+    <div style={{ backgroundColor: "#141d2b" }}>
+      {/* {(user === null) && <Nav />}
           {(user !== null) && <Nav2 />}   */}
 
-        <Box style={boxStyle}>
-          {cookies.get("userId") ? <Nav2 /> : <Nav/>}
-          <Box style={{ textAlign: "center" }} padding={10}>
-            <Typography variant="h2" className={classes.Hack}>
-              Hacktivities
-            </Typography>
-            <Typography
-              style={{ color: "#c6cede" }}
-              variant="subtitle1"
-              className={classes.HackA}
-            >
-              Find your favourite topic or enroll in a guided learning path
-            </Typography>
+      <Box style={boxStyle}>
+        {cookies.get("userId") ? <Nav2 /> : <Nav />}
+        <Box style={{ textAlign: "center" }} padding={10}>
+          <Typography variant="h2" className={classes.Hack}>
+            Hacktivities
+          </Typography>
+          <Typography
+            style={{ color: "#c6cede" }}
+            variant="subtitle1"
+            className={classes.HackA}
+          >
+            Find your favourite topic or enroll in a guided learning path
+          </Typography>
 
-            {/* style={{paddingLeft:"1150px"}} */}
-          </Box>
+          {/* style={{paddingLeft:"1150px"}} */}
         </Box>
-        <AppBar
-          color="transparent"
-          position="static"
-          className={classes.HackAA}
-        >
-          <Tabs
-            style={{ backgroundColor: "#1e2633" }}
-            value={value}
-            onChange={handleChange}
-            aria-label="simple tabs example"
-          >
-            <Tab
-              style={{ textTransform: "none", color: "#fff", fontSize: "120%" }}
-              label="Overview"
-              {...a11yProps(0)}
-            />
-            <Tab
-              style={{ textTransform: "none", color: "#fff", fontSize: "120%" }}
-              label="Rooms"
-              {...a11yProps(1)}
-            />
-            <Tab
-              style={{ textTransform: "none", color: "#fff", fontSize: "120%" }}
-              label="Paths"
-              {...a11yProps(2)}
-            />
-            <Tab
-              style={{ textTransform: "none", color: "#fff", fontSize: "120%" }}
-              label="Labs"
-              {...a11yProps(3)}
-            />
-          </Tabs>
-        </AppBar>
-        <TabPanel style={{ color: "#fff" }} value={value} index={0}>
-          <Box
-            padding={10}
-            style={{
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-              allignItems: "center",
-            }}
-          >
-            <div style={{ textAlign: "center", width: "100%" }}>
-              <img
-                style={{
-                  width: "50%",
-                }}
-                src={Logo}
-              />
-            </div>
-            <br></br>
-            <br></br>
-            <Typography variant="h3" className={classes.HackAZ}>
-              Learn hacking with WikiSecurity!
-            </Typography>
-            <br></br>
-            <div style={{ margin: "0 25%" }}>
-              <Typography
-                style={{ color: "#c6cede" }}
-                variant="h6"
-                className={classes.HackAX}
-              >
-                Welcome to the Hacktivities section! Here in this section you
-                can start learning by joining a specific room of your choice or
-                you can also enroll in the guided paths in order to get started.
-                Scroll to the Rooms or Paths section to learn more.
-              </Typography>
-            </div>
-          </Box>
-        </TabPanel>
-        <TabPanel
-          style={{ color: "white", textAlign: "center", padding: "2%" }}
+      </Box>
+      <AppBar color="transparent" position="static" className={classes.HackAA}>
+        <Tabs
+          style={{ backgroundColor: "#1e2633" }}
           value={value}
-          index={1}
+          onChange={handleChange}
+          aria-label="simple tabs example"
         >
-          <Typography variant="h3">Rooms</Typography>
-          <br></br>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <div
+          <Tab
+            style={{ textTransform: "none", color: "#fff", fontSize: "120%" }}
+            label="Overview"
+            {...a11yProps(0)}
+          />
+          <Tab
+            style={{ textTransform: "none", color: "#fff", fontSize: "120%" }}
+            label="Rooms"
+            {...a11yProps(1)}
+          />
+          <Tab
+            style={{ textTransform: "none", color: "#fff", fontSize: "120%" }}
+            label="Paths"
+            {...a11yProps(2)}
+          />
+          <Tab
+            style={{ textTransform: "none", color: "#fff", fontSize: "120%" }}
+            label="Labs"
+            {...a11yProps(3)}
+          />
+        </Tabs>
+      </AppBar>
+      <TabPanel style={{ color: "#fff" }} value={value} index={0}>
+        <Box
+          padding={10}
+          style={{
+            textAlign: "center",
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            allignItems: "center",
+          }}
+        >
+          <div style={{ textAlign: "center", width: "100%" }}>
+            <img
               style={{
-                display: "inlineBlock",
-                width: "100px",
-                height: "5px",
-                borderRadius: "20px",
-                backgroundColor: "#88cc14",
+                width: "50%",
               }}
-            ></div>
+              src={Logo}
+            />
           </div>
           <br></br>
-          <Typography style={{ color: "#c6cede" }} variant="h6">
-            Each room belonging to a specific topic or tool
+          <br></br>
+          <Typography variant="h3" className={classes.HackAZ}>
+            Learn hacking with WikiSecurity!
           </Typography>
           <br></br>
-          <Grid style={{ textAlign: "center" }} container spacing={3}>
-            {roomData.map((i) => {
-              return (
-                
+          <div style={{ margin: "0 25%" }}>
+            <Typography
+              style={{ color: "#c6cede" }}
+              variant="h6"
+              className={classes.HackAX}
+            >
+              Welcome to the Hacktivities section! Here in this section you can
+              start learning by joining a specific room of your choice or you
+              can also enroll in the guided paths in order to get started.
+              Scroll to the Rooms or Paths section to learn more.
+            </Typography>
+          </div>
+        </Box>
+      </TabPanel>
+      <TabPanel
+        style={{ color: "white", textAlign: "center", padding: "2%" }}
+        value={value}
+        index={1}
+      >
+        <Typography variant="h3">Rooms</Typography>
+        <br></br>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              display: "inlineBlock",
+              width: "100px",
+              height: "5px",
+              borderRadius: "20px",
+              backgroundColor: "#88cc14",
+            }}
+          ></div>
+        </div>
+        <br></br>
+        <Typography style={{ color: "#c6cede" }} variant="h6">
+          Each room belonging to a specific topic or tool
+        </Typography>
+        <br></br>
+        <Grid style={{ textAlign: "center" }} container spacing={3}>
+          {roomData !== undefined
+            ? roomData.map((i) => {
+                return (
                   <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
                     <Rooms
                       roomImg={i.roomImage}
                       roomTitle={i.roomTitle}
-                      roomDesc={i.roomTagline.slice(0,140)}
+                      roomDesc={i.roomTagline.slice(0, 140)}
                       roomName={i.roomName}
                     />
                   </Grid>
-                
-              );
-            })}
-          </Grid>
-        </TabPanel>
-        <TabPanel
-          style={{ color: "white", textAlign: "center" }}
-          value={value}
-          index={2}
-        >
-          <Typography variant="h3">Learning Paths</Typography>
+                );
+              })
+            : "loading..."}
+        </Grid>
+      </TabPanel>
+      <TabPanel
+        style={{ color: "white", textAlign: "center" }}
+        value={value}
+        index={2}
+      >
+        <Typography variant="h3">Learning Paths</Typography>
 
-          <br></br>
+        <br></br>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <div
             style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
+              display: "inlineBlock",
+              width: "100px",
+              height: "5px",
+              borderRadius: "20px",
+              backgroundColor: "#88cc14",
             }}
-          >
-            <div
-              style={{
-                display: "inlineBlock",
-                width: "100px",
-                height: "5px",
-                borderRadius: "20px",
-                backgroundColor: "#88cc14",
-              }}
-            ></div>
-          </div>
-          <br></br>
-          <Typography style={{ color: "#c6cede" }} variant="h6">
-            Structured and guided paths to follow along
-          </Typography>
+          ></div>
+        </div>
+        <br></br>
+        <Typography style={{ color: "#c6cede" }} variant="h6">
+          Structured and guided paths to follow along
+        </Typography>
 
-          <Paths />
-        </TabPanel>
-        <TabPanel
-          style={{ color: "white", textAlign: "center" }}
-          value={value}
-          index={3}
+        <Paths />
+      </TabPanel>
+      <TabPanel
+        style={{ color: "white", textAlign: "center" }}
+        value={value}
+        index={3}
+      >
+        <Typography variant="h3">Hands-on Labs</Typography>
+
+        <br></br>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
-          <Typography variant="h3">Hands-on Labs</Typography>
-
-          <br></br>
           <div
             style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
+              display: "inlineBlock",
+              width: "100px",
+              height: "5px",
+              borderRadius: "20px",
+              backgroundColor: "#88cc14",
             }}
-          >
-            <div
-              style={{
-                display: "inlineBlock",
-                width: "100px",
-                height: "5px",
-                borderRadius: "20px",
-                backgroundColor: "#88cc14",
-              }}
-            ></div>
-          </div>
-          <br></br>
-          <Typography style={{ color: "#c6cede" }} variant="h6">
-            Hands-on practice exercises on real world scenarios
-          </Typography>
-          <br></br>
-          {(cookies.get("userId") && (<div>
+          ></div>
+        </div>
+        <br></br>
+        <Typography style={{ color: "#c6cede" }} variant="h6">
+          Hands-on practice exercises on real world scenarios
+        </Typography>
+        <br></br>
+        {cookies.get("userId") && (
+          <div>
             <CssTextField
-            style={{ width: "50%",}}
-            InputProps={{
-              style: {
-                color: "#fff",
-                backgroundColor: "transparent",
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontWeight: "bold",
-                letterSpacing: "1px",
-                color: "#9fef00",
-                fontSize: "15px",
-                textTransform: "none",
-              },
-            }}
-            variant="outlined"
-            label="Got a flag?"
-            onChange={(e) => {
-              setSubmitFlag(e.target.value);
-            }}
-          />
-          <SubmitButton
-            onClick={checkFlag}
-            style={{ padding: "13px 2%", marginLeft: "3%" }}
-          >
-            Submit
-          </SubmitButton>
-          <br></br>
-          </div>))}
-          <Labs
-            img={`https://www.breachlock.com/wp-content/uploads/2019/09/V_C_3.jpg`}
-            name={"Information Disclosure"}
-            desc={"Trivial level lab to find information disclosure bugs. This lab will help you get started in the basics of web application hacking."}
-            path={"1/test.html"}
-          />
-        </TabPanel>
-        <Footer />
-      </div>
-    );
-  }
+              style={{ width: "50%" }}
+              InputProps={{
+                style: {
+                  color: "#fff",
+                  backgroundColor: "transparent",
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  fontWeight: "bold",
+                  letterSpacing: "1px",
+                  color: "#9fef00",
+                  fontSize: "15px",
+                  textTransform: "none",
+                },
+              }}
+              variant="outlined"
+              label="Got a flag?"
+              onChange={(e) => {
+                setSubmitFlag(e.target.value);
+              }}
+            />
+            <SubmitButton
+              onClick={checkFlag}
+              style={{ padding: "13px 2%", marginLeft: "3%" }}
+            >
+              Submit
+            </SubmitButton>
+            <br></br>
+            <br></br>
+          </div>
+        )}
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Labs
+              img={`https://www.breachlock.com/wp-content/uploads/2019/09/V_C_3.jpg`}
+              name={"Information Disclosure"}
+              desc={
+                "Trivial level lab to find information disclosure bugs. This lab will help you get started in the basics of web application hacking."
+              }
+              path={"1/test.html"}
+              hint={"Always check the page source!"}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Labs
+              img={`https://uploads.sitepoint.com/wp-content/uploads/2016/09/1473921124injection-attack.jpg`}
+              name={"SQL Injection"}
+              desc={
+                "Trivial level lab to find SQL injection bugs. This lab will help you get started in the basics of web application hacking and penetration testing."
+              }
+              path={"2/sqli-one"}
+              hint={
+                "You can use username: saadakhtar and password: saad123! PS: The table name is labusers :)"
+              }
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Labs
+              img={`https://hackaday.com/wp-content/uploads/2016/03/grabbing-file-off-computer.jpg?w=400`}
+              name={"Cross-Site Scripting"}
+              desc={
+                "Trivial level lab to find Cross-Site Scripting bugs. This lab will help you get started in the basics of web application hacking and penetration testing."
+              }
+              path={"3/index.html"}
+              hint={
+                "Trigger an alert to get the flag! PS: If script tags not working then try using image tags."
+              }
+            />
+          </Grid>
+        </Grid>
+      </TabPanel>
+      <Footer />
+    </div>
+  );
 }
+// }
 
 export default Hacktivities;

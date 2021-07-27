@@ -655,12 +655,45 @@ function Home() {
           <br></br>
           {/* <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={6} lg={4} xl={4}> */}
+            <Grid container spacing={1}>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
             <Labs
-            img={`https://www.breachlock.com/wp-content/uploads/2019/09/V_C_3.jpg`}
-            name={"Information Disclosure"}
-            desc={"Trivial level lab to find information disclosure bugs. This lab will help you get started in the basics of web application hacking."}
-            path={"1/test.html"}
-          />
+              img={`https://www.breachlock.com/wp-content/uploads/2019/09/V_C_3.jpg`}
+              name={"Information Disclosure"}
+              desc={
+                "Trivial level lab to find information disclosure bugs. This lab will help you get started in the basics of web application hacking."
+              }
+              path={"1/test.html"}
+              hint={"Always check the page source!"}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Labs
+              img={`https://uploads.sitepoint.com/wp-content/uploads/2016/09/1473921124injection-attack.jpg`}
+              name={"SQL Injection"}
+              desc={
+                "Trivial level lab to find SQL injection bugs. This lab will help you get started in the basics of web application hacking and penetration testing."
+              }
+              path={"2/sqli-one"}
+              hint={
+                "You can use username: saadakhtar and password: saad123! PS: The table name is labusers :)"
+              }
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Labs
+              img={`https://hackaday.com/wp-content/uploads/2016/03/grabbing-file-off-computer.jpg?w=400`}
+              name={"Cross-Site Scripting"}
+              desc={
+                "Trivial level lab to find Cross-Site Scripting bugs. This lab will help you get started in the basics of web application hacking and penetration testing."
+              }
+              path={"3/index.html"}
+              hint={
+                "Trigger an alert to get the flag! PS: If script tags not working then try using image tags."
+              }
+            />
+          </Grid>
+        </Grid>
             {/* </Grid>
           
           </Grid> */}

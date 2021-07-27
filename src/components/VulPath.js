@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import VulnImage from "../img/vulnerabilities.jpg";
 import axios from 'axios';
 import Rooms from "./Rooms";
+import Nav2 from './Nav2';
+import Cookies from 'universal-cookie';
 
 
 
@@ -61,7 +63,7 @@ function VulPath() {
     const pathName = "vuln";
     const [roomData, setRoomData] = React.useState();
   const [mounted, setMounted] = React.useState(false);
-  
+  const cookies = new Cookies();
   useEffect(() => {
     axios.get(`http://localhost:3001/getPath/${pathName}`).then((response) => {
       console.log(response.data);
@@ -73,13 +75,13 @@ function VulPath() {
   
     })
   }, [])
-  if (!mounted || roomData === undefined) {
+  // if (!mounted || roomData === undefined) {
     
-    return (
-    "load"
-    );
-  }
-  else {
+  //   return (
+  //   "load"
+  //   );
+  // }
+  // else {
 
 
     return (
@@ -91,7 +93,7 @@ function VulPath() {
       width: "100%",
       color: "white",
     }}>
-          <Nav />
+        {(cookies.get("userId")) ? <Nav2 /> : <Nav/>}
           <Box padding={10}>
           <Typography  variant="h2" className={classes.center}>Vulnerabilities
     </Typography>
@@ -131,18 +133,18 @@ function VulPath() {
   
 
   {/* Tools room are displayed below */}
-  <Box style={{backgroundColor: "#1e2633",}}>
-      <Grid container spacing={1}>
-    {console.log(roomData)}
-         {roomData.map((i) => {
-           return(
-            
-               <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-               <Rooms roomTitle={i.roomTitle} roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline.slice(0,140)} />
-             </Grid>
-           );
-         })}
-          </Grid>
+  <Box style={{backgroundColor: "#1e2633", minHeight: "100vh"}}>
+     {roomData !== undefined ?  <Grid container spacing={1}>
+   
+   {roomData.map((i) => {
+     return(
+      
+         <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
+         <Rooms roomTitle={i.roomTitle} roomImg={i.roomImage} roomName={i.roomName} roomDesc={i.roomTagline.slice(0,140)} />
+       </Grid>
+     );
+   })}
+    </Grid> : "loading..."}
           </Box>
           
     
@@ -151,5 +153,5 @@ function VulPath() {
 
     )
 }
-}
+// }
 export default VulPath

@@ -17,7 +17,8 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import Logo from "../img/logo/neonWhite.png";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
-import { Box, Grid, Icon, LinearProgress, Link } from "@material-ui/core";
+import {Link} from 'react-router-dom';
+import { Box, Grid, Icon, LinearProgress } from "@material-ui/core";
 import MedalIcon from "../img/trophy1.png";
 import BlogIcon from "../img/blog1.png";
 import LearningIcon from "../img/learn.png";
@@ -280,7 +281,7 @@ export default function Nav2() {
         
         <Toolbar>
           <Box marginTop={1} marginBottom={1}>
-            <Link href="/">
+            <Link to="/">
               <img
                 style={{
                   width: "240px",

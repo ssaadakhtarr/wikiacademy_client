@@ -15,6 +15,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import { withStyles } from '@material-ui/styles';
 import axios from 'axios';
+import {useHistory} from 'react-router-dom';
 
 
 const RoomButton = withStyles({
@@ -87,6 +88,7 @@ const theme = createMuiTheme({
   });
 
 function RoomsDashboard(name) {
+  const history = useHistory();
     const classes = useStyles();
     const username = name.name;
     const user = JSON.parse(localStorage.getItem("user"));
@@ -131,7 +133,7 @@ function RoomsDashboard(name) {
           <Grid container spacing={2}>
             <Grid item lg={2} md={2} sm={2} xs={2}><Typography style={{marginTop: "8%", textAlign: "left"}}>{i.roomTitle}</Typography></Grid>
             <Grid item lg={8} md={8} sm={8} xs={8}><Box style={{}}> <MuiThemeProvider theme={theme}><LinearProgressWithLabel  style={{margin: "3% 0", borderRadius: "25px", height: "15px",backgroundColor: "#111927"}} value={i.progBar*4} /></MuiThemeProvider></Box></Grid>
-            <Grid item lg={2} md={2} sm={2} xs={2}><Box style={{textAlign: "right"}}><RoomButton href={`/room/${i.roomName}`} variant="contained">Continue</RoomButton></Box></Grid>
+            <Grid item lg={2} md={2} sm={2} xs={2}><Box style={{textAlign: "right"}}><RoomButton onClick={()=>{history.push(`/room/${i.roomName}`)}} variant="contained">Continue</RoomButton></Box></Grid>
             </Grid>
             </Box>
             <br></br>

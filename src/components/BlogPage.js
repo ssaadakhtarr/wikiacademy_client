@@ -58,10 +58,10 @@ function BlogPage() {
         <div style={{ textAlign: "center" }}>
           
   
-          <Typography variant="h2">{blogPage[0].blogTitle}</Typography>
+          <Typography variant="h2">{blogPage !== undefined ? blogPage[0].blogTitle : "loading..."}</Typography>
         </div>
   
-        <Box
+        {blogPage !== undefined ? <Box
           margin={2}
           style={{
             backgroundImage:
@@ -70,7 +70,7 @@ function BlogPage() {
             // backgroundRepeat: "no-repeat",
             height: "600px",
           }}
-        ></Box>
+        ></Box> : "loading..."}
         <br></br>
         <br></br>
         <br></br>
@@ -82,10 +82,10 @@ function BlogPage() {
           <Grid container spacing={0}>
             <Grid item xs={0} sm={1} md={1} lg={2}></Grid>
             <Grid item xs={12} sm={10} md={10} lg={8}>
-              <Box style={{backgroundColor: "#141d2b", padding:"0 2%", fontSize: "1.2rem"}}>
+              {blogPage !== undefined ? <Box style={{backgroundColor: "#141d2b", padding:"0 2%", fontSize: "1.2rem"}}>
                 
                 {renderHTML(blogPage[0].blogMaterial)}
-              </Box>
+              </Box> : "loading..."}
               <br></br>
               <br></br>
               
@@ -95,18 +95,18 @@ function BlogPage() {
               >
                 <Grid container spacing={0}>
                   <Grid  item xs={6} md={10}>
-                      <Box style={{padding: "2%"}} >
+                      {blogPage !== undefined ? <Box style={{padding: "2%"}} >
                       <Typography variant="h6">{blogPage[0].username}</Typography>
                     <Typography style={{ color: "grey" }} variant="body2">
                     {blogPage[0].summary}
                     </Typography>
-                      </Box>
+                      </Box> : "loading..."}
                     
                   </Grid>
                   <Grid item xs={6} md={2}>
                     <Box style={{ textAlign: "right" }}>
                       <br></br>
-                      <StyledButton href={'/p/'+blogPage[0].username}>Profile</StyledButton>
+                      {blogPage !== undefined ? <StyledButton href={'/p/'+blogPage[0].username}>Profile</StyledButton> : "loading..."}
                     </Box>
                   </Grid>
                 </Grid>

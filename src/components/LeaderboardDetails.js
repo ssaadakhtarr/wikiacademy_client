@@ -124,28 +124,31 @@ function LeaderboardDetails(userData) {
       </Grid>
     </Box>
     <br></br>
-    {userData.userData.map((current) => {
-      return(
+    {userData.userData.map((current, index) => {
+      if (index < 10) {
+        return(
       
-        <div>
+          <div>
+            
+            <br></br>
+          <Box style={{backgroundColor: "rgb(0,0,0,0.1)", color: "white"}}>
+          <Grid container spacing={2}>
+          <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.rank}</Typography></Grid>
+          <Grid item xs={3}><a style={{color: "#9fef00", }} href={'/p/'+current.username}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.username}</Typography></a></Grid>
+          <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.points}</Typography></Grid>
+          <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.level}</Typography></Grid>
           
-          <br></br>
-        <Box style={{backgroundColor: "rgb(0,0,0,0.1)", color: "white"}}>
-        <Grid container spacing={2}>
-        <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.rank}</Typography></Grid>
-        <Grid item xs={3}><a style={{color: "#9fef00", }} href={'/p/'+current.username}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.username}</Typography></a></Grid>
-        <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.points}</Typography></Grid>
-        <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.level}</Typography></Grid>
+          
+          
+        </Grid>
+        </Box>
+   
+         <br></br>
+         
+         </div>
+        )
         
-        
-        
-      </Grid>
-      </Box>
- 
-       <br></br>
-       
-       </div>
-      )
+      }
       
     })}
     </div>

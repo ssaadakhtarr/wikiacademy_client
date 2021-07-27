@@ -183,7 +183,7 @@ function AdminLogin() {
               style={{ color: "white" , textTransform: "capitalize",}}
               component="h1"
               align="center"
-              variant="h5"
+              variant="h4"
             >
               Sign in
             </Typography>
@@ -244,12 +244,12 @@ function AdminLogin() {
             />{" "}
             <br></br>
             <br></br>
-            <FormControlLabel
+            {/* <FormControlLabel
               style={{ color: "white" }}
               control={<Checkbox value="remember" color="default" />}
               label="Remember me"
               
-            />
+            /> */}
             {/* <br></br> */}
             <br></br>
             <Button
@@ -269,7 +269,7 @@ function AdminLogin() {
             </Button>
             <br></br>
             <br></br>
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs>
                 <Link
                   style={{ color: "#9fef00" }}
@@ -288,7 +288,7 @@ function AdminLogin() {
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Box>
         </div>
       </Container>

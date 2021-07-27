@@ -34,11 +34,11 @@ function PendingBlogs() {
   }, [])
 
 
-  if (!mounted && blogDetails === undefined) {
-    return ("loading");
-  }
-else {
-  console.log(blogDetails)
+//   if (!mounted && blogDetails === undefined) {
+//     return ("loading");
+//   }
+// else {
+//   console.log(blogDetails)
 
 
   return (
@@ -105,13 +105,13 @@ else {
       </FormControl> */}
       <br></br>
       <br></br>
-      <DeleteBlogsTable blogData={blogDetails}/>
+      {blogDetails !== undefined ? <DeleteBlogsTable blogData={blogDetails}/> : "loading..."}
       </Container>
 
       
     </div>
   );
 }
-}
+// }
 
 export default PendingBlogs;

@@ -75,15 +75,17 @@ export default function Faq() {
       <Nav />
       <Box
         style={{
-          backgroundColor: "#111927",
+          backgroundColor: "transparent",
           color: "white",
+          padding: "5%",
           //backgroundColor: "#141d2b",
         }}
       >
+        <Typography style={{textAlign: "center", paddingBottom: "5%"}} variant="h3">Frequently Asked Questions</Typography>
         <div>
-          <h1 style={{ textAlign: "center", padding: "3px" }}>
+          {/* <h1 style={{ textAlign: "center", padding: "" }}>
             Frequently Asked Questions
-          </h1>
+          </h1> */}
           <div className={classes.root}>
             {/* <Box style={{backgroundColor: "#394454" ,color:"white",borderBlockColor:"white"}}> */}
             <Accordion

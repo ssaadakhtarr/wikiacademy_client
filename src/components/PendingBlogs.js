@@ -33,11 +33,11 @@ function PendingBlogs() {
   }, [])
 
 
-  if (!mounted && blogPendingDetails === undefined) {
-    return ("loading");
-  }
-else {
-  console.log(blogPendingDetails)
+//   if (!mounted && blogPendingDetails === undefined) {
+//     return ("loading");
+//   }
+// else {
+//   console.log(blogPendingDetails)
 
   return (
     <div
@@ -103,13 +103,13 @@ else {
       </FormControl> */}
       <br></br>
       <br></br>
-      {(blogPendingDetails != undefined) && (<PendingBlogsTable pendingBlogs={blogPendingDetails}/>)}
+      {(blogPendingDetails != undefined) ? (<PendingBlogsTable pendingBlogs={blogPendingDetails}/>) : "loading..."}
       </Container>
 
       
     </div>
   );
 }
-}
+// }
 
 export default PendingBlogs;

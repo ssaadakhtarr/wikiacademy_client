@@ -7,7 +7,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+import {Link} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -197,9 +197,11 @@ function Signin() {
               {/* <Nav /> */}
 
               <Box style={{ paddingTop: "5%", textAlign: "center" }}>
-                <a href="/">
+                <Link to="/" onClick={()=>{
+                            history.push("/")
+                          }}>
                   <img className={classes.image} src={logo} />
-                </a>
+                </Link>
               </Box>
 
               <Container spacing={2} component="main" maxWidth="sm">
@@ -224,7 +226,7 @@ function Signin() {
                       style={{ color: "white", textTransform: "capitalize" }}
                       component="h1"
                       align="center"
-                      variant="h5"
+                      variant="h4"
                     >
                       Sign in
                     </Typography>
@@ -282,8 +284,11 @@ function Signin() {
                       <Grid item xs>
                         <Link
                           style={{ color: "#9fef00" }}
-                          href="/password-reset"
-                          variant="body2"
+                          to="/password-reset"
+                          onClick={()=>{
+                            history.push("/password-reset")
+                          }}
+                          // variant="body2"
                         >
                           Forgot password?
                         </Link>
@@ -291,8 +296,10 @@ function Signin() {
                       <Grid item>
                         <Link
                           style={{ color: "#9fef00" }}
-                          href="/signup"
-                          variant="body2"
+                          to="/signup"
+                          onClick={()=>{
+                            history.push("/signup")
+                          }}
                         >
                           {"Don't have an account? Sign Up"}
                         </Link>

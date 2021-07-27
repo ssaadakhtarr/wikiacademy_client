@@ -52,7 +52,7 @@ function AddBlog() {
   const [blogImg, setBlogImg] = React.useState('');
   const [blogMaterial, setBlogMaterial] = React.useState('');
   const [userId, setUserId] = React.useState(user.id);
-  const nowEnable = blogTitle.length > 0 && blogDesc.length > 0 && blogImg.length > 0 && blogMaterial.length > 0;
+  const nowEnable = blogTitle.length > 0 && blogDesc.length > 130 && blogImg.length > 0 && blogMaterial.length > 500;
   const postBlog = () => {
     
     Axios.post("http://localhost:3001/addBlog", {
@@ -80,8 +80,8 @@ function AddBlog() {
         <div style={{backgroundColor: "#141d2b"}}>
             <BlogPageNav />
             
-            <Box style={{ padding: " 5% 20%"}}>
-            <Typography style={{color: "#fff", textAlign: "left"}} variant="h4">Add New Blog</Typography>
+            <Box style={{ padding: " 5% 18%"}}>
+            <Typography style={{color: "#fff", textAlign: "left",fontWeight: "bold",}} variant="h4">Add New Blog</Typography>
             <br></br>
             <CssTextField
             fullWidth
@@ -115,11 +115,11 @@ function AddBlog() {
             }}
             InputLabelProps={{
               style: {fontWeight: "bold",
-              letterSpacing: "1.5px", color: "#9fef00",fontSize: "12px", textTransform: "uppercase" },
+              letterSpacing: "1.5px", color: "#9fef00",fontSize: "12px", textTransform: "none" },
             }}
               
               variant="outlined"
-              label="Blog Description"
+              label="BLOG DESCRIPTION (Write at least 130 characters)"
               multiline="false"
               onChange={(e) => {
                 setBlogDesc(e.target.value);
@@ -150,8 +150,10 @@ function AddBlog() {
             <br></br>
             <br></br>
             <Typography style={{color: "#fff", fontWeight: "bold", textTransform: "none"}} variant="h4">Blog</Typography>
+            <Typography variant="body2" style={{color: "#9fef00", fontWeight: "normal", fontSize: "14px"}}>(Write at least 500 characters)</Typography>
             <br></br>
             <CKEditor
+            
               editor={ClassicEditor}
               onChange={(event, editor) => {
                 const data = editor.getData();

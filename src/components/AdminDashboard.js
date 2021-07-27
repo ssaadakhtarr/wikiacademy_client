@@ -36,37 +36,37 @@ function AdminDashboard() {
       }
     })
         }, []);
-        if (!mounted || dashboardDetails === undefined || LeaderboardData === undefined) {
-            return <div>Loading...</div>;
-          }
-          else{
+        // if (!mounted || dashboardDetails === undefined || LeaderboardData === undefined) {
+        //     return <div>Loading...</div>;
+        //   }
+        //   else{
 
          
 
     return (
         <div style={{backgroundImage: "url('https://wallpapercave.com/wp/wp2757874.gif')",
-        backgroundPosition: "center",}}>
+        backgroundPosition: "center", minHeight: "100vh"}}>
            <Navbar/>
             
            <Box padding={2}>
                <Grid container spacing={2}>
                    <Grid item xs={4}>
-                   <TotalUsersCard users={dashboardDetails[0].users}/>
+                   {dashboardDetails !== undefined ? <TotalUsersCard users={dashboardDetails[0].users}/> : "loading..."}
                    </Grid>
                    <Grid item xs={4}>
-                   <TotalRoomsCard rooms={dashboardDetails[1].rooms}/>
+                   {dashboardDetails !== undefined ? <TotalRoomsCard rooms={dashboardDetails[1].rooms}/> : "loading..."}
                    </Grid>
                    <Grid item xs={4}>
-                   <TotalQuestionCard questions={dashboardDetails[2].questions}/>        
+                   {dashboardDetails !== undefined ? <TotalQuestionCard questions={dashboardDetails[2].questions}/> : "loading..."}    
                    </Grid>
                </Grid>
                <br></br>
-               <LeaderboardChart leaderboard={LeaderboardData}/>
+               {LeaderboardData !== undefined ? <LeaderboardChart leaderboard={LeaderboardData}/> : "loading..."}
            </Box>
 
         </div>
 
     )
 }
-}
+// }
 export default AdminDashboard

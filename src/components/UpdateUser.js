@@ -30,11 +30,11 @@ function UpdateUser() {
   }, [])
 
 
-  if (!mounted && userDetails === undefined) {
-    return ("loading");
-  }
-else {
-  console.log(userDetails)
+//   if (!mounted && userDetails === undefined) {
+//     return ("loading");
+//   }
+// else {
+//   console.log(userDetails)
   return (
     <div
       style={{
@@ -100,12 +100,12 @@ else {
       </FormControl> */}
       <br></br>
       <br></br>
-      {(userDetails != undefined) && (<UserTable userData={userDetails} search={values}/>)}
+      {(userDetails != undefined) ? (<UserTable userData={userDetails} search={values}/>) : "loading..."}
       </Container>
 
       
     </div>
   );
 }
-}
+// }
 export default UpdateUser;

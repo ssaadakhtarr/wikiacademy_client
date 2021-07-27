@@ -63,9 +63,9 @@ function Forgot() {
     <div>
       <Box style={{ paddingBottom: "10%", backgroundColor: "#141d2b" }}>
         <Box style={{ paddingTop: "5%", textAlign: "center" }}>
-          <a href="/">
+          <Link to="/">
             <img className={classes.image} src={logo} />
-          </a>
+          </Link>
         </Box>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -144,12 +144,12 @@ function Forgot() {
               <br></br>
               <br></br>
 
-              <a
+              <Link
                 style={{ textDecoration: "none", color: "#9fef00" }}
-                href="/signin"
+                to="/signin"
               >
                 {"Remembered your password? Login Here"}
-              </a>
+              </Link>
             </div>
           </Box>
         </Container>

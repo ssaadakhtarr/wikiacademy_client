@@ -109,14 +109,14 @@ function Leaderboard() {
   }, [])
 
 
-  if (!mounted && LeaderboardData === undefined) {
-    return ("loading")
-  }
-else {
-  console.log(LeaderboardData)
+//   if (!mounted && LeaderboardData === undefined) {
+//     return ("loading")
+//   }
+// else {
+  // console.log(LeaderboardData)
  
   return(
-    <div style={{ backgroundColor: "#141d2b" }}>
+    <div style={{ backgroundColor: "#141d2b", minHeight: "100vh" }}>
       <Box style={boxStyle}>
       {/* {user === null && <Nav />}
       {user !== null && <Nav2 />} */}
@@ -134,14 +134,14 @@ else {
 </Box>
 <Container style={{textAlign: "center"}} maxWidth="lg">
 <br></br>
-{(cookies.get("userId") ? <Typography style={{color: "#c6cede",fontSize:"30px",paddingTop:"20px"}} variant="subtitle1" className={classes.HackA}>Your current rank is {user.rank}</Typography>:<Typography style={{color: "#c6cede"}} variant="subtitle1" className={classes.HackA}></Typography>)}
+{(cookies.get("userId") ? <Typography style={{color: "#c6cede",fontSize:"30px",paddingTop:"20px"}} variant="subtitle1" className={classes.HackA}>You are ranked <span style={{color: "#9fef00"}}>#{user.rank}</span></Typography>:<Typography style={{color: "#c6cede"}} variant="subtitle1" className={classes.HackA}></Typography>)}
       <br></br>
       <br></br>
       {console.log(LeaderboardData)}
-      {(LeaderboardData != undefined) && (<LeaderboardDetails userData={LeaderboardData}/>)}
+      {(LeaderboardData != undefined) ? (<LeaderboardDetails userData={LeaderboardData}/>) : "loading..."}
       </Container>
     </div>
   );
 }
-}
+// }
 export default Leaderboard;

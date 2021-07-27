@@ -15,6 +15,8 @@ import { FaBlog } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 import {CgProfile} from 'react-icons/cg';
 import {BsBook} from 'react-icons/bs';
+import {Link} from "react-router-dom";
+import { Scrambler, Cycler } from "react-text-scrambler";
 
 const useStyles = makeStyles((theme) => ({
     anchor: {
@@ -26,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function SidebarDashboard({firstName, username, title}) {
+function SidebarDashboard({firstName, username, title, level}) {
     const classes = useStyles();
     const user = JSON.parse(localStorage.getItem("user"));
+    const characters = "!<>-_\\/[]{}—=+*^?#________";
     return (
         <div style={{color: "#a4b1cd"}}>
             <br></br>
@@ -38,7 +41,9 @@ function SidebarDashboard({firstName, username, title}) {
           {(username != undefined) && (<div>
             <Typography style={{color: "#fff", textAlign: "center"}} variant="h6">{firstName}</Typography>
           <Typography style={{color: "#9fef00", textAlign: "center", fontWeight: "bold", letterSpacing: "2px"}} variant="body2">{username}</Typography>
-          <Typography style={{color: "#9fef00", textAlign: "center", fontWeight: "bold", letterSpacing: "2px"}} variant="body1">{"["+title+"]"}</Typography>
+          <Typography style={{color: "#9fef00", textAlign: "center", fontWeight: "bold", letterSpacing: "2px"}} variant="body1">[{<Cycler
+            duration={ 3500 }
+            strings={ ["Level " + (level).toString(), title] } characters={characters}/>}]</Typography>
           </div>)}
           <br></br><br></br><br></br><br></br>
           <div style={{ padding: ".625rem 1.5rem", textAlign: "left" }}>
@@ -47,7 +52,7 @@ function SidebarDashboard({firstName, username, title}) {
 
             <br></br>
             <div style={{ display: "block", position: "relative", left: "5%" }}>
-              <a className={classes.anchor} href="/dashboard" style={{ textDecoration: "none" }}>
+              <Link className={classes.anchor} to="/dashboard" style={{ textDecoration: "none" }}>
                 <MdDashboard
                   style={{
                     float: "left",
@@ -59,11 +64,11 @@ function SidebarDashboard({firstName, username, title}) {
                 />{" "}
                 <Typography style={{fontSize: "1.2rem",}} variant="body2">Dashboard</Typography>
                 
-              </a>
+              </Link>
               
               <br></br>
               
-              <a className={classes.anchor} href="/hacktivities" style={{ textDecoration: "none" }}>
+              <Link className={classes.anchor} to="/hacktivities" style={{ textDecoration: "none" }}>
                 <FaDesktop
                   style={{
                     float: "left",
@@ -75,11 +80,11 @@ function SidebarDashboard({firstName, username, title}) {
                 />{" "}
                 <Typography style={{fontSize: "1.2rem",}} variant="body2">Hacktivities</Typography>
                 
-              </a>
+              </Link>
               
               <br></br>
               
-              <a className={classes.anchor} href="/leaderboard" style={{ textDecoration: "none" }}>
+              <Link className={classes.anchor} to="/leaderboard" style={{ textDecoration: "none" }}>
                 <FaTrophy
                   style={{
                     float: "left",
@@ -90,10 +95,10 @@ function SidebarDashboard({firstName, username, title}) {
                   }}
                 />{"  "} 
                 <Typography style={{fontSize: "1.2rem",}} variant="body2">Leaderboard</Typography>
-              </a>
+              </Link>
           
               <br></br>
-              <a className={classes.anchor} href="/paths" style={{ textDecoration: "none" }}>
+              {/* <Link className={classes.anchor} to="/paths" style={{ textDecoration: "none" }}>
                 <FaNetworkWired
                   style={{
                     float: "left",
@@ -104,9 +109,9 @@ function SidebarDashboard({firstName, username, title}) {
                   }}
                 />{" "}
                 <Typography style={{fontSize: "1.2rem",}} variant="body2">Paths</Typography>
-              </a>
+              </Link>
               
-              <br></br>
+              <br></br> */}
             </div>
             <br></br><br></br>
 
@@ -114,7 +119,7 @@ function SidebarDashboard({firstName, username, title}) {
             <br></br>
 
             <div style={{ display: "block", position: "relative", left: "5%" }}>
-              <a className={classes.anchor} href="/faq" style={{ textDecoration: "none" }}>
+              <Link className={classes.anchor} to="/faq" style={{ textDecoration: "none" }}>
                 <FaQuestionCircle
                   style={{
                     float: "left",
@@ -125,10 +130,10 @@ function SidebarDashboard({firstName, username, title}) {
                   }}
                 />{" "}
                 <Typography style={{fontSize: "1.2rem",}} variant="body2">FAQ</Typography>
-              </a>
+              </Link>
               
               <br></br>
-              <a className={classes.anchor}href="/blog" style={{ textDecoration: "none" }}>
+              <Link className={classes.anchor} to="/blog" style={{ textDecoration: "none" }}>
                 <FaBlog
                   style={{
                     float: "left",
@@ -139,10 +144,10 @@ function SidebarDashboard({firstName, username, title}) {
                   }}
                 />{" "}
                 <Typography style={{fontSize: "1.2rem",}} variant="body2">Blog</Typography>
-              </a>
+              </Link>
              
               <br></br>
-              <a className={classes.anchor}href="#" style={{ textDecoration: "none" }}>
+              <Link className={classes.anchor} target="blank" href="https://www.discord.com/wikisecurityacademy" style={{ textDecoration: "none" }}>
                 <FaDiscord
                   style={{
                     float: "left",
@@ -153,7 +158,7 @@ function SidebarDashboard({firstName, username, title}) {
                   }}
                 />{" "}
                 <Typography style={{fontSize: "1.2rem",}} variant="body2">Discord</Typography>
-              </a>
+              </Link>
             </div>
           </div>
         

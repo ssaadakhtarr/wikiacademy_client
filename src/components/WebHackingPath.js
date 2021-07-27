@@ -8,6 +8,8 @@ import ToolPath from "../img/toolpath.png";
 import Web from "../img/web.jpg";
 import axios from 'axios';
 import Rooms from "./Rooms";
+import Nav2 from './Nav2';
+import Cookies from 'universal-cookie';
 
 
 
@@ -62,6 +64,7 @@ function WebHackingPath() {
     const classes = useStyles();
     const pathName = "web";
     const [roomData, setRoomData] = React.useState();
+    const cookies = new Cookies();
   const [mounted, setMounted] = React.useState(false);
   
   useEffect(() => {
@@ -75,13 +78,13 @@ function WebHackingPath() {
   
     })
   }, [])
-  if (!mounted || roomData === undefined) {
+  // if (!mounted || roomData === undefined) {
     
-    return (
-    "load"
-    );
-  }
-  else {
+  //   return (
+  //   "load"
+  //   );
+  // }
+  // else {
 
   
     return (
@@ -93,7 +96,7 @@ function WebHackingPath() {
       width: "100%",
       color: "white",
     }}>
-          <Nav />
+         {(cookies.get("userId")) ? <Nav2 /> : <Nav/>}
           <Box padding={10}>
           <Typography  variant="h2" className={classes.center}>Web Hacking Fundamentals
     </Typography>
@@ -134,7 +137,7 @@ function WebHackingPath() {
 
   {/* Tools room are displayed below */}
   <Box style={{backgroundColor: "#1e2633",}}>
-      <Grid container spacing={1}>
+     {roomData !== undefined ?  <Grid container spacing={1}>
     {console.log(roomData)}
          {roomData.map((i) => {
            return(
@@ -144,7 +147,7 @@ function WebHackingPath() {
              </Grid>
            );
          })}
-          </Grid>
+          </Grid> : "loading..."}
           </Box>
           
     
@@ -152,5 +155,5 @@ function WebHackingPath() {
         </div>
     )
 }
-}
+// }
 export default WebHackingPath

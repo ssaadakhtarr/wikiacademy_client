@@ -48,6 +48,7 @@ import HashLoader from "react-spinners/HashLoader";
 import { css } from "@emotion/react";
 import { Box } from "@material-ui/core";
 import Test from "./components/Test";
+import SqliOne from "./components/labs/2/SqliOne";
 /* Client\src\fonts\style.css */
 
 const override = css`
@@ -281,6 +282,8 @@ function App() {
 
           <ProtectedRoute path="/add-blog" component={AddBlog} />
           <Route path="/blogs/:blogid" component={BlogPage} />
+
+          <ProtectedRoute path="/labs/2/sqli-one" component={SqliOne} />
 
           <Route component={Error} />
         </Switch>

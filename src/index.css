@@ -1,9 +1,12 @@
 * {
   font-family: 'Nunito', sans-serif !important;
+  /* overflow-x: hidden;
+  overflow-y: scroll; */
 }
 
 
 body {
+  overflow-x: hidden;
   margin: 0;
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

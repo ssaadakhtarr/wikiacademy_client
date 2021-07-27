@@ -177,6 +177,7 @@ function GeneralProfile(userData) {
         padding: "0",
         backgroundColor: "#141d2b",
         justifyContent: "center",
+        minHeight: "100vh",
       }}
     >
       <Box

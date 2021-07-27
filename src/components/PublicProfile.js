@@ -24,6 +24,9 @@ import Rooms from "./Rooms.js"
 import axios from "axios";
 import Cookies from "universal-cookie";
 import Nav from "./Nav";
+import { Scrambler, Cycler } from "react-text-scrambler";
+
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -93,7 +96,8 @@ function PublicProfile() {
   const [mounted, setMounted] = React.useState(false);
   const [roomsIn, setRoomsIn] = React.useState();
   const [userData, setUserData] = React.useState();
-
+  const [strings, setStrings] = React.useState([]);
+  const [temp, setTemp] = React.useState();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -128,9 +132,18 @@ function PublicProfile() {
       console.log(response.data);
       if(response.data != undefined) {
         setUserData(response.data);
+        // setStrings(response.data[0].level + " " + response.data[0].title)
+
+        // strings.push(response.data[0].level);
+        // strings.push(response.data[0].title);
       }
     })
   }, [])
+
+    if (userData !== undefined && strings.length === 0) {
+      strings.push(userData[0].level);
+      strings.push(userData[0].title);
+    }
 
   // if (!mounted  || userData === undefined) {
   //   return (
@@ -138,6 +151,9 @@ function PublicProfile() {
   //   );
 
   // }
+  const characters = "!<>-_\\/[]{}—=+*^?#________";
+//  console.log(strings.split(" ")[0]);
+  
   
   
   return (
@@ -154,13 +170,24 @@ function PublicProfile() {
       >
           {(cookies.get("userId") ? <Nav2/>:<Nav/>)}
         <Box style={{paddingTop: "5%"}}>
+        
         <Typography
           style={{marginBottom: "5%", textAlign: "center", color: "#9fef00" }}
           variant="h4"
         >
+         
+
           {(userData !== undefined ? userData[0].username : "loading...")}{" "}
           <span style={{ fontSize: "30px", fontWeight: "600", color: "#fff" }}>
-            {userData !== undefined ? "[" + userData[0].title + "]" : "loading..."}
+            {/* {userData !== undefined ? "[" + userData[0].title + "]" : "loading..."} */}
+    [
+          {(userData !== undefined) ? <Cycler
+            duration={ 3500 }
+            strings={ ["Level " + (userData[0].level).toString(), userData[0].title] } characters={characters}/>: "loading..."}
+            ]
+            {/* <Cycler
+            duration={ 3000 }
+            strings={ strings } characters={characters}/> */}
           </span>
         </Typography>
         <Box

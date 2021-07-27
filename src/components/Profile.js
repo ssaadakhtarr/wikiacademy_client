@@ -138,10 +138,10 @@ function Profile() {
     }, []);
 
 
-    if (!mounted && userDashboard === undefined) {
-        return <div>Loading...</div>;
-      }
-      else{
+    // if (!mounted && userDashboard === undefined) {
+    //     return <div>Loading...</div>;
+    //   }
+    //   else{
   
 
   return (
@@ -205,10 +205,10 @@ function Profile() {
         </Tabs>
         </AppBar>
         <TabPanel style={{backgroundColor: "#141d2b"}} value={value} index={0}>
-          <GeneralProfile userData={userDashboard} />
+          {(userDashboard !== undefined) ? <GeneralProfile userData={userDashboard} /> : "loading..."}
         </TabPanel>
         <TabPanel style={{backgroundColor: "#141d2b"}} value={value} index={1}>
-          <AboutProfile userData={userDashboard} />
+          {(userDashboard !== undefined) ? <AboutProfile userData={userDashboard} /> : "loading..."}
         </TabPanel>
         <TabPanel style={{backgroundColor: "#141d2b"}} value={value} index={2}>
           <OtherProfile />
@@ -219,6 +219,6 @@ function Profile() {
     </div>
   );
 }
-}
+// }
 
 export default Profile;

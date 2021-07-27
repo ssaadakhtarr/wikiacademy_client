@@ -8,6 +8,8 @@ import ToolPath from "../img/toolpath.png";
 import Waves from "../img/waves.png"
 import axios from 'axios';
 import Rooms from "./Rooms";
+import Cookies from 'universal-cookie';
+import Nav2 from './Nav2';
 
 const useStyles = makeStyles((theme)=>({
     root: {
@@ -60,6 +62,7 @@ function CompleteBegineer() {
     const classes = useStyles();
     const pathName = "beginner";
     const [roomData, setRoomData] = React.useState();
+    const cookies = new Cookies();
   const [mounted, setMounted] = React.useState(false);
   
   useEffect(() => {
@@ -73,13 +76,13 @@ function CompleteBegineer() {
   
     })
   }, [])
-  if (!mounted || roomData === undefined) {
+  // if (!mounted || roomData === undefined) {
     
-    return (
-    "load"
-    );
-  }
-  else {
+  //   return (
+  //   "load"
+  //   );
+  // }
+  // else {
 
 
     return (
@@ -91,7 +94,7 @@ function CompleteBegineer() {
       width: "100%",
       color: "white",
     }}>
-          <Nav />
+         {(cookies.get("userId")) ? <Nav2 /> : <Nav/>}
           <Box padding={10}>
           <Typography  variant="h2" className={classes.center}>Complete Beginner
     </Typography>
@@ -132,7 +135,7 @@ function CompleteBegineer() {
 
   {/* Tools room are displayed below */}
   <Box style={{backgroundColor: "#1e2633",}}>
-      <Grid container spacing={1}>
+      {roomData !== undefined ? <Grid container spacing={1}>
     {console.log(roomData)}
          {roomData.map((i) => {
            return(
@@ -142,7 +145,7 @@ function CompleteBegineer() {
              </Grid>
            );
          })}
-          </Grid>
+          </Grid> : "loading..."}
           </Box>
           
     
@@ -151,5 +154,5 @@ function CompleteBegineer() {
 
     )
 }
-}
+// }
 export default CompleteBegineer
