@@ -49,7 +49,7 @@ jobs:
       
     # Runs a set of commands using the runners shell
     - name: Installing surge
-      run: sudo npm install --unsafe-perm=true --allow-root --global surge
+      run: sudo npm install --global surge
     
     - name: deploying surge
       run: surge ./build wikisecurityacademy.surge.sh --token ${{ secrets.WIKISEC_SECRET }}
