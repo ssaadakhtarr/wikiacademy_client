@@ -34,7 +34,7 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
     - name: Set /site ownership to current user
-      run: sudo chown -R $(id -u):$(id -g) /home/runner/work/wikiacademy_client/wikiacademy_client/node_modules/.cache
+      run: sudo chown -R $(whoami) ./home/runner/work/wikiacademy_client/wikiacademy_client/node_modules/.cache
     - name: npm install, build, and test
       run: |
         # Build and test the project, then
