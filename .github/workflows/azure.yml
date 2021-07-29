@@ -33,12 +33,14 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ env.NODE_VERSION }}
+    - name: Set /site ownership to current user
+      run: sudo chown -R $(id -u):$(id -g) /home/runner/work/wikiacademy_client/wikiacademy_client/node_modules/.cache
     - name: npm install, build, and test
       run: |
         # Build and test the project, then
         # deploy to Azure Web App.
         npm install
-        sudo npm run build --if-present
+        npm run build --if-present
         npm run test --if-present
     - name: add process.json
       run: |
