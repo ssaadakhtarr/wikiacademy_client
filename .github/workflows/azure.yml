@@ -34,7 +34,7 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
     - name: Set /site ownership to current user
-      run: sudo chown -R $(whoami) ~/
+      run: sudo chown -R $(whoami) /
     - name: npm install, build, and test
       run: |
         # Build and test the project, then
