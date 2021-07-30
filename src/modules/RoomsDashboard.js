@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { Box, Grid } from '@material-ui/core';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import React, { useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import PropTypes from "prop-types";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import { Box, Grid } from "@material-ui/core";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 
-
-import { withStyles } from '@material-ui/styles';
-import axios from 'axios';
-import {useHistory} from 'react-router-dom';
-
+import { withStyles } from "@material-ui/styles";
+import axios from "axios";
+import routes from "../GetRoute.js";
+import { useHistory } from "react-router-dom";
 
 const RoomButton = withStyles({
   root: {
@@ -33,114 +32,165 @@ const RoomButton = withStyles({
 })(Button);
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      minWidth: 734,
-      [theme.breakpoints.down("md")]: {
-        minWidth: 534,
-      },
-      [theme.breakpoints.down("sm")]: {
-        minWidth: 234,
-      },
+  root: {
+    minWidth: 734,
+    [theme.breakpoints.down("md")]: {
+      minWidth: 534,
     },
-    bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
+    [theme.breakpoints.down("sm")]: {
+      minWidth: 234,
     },
-    title: {
-      fontSize: 14,
-    },
-    pos: {
-      marginBottom: 12,
-    },
-  }));
+  },
+  bullet: {
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+}));
 
-  function LinearProgressWithLabel(props) {
-    return (
-      <Box display="flex" alignItems="center">
-        <Box style={{width: "100%"}} mr={1}>
-          <LinearProgress style={{width :"100%"}} variant="determinate" {...props} />
-        </Box>
-        <Box minWidth={35}>
-          <Typography style={{color: "#cad2e2"}} variant="body2" >{`${Math.round(
-            props.value,
-          )}%`}</Typography>
-        </Box>
+function LinearProgressWithLabel(props) {
+  return (
+    <Box display="flex" alignItems="center">
+      <Box style={{ width: "100%" }} mr={1}>
+        <LinearProgress
+          style={{ width: "100%" }}
+          variant="determinate"
+          {...props}
+        />
       </Box>
-    );
-  }
-  
-  LinearProgressWithLabel.propTypes = {
-    /**
-     * The value of the progress indicator for the determinate and buffer variants.
-     * Value between 0 and 100.
-     */
-    value: PropTypes.number.isRequired,
-  };
+      <Box minWidth={35}>
+        <Typography style={{ color: "#cad2e2" }} variant="body2">{`${Math.round(
+          props.value
+        )}%`}</Typography>
+      </Box>
+    </Box>
+  );
+}
 
+LinearProgressWithLabel.propTypes = {
+  /**
+   * The value of the progress indicator for the determinate and buffer variants.
+   * Value between 0 and 100.
+   */
+  value: PropTypes.number.isRequired,
+};
 
 const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: '#9fef00'
-      }
-    }
-  });
+  palette: {
+    primary: {
+      main: "#9fef00",
+    },
+  },
+});
 
 function RoomsDashboard(name) {
   const history = useHistory();
-    const classes = useStyles();
-    const username = name.name;
-    const user = JSON.parse(localStorage.getItem("user"));
-    // const [userId, setUserId] = React.useState(user.id);
-    const [roomData, setRoomData] = React.useState();
+  const classes = useStyles();
+  const username = name.name;
+  const user = JSON.parse(localStorage.getItem("user"));
+  // const [userId, setUserId] = React.useState(user.id);
+  const [roomData, setRoomData] = React.useState();
   const [mounted, setMounted] = React.useState(false);
   useEffect(() => {
     console.log(username);
-    axios.post("http://localhost:3001/getJoinedRooms", {
-      username: username,
-    }).then((response) => {
-      console.log(response.data);
-      if (response.data != undefined) {
-        setMounted(true);
-        setRoomData(response.data);
-        
-      }
-    })
-  }, [])
+    axios
+      .post(`${routes}/getJoinedRooms`, {
+        username: username,
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data != undefined) {
+          setMounted(true);
+          setRoomData(response.data);
+        }
+      });
+  }, []);
 
   if (!mounted || roomData === undefined) {
-    return (
-      null
-    );
-
-  }
-  else {
+    return null;
+  } else {
     console.log(roomData);
 
-
     return (
-        <div>
-            <Card style={{ height: "100%", width: "100%", backgroundColor: "#111927", color: "#fff",}} className={classes.root}>
-      <CardContent>
-      <Typography style={{textAlign: "left", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body1">Rooms Joined</Typography>
+      <div>
+        <Card
+          style={{
+            height: "100%",
+            width: "100%",
+            backgroundColor: "#111927",
+            color: "#fff",
+          }}
+          className={classes.root}
+        >
+          <CardContent>
+            <Typography
+              style={{
+                textAlign: "left",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+                fontWeight: "bold",
+                color: "#78839c",
+              }}
+              variant="body1"
+            >
+              Rooms Joined
+            </Typography>
 
-          {roomData.length > 0 && roomData.map((i) => {
-            console.log(i.progBar);
-            return (<div>
-              <br></br>
-          <Box padding={2} style={{backgroundColor: "#141d2b"}}>
-          <Grid container spacing={2}>
-            <Grid item lg={2} md={2} sm={2} xs={2}><Typography style={{marginTop: "8%", textAlign: "left"}}>{i.roomTitle}</Typography></Grid>
-            <Grid item lg={8} md={8} sm={8} xs={8}><Box style={{}}> <MuiThemeProvider theme={theme}><LinearProgressWithLabel  style={{margin: "3% 0", borderRadius: "25px", height: "15px",backgroundColor: "#111927"}} value={i.progBar*4} /></MuiThemeProvider></Box></Grid>
-            <Grid item lg={2} md={2} sm={2} xs={2}><Box style={{textAlign: "right"}}><RoomButton onClick={()=>{history.push(`/room/${i.roomName}`)}} variant="contained">Continue</RoomButton></Box></Grid>
-            </Grid>
-            </Box>
-            <br></br>
-      
-            </div>);
-          })}
-
+            {roomData.length > 0 &&
+              roomData.map((i) => {
+                console.log(i.progBar);
+                return (
+                  <div>
+                    <br></br>
+                    <Box padding={2} style={{ backgroundColor: "#141d2b" }}>
+                      <Grid container spacing={2}>
+                        <Grid item xs={3} sm={3} md={2}>
+                          <Typography
+                            style={{ marginTop: "8%", textAlign: "left" }}
+                          >
+                            {i.roomTitle}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={5} sm={5} md={8}>
+                          <Box style={{}}>
+                            {" "}
+                            <MuiThemeProvider theme={theme}>
+                              <LinearProgressWithLabel
+                                style={{
+                                  margin: "3% 0",
+                                  borderRadius: "25px",
+                                  height: "15px",
+                                  backgroundColor: "#111927",
+                                }}
+                                value={i.progBar * 4}
+                              />
+                            </MuiThemeProvider>
+                          </Box>
+                        </Grid>
+                        <Grid item xs={4} sm={3} md={2}>
+                          <Box style={{ textAlign: "right" }}>
+                            <RoomButton
+                              onClick={() => {
+                                history.push(`/room/${i.roomName}`);
+                              }}
+                              variant="contained"
+                            >
+                              Continue
+                            </RoomButton>
+                          </Box>
+                        </Grid>
+                      </Grid>
+                    </Box>
+                    <br></br>
+                  </div>
+                );
+              })}
 
             {/* <Box padding={2} style={{backgroundColor: "#212a3a"}}>
           <Grid container spacing={2}>
@@ -158,15 +208,11 @@ function RoomsDashboard(name) {
             </Grid>
             </Box>
             <br></br> */}
-        
-      
-
-      </CardContent>
-      
-    </Card>
-        </div>
-    )
-}
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 }
 
-export default RoomsDashboard
+export default RoomsDashboard;

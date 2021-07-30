@@ -15,6 +15,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Axios from 'axios';
+import routes from "../../GetRoute.js";
 
 
 const JoinButton = withStyles({
@@ -111,7 +112,7 @@ function UserTable({userData, search}) {
   
   const deleteUser = () => {
     console.log("working")
-    Axios.post("http://localhost:3001/deleteUser", {
+    Axios.post(`${routes}/deleteUser`, {
       temp: temp,
     }).then((response) => {
       console.log(response);

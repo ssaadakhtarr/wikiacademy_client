@@ -19,6 +19,7 @@ import Labs from "./Labs";
 import { withStyles } from "@material-ui/styles";
 import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
+import routes from "../GetRoute.js";
 
 const SubmitButton = withStyles({
   root: {
@@ -96,9 +97,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   Hack: {
-    // [theme.breakpoints.down("xs")]: {
-    //   fontSize: "1.5em",
-    // },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "2.5em",
+    },
   },
   HackImg: {
     width: "50%",
@@ -136,12 +137,24 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "0.9em",
     },
   },
+  logo: {
+    width: "500px",
+    [theme.breakpoints.down("xs")]: {
+      width: "250px",
+    },
+  },
   Isa: {
     //   backgroundImage:
     //   "url('https://i.pinimg.com/originals/1f/3d/85/1f3d85148ab183f085a42b5649069499.jpg')",
     textAlign: "left",
     // backgroundColor: "#5e5e5e",
     color: "white",
+  },
+  overviewText: {
+    margin: "0, 25%",
+    [theme.breakpoints.down("sm")]: {
+      margin: "0, 5%",
+    },
   },
 }));
 
@@ -179,7 +192,7 @@ function Hacktivities() {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:3001/getHomeData").then((response) => {
+    axios.get(`${routes}/getHomeData`).then((response) => {
       console.log(response.data);
       if (response.data != undefined) {
         setMounted(true);
@@ -195,7 +208,7 @@ function Hacktivities() {
 
   const checkFlag = () => {
     axios
-      .post("http://localhost:3001/checkFlag", {
+      .post(`${routes}/checkFlag`, {
         submitFlag: submitFlag,
         userId: user.id,
       })
@@ -279,7 +292,7 @@ function Hacktivities() {
       </AppBar>
       <TabPanel style={{ color: "#fff" }} value={value} index={0}>
         <Box
-          padding={10}
+          padding={2}
           style={{
             textAlign: "center",
             display: "flex",
@@ -290,9 +303,10 @@ function Hacktivities() {
         >
           <div style={{ textAlign: "center", width: "100%" }}>
             <img
-              style={{
-                width: "50%",
-              }}
+            className={classes.logo}
+              // style={{
+              //   width: "50%",
+              // }}
               src={Logo}
             />
           </div>
@@ -302,11 +316,11 @@ function Hacktivities() {
             Learn hacking with WikiSecurity!
           </Typography>
           <br></br>
-          <div style={{ margin: "0 25%" }}>
+          <div className={classes.overviewText} >
             <Typography
               style={{ color: "#c6cede" }}
               variant="h6"
-              className={classes.HackAX}
+              // className={classes.HackAX}
             >
               Welcome to the Hacktivities section! Here in this section you can
               start learning by joining a specific room of your choice or you

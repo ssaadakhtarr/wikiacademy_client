@@ -12,6 +12,7 @@ import Navbar from "../modules/AdminDashboard/Navbar";
 import { ImSearch } from "react-icons/im";
 import UserTable from "../modules/AdminDashboard/UserTable";
 import Axios from "axios";
+import routes from "../GetRoute.js";
 
 
 function UpdateUser() {
@@ -19,7 +20,7 @@ function UpdateUser() {
   const [userDetails, setUserDetails] = React.useState();
   const [mounted, setMounted] = React.useState(false);
   useEffect(() => {
-    Axios.get("http://localhost:3001/getUserData").then((response) => {
+    Axios.get(`${routes}/getUserData`).then((response) => {
       console.log(response.data[1]);
       if (response.data != undefined) {
         setUserDetails(response.data);

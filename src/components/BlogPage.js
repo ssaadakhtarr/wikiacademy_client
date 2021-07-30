@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import BlogPageNav from "../modules/Blog/BlogPageNav";
 import Footer from "./Footer";
 import { useHistory } from "react-router-dom";
+import routes from "../GetRoute.js";
 
 const StyledButton = withStyles({
   root: {
@@ -30,7 +31,7 @@ function BlogPage() {
   const [blogPage, setBlogPage] = React.useState();
 
   useEffect(() => {
-    axios.post("http://localhost:3001/getBlogPage",{ 
+    axios.post(`${routes}/getBlogPage`,{ 
       blogid:blogid,
     }).then((response)=>{
       console.log(response.data)

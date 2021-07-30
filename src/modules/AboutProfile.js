@@ -17,6 +17,7 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import Axios from "axios";
+import routes from "../GetRoute.js";
 import {useStateValue} from "../StateProvider";
 import Swal from "sweetalert2";
 
@@ -166,7 +167,7 @@ console.log(userData.userData.dateOfBirth);
 
 
   const updateChanges = () => {
-    Axios.post("http://localhost:3001/updatePersonalInfo", {
+    Axios.post(`${routes}/updatePersonalInfo`, {
       id: id,
       selectedDate: selectedDate,
       gender: gender,
@@ -186,7 +187,7 @@ console.log(userData.userData.dateOfBirth);
   }
   
   const updateSocials = () => {
-    Axios.post("http://localhost:3001/updateSocials", {
+    Axios.post(`${routes}/updateSocials`, {
       id: id,
       twitter: twitter,
       instagram: instagram,
@@ -215,17 +216,18 @@ console.log(userData.userData.dateOfBirth);
 
         <TextareaAutosize
           style={{backgroundColor: "#141d2b", color: "#9fef00", width: "100%", minWidth: "50%",maxWidth: "600px", float: "right" }}
-          rowsMin={18}
+          rowsMin={12}
           rowsMax={Infinity}
           aria-label="empty textarea"
           placeholder="Write a short summary about yourself"
           value={summary}
           onChange={handleSummary}
         />
-
         
-          <TextField
-            style={{color: "#9fef00", width: "320px" }}
+
+        <Box style={{maxWidth: "400px"}}>
+        <TextField
+            style={{color: "#9fef00", width: "100%" }}
             id="date"
             label="Birthday"
             type="date"
@@ -246,100 +248,103 @@ console.log(userData.userData.dateOfBirth);
               letterSpacing: "1.5px", color: "#9fef00", fontSize: "12px", textTransform: "none"},
             }}
           />
-        <br></br>
+          <br></br>
 
-        <br></br>
+<br></br>
 
-        <FormControl
-          size="small"
-          style={{ width: "320px" }}
-          variant="outlined"
-          className={classes.formControl}
-        >
-          <InputLabel className={classes.inputlabel} id="demo-simple-select-outlined-label">Gender</InputLabel>
-          <Select
+<FormControl
+  size="small"
+  style={{ width: "100%" }}
+  variant="outlined"
+  className={classes.formControl}
+>
+  <InputLabel className={classes.inputlabel} id="demo-simple-select-outlined-label">Gender</InputLabel>
+  <Select
+  
+  className={classes.select}
+    labelId="demo-simple-select-outlined-label"
+    id="demo-simple-select-outlined"
+    value={gender}
+    onChange={handleGender}
+    label="Gender"
+  >
+    <MenuItem value="">
+      <em>None</em>
+    </MenuItem>
+    <MenuItem value="Male">Male</MenuItem>
+    <MenuItem value="Female">Female</MenuItem>
+    <MenuItem value="Other">Other</MenuItem>
+  </Select>
+</FormControl>
+<br></br>
+<br></br>
+
+<FormControl
+  size="small"
+  style={{ width: "100%" }}
+  variant="outlined"
+  className={classes.formControl}
+>
+  <InputLabel className={classes.inputlabel} id="demo-simple-select-outlined-label">
+    Occupation
+  </InputLabel>
+  <Select
+  className={classes.select}
+    labelId="demo-simple-select-outlined-label"
+    id="demo-simple-select-outlined"
+    value={occupation}
+    onChange={handleOccupation}
+    label="Occupation"
+  >
+    <MenuItem value="">
+      <em>None</em>
+    </MenuItem>
+    <MenuItem value="Full-time Employee">Full-time Employee</MenuItem>
+    <MenuItem value="Part-time Employee">Part-time Employee</MenuItem>
+    <MenuItem value="Self-Employed">Self-Employed</MenuItem>
+    <MenuItem value="Unemployed">Unemployed</MenuItem>
+    <MenuItem value="Student">Student</MenuItem>
+    <MenuItem value="Other">Other</MenuItem>
+  </Select>
+</FormControl>
+<br></br>
+<br></br>
+<FormControl
+  size="small"
+  style={{ width: "100%" }}
+  variant="outlined"
+  className={classes.formControl}
+>
+  <InputLabel className={classes.inputlabel} id="demo-simple-select-outlined-label">
+    Area of Interest
+  </InputLabel>
+  <Select
+  className={classes.select}
+    labelId="demo-simple-select-outlined-label"
+    id="demo-simple-select-outlined"
+    value={areaOfInterest}
+    onChange={handleAreaOfInterest}
+    label="Area of Interest"
+  >
+    <MenuItem value="">
+      <em>None</em>
+    </MenuItem>
+    <MenuItem value="Incident Response">Incident Response</MenuItem>
+    <MenuItem value="Penetration Testing">Penetration Testing</MenuItem>
+    <MenuItem value="Security Engineer">Security Engineer</MenuItem>
+    <MenuItem value="Forensics">Forensics</MenuItem>
+    <MenuItem value="Research">Research</MenuItem>
+    <MenuItem value="Other">Other</MenuItem>
+  </Select>
+</FormControl>
+<br></br>
+<br></br>
+<SubmitButton onClick={updateChanges} style={{ textTransform: "none" }}>
+  Update Changes
+</SubmitButton>
+        </Box>
           
-          className={classes.select}
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={gender}
-            onChange={handleGender}
-            label="Gender"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="Male">Male</MenuItem>
-            <MenuItem value="Female">Female</MenuItem>
-            <MenuItem value="Other">Other</MenuItem>
-          </Select>
-        </FormControl>
-        <br></br>
-        <br></br>
-
-        <FormControl
-          size="small"
-          style={{ width: "320px" }}
-          variant="outlined"
-          className={classes.formControl}
-        >
-          <InputLabel className={classes.inputlabel} id="demo-simple-select-outlined-label">
-            Occupation
-          </InputLabel>
-          <Select
-          className={classes.select}
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={occupation}
-            onChange={handleOccupation}
-            label="Occupation"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="Full-time Employee">Full-time Employee</MenuItem>
-            <MenuItem value="Part-time Employee">Part-time Employee</MenuItem>
-            <MenuItem value="Self-Employed">Self-Employed</MenuItem>
-            <MenuItem value="Unemployed">Unemployed</MenuItem>
-            <MenuItem value="Student">Student</MenuItem>
-            <MenuItem value="Other">Other</MenuItem>
-          </Select>
-        </FormControl>
-        <br></br>
-        <br></br>
-        <FormControl
-          size="small"
-          style={{ width: "320px" }}
-          variant="outlined"
-          className={classes.formControl}
-        >
-          <InputLabel className={classes.inputlabel} id="demo-simple-select-outlined-label">
-            Area of Interest
-          </InputLabel>
-          <Select
-          className={classes.select}
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={areaOfInterest}
-            onChange={handleAreaOfInterest}
-            label="Area of Interest"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="Incident Response">Incident Response</MenuItem>
-            <MenuItem value="Penetration Testing">Penetration Testing</MenuItem>
-            <MenuItem value="Security Engineer">Security Engineer</MenuItem>
-            <MenuItem value="Forensics">Forensics</MenuItem>
-            <MenuItem value="Research">Research</MenuItem>
-            <MenuItem value="Other">Other</MenuItem>
-          </Select>
-        </FormControl>
-        <br></br>
-        <br></br>
-        <SubmitButton onClick={updateChanges} style={{ textTransform: "none" }}>
-          Update Changes
-        </SubmitButton>
+        
       </Box>
       <br></br>
       <Box  padding={5} style={{color: "#fff", backgroundColor: "#1a2332", maxWidth: "1400px", }}>
@@ -349,6 +354,7 @@ console.log(userData.userData.dateOfBirth);
         </Typography>
         <br></br>
         <br></br>
+        <Box style={{maxWidth: "400px"}}>
         <TwitterIcon style={IconStyle} />
         <TextField
         InputProps={{
@@ -363,7 +369,7 @@ console.log(userData.userData.dateOfBirth);
         }}
           defaultValue={twitter}
           onChange={handleTwitter}
-          style={{ width: "295px" }}
+          style={{ width: "80%",  }}
           size="small"
           variant="outlined"
           label="Twitter"
@@ -384,7 +390,7 @@ console.log(userData.userData.dateOfBirth);
         }}
         defaultValue={instagram}
         onChange={handleInstagram}
-          style={{ width: "295px" }}
+          style={{ width: "80%" }}
           size="small"
           variant="outlined"
           label="Instagram"
@@ -405,7 +411,7 @@ console.log(userData.userData.dateOfBirth);
         }}
         defaultValue={github}
         onChange={handleGithub}
-          style={{ width: "295px" }}
+          style={{ width: "80%" }}
           size="small"
           variant="outlined"
           label="Github"
@@ -426,7 +432,7 @@ console.log(userData.userData.dateOfBirth);
         }}
         defaultValue={linkedin}
         onChange={handleLinkedin}
-          style={{ width: "295px" }}
+          style={{ width: "80%" }}
           size="small"
           variant="outlined"
           label="Linkedin"
@@ -436,6 +442,8 @@ console.log(userData.userData.dateOfBirth);
         <SubmitButton onClick={updateSocials} style={{ textTransform: "none" }}>
           Update Socials
         </SubmitButton>
+        </Box>
+        
       </Box>
     </div>
   );

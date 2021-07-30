@@ -34,8 +34,8 @@ const JoinButton = withStyles({
 const useStyles = makeStyles({
   root: {
     backgroundColor: "#141d2b",
-    
-  maxWidth: "100%",
+    width: "100%",
+  // maxWidth: "100%",
   height: "100%",
   transition: "0.5s all ease",
   '&:hover': {

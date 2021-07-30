@@ -1,5 +1,6 @@
 import React, { useState, Component } from "react";
 import Axios from "axios";
+import routes from "../GetRoute.js";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -21,6 +22,7 @@ import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { renderTextFieldEdit } from "./Textfield";
 import Swal from "sweetalert2";
+import { FaBorderNone } from "react-icons/fa";
 
 //Styles here
 const useStyles = makeStyles((theme) => ({
@@ -59,14 +61,29 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   sideLogo: {
-    paddingBottom: "80%",
+    margin: "50% auto",
+    width: "80%",
     [theme.breakpoints.down("md")]: {
-      paddingBottom: "100%",
+      // width: "250px"
+      
+    },
+
+    // [theme.breakpoints.down("sm")]: {
+    //   paddingBottom: "40%",
+    //   width: "10px"
+    // },
+  },
+  sideBox: {
+    minHeight: "100vh",
+    [theme.breakpoints.down("md")]: {
+      minHeight: "160vh"
+      
     },
     [theme.breakpoints.down("sm")]: {
-      paddingBottom: "40%",
+      display: "none",
+      
     },
-  }
+  },
 }));
 
 function Signup() {
@@ -117,7 +134,7 @@ function Signup() {
   //   passwordReg.length > 0;
 
   const register = (values) => {
-    Axios.post("http://localhost:3001/register", values).then(
+    Axios.post(`${routes}/register`, values).then(
       (response) => {
         if (response.data.message === "User already exists") {
           Toast.fire({
@@ -169,22 +186,26 @@ function Signup() {
               <Grid container spacing={0}>
                 <Grid item xs={12} sm={12} md={6} lg={6}>
                   <Box
-                  className={classes.sideLogo}
+                  className={classes.sideBox}
                     style={{
                       
                       textAlign: "center",
                       
                       backgroundImage:
                         "url('https://wallpapercave.com/wp/wp2757874.gif')",
-                      paddingTop: "40%",
-                      paddingLeft: "5%",
-                      paddingRight: "5%",
+                      // paddingTop: "40%",
+                      // paddingLeft: "5%",
+                      // paddingRight: "5%",
+                      // top: "auto",
+                     
+                      
                       
                     }}
                   >
                     <Link to="/">
                       <img
-                        style={{ width: "100vh", height: "25vh" }}
+                      className={classes.sideLogo}
+                        // style={{ width: "100px", height: "25px" }}
                         src={logo}
                       />
                     </Link>

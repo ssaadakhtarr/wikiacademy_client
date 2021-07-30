@@ -7,6 +7,7 @@ import TotalRoomsCard from '../modules/AdminDashboard/TotalRoomsCard';
 import TotalUsersCard from '../modules/AdminDashboard/TotalUsersCard';
 import TotalQuestionCard from '../modules/AdminDashboard/TotalQuestionsCard';
 import axios from 'axios';
+import routes from "../GetRoute.js";
 
 
 function AdminDashboard() {
@@ -20,14 +21,14 @@ function AdminDashboard() {
   
 
     useEffect(() => {
-        axios.get("http://localhost:3001/getAdminData").then((response)=> {
+        axios.get(`${routes}/getAdminData`).then((response)=> {
         console.log(response.data);
         if(response.data != undefined){
             setDashboardDetails(response.data);
             setMounted(true);
         }
         })
-        axios.get("http://localhost:3001/getLeaderboard").then((response) => {
+        axios.get(`${routes}/getLeaderboard`).then((response) => {
       console.log(response.data);
       if (response.data != undefined) {
         getLeaderBoardDetails(response.data);

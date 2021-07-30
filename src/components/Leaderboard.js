@@ -16,6 +16,7 @@ import Nav2 from "./Nav2";
 import Footer from "./Footer";
 import Cookies from "universal-cookie";
 import axios from "axios";
+import routes from "../GetRoute.js";
 import { ImSearch } from "react-icons/im";
 import UserTable from "../modules/AdminDashboard/UserTable";
 import LeaderboardDetails from "../components/LeaderboardDetails";
@@ -98,7 +99,7 @@ function Leaderboard() {
   const [LeaderboardData, getLeaderBoardDetails] = React.useState();
   const [mounted, setMounted] = React.useState(false);
   useEffect(() => {
-    axios.get("http://localhost:3001/getLeaderboard").then((response) => {
+    axios.get(`${routes}/getLeaderboard`).then((response) => {
       console.log(response.data);
       if (response.data != undefined) {
         getLeaderBoardDetails(response.data);

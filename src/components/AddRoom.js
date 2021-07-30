@@ -1,11 +1,9 @@
 import { Box, Button, Grid, TextField, Typography } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-// import Pagination from "@material-ui/lab/Pagination";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { createMuiTheme } from "@material-ui/core/styles";
-
 import { useStateValue } from "../StateProvider";
 import Axios from "axios";
 import Navbar from "../modules/AdminDashboard/Navbar";
@@ -14,6 +12,7 @@ import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import routes from "../GetRoute.js";
 
 const theme = createMuiTheme({
   palette: {
@@ -112,7 +111,7 @@ function AddRoom() {
   };
 
   const sendData = () => {
-    Axios.post("http://localhost:3001/sendTask", {
+    Axios.post(`${routes}/sendTask`, {
       Cke: Cke,
     }).then((response) => {
       console.log(response);
@@ -147,7 +146,7 @@ function AddRoom() {
             break;
         }
         console.log("clicked");
-        Axios.post("http://localhost:3001/sendTask", {
+        Axios.post(`${routes}/sendTask`, {
           roomName: roomName,
           taskNo: taskNo,
           taskName: taskName,
@@ -190,13 +189,13 @@ function AddRoom() {
     }).then((result) => {
       if (result.isConfirmed) {
         setRoomSent(true);
-        Axios.post("http://localhost:3001/sendRoomDetails", {
+        Axios.post(`${routes}/sendRoomDetails`, {
           roomName: roomName,
           roomTitle: roomTitle,
-          tools:tools,
-          web:web,
-          vuln:vuln,
-          beginner:beginner,
+          tools: tools,
+          web: web,
+          vuln: vuln,
+          beginner: beginner,
           roomTagline: roomTagline,
           roomImage: roomImage,
           roomDescription: roomDescription,
@@ -240,7 +239,6 @@ function AddRoom() {
     setBeginner(event.target.checked);
   };
 
-
   return (
     <div
       style={{
@@ -263,23 +261,23 @@ function AddRoom() {
         Add Room
       </Typography>
       <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "inlineBlock",
-                width: "240px",
-                height: "5px",
-                borderRadius: "20px",
-                backgroundColor: "#88cc14",
-              }}
-            ></div>
-          </div>
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "inlineBlock",
+            width: "240px",
+            height: "5px",
+            borderRadius: "20px",
+            backgroundColor: "#88cc14",
+          }}
+        ></div>
+      </div>
 
       <Box boxShadow={2} padding={10}>
         {pageNumber === 1 && (
@@ -340,7 +338,9 @@ function AddRoom() {
             />
             <br></br>
             <br></br>
-            <Typography style={{color: "#fff"}} variant="h4">Select Paths</Typography>
+            <Typography style={{ color: "#fff" }} variant="h4">
+              Select Paths
+            </Typography>
             <FormControlLabel
               style={{ color: "white" }}
               control={

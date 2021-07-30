@@ -13,6 +13,7 @@ import { ImSearch } from "react-icons/im";
 import UserTable from "../modules/AdminDashboard/UserTable";
 import RoomsTable from "../modules/AdminDashboard/RoomsTable";
 import axios from "axios";
+import routes from "../GetRoute.js";
 
 
 function DeleteRooms() {
@@ -20,7 +21,7 @@ function DeleteRooms() {
   const [roomDetails, setRoomDetails] = React.useState();
   const [mounted, setMounted] = React.useState(false);
   useEffect(() => {
-    axios.get("http://localhost:3001/getAllRooms").then((response) => {
+    axios.get(`${routes}/getAllRooms`).then((response) => {
       console.log(response.data);
       if (response.data != undefined) {
         setRoomDetails(response.data);

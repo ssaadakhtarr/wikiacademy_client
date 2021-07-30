@@ -24,6 +24,7 @@ import AddIcon from "@material-ui/icons/Add";
 import {useHistory} from 'react-router-dom'
 import BlogCard from "../modules/Blog/BlogCard";
 import axios from "axios";
+import routes from "../GetRoute.js";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -139,7 +140,7 @@ function Blog() {
     };
   }, []);
   useEffect(() => {
-    axios.get("http://localhost:3001/getBlogs").then((response)=> {
+    axios.get(`${routes}/getBlogs`).then((response)=> {
     console.log(response.data);
     if (response.data != undefined) {
       console.log("mounted");

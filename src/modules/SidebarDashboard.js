@@ -33,7 +33,7 @@ function SidebarDashboard({firstName, username, title, level}) {
     const user = JSON.parse(localStorage.getItem("user"));
     const characters = "!<>-_\\/[]{}—=+*^?#________";
     return (
-        <div style={{color: "#a4b1cd"}}>
+        <div style={{color: "#a4b1cd", minHeight: "100vh"}}>
             <br></br>
             
             

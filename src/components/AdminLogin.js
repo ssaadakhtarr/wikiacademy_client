@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Nav from "./Nav";
-
+import routes from "../GetRoute.js";
 import { withStyles } from "@material-ui/styles";
 import { Box } from "@material-ui/core";
 import {useStateValue} from "../StateProvider";
@@ -93,7 +93,7 @@ function AdminLogin() {
 
   const login = () => {
     console.log(username, password)
-    Axios.post("http://localhost:3001/adminLogin", {
+    Axios.post(`${routes}/adminLogin`, {
       username,
       password,
     }).then((response) => {
@@ -109,7 +109,7 @@ function AdminLogin() {
         const username = response.data.result[0].username;
         console.log(response.data.result)
         
-        Axios.post("http://localhost:3001/setAdminSession", {
+        Axios.post(`${routes}/setAdminSession`, {
           username: username,
           sessionCookie: sessionCookie,
         }).then((response)=>{
@@ -148,7 +148,7 @@ function AdminLogin() {
   };
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/login").then((response) => {
+    Axios.get(`${routes}/login`).then((response) => {
       if (response.data.loggedIn === true) {
         setLoginStatus(true);
       } else {

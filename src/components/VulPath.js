@@ -6,6 +6,7 @@ import ToolImage from "../img/tools.png";
 import { makeStyles } from '@material-ui/core/styles';
 import VulnImage from "../img/vulnerabilities.jpg";
 import axios from 'axios';
+import routes from "../GetRoute.js";
 import Rooms from "./Rooms";
 import Nav2 from './Nav2';
 import Cookies from 'universal-cookie';
@@ -65,7 +66,7 @@ function VulPath() {
   const [mounted, setMounted] = React.useState(false);
   const cookies = new Cookies();
   useEffect(() => {
-    axios.get(`http://localhost:3001/getPath/${pathName}`).then((response) => {
+    axios.get(`${routes}/getPath/${pathName}`).then((response) => {
       console.log(response.data);
       if (response.data !== undefined) {
         setMounted(true);

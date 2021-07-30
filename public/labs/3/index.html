@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
+    
     <title>Cross-Site Scripting (XSS)</title>
 </head>
 
@@ -22,13 +23,27 @@
             </div>
             <br />
             <br />
-            <input type="submit" value="Search" class="btn btn-primary">
+            <input onclick="xss()" type="submit" value="Search" class="btn btn-primary">
             <i class="fas fa-search"></i>
             </button>
         </div>
     </form>
 
     <div id="results"></div>
+
+    <SCRIPT language=JavaScript>
+
+        // <!-- http://www.spacegun.co.uk -->
+        
+        var message = "function disabled";
+        
+        function rtclickcheck(keyp){ if (navigator.appName == "Netscape" && keyp.which == 3){ alert(message); return false; }
+        
+        if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) { alert(message); return false; } }
+        
+        document.onmousedown = rtclickcheck;
+        
+        </SCRIPT>
 
     <script>
 
@@ -83,17 +98,7 @@
 
             return false;
         }
-
-        (function () {
-            var _old_alert = window.alert;
-            window.alert = function () {
-             
-                _old_alert.apply(window, arguments);
-                // run some code after the alert
-                document.body.innerHTML += "<br>Congratulations! You have solved this lab. Here is the flag.<br>";
-                document.body.innerHTML += "<br>$FLAG{ul25w9nemhjx6dufu9ug98oq2sk74i9w}<br>";
-            };
-        })();
+        
     </script>
 </body>
 

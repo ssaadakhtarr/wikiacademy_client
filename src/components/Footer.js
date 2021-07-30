@@ -101,7 +101,7 @@ function Footer() {
           </Paper>
         </Grid>
         <Grid item xs={12} sm={3} md={3} lg={3}>
-          <Paper style={{ backgroundColor: "#1e2633",color:"white"}}
+          <Paper style={{ backgroundColor: "#1e2633",color:"white", }}
           elevation={0}>
             <Typography variant="h5" className={classes.textLA}>Docs</Typography>
               

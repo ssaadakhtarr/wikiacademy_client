@@ -307,8 +307,41 @@ function Nav() {
               </Icon> */}
               </Grid>
             </Box>
-            <ButtonAppBarCollapse>
+            <ButtonAppBarCollapse style={{color: "white"}}>
+              <MenuItem >
+             
+              <Tooltip title="Home" arrow>
+                <IconButton style={{color: "#141d2b"}}  onClick={()=>{
+                history.push("/")
+              }}>
+                  <FaHome />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Leaderboard" arrow>
+                <IconButton style={{color: "#141d2b"}} onClick={()=>{
+                history.push("/leaderboard")
+              }}>
+                  <FaTrophy />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Hacktivities" arrow>
+                <IconButton style={{color: "#141d2b"}} onClick={()=>{
+                history.push("/hacktivities")
+              }}>
+                  <FaBookOpen />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Blog" arrow>
+                <IconButton style={{color: "#141d2b"}} onClick={()=>{
+                history.push("/blog")
+              }}>
+                  <FaBlog />
+                </IconButton>
+              </Tooltip>
+            
+              </MenuItem>
               <MenuItem>
+              
                 <LoginButton
                   // onClick={() => history.push("/signin")}
                   onClick={()=>{

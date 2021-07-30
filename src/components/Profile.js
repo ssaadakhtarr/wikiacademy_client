@@ -8,6 +8,7 @@ import {
   Button,
   Container,
   FormControl,
+  Grid,
   InputLabel,
   MenuItem,
   Select,
@@ -28,6 +29,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import FlareIcon from '@material-ui/icons/Flare';
 import {useHistory} from "react-router-dom";
 import axios from "axios";
+import routes from "../GetRoute.js";
 
 
 function TabPanel(props) {
@@ -104,7 +106,7 @@ function Profile() {
   };
 
   useEffect(() => {
-    axios.post("http://localhost:3001/getUsername", {
+    axios.post(`${routes}/getUsername`, {
       userId: userId,
     }).then((response) => {
       console.log(response.data);
@@ -126,7 +128,7 @@ function Profile() {
 
   const history = useHistory();
   useEffect(() => {
-    axios.get(`http://localhost:3001/getDashboard/${userId}`).then((response)=> {
+    axios.get(`${routes}/getDashboard/${userId}`).then((response)=> {
     console.log(response.data);
     if(response.data !== undefined){
       setUserDashboard(response.data);
@@ -151,23 +153,35 @@ function Profile() {
       <Box style={boxStyle} >
       <Nav2 />
       <Box padding={6}>
+      <Grid container spacing={1}>
+        <Grid item xs={12} sm={6} md={6}>
+     
         <Typography variant="h4"><AccountCircleIcon style={{fontSize: "70px", float: "left", color: "#9fef00", marginRight: "10px"}}/>Your Profile</Typography>
         <Typography style={{ color: "#b4b6bb" }} variant="subtitle1">
           Manage your profile here
         </Typography>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}></Grid>
+        <Grid style={{textAlign: "center"}} item xs={12} sm={6} md={2}>
+          <br></br>
         <ProfileButton
         onClick={() => history.push(`/p/${username}`)}
           style={{
             fontWeight: "bold",
             textTransform: "none",
-            padding: "10px",
-            float: "right",
-            right: "5px",
-            bottom: "50px",
+            // padding: "10px",
+            // float: "right",
+            // right: "5px",
+            // bottom: "50px",
           }}
         >
           Public Profile
         </ProfileButton>
+        </Grid>
+      
+      </Grid>
+      
+       
         </Box>
       </Box>
       <div className={classes.root}>

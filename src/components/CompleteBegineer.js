@@ -10,6 +10,7 @@ import axios from 'axios';
 import Rooms from "./Rooms";
 import Cookies from 'universal-cookie';
 import Nav2 from './Nav2';
+import routes from "../GetRoute.js";
 
 const useStyles = makeStyles((theme)=>({
     root: {
@@ -66,7 +67,7 @@ function CompleteBegineer() {
   const [mounted, setMounted] = React.useState(false);
   
   useEffect(() => {
-    axios.get(`http://localhost:3001/getPath/${pathName}`).then((response) => {
+    axios.get(`${routes}/getPath/${pathName}`).then((response) => {
       console.log(response.data);
       if (response.data !== undefined) {
         setMounted(true);

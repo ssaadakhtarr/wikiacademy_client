@@ -37,10 +37,10 @@ const JoinButton = withStyles({
 const useStyles = makeStyles((theme)=>({
   root: {
     backgroundColor: "#141d2b",
-    minWidth: 360,
-  maxWidth: 360,
-  minHeight: 425,
-  maxHeight: 425,
+  //   minWidth: 360,
+  // maxWidth: 360,
+   minHeight: 425,
+  // maxHeight: 425,
   transition: "0.5s all ease",
   '&:hover': {
       transform: "scale(1.01)",
@@ -52,7 +52,7 @@ media: {
 },
 content: {
 
-  minHeight: 120,
+  minHeight: 560,
   
 },
 }));
@@ -63,11 +63,11 @@ function Rooms({roomImg, roomTitle, roomDesc, roomName}) {
   return (
  
 
-<Box align="center" padding={2}>
+<Box align="center" padding={1}>
           <Card className={classes.root}>
             <CardActionArea > 
               <CardMedia className={classes.media} image={roomImg} />
-              <CardContent className={classes.content} style={{backgroundColor: "#141d2b", color: "white",}}>
+              <CardContent className={classes.content} style={{backgroundColor: "#141d2b", color: "white", minHeight: "130px"}}>
                 <Typography gutterBottom variant="h5" component="h2">
                   {roomTitle}
                 </Typography>

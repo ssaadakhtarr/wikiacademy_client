@@ -18,6 +18,7 @@ import IconImage from "../img/tick.png";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Axios from "axios";
+import routes from "../GetRoute.js";
 import { useHistory, useParams } from "react-router-dom";
 import renderHTML from "react-render-html";
 import { withStyles } from "@material-ui/styles";
@@ -25,7 +26,7 @@ import CheckIcon from "@material-ui/icons/Check";
 import PropTypes from "prop-types";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from "@material-ui/styles";
 import { SiNintendogamecube } from "react-icons/si";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -67,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
 
 const StyledButton = withStyles({
   root: {
+    fontSize: "16px",
     backgroundColor: "#111927",
     color: "#9fef00",
     textTransform: "none",
@@ -124,7 +126,7 @@ function Room() {
   };
 
   useEffect(() => {
-    Axios.post("http://localhost:3001/getRoomDetails", {
+    Axios.post(`${routes}/getRoomDetails`, {
       roomname: roomname,
     }).then((response) => {
       setRoomDetails(response.data);
@@ -133,7 +135,7 @@ function Room() {
       setMounted(true);
     });
 
-    Axios.post("http://localhost:3001/getTaskDetails", {
+    Axios.post(`${routes}/getTaskDetails`, {
       roomname: roomname,
     }).then((response) => {
       console.log(response.data);
@@ -144,7 +146,7 @@ function Room() {
       setMounted1(true);
     });
 
-    Axios.post("http://localhost:3001/checkUserRooms", {
+    Axios.post(`${routes}/checkUserRooms`, {
       userId: userId,
       roomname: roomname,
     }).then((response) => {
@@ -159,7 +161,7 @@ function Room() {
   }, []);
 
   useEffect(() => {
-    Axios.post("http://localhost:3001/getProgress", {
+    Axios.post(`${routes}/getProgress`, {
       userId: userId,
       roomname: roomname,
     }).then((response) => {
@@ -168,12 +170,11 @@ function Room() {
     });
     if (progress === 100) {
       Swal.fire({
-        icon: 'success',
-        title: 'Congratulations',
-        text: 'You have completed this room!',
-      })
+        icon: "success",
+        title: "Congratulations",
+        text: "You have completed this room!",
+      });
     }
-
   }, [progress]);
 
   if (!mounted || !mounted1) {
@@ -183,7 +184,7 @@ function Room() {
   const handleJoinRoom = () => {
     setIsJoined(true);
 
-    Axios.post("http://localhost:3001/getUserRooms", {
+    Axios.post(`${routes}/getUserRooms`, {
       userId: userId,
       roomname: roomname,
     }).then((response) => {
@@ -253,7 +254,7 @@ function Room() {
             </span>{" "}
             {roomDetails.roomTitle}
           </Typography>
-          <Typography style={{ color: "#c5c8cc" }} variant="body1">
+          <Typography style={{ color: "#c5c8cc" }} variant="h6">
             {roomDetails.roomTagline}
           </Typography>
         </Box>
@@ -288,7 +289,7 @@ function Room() {
                 padding={4}
                 boxShadow={2}
               >
-                <Typography>
+                <Typography variant="h6">
                   {renderHTML(roomDetails.roomDescription)}
                 </Typography>
               </Box>
@@ -300,29 +301,29 @@ function Room() {
               <div>
                 <Box style={{ backgroundColor: "#1a2332" }} padding={2}>
                   {/* Task 1 Description */}
-                  <Typography variant="h3">
+                  <Typography variant="h4">
                     Task 1 - {fullDetails[0].taskName}
                   </Typography>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {renderHTML(fullDetails[0].taskDescription)}
                   </Typography>
                   <hr></hr>
                   <br></br>
                   {/* Task 1 Questions */}
-                  <Typography style={{ fontWeight: "600" }} variant="h6">
+                  <Typography style={{ fontWeight: "600" }} variant="h4">
                     Questions
                   </Typography>
-                  <Typography variant="caption">
+                  <Typography variant="body1">
                     Answer the questions below to complete this Section
                   </Typography>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[0].questions[0].questions}
                   </Typography>
                   <br></br>
                   <TextField
-                    disabled={previousData[0].isAnswered === 1 ? true : false}
+                    disabled={previousData !== undefined && previousData[0].isAnswered === 1 ? true : false}
                     onChange={(e) => {
                       setCheckAns(e.target.value);
                     }}
@@ -341,7 +342,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <StyledButton
@@ -362,7 +363,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[0].questions[0].questionsId,
@@ -388,7 +389,7 @@ function Room() {
                   </StyledButton>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[0].questions[1].questions}
                   </Typography>
                   <br></br>
@@ -412,7 +413,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -432,7 +433,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[0].questions[1].questionsId,
@@ -458,7 +459,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[0].questions[2].questions}
                   </Typography>
                   <br></br>
@@ -482,7 +483,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -502,7 +503,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[0].questions[2].questionsId,
@@ -528,7 +529,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[0].questions[3].questions}
                   </Typography>
                   <br></br>
@@ -552,7 +553,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -572,7 +573,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[0].questions[3].questionsId,
@@ -598,7 +599,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[0].questions[4].questions}
                   </Typography>
                   <br></br>
@@ -622,7 +623,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -642,7 +643,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[0].questions[4].questionsId,
@@ -678,24 +679,24 @@ function Room() {
               <div>
                 <Box style={{ backgroundColor: "#1a2332" }} padding={2}>
                   {/* Task 2 Description */}
-                  <Typography variant="h3">
+                  <Typography variant="h4">
                     Task 2 - {fullDetails[1].taskName}
                   </Typography>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {renderHTML(fullDetails[1].taskDescription)}
                   </Typography>
                   <hr></hr>
                   <br></br>
                   {/* Task 2 Questions */}
-                  <Typography style={{ fontWeight: "600" }} variant="h6">
+                  <Typography style={{ fontWeight: "600" }} variant="h4">
                     Questions
                   </Typography>
-                  <Typography variant="caption">
+                  <Typography variant="body1">
                     Answer the questions below to complete this Section
                   </Typography>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[1].questions[0].questions}
                   </Typography>
                   <br></br>
@@ -719,7 +720,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <StyledButton
@@ -739,7 +740,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[1].questions[0].questionsId,
@@ -765,7 +766,7 @@ function Room() {
                   </StyledButton>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[1].questions[1].questions}
                   </Typography>
                   <br></br>
@@ -789,7 +790,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -809,7 +810,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[1].questions[1].questionsId,
@@ -835,7 +836,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[1].questions[2].questions}
                   </Typography>
                   <br></br>
@@ -859,7 +860,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -879,7 +880,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[1].questions[2].questionsId,
@@ -905,7 +906,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[1].questions[3].questions}
                   </Typography>
                   <br></br>
@@ -929,7 +930,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -949,7 +950,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[1].questions[3].questionsId,
@@ -975,7 +976,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[1].questions[4].questions}
                   </Typography>
                   <br></br>
@@ -999,7 +1000,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -1019,7 +1020,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[1].questions[4].questionsId,
@@ -1055,24 +1056,24 @@ function Room() {
               <div>
                 <Box style={{ backgroundColor: "#1a2332" }} padding={2}>
                   {/* Task 3 Description */}
-                  <Typography variant="h3">
+                  <Typography variant="h4">
                     Task 3 - {fullDetails[2].taskName}
                   </Typography>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {renderHTML(fullDetails[2].taskDescription)}
                   </Typography>
                   <hr></hr>
                   <br></br>
                   {/* Task 3 Questions */}
-                  <Typography style={{ fontWeight: "600" }} variant="h6">
+                  <Typography style={{ fontWeight: "600" }} variant="h4">
                     Questions
                   </Typography>
-                  <Typography variant="caption">
+                  <Typography variant="body1">
                     Answer the questions below to complete this Section
                   </Typography>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[2].questions[0].questions}
                   </Typography>
                   <br></br>
@@ -1096,7 +1097,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <StyledButton
@@ -1116,7 +1117,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[2].questions[0].questionsId,
@@ -1142,7 +1143,7 @@ function Room() {
                   </StyledButton>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[2].questions[1].questions}
                   </Typography>
                   <br></br>
@@ -1166,7 +1167,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -1186,7 +1187,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[2].questions[1].questionsId,
@@ -1212,7 +1213,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[2].questions[2].questions}
                   </Typography>
                   <br></br>
@@ -1236,7 +1237,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -1256,7 +1257,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[2].questions[2].questionsId,
@@ -1282,7 +1283,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[2].questions[3].questions}
                   </Typography>
                   <br></br>
@@ -1306,7 +1307,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -1326,7 +1327,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[2].questions[3].questionsId,
@@ -1352,7 +1353,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[2].questions[4].questions}
                   </Typography>
                   <br></br>
@@ -1376,7 +1377,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -1396,7 +1397,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[2].questions[4].questionsId,
@@ -1432,24 +1433,24 @@ function Room() {
               <div>
                 <Box style={{ backgroundColor: "#1a2332" }} padding={2}>
                   {/* Task 4 Description */}
-                  <Typography variant="h3">
+                  <Typography variant="h4">
                     Task 4 - {fullDetails[3].taskName}
                   </Typography>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {renderHTML(fullDetails[3].taskDescription)}
                   </Typography>
                   <hr></hr>
                   <br></br>
                   {/* Task 4 Questions */}
-                  <Typography style={{ fontWeight: "600" }} variant="h6">
+                  <Typography style={{ fontWeight: "600" }} variant="h4">
                     Questions
                   </Typography>
-                  <Typography variant="caption">
+                  <Typography variant="body1">
                     Answer the questions below to complete this Section
                   </Typography>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[3].questions[0].questions}
                   </Typography>
                   <br></br>
@@ -1473,7 +1474,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <StyledButton
@@ -1493,7 +1494,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[3].questions[0].questionsId,
@@ -1519,7 +1520,7 @@ function Room() {
                   </StyledButton>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[3].questions[1].questions}
                   </Typography>
                   <br></br>
@@ -1543,7 +1544,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -1563,7 +1564,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[3].questions[1].questionsId,
@@ -1589,7 +1590,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[3].questions[2].questions}
                   </Typography>
                   <br></br>
@@ -1613,7 +1614,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -1633,7 +1634,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[3].questions[2].questionsId,
@@ -1659,7 +1660,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[3].questions[3].questions}
                   </Typography>
                   <br></br>
@@ -1683,7 +1684,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -1703,7 +1704,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[3].questions[3].questionsId,
@@ -1729,7 +1730,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[3].questions[4].questions}
                   </Typography>
                   <br></br>
@@ -1753,7 +1754,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -1773,7 +1774,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[3].questions[4].questionsId,
@@ -1809,24 +1810,24 @@ function Room() {
               <div>
                 <Box style={{ backgroundColor: "#1a2332" }} padding={2}>
                   {/* Task 5 Description */}
-                  <Typography variant="h3">
+                  <Typography variant="h4">
                     Task 5 - {fullDetails[4].taskName}
                   </Typography>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {renderHTML(fullDetails[4].taskDescription)}
                   </Typography>
                   <hr></hr>
                   <br></br>
                   {/* Task 5 Questions */}
-                  <Typography style={{ fontWeight: "600" }} variant="h6">
+                  <Typography style={{ fontWeight: "600" }} variant="h4">
                     Questions
                   </Typography>
-                  <Typography variant="caption">
+                  <Typography variant="body1">
                     Answer the questions below to complete this Section
                   </Typography>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[4].questions[0].questions}
                   </Typography>
                   <br></br>
@@ -1850,7 +1851,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <StyledButton
@@ -1870,7 +1871,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[4].questions[0].questionsId,
@@ -1896,7 +1897,7 @@ function Room() {
                   </StyledButton>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[4].questions[1].questions}
                   </Typography>
                   <br></br>
@@ -1920,7 +1921,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -1940,7 +1941,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[4].questions[1].questionsId,
@@ -1966,7 +1967,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[4].questions[2].questions}
                   </Typography>
                   <br></br>
@@ -1990,7 +1991,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -2010,7 +2011,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[4].questions[2].questionsId,
@@ -2036,7 +2037,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[4].questions[3].questions}
                   </Typography>
                   <br></br>
@@ -2060,7 +2061,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -2080,7 +2081,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[4].questions[3].questionsId,
@@ -2106,7 +2107,7 @@ function Room() {
                   </Button>
                   <br></br>
                   <br></br>
-                  <Typography variant="body2">
+                  <Typography variant="h6">
                     {fullDetails[4].questions[4].questions}
                   </Typography>
                   <br></br>
@@ -2130,7 +2131,7 @@ function Room() {
                       },
                     }}
                     InputLabelProps={{
-                      style: { color: "#9fef00", fontSize: "12px" },
+                      style: { color: "#9fef00",  },
                     }}
                   />
                   <Button
@@ -2150,7 +2151,7 @@ function Room() {
                           icon: "success",
                           title: "You are correct!",
                         });
-                        Axios.post("http://localhost:3001/isAnswered", {
+                        Axios.post(`${routes}/isAnswered`, {
                           userId: userId,
                           roomsId: roomDetails.roomsId,
                           questionsId: fullDetails[4].questions[4].questionsId,
@@ -2412,8 +2413,9 @@ function Room() {
             <Box
               style={{
                 border: "1px solid #9fef00",
-                padding: "150px",
+                padding: "20%",
                 textAlign: "center",
+                minHeight: "50vh",
               }}
             >
               <Typography style={{ color: "#9fef00" }} variant="h3">

@@ -14,6 +14,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Axios from "axios";
+import routes from "../../GetRoute.js";
 import Swal from "sweetalert2";
 
 const JoinButton = withStyles({
@@ -103,7 +104,7 @@ function RoomsTable(roomData) {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(roomData.roomData[index].roomsId)
-        Axios.post("http://localhost:3001/deleteRoom", {
+        Axios.post(`${routes}/deleteRoom`, {
           roomId: roomData.roomData[index].roomsId,
         }).then((response) => {
           console.log(response.data);

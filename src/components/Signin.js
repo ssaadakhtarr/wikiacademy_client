@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import routes from "../GetRoute.js";
 import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -110,7 +111,7 @@ function Signin() {
   });
 
   const login = (values) => {
-    Axios.post("http://localhost:3001/login", values).then((response) => {
+    Axios.post(`${routes}/login`, values).then((response) => {
       if (!response.data.auth) {
         setLoginStatus(false);
         if (
@@ -129,7 +130,7 @@ function Signin() {
         console.log(response.data.result[0].username);
         const sessionCookie = cookies.get("userId");
         const username = response.data.result[0].username;
-        Axios.post("http://localhost:3001/setSession", {
+        Axios.post(`${routes}/setSession`, {
           username: username,
           sessionCookie: sessionCookie,
         }).then((response)=>{console.log(response);})
@@ -142,7 +143,7 @@ function Signin() {
         setUserDetails(response.data.result);
         setLoginStatus(true);
 
-        Axios.get("http://localhost:3001/isUserAuth", {
+        Axios.get(`${routes}/isUserAuth`, {
           headers: { Authorization: "Bearer " + localStorage.getItem("token") },
         })
           .then((response) => {
@@ -164,7 +165,7 @@ function Signin() {
   };
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/login").then((response) => {
+    Axios.get(`${routes}/login`).then((response) => {
       if (response.data.loggedIn === true) {
         setLoginStatus(true);
       } else {
@@ -193,7 +194,7 @@ function Signin() {
         <div>
           {console.log(values)}
           <Form>
-            <main style={{ backgroundColor: "#141d2b" }}>
+            <main style={{ backgroundColor: "#141d2b", minHeight: "100vh" }}>
               {/* <Nav /> */}
 
               <Box style={{ paddingTop: "5%", textAlign: "center" }}>

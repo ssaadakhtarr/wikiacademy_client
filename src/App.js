@@ -34,7 +34,6 @@ import WebHackingPath from "./components/WebHackingPath";
 import VulPath from "./components/VulPath";
 import AddRoom from "./components/AddRoom";
 import Footer from "./components/Footer";
-import CircleProgress from "./components/CircleProgress";
 import AdminDashboard from "./components/AdminDashboard";
 import UpdateUser from "./components/UpdateUser";
 import DeleteRooms from "./components/DeleteRooms";
@@ -49,6 +48,7 @@ import { css } from "@emotion/react";
 import { Box } from "@material-ui/core";
 import Test from "./components/Test";
 import SqliOne from "./components/labs/2/SqliOne";
+import routes from "./GetRoute";
 /* Client\src\fonts\style.css */
 
 const override = css`
@@ -191,9 +191,9 @@ function App() {
   );
 
   useEffect(() => {
-    Axios.post("http://localhost:3001/updateRank", {}).then((response) => {});
+    Axios.post(`${routes}/updateRank`, {}).then((response) => {});
 
-    Axios.post("http://localhost:3001/updateTitle").then((response) => {});
+    Axios.post(`${routes}/updateTitle`).then((response) => {});
   }, []);
 
   useEffect(() => {
@@ -268,7 +268,7 @@ function App() {
           <Route path="/faq" component={Faq} />
           <AdminLoginRoute path="/admin-Login" component={AdminLogin} />
 
-          <Route path="/circle" component={CircleProgress} />
+        
 
           <AdminRoute path="/admin-dashboard" component={AdminDashboard} />
           <AdminRoute path="/update-user" component={UpdateUser} />

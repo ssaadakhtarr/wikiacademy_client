@@ -22,6 +22,7 @@ import PropTypes from "prop-types";
 import { useHistory, useParams } from "react-router-dom";
 import Rooms from "./Rooms.js"
 import axios from "axios";
+import routes from "../GetRoute.js";
 import Cookies from "universal-cookie";
 import Nav from "./Nav";
 import { Scrambler, Cycler } from "react-text-scrambler";
@@ -115,7 +116,7 @@ function PublicProfile() {
   // }, [])
 
   useEffect(() => {
-    axios.post("http://localhost:3001/getJoinedRooms", {
+    axios.post(`${routes}/getJoinedRooms`, {
       username: username,
     }).then((response) => {
       console.log(response.data);
@@ -126,7 +127,7 @@ function PublicProfile() {
       }
     })
 
-    axios.post("http://localhost:3001/getPublicProfile", {
+    axios.post(`${routes}/getPublicProfile`, {
       username: username,
     }).then((response) => {
       console.log(response.data);

@@ -15,6 +15,7 @@ import DeleteBlogsTable from "../modules/AdminDashboard/DeleteBlogsTable";
 import {AiOutlineExclamationCircle} from 'react-icons/ai';
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
+import routes from "../GetRoute.js";
 
 
 
@@ -23,7 +24,7 @@ function PendingBlogs() {
   const [blogDetails, setBlogDetails] = React.useState();
   const [mounted, setMounted] = React.useState(false);
   useEffect(() => {
-    axios.get("http://localhost:3001/getAllBlogs").then((response) => {
+    axios.get(`${routes}/getAllBlogs`).then((response) => {
       console.log(response.data);
       if (response.data != undefined) {
         setBlogDetails(response.data);

@@ -211,6 +211,7 @@ function Home() {
             backgroundPosition: "center",
             width: "100%",
             color: "white",
+            minHeight: "100vh"
           }}
         >
           {/* {(loading) && (<MuiThemeProvider theme={theme}>
@@ -345,7 +346,7 @@ function Home() {
             <div
               style={{
                 display: "inlineBlock",
-                width: "1200px",
+                width: "1500px",
                 height: "2px",
                 borderRadius: "20px",
                 backgroundColor: "#88cc14",
@@ -417,7 +418,7 @@ function Home() {
             <div
               style={{
                 display: "inlineBlock",
-                width: "1200px",
+                width: "1500px",
                 height: "2px",
                 borderRadius: "20px",
                 backgroundColor: "#88cc14",
@@ -430,7 +431,7 @@ function Home() {
           style={{
             backgroundColor: "#141d2b",
             color: "white",
-            padding: "2% 1%",
+            padding: "2% 5%",
           }}
         >
           <br></br>
@@ -527,7 +528,7 @@ function Home() {
             <div
               style={{
                 display: "inlineBlock",
-                width: "1200px",
+                width: "1500px",
                 height: "2px",
                 borderRadius: "20px",
                 backgroundColor: "#88cc14",
@@ -604,7 +605,7 @@ function Home() {
             <div
               style={{
                 display: "inlineBlock",
-                width: "1200px",
+                width: "1500px",
                 height: "2px",
                 borderRadius: "20px",
                 backgroundColor: "#88cc14",
@@ -742,7 +743,7 @@ function Home() {
             <div
               style={{
                 display: "inlineBlock",
-                width: "1200px",
+                width: "1500px",
                 height: "2px",
                 borderRadius: "20px",
                 backgroundColor: "#88cc14",
@@ -812,7 +813,7 @@ function Home() {
             <div
               style={{
                 display: "inlineBlock",
-                width: "1200px",
+                width: "1500px",
                 height: "2px",
                 borderRadius: "20px",
                 backgroundColor: "#88cc14",

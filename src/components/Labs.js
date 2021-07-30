@@ -20,7 +20,7 @@ const JoinButton = withStyles({
   root: {
     fontWeight: "bold",
     padding: "3% 0",
-
+    margin: "auto",
     backgroundColor: "transparent",
     color: "#9fef00",
     border: "1px solid #9fef00",
@@ -35,7 +35,8 @@ const JoinButton = withStyles({
 const HintButton = withStyles({
   root: {
     fontWeight: "bold",
-
+    padding: "6% 0",
+    margin: "auto",
     backgroundColor: "transparent",
     color: "#db9c09",
     border: "1px solid #db9c09",
@@ -51,10 +52,10 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: "#141d2b",
 
-    minWidth: 360,
-    maxWidth: 360,
+    // minWidth: 360,
+    // maxWidth: 360,
     minHeight: 425,
-    maxHeight: 425,
+    // maxHeight: 425,
     transition: "0.5s all ease",
     "&:hover": {
       transform: "scale(1.01)",
@@ -66,7 +67,7 @@ const useStyles = makeStyles({
     height: 200,
   },
   content: {
-    minHeight: 560,
+    maxnHeight: 560,
   },
 });
 
@@ -85,7 +86,7 @@ function Labs({ img, name, desc, path, hint }) {
               style={{
                 backgroundColor: "#141d2b",
                 color: "white",
-                minHeight: "80px",
+                minHeight: "130px",
               }}
             >
               <Typography gutterBottom variant="h5" component="h2">
@@ -101,22 +102,22 @@ function Labs({ img, name, desc, path, hint }) {
               </Typography>
             </CardContent>
           </CardActionArea>
-          <CardActions style={{ backgroundColor: "#141d2b" }}>
+          <CardActions  style={{ backgroundColor: "#141d2b",  }}>
            <Grid container spacing={1}>
               <Grid item xs={8}>
                 <JoinButton
                   href={`/labs/${path}`}
                   fullWidth
                   size="small"
-                  onClick={() => {
-                    console.log("clicked");
-                  }}
+                  
                 >
                   Start
                 </JoinButton>
               </Grid>
+            
               <Grid item xs={4}>
                 <HintButton
+                size="small"
                   onClick={() => {
                     Swal.fire({
                       icon: "info",

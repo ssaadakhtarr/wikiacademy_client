@@ -14,6 +14,7 @@ import UserTable from "../modules/AdminDashboard/UserTable";
 import PendingBlogsTable from "../modules/AdminDashboard/PendingBlogsTable";
 import {AiOutlineExclamationCircle} from 'react-icons/ai';
 import axios from "axios";
+import routes from "../GetRoute.js";
 
 
 
@@ -22,7 +23,7 @@ function PendingBlogs() {
   const [blogPendingDetails, setBlogPendingDetails] = React.useState();
   const [mounted, setMounted] = React.useState(false);
   useEffect(() => {
-    axios.get("http://localhost:3001/getPendingBlogs").then((response) => {
+    axios.get(`${routes}/getPendingBlogs`).then((response) => {
       console.log(response.data[1]);
       if (response.data != undefined) {
         setBlogPendingDetails(response.data);

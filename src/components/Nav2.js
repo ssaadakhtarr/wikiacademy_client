@@ -17,6 +17,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import Logo from "../img/logo/neonWhite.png";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
+import routes from "../GetRoute.js";
 import {Link} from 'react-router-dom';
 import { Box, Grid, Icon, LinearProgress } from "@material-ui/core";
 import MedalIcon from "../img/trophy1.png";
@@ -106,6 +107,12 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  boxIcons: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+    },
+  },
 }));
 
 const navStyle = {
@@ -160,7 +167,7 @@ export default function Nav2() {
     history.push("/profile");
   };
   const logout = () => {
-    Axios.post("http://localhost:3001/logout").then((response) => {
+    Axios.post(`${routes}/logout`).then((response) => {
       console.log(response.data);
       if (!response.data.auth) {
         console.log(localStorage.getItem("token"));
@@ -246,15 +253,39 @@ export default function Nav2() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem style={{backgroundColor: "#111927", color: "white"}}>
+      {/* <MenuItem style={{backgroundColor: "#111927", color: "white"}}>
         <IconButton aria-label="show 0 new notifications" color="inherit">
           <Badge badgeContent={0} color="secondary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
         <p>Notifications</p>
-      </MenuItem>
+      </MenuItem> */}
+      
       <MenuItem style={{backgroundColor: "#111927", color: "white"}} onClick={handleProfileMenuOpen}>
+        {/* <SidebarDashboard/> */}
+        <Tooltip title="Dashboard" arrow>
+                <IconButton  onClick={()=>{history.push("/dashboard")}}>
+                  <MdDashboard />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Leaderboard" arrow>
+                <IconButton  onClick={()=>{history.push("/leaderboard")}}>
+                  <FaTrophy />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Hacktivities" arrow>
+                <IconButton  onClick={()=>{history.push("/hacktivities")}}>
+                  <FaBookOpen />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Blog" arrow>
+                <IconButton  onClick={()=>{history.push("/blog")}}>
+                  <FaBlog />
+                </IconButton>
+              </Tooltip>
+      </MenuItem>
+      <MenuItem style={{backgroundColor: "#111927", color: "white", textAlign: "center"}} onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
@@ -264,9 +295,6 @@ export default function Nav2() {
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
-      </MenuItem>
-      <MenuItem style={{backgroundColor: "#111927", color: "white"}} onClick={handleProfileMenuOpen}>
-        <SidebarDashboard/>
       </MenuItem>
     </Menu>
   );
@@ -293,24 +321,24 @@ export default function Nav2() {
               />
             </Link>
           </Box>
-          <Box className={classes.boxIcons} paddingLeft={2} style={{display:"flex",  color: "white"}}>
+          <Box className={classes.boxIcons} paddingLeft={2} style={{  color: "white"}}>
               <Tooltip title="Dashboard" arrow>
-                <IconButton className={classes.boxIcons} onClick={()=>{history.push("/dashboard")}}>
+                <IconButton  onClick={()=>{history.push("/dashboard")}}>
                   <MdDashboard />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Leaderboard" arrow>
-                <IconButton className={classes.boxIcons} onClick={()=>{history.push("/leaderboard")}}>
+                <IconButton  onClick={()=>{history.push("/leaderboard")}}>
                   <FaTrophy />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Hacktivities" arrow>
-                <IconButton className={classes.boxIcons} onClick={()=>{history.push("/hacktivities")}}>
+                <IconButton  onClick={()=>{history.push("/hacktivities")}}>
                   <FaBookOpen />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Blog" arrow>
-                <IconButton className={classes.boxIcons} onClick={()=>{history.push("/blog")}}>
+                <IconButton  onClick={()=>{history.push("/blog")}}>
                   <FaBlog />
                 </IconButton>
               </Tooltip>
@@ -347,11 +375,11 @@ export default function Nav2() {
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 0 new notifications" color="inherit">
+            {/* <IconButton aria-label="show 0 new notifications" color="inherit">
               <Badge badgeContent={0} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton
               edge="end"
               aria-label="account of current user"

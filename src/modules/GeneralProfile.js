@@ -11,6 +11,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useStateValue } from "../StateProvider";
 import Axios from "axios";
+import routes from "../GetRoute.js";
 import Swal from "sweetalert2";
 
 
@@ -102,7 +103,7 @@ function GeneralProfile(userData) {
   };
 
   const updateDetails = () => {
-    Axios.post("http://localhost:3001/updateDetails", {
+    Axios.post(`${routes}/updateDetails`, {
       id: id,
       name: name,
       username: username,
@@ -148,7 +149,7 @@ function GeneralProfile(userData) {
   };
 
   const changePassword = () => {
-    Axios.post("http://localhost:3001/changePassword", {
+    Axios.post(`${routes}/changePassword`, {
       id: id,
       currentPassword: currentPassword,
       newPassword: newPassword,

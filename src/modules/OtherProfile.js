@@ -8,7 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { withStyles } from "@material-ui/styles";
 import Axios from "axios";
-
+import routes from "../GetRoute.js";
 import { useHistory } from "react-router-dom";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import WarningIcon from '@material-ui/icons/Warning';
@@ -54,7 +54,7 @@ function OtherProfile() {
   }
 
   const deleteAccount = () => {
-    Axios.post("http://localhost:3001/deleteAccount", {
+    Axios.post(`${routes}/deleteAccount`, {
       id: id,
       password: password,
     }).then((response) => {

@@ -22,7 +22,6 @@ import { FaDesktop } from "react-icons/fa";
 import { FaTrophy } from "react-icons/fa";
 import { FaBlog } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
-import CircleProgress from "./CircleProgress";
 import LevelDashboard from "../modules/LevelDashboard";
 import TotalUsersDashboard from "../modules/TotalUsersDashboard";
 import RankDashboard from "../modules/RankDashboard";
@@ -34,7 +33,8 @@ import {MdDashboard} from 'react-icons/md';
 import React, { useEffect } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import withReactContent from 'sweetalert2-react-content';
+import routes from "../GetRoute.js";
 
 const useStyles = makeStyles((theme) => ({
   
@@ -70,7 +70,7 @@ function Dashboard() {
   
   const history = useHistory();
   useEffect(() => {
-    (user !== null && (axios.get(`http://localhost:3001/getDashboard/${user.id}`).then((response)=> {
+    (user !== null && (axios.get(`${routes}/getDashboard/${user.id}`).then((response)=> {
       console.log(response.data);
       if(response.data !== undefined){
         setUserDashboard(response.data);
@@ -119,7 +119,8 @@ function Dashboard() {
               fontWeight: "bold",
             }}
             variant="h5"
-          >{" "} <MdDashboard
+          >{" "} 
+          {/* <MdDashboard
           style={{
             
             position: "relative",
@@ -131,7 +132,7 @@ function Dashboard() {
             // display: "block",
             // paddingLeft:"55px",
           }}
-        />
+        /> */}
             Dashboard
           </Typography>
         </Box>

@@ -14,6 +14,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Axios from "axios";
+import routes from "../../GetRoute.js";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -118,7 +119,7 @@ function PendingBlogsTable({ pendingBlogs }) {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.post("http://localhost:3001/discardBlog", {
+        Axios.post(`${routes}/discardBlog`, {
           id: id,
         }).then((response) => {
           console.log(response.data);
@@ -132,7 +133,7 @@ function PendingBlogsTable({ pendingBlogs }) {
     });
   };
   const approveBlog = (id) => {
-    Axios.post("http://localhost:3001/approveBlog", {
+    Axios.post(`${routes}/approveBlog`, {
       id: id,
     }).then((response) => {
       console.log(response.data);
