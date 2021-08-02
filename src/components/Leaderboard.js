@@ -122,7 +122,7 @@ function Leaderboard() {
       <Box style={boxStyle}>
       {/* {user === null && <Nav />}
       {user !== null && <Nav2 />} */}
-      {(cookies.get("userId") ? <Nav2/>:<Nav/>)}
+      {(cookies.get("userId") || localStorage.getItem("user") ? <Nav2/>:<Nav/>)}
       <Box padding={10}>
       <Typography variant="h2" className={classes.textVS}>
           Leaderboard
@@ -137,7 +137,7 @@ function Leaderboard() {
 <Container style={{textAlign: "center"}} maxWidth="lg">
 <br></br>
 
-{(cookies.get("userId") ? <Typography style={{color: "#c6cede",fontSize:"30px",paddingTop:"20px"}} variant="subtitle1" className={classes.HackA}>You are ranked <span style={{color: "#9fef00"}}>#{user.rank}</span></Typography>:<Typography style={{color: "#c6cede"}} variant="subtitle1" className={classes.HackA}></Typography>)}
+{(cookies.get("userId") || localStorage.getItem("user") ? <Typography style={{color: "#c6cede",fontSize:"30px",paddingTop:"20px"}} variant="subtitle1" className={classes.HackA}>You are ranked <span style={{color: "#9fef00"}}>#{user.rank}</span></Typography>:<Typography style={{color: "#c6cede"}} variant="subtitle1" className={classes.HackA}></Typography>)}
       <br></br>
       <br></br>
       {console.log(LeaderboardData)}

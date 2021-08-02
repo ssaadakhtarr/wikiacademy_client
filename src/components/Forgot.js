@@ -152,6 +152,15 @@ function Forgot() {
               </Link>
             </div>
           </Box>
+          <br></br>
+          <br></br>
+          <Typography
+                component="h1"
+                variant="h5"
+                style={{ color: "white", textAlign: "center" }}
+              >
+                This is a beta feature and is not functional yet.
+              </Typography>
         </Container>
       </Box>
     </div>

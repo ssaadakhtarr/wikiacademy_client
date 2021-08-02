@@ -14,7 +14,24 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import Swal from "sweetalert2";
+import Cookies from "universal-cookie";
 
+
+const LearnButton = withStyles({
+  root: {
+    fontWeight: "bold",
+    padding: "2%",
+    paddingTop: "2%",
+    backgroundColor: "transparent",
+    color: "#9fef00",
+    border: "1px solid #9fef00",
+    "&:hover": {
+      fontWeight: "bold",
+      backgroundColor: "#9fef00",
+      color: "#1e2633",
+    },
+  },
+})(Button);
 
 const JoinButton = withStyles({
   root: {
@@ -105,7 +122,8 @@ function Labs({ img, name, desc, path, hint }) {
             </CardContent>
           </CardActionArea>
           <CardActions  style={{ backgroundColor: "#141d2b",  }}>
-           <Grid container spacing={1}>
+           
+           {localStorage.getItem("user") ? (<Grid container spacing={1}>
               <Grid item xs={8}>
                 <JoinButton
                 onClick={()=>{
@@ -135,7 +153,7 @@ function Labs({ img, name, desc, path, hint }) {
                   Hint
                 </HintButton>
               </Grid>
-            </Grid>
+            </Grid>) : (<LearnButton fullWidth onClick={()=>{history.push("/signin")}}>Learn More</LearnButton>)}
             
           </CardActions>
         </Card>

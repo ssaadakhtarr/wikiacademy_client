@@ -30,6 +30,15 @@ import { ThemeProvider } from "@material-ui/styles";
 import { SiNintendogamecube } from "react-icons/si";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import PuffLoader from "react-spinners/PuffLoader";
+import { css } from "@emotion/react";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
 
 function LinearProgressWithLabel(props) {
   return (
@@ -178,7 +187,30 @@ function Room() {
   }, [progress]);
 
   if (!mounted || !mounted1) {
-    return <div>Loading...</div>;
+    return (<div
+      style={{
+        backgroundColor: "#141d2b",
+        height: "100vh",
+        minHeight: "100vh",
+      }}
+    >
+      <Box
+        style={{
+          backgroundColor: "#141d2b",
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        <PuffLoader
+          color={"#9fef00"}
+          loading={true}
+          css={override}
+          size={100}
+        />
+      </Box>
+    </div>)
   }
 
   const handleJoinRoom = () => {
@@ -323,7 +355,7 @@ function Room() {
                   </Typography>
                   <br></br>
                   <TextField
-                    disabled={previousData !== undefined && previousData[0].isAnswered === 1 ? true : false}
+                    disabled={previousData[0].isAnswered === 1 ? true : false}
                     onChange={(e) => {
                       setCheckAns(e.target.value);
                     }}

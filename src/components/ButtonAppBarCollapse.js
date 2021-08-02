@@ -37,7 +37,7 @@ class ButtonAppBarCollapse extends React.Component {
     return (
       <div className={classes.buttonCollapse}>
         <IconButton onClick={this.handleMenu}>
-        <ReorderIcon></ReorderIcon>
+        <ReorderIcon style={{color: "#fff"}}></ReorderIcon>
         </IconButton>
         <Menu
           id="menu-appbar"

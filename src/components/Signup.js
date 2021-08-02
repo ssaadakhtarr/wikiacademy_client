@@ -149,6 +149,10 @@ function Signup() {
             icon: "success",
             title: "You are successfully registered",
           });
+          setTimeout(function(){
+            window.location.href = "/signin";
+         }, 3000);
+          
           setShowSuccess(true);
           setShowError(false);
         }

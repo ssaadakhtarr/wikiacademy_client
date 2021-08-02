@@ -16,9 +16,9 @@ const useStyles = makeStyles({
       backgroundColor: "#141d2b",
       
       // minWidth: 360,
-      maxWidth: 360,
-      minHeight: 400,
-      maxHeight: 400,
+      // maxWidth: 360,
+      minHeight: 425,
+      // maxHeight: 400,
     transition: "0.5s all ease",
     '&:hover': {
         transform: "scale(1.01)",
@@ -29,8 +29,8 @@ const useStyles = makeStyles({
     height: 200,
   },
   content: {
-    minHeight: 100,
-    maxHeight: 100,
+    minHeight: 80,
+    maxHeight: 135,
     
     
   },
@@ -59,7 +59,7 @@ export default function BlogCard({blogTitle, blogDesc, blogImg, username,url}) {
           {blogTitle.slice(0,25)}
           </Typography>
           <Typography style={{color: "#ccc",}} variant="body1" color="textSecondary" component="p">
-         {blogDesc.slice(0,120)}
+         {blogDesc.slice(0,130)}
          </Typography>
         <br></br>
          <br></br>

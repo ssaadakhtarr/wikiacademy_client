@@ -246,7 +246,7 @@ function Hacktivities() {
           {(user !== null) && <Nav2 />}   */}
 
       <Box style={boxStyle}>
-        {cookies.get("userId") ? <Nav2 /> : <Nav />}
+        {cookies.get("userId") || localStorage.getItem("user") ? <Nav2 /> : <Nav />}
         <Box style={{ textAlign: "center" }} padding={10}>
           <Typography variant="h2" className={classes.Hack}>
             Hacktivities
@@ -452,7 +452,7 @@ function Hacktivities() {
           Hands-on practice exercises on real world scenarios
         </Typography>
         <br></br>
-        {cookies.get("userId") && (
+        {cookies.get("userId") || localStorage.getItem("user") ? (
           <div>
             <CssTextField
               style={{ width: "50%" }}
@@ -486,7 +486,7 @@ function Hacktivities() {
             <br></br>
             <br></br>
           </div>
-        )}
+        ) : ""}
         <Grid container spacing={1}>
           {/* <Grid item xs={12} sm={12} md={6} lg={4}>
             <Labs

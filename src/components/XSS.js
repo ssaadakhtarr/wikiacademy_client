@@ -1,29 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Box, Container, TextField, Typography } from "@material-ui/core";
 const Xss = () => {
-  //   const [data, setData] = useState({
-  //     firstName: '',
-  //     lastName: '',
-  //   });
-  // const handleType = (e) => {
-  //     setData({
-  //       ...data,
-  //       [e.target.name]: e.target.value,
-  //     });
-  //   };
-  // const handleSubmit = () => {
-  //     eval(data.firstName + data.lastName);
-  //   };
-
-  //   const [temp, setTemp] = React.useState();
-
-  // dom code here
-
   document.addEventListener("DOMContentLoaded", function (e) {
     e.preventDefault();
 
     var q = getQueryParameter("q");
-    // setTemp(q);
 
     if (q) {
       search(q, function (error, results) {
@@ -77,18 +58,6 @@ const Xss = () => {
     };
   };
 
-  //   (function() {
-  //     var _old_alert = window.alert;
-  //     window.alert = function() {
-  //                      // run some code when the alert pops up
-  //         document.body.innerHTML += "<br>alerting";
-  //         _old_alert.apply(window,arguments);
-  //                      // run some code after the alert
-  //         document.body.innerHTML += "<br>done alerting<br>";
-
-  //     };
-  // })();
-
   const alertFunc = function () {
     var _old_alert = window.alert;
 
@@ -96,7 +65,7 @@ const Xss = () => {
       if (_old_alert) {
         _old_alert.apply(window, arguments);
         // run some code after the alert
-      
+
         document.body.innerHTML += "$FLAG{ul25w9nemhjx6dufu9ug98oq2sk74i9w}";
         _old_alert = null;
         return false;
@@ -108,22 +77,6 @@ const Xss = () => {
   useEffect(() => {
     alertFunc();
   }, []);
-
-  // if (window.alert) {
-  //     console.log("true")
-  //     document.body.innerHTML += "<br>done alerting<br>";
-  // } else {
-  //     console.log("false")
-
-  // }
-  // var _old_alert = window.alert;
-  // window.alert = function() {
-  //                          // run some code when the alert pops up
-
-  //             document.body.innerHTML += "<br>alerting";
-  //             _old_alert.apply(window,arguments);
-
-  //         }
 
   return (
     <div>
@@ -155,7 +108,6 @@ const Xss = () => {
           <Box style={{ textAlign: "center" }}>
             <Typography variant="h6">
               <div dangerouslySetInnerHTML={createMarkup()} />
-            
             </Typography>
           </Box>
         </form>

@@ -169,7 +169,7 @@ function PublicProfile() {
           backgroundPosition: "center",
         }}
       >
-          {(cookies.get("userId") ? <Nav2/>:<Nav/>)}
+          {(cookies.get("userId") || localStorage.getItem("user") ? <Nav2/>:<Nav/>)}
         <Box style={{paddingTop: "5%"}}>
         
         <Typography

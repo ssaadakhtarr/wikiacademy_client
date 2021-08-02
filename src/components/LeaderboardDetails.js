@@ -15,7 +15,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Axios from 'axios';
-
+import {Link} from "react-router-dom";
 
 const JoinButton = withStyles({
   root: {
@@ -134,7 +134,7 @@ function LeaderboardDetails(userData) {
           <Box style={{backgroundColor: "rgb(0,0,0,0.1)", color: "white"}}>
           <Grid container spacing={2}>
           <Grid item xs={2} sm={3}><Typography style={{marginTop: "2%"}}>{current.rank}</Typography></Grid>
-          <Grid item xs={4} sm={3}><a style={{color: "#9fef00", }} href={'/p/'+current.username}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.username}</Typography></a></Grid>
+          <Grid item xs={4} sm={3}><Link style={{color: "#9fef00", }} to={'/p/'+current.username}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.username}</Typography></Link></Grid>
           <Grid item xs={3} sm={3}><Typography style={{marginTop: "2%"}}>{current.points}</Typography></Grid>
           <Grid item xs={3} sm={3}><Typography style={{marginTop: "2%"}}>{current.level}</Typography></Grid>
           

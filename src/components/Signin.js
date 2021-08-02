@@ -126,7 +126,7 @@ function Signin() {
           setShowSuccess(false);
         }
       } else {
-        console.log(cookies.get("userId"));
+      
         console.log(response.data.result[0].username);
         const sessionCookie = cookies.get("userId");
         const username = response.data.result[0].username;
@@ -283,7 +283,7 @@ function Signin() {
                     <br></br>
                     <Grid container>
                       <Grid item xs>
-                        <Link
+                        {/* <Link
                           style={{ color: "#9fef00" }}
                           to="/password-reset"
                           onClick={()=>{
@@ -292,7 +292,7 @@ function Signin() {
                           // variant="body2"
                         >
                           Forgot password?
-                        </Link>
+                        </Link> */}
                       </Grid>
                       <Grid item>
                         <Link
