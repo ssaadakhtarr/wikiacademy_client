@@ -290,11 +290,11 @@ function PublicProfile() {
               {...a11yProps(0)}
             />
             
-            <Tab
+            {/* <Tab
               style={{ textTransform: "none",fontSize: "120%" }}
               label="Certificates"
               {...a11yProps(2)}
-            />
+            /> */}
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0} style={{minHeight: "100vh"}}>
@@ -310,14 +310,14 @@ function PublicProfile() {
            })}
           </Grid>
         </TabPanel>
-        <TabPanel value={value} index={1}>
+        {/* <TabPanel value={value} index={1}>
           {userData !== undefined ? <Box style={{minHeight: "100vh", height: "100vh", textAlign: "center"}} padding={20}>
             <Typography variant="h3">{`${userData[0].username} has no certificates yet!`}</Typography>
           </Box> : "loading..."}
-        </TabPanel>
-        <TabPanel value={value} index={2}>
+        </TabPanel> */}
+        {/* <TabPanel value={value} index={2}>
           Hello there
-        </TabPanel>
+        </TabPanel> */}
       </Container>
     </div>
     // </MuiThemeProvider>

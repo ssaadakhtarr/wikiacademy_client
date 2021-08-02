@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   root: {
       backgroundColor: "#141d2b",
       
-      minWidth: 360,
+      // minWidth: 360,
       maxWidth: 360,
       minHeight: 400,
       maxHeight: 400,

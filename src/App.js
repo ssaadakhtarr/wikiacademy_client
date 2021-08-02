@@ -49,6 +49,7 @@ import { Box } from "@material-ui/core";
 import Test from "./components/Test";
 import SqliOne from "./components/labs/2/SqliOne";
 import routes from "./GetRoute";
+import Xss from "./components/XSS";
 /* Client\src\fonts\style.css */
 
 const override = css`
@@ -284,6 +285,9 @@ function App() {
           <Route path="/blogs/:blogid" component={BlogPage} />
 
           <ProtectedRoute path="/labs/2/sqli-one" component={SqliOne} />
+
+
+        <ProtectedRoute path="/labs/3/xss" component={Xss}/>
 
           <Route component={Error} />
         </Switch>

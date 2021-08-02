@@ -14,6 +14,7 @@ import UserTable from "../modules/AdminDashboard/UserTable";
 import RoomsTable from "../modules/AdminDashboard/RoomsTable";
 import axios from "axios";
 import routes from "../GetRoute.js";
+import TableLoader from "./TableLoader";
 
 
 function DeleteRooms() {
@@ -104,7 +105,7 @@ function DeleteRooms() {
       <br></br>
       <br></br>
       {/* {console.log(roomDetails)} */}
-      {(roomDetails != undefined) ? (<RoomsTable roomData={roomDetails}/>) : "loading..."}
+      {(roomDetails != undefined) ? (<RoomsTable roomData={roomDetails}/>) : (<TableLoader/>)}
       </Container>
 
       

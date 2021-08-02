@@ -15,6 +15,7 @@ import PendingBlogsTable from "../modules/AdminDashboard/PendingBlogsTable";
 import {AiOutlineExclamationCircle} from 'react-icons/ai';
 import axios from "axios";
 import routes from "../GetRoute.js";
+import TableLoader from "./TableLoader";
 
 
 
@@ -104,7 +105,7 @@ function PendingBlogs() {
       </FormControl> */}
       <br></br>
       <br></br>
-      {(blogPendingDetails != undefined) ? (<PendingBlogsTable pendingBlogs={blogPendingDetails}/>) : "loading..."}
+      {(blogPendingDetails != undefined) ? (<PendingBlogsTable pendingBlogs={blogPendingDetails}/>) : (<TableLoader/>)}
       </Container>
 
       

@@ -20,6 +20,7 @@ import { withStyles } from "@material-ui/styles";
 import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
 import routes from "../GetRoute.js";
+import DoorDashFavorite from "./DoorDashFavorite";
 
 const SubmitButton = withStyles({
   root: {
@@ -374,7 +375,17 @@ function Hacktivities() {
                   </Grid>
                 );
               })
-            : "loading..."}
+            : (<Grid container spacing={1}>
+              <Grid item xs={12} sm={12} md={6} lg={4}>
+              <DoorDashFavorite/>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} lg={4}>
+              <DoorDashFavorite/>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} lg={4}>
+              <DoorDashFavorite/>
+              </Grid>
+            </Grid>)}
         </Grid>
       </TabPanel>
       <TabPanel
@@ -477,7 +488,7 @@ function Hacktivities() {
           </div>
         )}
         <Grid container spacing={1}>
-          <Grid item xs={12} sm={12} md={6} lg={4}>
+          {/* <Grid item xs={12} sm={12} md={6} lg={4}>
             <Labs
               img={`https://www.breachlock.com/wp-content/uploads/2019/09/V_C_3.jpg`}
               name={"Information Disclosure"}
@@ -487,8 +498,8 @@ function Hacktivities() {
               path={"1/test.html"}
               hint={"Always check the page source!"}
             />
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={4}>
+          </Grid> */}
+          <Grid item xs={12} sm={12} md={6} lg={6}>
             <Labs
               img={`https://uploads.sitepoint.com/wp-content/uploads/2016/09/1473921124injection-attack.jpg`}
               name={"SQL Injection"}
@@ -501,14 +512,14 @@ function Hacktivities() {
               }
             />
           </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={4}>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
             <Labs
               img={`https://hackaday.com/wp-content/uploads/2016/03/grabbing-file-off-computer.jpg?w=400`}
               name={"Cross-Site Scripting"}
               desc={
                 "Trivial level lab to find Cross-Site Scripting bugs. This lab will help you get started in the basics of web application hacking and penetration testing."
               }
-              path={"3/index.html"}
+              path={"3/xss"}
               hint={
                 "Trigger an alert to get the flag! PS: If script tags not working then try using image tags."
               }

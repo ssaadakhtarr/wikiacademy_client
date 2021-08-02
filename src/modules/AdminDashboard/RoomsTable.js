@@ -124,24 +124,24 @@ function RoomsTable(roomData) {
     <div>
       <Box style={{ backgroundColor: "rgb(255,255,255,0.1)", color: "white" }}>
         <Grid container spacing={2}>
-          <Grid item xs={3}>
+          <Grid item xs={4} >
             <Typography variant="h6" style={{ fontWeight: "bold" }}>
               ID
             </Typography>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={4} >
             <Typography variant="h6" style={{ fontWeight: "bold" }}>
               Room Name
             </Typography>
           </Grid>
 
-          <Grid item xs={3}>
+          {/* <Grid item xs={0} sm={3}>
             <Typography variant="h6" style={{ fontWeight: "bold" }}>
               Room Title
             </Typography>
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={3}>
+          <Grid item xs={4} >
             <Typography variant="h6" style={{ fontWeight: "bold" }}>
               Delete
             </Typography>
@@ -155,12 +155,12 @@ function RoomsTable(roomData) {
             <br></br>
             <Box style={{ backgroundColor: "rgb(0,0,0,0.1)", color: "white" }}>
               <Grid container spacing={2}>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                   <Typography style={{ marginTop: "2%" }}>
                     {current.roomsId}
                   </Typography>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                   <a
                     style={{ color: "#9fef00" }}
                     href={"/room/" + current.roomName}
@@ -177,7 +177,7 @@ function RoomsTable(roomData) {
                   </a>
                 </Grid>
 
-                <Grid item xs={3}>
+                {/* <Grid item xs={3}>
                 
                    
                     <Typography
@@ -190,9 +190,9 @@ function RoomsTable(roomData) {
                       {current.roomTitle}
                     </Typography>
                   
-                </Grid>
+                </Grid> */}
 
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                   <Typography>
                     <DeleteButton
                       onClick={() => {

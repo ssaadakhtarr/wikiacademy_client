@@ -35,6 +35,9 @@ import axios from "axios";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import routes from "../GetRoute.js";
+import DoorDashFavorite from "./DoorDashFavorite";
+import InstaStories from "./InstaStories";
+import ThreeDots from "./ThreeDots";
 
 const useStyles = makeStyles((theme) => ({
   
@@ -155,7 +158,7 @@ function Dashboard() {
                 backgroundColor: "#111927",
               }}
             >
-              {userDashboard !== undefined ? <SidebarDashboard firstName={userDashboard.firstName} username={userDashboard.username} title={userDashboard.title} level={userDashboard.level} /> : "loading..."}
+              {userDashboard !== undefined ? <SidebarDashboard firstName={userDashboard.firstName} username={userDashboard.username} title={userDashboard.title} level={userDashboard.level} /> : (<ThreeDots/>)}
             </Box>
           </Grid>
 
@@ -164,36 +167,36 @@ function Dashboard() {
             <Grid container >
               <Grid item md={6} sm={6} xs={12}>
                 <Box margin={2}>
-                  {(userDashboard !== undefined) ? (<TotalUsersDashboard users={userDashboard?.users}/>) : "loading..."}
+                  {(userDashboard !== undefined) ? (<TotalUsersDashboard users={userDashboard?.users}/>) : (<DoorDashFavorite/>)}
                 </Box>
               </Grid>
               <Grid item  md={6} sm={6} xs={12}>
                 <Box margin={2}>
-                {(userDashboard !== undefined) ? (<RankDashboard rank={userDashboard?.rank}/>) : "loading..."}
+                {(userDashboard !== undefined) ? (<RankDashboard rank={userDashboard?.rank}/>) : (<DoorDashFavorite/>)}
                 </Box>
               </Grid>
               <Grid container >
                 <Grid item md={6} sm={6} xs={12}>
                   <Box fullWidth margin={2}>
-                  {(userDashboard !== undefined) ? (<LevelOnlyDashboard level={userDashboard?.level}/>) : "loading..."}
+                  {(userDashboard !== undefined) ? (<LevelOnlyDashboard level={userDashboard?.level}/>) : (<DoorDashFavorite/>)}
                   </Box>
                 </Grid>
 
                 <Grid item md={6} sm={6} xs={12}>
                   <Box margin={2}>
-                  {(userDashboard !== undefined) ? (<QuestionsDashboard points={userDashboard?.points}/>) : "loading..."}
+                  {(userDashboard !== undefined) ? (<QuestionsDashboard points={userDashboard?.points}/>) : (<DoorDashFavorite/>)}
                   </Box>
                 </Grid>
               </Grid>
             </Grid>
             <Grid item md={12} sm={12} xs={12}>
               <Box margin={2}>
-              {(userDashboard !== undefined) ? (<LevelDashboard level={userDashboard?.level} points={userDashboard?.points}/>) : "loading..."}
+              {(userDashboard !== undefined) ? (<LevelDashboard level={userDashboard?.level} points={userDashboard?.points}/>) : (<DoorDashFavorite/>)}
               </Box>
             </Grid>
             <Grid item md={12} sm={12} xs={12}>
               <Box margin={2} md={12}>
-                {(userDashboard !== undefined) ? <RoomsDashboard name={userDashboard.username}/> : "loading..."}
+                {(userDashboard !== undefined) ? <RoomsDashboard name={userDashboard.username}/> : (<DoorDashFavorite/>)}
               </Box>
             </Grid>
           </Grid>

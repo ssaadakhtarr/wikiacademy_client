@@ -115,10 +115,10 @@ function LeaderboardDetails(userData) {
     <div>
     <Box style={{backgroundColor: "rgb(255,255,255,0.1)", color: "white"}}>
       <Grid container spacing={2}>
-        <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Rank</Typography></Grid>
-        <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Username</Typography></Grid>
-        <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Points</Typography></Grid>
-        <Grid item xs={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Level</Typography></Grid>
+        <Grid item xs={2} sm={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Rank</Typography></Grid>
+        <Grid item xs={4} sm={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Username</Typography></Grid>
+        <Grid item xs={3} sm={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Points</Typography></Grid>
+        <Grid item xs={3} sm={3}><Typography variant="h6" style={{fontWeight: "bold"}}>Level</Typography></Grid>
         
         
       </Grid>
@@ -133,10 +133,10 @@ function LeaderboardDetails(userData) {
             <br></br>
           <Box style={{backgroundColor: "rgb(0,0,0,0.1)", color: "white"}}>
           <Grid container spacing={2}>
-          <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.rank}</Typography></Grid>
-          <Grid item xs={3}><a style={{color: "#9fef00", }} href={'/p/'+current.username}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.username}</Typography></a></Grid>
-          <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.points}</Typography></Grid>
-          <Grid item xs={3}><Typography style={{marginTop: "2%"}}>{current.level}</Typography></Grid>
+          <Grid item xs={2} sm={3}><Typography style={{marginTop: "2%"}}>{current.rank}</Typography></Grid>
+          <Grid item xs={4} sm={3}><a style={{color: "#9fef00", }} href={'/p/'+current.username}><Typography style={{marginTop: "2%",fontWeight: "bold", letterSpacing: "1px",}}>{current.username}</Typography></a></Grid>
+          <Grid item xs={3} sm={3}><Typography style={{marginTop: "2%"}}>{current.points}</Typography></Grid>
+          <Grid item xs={3} sm={3}><Typography style={{marginTop: "2%"}}>{current.level}</Typography></Grid>
           
           
           

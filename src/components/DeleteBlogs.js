@@ -16,6 +16,7 @@ import {AiOutlineExclamationCircle} from 'react-icons/ai';
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
 import routes from "../GetRoute.js";
+import TableLoader from "./TableLoader";
 
 
 
@@ -106,7 +107,7 @@ function PendingBlogs() {
       </FormControl> */}
       <br></br>
       <br></br>
-      {blogDetails !== undefined ? <DeleteBlogsTable blogData={blogDetails}/> : "loading..."}
+      {blogDetails !== undefined ? <DeleteBlogsTable blogData={blogDetails}/> : (<TableLoader/>)}
       </Container>
 
       

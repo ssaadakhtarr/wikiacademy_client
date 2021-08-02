@@ -25,6 +25,7 @@ import {useHistory} from 'react-router-dom'
 import BlogCard from "../modules/Blog/BlogCard";
 import axios from "axios";
 import routes from "../GetRoute.js";
+import DoorDashFavorite from "./DoorDashFavorite";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   blogLogo: {
-    fontSize: "130px", color: "white", marginLeft: "2%",
+    fontSize: "120px", color: "white", marginLeft: "2%",
     [theme.breakpoints.down("xs")]: {
       fontSize: "80px",
       
@@ -157,13 +158,13 @@ function Blog() {
     // }
   return (
     
-    <div style={{backgroundColor: "#141d2b"}}>
+    <div style={{backgroundColor: "#141d2b", minHeight: "100vh"}}>
       {(loading) && (<MuiThemeProvider theme={theme}>
             <LinearProgress style={{backgroundColor: "#1a2332",}} color="secondary" value={progress} variant="determinate"/> 
           </MuiThemeProvider>)}
       <Box
-        style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 1)", textAlign: "center", backgroundColor: "#212c42" }}
-        padding={4}
+        style={{  textAlign: "center", backgroundColor: "#212c42" }}
+        padding={2}
       >
         <img className={classes.logo}  src={Logo} />
         <FaBlog className={classes.blogLogo} />
@@ -206,7 +207,20 @@ function Blog() {
             </Grid>
           
           )
-      }): "loading..."}
+      }): (
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+          <DoorDashFavorite/>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+          <DoorDashFavorite/>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+          <DoorDashFavorite/>
+          </Grid>
+        </Grid>
+       
+       )}
       </Grid>
         {/* <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12}>

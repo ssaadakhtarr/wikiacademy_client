@@ -8,6 +8,7 @@ import TotalUsersCard from '../modules/AdminDashboard/TotalUsersCard';
 import TotalQuestionCard from '../modules/AdminDashboard/TotalQuestionsCard';
 import axios from 'axios';
 import routes from "../GetRoute.js";
+import DoorDashFavorite from './DoorDashFavorite';
 
 
 function AdminDashboard() {
@@ -51,18 +52,18 @@ function AdminDashboard() {
             
            <Box padding={2}>
                <Grid container spacing={2}>
-                   <Grid item xs={4}>
-                   {dashboardDetails !== undefined ? <TotalUsersCard users={dashboardDetails[0].users}/> : "loading..."}
+                   <Grid item xs={12} sm={12} md={6} lg={4}>
+                   {dashboardDetails !== undefined ? <TotalUsersCard users={dashboardDetails}/> : (<DoorDashFavorite/>)}
                    </Grid>
-                   <Grid item xs={4}>
-                   {dashboardDetails !== undefined ? <TotalRoomsCard rooms={dashboardDetails[1].rooms}/> : "loading..."}
+                   <Grid item xs={12} sm={12} md={6} lg={4}>
+                   {dashboardDetails !== undefined ? <TotalRoomsCard rooms={dashboardDetails}/> : (<DoorDashFavorite/>)}
                    </Grid>
-                   <Grid item xs={4}>
-                   {dashboardDetails !== undefined ? <TotalQuestionCard questions={dashboardDetails[2].questions}/> : "loading..."}    
+                   <Grid item xs={12} sm={12} md={6} lg={4}>
+                   {dashboardDetails !== undefined ? <TotalQuestionCard questions={dashboardDetails}/> : (<DoorDashFavorite/>)}    
                    </Grid>
                </Grid>
                <br></br>
-               {LeaderboardData !== undefined ? <LeaderboardChart leaderboard={LeaderboardData}/> : "loading..."}
+               {LeaderboardData !== undefined ? <LeaderboardChart leaderboard={LeaderboardData}/> : (<DoorDashFavorite/>)}
            </Box>
 
         </div>

@@ -13,6 +13,7 @@ import { ImSearch } from "react-icons/im";
 import UserTable from "../modules/AdminDashboard/UserTable";
 import Axios from "axios";
 import routes from "../GetRoute.js";
+import TableLoader from "./TableLoader";
 
 
 function UpdateUser() {
@@ -101,7 +102,7 @@ function UpdateUser() {
       </FormControl> */}
       <br></br>
       <br></br>
-      {(userDetails != undefined) ? (<UserTable userData={userDetails} search={values}/>) : "loading..."}
+      {(userDetails != undefined) ? (<UserTable userData={userDetails} search={values}/>) : (<TableLoader/>)}
       </Container>
 
       

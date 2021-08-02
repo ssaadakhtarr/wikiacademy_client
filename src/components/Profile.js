@@ -30,6 +30,7 @@ import FlareIcon from '@material-ui/icons/Flare';
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 import routes from "../GetRoute.js";
+import HelpLinksLoader from "./HelpLinksLoader";
 
 
 function TabPanel(props) {
@@ -219,10 +220,13 @@ function Profile() {
         </Tabs>
         </AppBar>
         <TabPanel style={{backgroundColor: "#141d2b"}} value={value} index={0}>
-          {(userDashboard !== undefined) ? <GeneralProfile userData={userDashboard} /> : "loading..."}
+      
+        {/* <HelpLinksLoader/> */}
+     
+          {(userDashboard !== undefined) ? <GeneralProfile userData={userDashboard} /> : (<HelpLinksLoader/>)}
         </TabPanel>
         <TabPanel style={{backgroundColor: "#141d2b"}} value={value} index={1}>
-          {(userDashboard !== undefined) ? <AboutProfile userData={userDashboard} /> : "loading..."}
+          {(userDashboard !== undefined) ? <AboutProfile userData={userDashboard} /> : (<HelpLinksLoader/>)}
         </TabPanel>
         <TabPanel style={{backgroundColor: "#141d2b"}} value={value} index={2}>
           <OtherProfile />

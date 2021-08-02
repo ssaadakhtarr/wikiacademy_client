@@ -21,7 +21,7 @@ const data = [
   { year: "2010", population: 6.93 },
 ];
 
-console.log(data);
+
 
 function LeaderboardChart(leaderboard) {
   console.log(leaderboard);
@@ -30,12 +30,7 @@ function LeaderboardChart(leaderboard) {
     chartData.push({ points: i.points, username: i.username });
   });
 
-  const sampleData = [
-    { quarter: 1, earnings: 13000 },
-    { quarter: 2, earnings: 16500 },
-    { quarter: 3, earnings: 14250 },
-    { quarter: 4, earnings: 19000 },
-  ];
+  
 
   //  function compare( a, b ) {
   //   if ( a.rank < b.rank ){

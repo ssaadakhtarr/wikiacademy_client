@@ -2228,7 +2228,8 @@ function Room() {
             <br></br>
 
             {/* Table of contents box */}
-            <Box style={{ backgroundColor: "#1a2332" }} padding={4}>
+            
+                  {previousData !== undefined ? (<Box style={{ backgroundColor: "#1a2332" }} padding={4}>
               <Typography variant="body1">Table of Contents</Typography>
               <br></br>
               <StyledButton
@@ -2403,7 +2404,8 @@ function Room() {
               >
                 Task 5
               </StyledButton>
-            </Box>
+            </Box>) : "loading... Reload the page if it is taking too long."}
+
             <br></br>
             <br></br>
           </div>

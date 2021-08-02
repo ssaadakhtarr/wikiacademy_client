@@ -45,7 +45,7 @@ function TotalRoomsCard({questions}) {
         
         
           <br></br>
-        <Typography style={{textAlign: "center",}} variant="h4">{questions}</Typography>
+        {questions !== undefined ? <Typography style={{textAlign: "center",}} variant="h4">{questions.questions}</Typography> : "loading..."}
         <br></br>
         <Typography style={{textAlign: "center", textTransform: "uppercase", letterSpacing: "1px", fontWeight: "bold", color: "#78839c"}} variant="body2">Total Questions</Typography>
     

@@ -47,6 +47,7 @@ import PropTypes from "prop-types";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Labs from "./Labs";
+import DoorDashFavorite from "./DoorDashFavorite";
 
 
 /* Client\src\fonts\style.css */
@@ -471,13 +472,20 @@ function Home() {
           >
             Each room belonging to a specific topic or tool
           </Typography>
+         
           <Grid container spacing={1}>
             {!mounted || roomData === undefined ? (
-              <SkeletonTheme color="#202020" highlightColor="#444">
-                <p>
-                  <Skeleton count={1} height={250} />
-                </p>
-              </SkeletonTheme>
+              <Grid container spacing={1}>
+              <Grid item xs={12} sm={12} md={6} lg={4}>
+              <DoorDashFavorite/>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} lg={4}>
+              <DoorDashFavorite/>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} lg={4}>
+              <DoorDashFavorite/>
+              </Grid>
+            </Grid>
             ) : (
               roomData.map((i, index) => {
                 if (index < 3) {
@@ -657,7 +665,7 @@ function Home() {
           {/* <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={6} lg={4} xl={4}> */}
             <Grid container spacing={1}>
-          <Grid item xs={12} sm={12} md={6} lg={4}>
+          {/* <Grid item xs={12} sm={12} md={6} lg={4}>
             <Labs
               img={`https://www.breachlock.com/wp-content/uploads/2019/09/V_C_3.jpg`}
               name={"Information Disclosure"}
@@ -667,8 +675,8 @@ function Home() {
               path={"1/test.html"}
               hint={"Always check the page source!"}
             />
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={4}>
+          </Grid> */}
+          <Grid item xs={12} sm={12} md={6} lg={6}>
             <Labs
               img={`https://uploads.sitepoint.com/wp-content/uploads/2016/09/1473921124injection-attack.jpg`}
               name={"SQL Injection"}
@@ -681,14 +689,14 @@ function Home() {
               }
             />
           </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={4}>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
             <Labs
               img={`https://hackaday.com/wp-content/uploads/2016/03/grabbing-file-off-computer.jpg?w=400`}
               name={"Cross-Site Scripting"}
               desc={
                 "Trivial level lab to find Cross-Site Scripting bugs. This lab will help you get started in the basics of web application hacking and penetration testing."
               }
-              path={"3/index.html"}
+              path={"3/xss"}
               hint={
                 "Trigger an alert to get the flag! PS: If script tags not working then try using image tags."
               }
@@ -874,11 +882,17 @@ function Home() {
           
           <Grid container spacing={2}>
             {blogData === undefined ? (
-              <SkeletonTheme color="#202020" highlightColor="#444">
-                <p>
-                  <Skeleton count={3}  />
-                </p>
-              </SkeletonTheme>
+              <Grid container spacing={1}>
+              <Grid item xs={12} sm={12} md={6} lg={4}>
+              <DoorDashFavorite/>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} lg={4}>
+              <DoorDashFavorite/>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} lg={4}>
+              <DoorDashFavorite/>
+              </Grid>
+            </Grid>
             ) : blogData.map((i, index) => {
               if (index < 3) {
                 return (

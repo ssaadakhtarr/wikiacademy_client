@@ -28,6 +28,7 @@ InputAdornment,
 InputLabel,
 OutlinedInput,
 } from "@material-ui/core";
+import TableLoader from "./TableLoader";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -135,14 +136,29 @@ function Leaderboard() {
 </Box>
 <Container style={{textAlign: "center"}} maxWidth="lg">
 <br></br>
+
 {(cookies.get("userId") ? <Typography style={{color: "#c6cede",fontSize:"30px",paddingTop:"20px"}} variant="subtitle1" className={classes.HackA}>You are ranked <span style={{color: "#9fef00"}}>#{user.rank}</span></Typography>:<Typography style={{color: "#c6cede"}} variant="subtitle1" className={classes.HackA}></Typography>)}
       <br></br>
       <br></br>
       {console.log(LeaderboardData)}
-      {(LeaderboardData != undefined) ? (<LeaderboardDetails userData={LeaderboardData}/>) : "loading..."}
+      {(LeaderboardData != undefined) ? (<LeaderboardDetails userData={LeaderboardData}/>) : (<TableLoader/>)}
+      <br></br>
+
+      <Typography style={{color: "white"}} variant="caption">
+Copyright © 2021
+</Typography>
+<Typography style={{color: "white"}} variant="caption">
+All Rights Reserved
+</Typography>
+<br></br>
+<br></br>
       </Container>
+
+      
     </div>
   );
 }
+
+
 // }
 export default Leaderboard;

@@ -24,6 +24,15 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  logo: {
+    width: "240px",
+    
+    [theme.breakpoints.down("sm")]: {
+      width: "200px",
+      
+    },
+
+  },
 }));
 
 
@@ -114,10 +123,8 @@ function Navbar() {
             <Box style={{paddingLeft: "2%",}} marginTop={1} marginBottom={1}>
             <a href="/">
               <img
-                style={{
-                  width: "240px",
-    height: "60px",
-                }}
+              className={classes.logo}
+                
                 src={Logo}
                 alt="logo"
                 className={classes.logo}

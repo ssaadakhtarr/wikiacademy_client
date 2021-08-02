@@ -19,6 +19,7 @@ import Swal from "sweetalert2";
 const JoinButton = withStyles({
   root: {
     fontWeight: "bold",
+    fontSize: "16px",
     padding: "3% 0",
     margin: "auto",
     backgroundColor: "transparent",
@@ -35,6 +36,7 @@ const JoinButton = withStyles({
 const HintButton = withStyles({
   root: {
     fontWeight: "bold",
+    fontSize: "16px",
     padding: "6% 0",
     margin: "auto",
     backgroundColor: "transparent",
@@ -53,7 +55,7 @@ const useStyles = makeStyles({
     backgroundColor: "#141d2b",
 
     // minWidth: 360,
-    // maxWidth: 360,
+    maxWidth: 500,
     minHeight: 425,
     // maxHeight: 425,
     transition: "0.5s all ease",
@@ -106,7 +108,10 @@ function Labs({ img, name, desc, path, hint }) {
            <Grid container spacing={1}>
               <Grid item xs={8}>
                 <JoinButton
-                  href={`/labs/${path}`}
+                onClick={()=>{
+                  history.push(`/labs/${path}`)
+                }}
+                  
                   fullWidth
                   size="small"
                   

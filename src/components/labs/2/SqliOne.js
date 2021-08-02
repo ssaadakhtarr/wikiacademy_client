@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import axios from "axios";
+import routes from "../../../GetRoute"
 
 function SqliOne() {
   const [username, setUsername] = React.useState("");
@@ -18,7 +19,7 @@ function SqliOne() {
 
   const login = () => {
     axios
-      .post("http://localhost:3001/lab2/login", {
+      .post(`${routes}/lab2/login`, {
         username: username,
         password: password,
       })
