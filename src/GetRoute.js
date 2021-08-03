@@ -1,2 +1,2 @@
-const routes = "http://localhost:3001"
+const routes = "https://wikisec-backend.azurewebsites.net"
 export default routes
