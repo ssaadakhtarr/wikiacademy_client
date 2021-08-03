@@ -58,19 +58,6 @@ const override = css`
   border-color: red;
 `;
 
-// const neueHaas = {
-//   fontFamily: 'Neue Haas Unica',
-//   fontStyle: 'normal',
-//   fontDisplay: 'swap',
-//   fontWeight: 400,
-//   src: `
-//    local('Neue Haas Unica Regular'),
-//   local('Neue-Haas-Unica-Regular'),
-//   url(${NeueHaas}) format('woff2'),
-//   `
-
-// }
-
 function App() {
   const [{ User }, dispatch] = useStateValue();
   const [{ Admin }] = useStateValue();
@@ -85,58 +72,16 @@ function App() {
     localStorage.setItem("admin", JSON.stringify(Admin));
   }
 
-  // const theme = createMuiTheme({
-  //   typography: {
-  //     fontFamily: '"neue-haas-unica",sans-serif',
-  //   },
-  //   overrides: {
-  //     MuiCssBaseline: {
-  //       '@global': {
-  //         '@font-face': [neueHaas],
-  //       },
-  //     },
-  //   },
-  // });
-
   Axios.defaults.withCredentials = true;
   const cookies = new Cookies();
   const user = JSON.parse(localStorage.getItem("user"));
   const admin = JSON.parse(localStorage.getItem("admin"));
-
-  // useEffect(() => {
-  //   if (cookies.get("userId")) {
-
-  //     const username = user.username;
-  //     Axios.post("http://localhost:3001/getSession", {
-  //       username: username,
-  //   }).then((response)=>{
-  //     console.log(cookies.get('userId'));
-  //     console.log(response.data[0].session);
-  //     if (response.data !== undefined) {
-  //       setCheckCookie(response.data[0].session);
-  //     }
-
-  //   })
-  //   }
-
-  // }, [])
 
   //Defining specific routes
   const ProtectedRoute = ({ component: Component, roles, ...rest }) => (
     <Route
       {...rest}
       render={(props) => {
-        console.log(user, cookies.get("userId"));
-        // if (!cookies.get("userId") || !user) {
-        //   // console.log(checkCookie);
-        //   // console.log(user.session);
-        //   return <Redirect to={{ pathname: "/signin" }} />;
-        // // } else if (user && ((cookies.get("userId") !== user.session))) {
-        // //   console.log(user.session);
-        // //   return <Redirect to={{ pathname: "/signin" }} />;
-        // // }
-
-        // }
         if (user && cookies.get("userId") == user.session) {
           return <Component {...props} />;
         } else {
@@ -152,11 +97,13 @@ function App() {
       render={(props) => {
         if (cookies.get("isAdmin") === "true") {
           return <Component {...props} />;
-          
-         } else if (cookies.get("isAdmin") === "true" && (admin && cookies.get("userId") == admin.session)) {
+        } else if (
+          cookies.get("isAdmin") === "true" &&
+          admin &&
+          cookies.get("userId") == admin.session
+        ) {
           return <Redirect to={{ pathname: "/admin-dashboard" }} />;
-         }
-         else {
+        } else {
           return <Redirect to={{ pathname: "/error" }} />;
         }
       }}
@@ -168,9 +115,12 @@ function App() {
       {...rest}
       render={(props) => {
         // console.log(cookies.get("userId"), admin.session);
-        if ((cookies.get("isAdmin") === "true") && (admin && cookies.get("userId") == admin.session)) {
+        if (
+          cookies.get("isAdmin") === "true" &&
+          admin &&
+          cookies.get("userId") == admin.session
+        ) {
           return <Component {...props} />;
-          
         } else {
           return <Redirect to={{ pathname: "/error" }} />;
         }
@@ -203,21 +153,6 @@ function App() {
     }, 2500);
   }, []);
 
-  // useEffect(() => {
-  //   if(cookies.get("userId")) {
-  //     const user = JSON.parse(localStorage.getItem('user'));
-  //     const username = user.username;
-  //     const sessionCookie = cookies.get('userId');
-  //     console.log(user.username, cookies.get('userId'));
-  //     Axios.post("http://localhost:3001/setSession", {
-  //       username: username,
-  //       sessionCookie: sessionCookie,
-  //     }).then((response) => {
-  //       console.log(response);
-  //     })
-  //   }
-  // }, [])
-
   if (loading) {
     return (
       <div
@@ -249,45 +184,40 @@ function App() {
     return (
       <div>
         <Switch>
-          <NormalRoute path="/" component={Home} exact />
-          <NormalRoute path="/signup" component={Signup} />
-          <NormalRoute path="/signin" component={Signin} />
-          <NormalRoute path="/password-reset" component={Forgot} />
-          <ProtectedRoute path="/private" />
-          <ProtectedRoute path="/dashboard" component={Dashboard} />
-          <ProtectedRoute path="/profile" component={Profile} />
           <Route path="/leaderboard" component={Leaderboard} />
           <Route path="/hacktivities" component={Hacktivities} />
-          <ProtectedRoute path="/room/:roomname" component={Room} />
           <Route path="/p/:username" component={PublicProfile} />
           <Route path="/path/tools" component={ToolsPath} />
           <Route path="/path/beginner" component={CompleteBegineer} />
           <Route path="/path/web-hacking" component={WebHackingPath} />
           <Route path="/path/vulnpath" component={VulPath} />
-          <AdminRoute path="/add-room" component={AddRoom} />
           <Route path="/footer" component={Footer} />
           <Route path="/faq" component={Faq} />
+          <Route path="/blog" component={Blog} />
+          <Route path="/test" component={Test} />
+          <Route path="/blogs/:blogid" component={BlogPage} />
+
+          <NormalRoute path="/" component={Home} exact />
+          <NormalRoute path="/signup" component={Signup} />
+          <NormalRoute path="/signin" component={Signin} />
+          <NormalRoute path="/password-reset" component={Forgot} />
+
+          <ProtectedRoute path="/add-blog" component={AddBlog} />
+          <ProtectedRoute path="/labs/2/sqli-one" component={SqliOne} />
+          <ProtectedRoute path="/labs/3/xss" component={Xss} />
+          <ProtectedRoute path="/private" />
+          <ProtectedRoute path="/dashboard" component={Dashboard} />
+          <ProtectedRoute path="/profile" component={Profile} />
+          <ProtectedRoute path="/room/:roomname" component={Room} />
+
           <AdminLoginRoute path="/admin-Login" component={AdminLogin} />
 
-        
-
+          <AdminRoute path="/add-room" component={AddRoom} />
           <AdminRoute path="/admin-dashboard" component={AdminDashboard} />
           <AdminRoute path="/update-user" component={UpdateUser} />
           <AdminRoute path="/delete-room" component={DeleteRooms} />
           <AdminRoute path="/pending-blogs" component={PendingBlogs} />
           <AdminRoute path="/delete-blogs" component={DeleteBlogs} />
-
-          <Route path="/blog" component={Blog} />
-
-          <Route path="/test" component={Test} />
-
-          <ProtectedRoute path="/add-blog" component={AddBlog} />
-          <Route path="/blogs/:blogid" component={BlogPage} />
-
-          <ProtectedRoute path="/labs/2/sqli-one" component={SqliOne} />
-
-
-        <ProtectedRoute path="/labs/3/xss" component={Xss}/>
 
           <Route component={Error} />
         </Switch>

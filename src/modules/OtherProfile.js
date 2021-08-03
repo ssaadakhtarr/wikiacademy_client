@@ -61,7 +61,9 @@ function OtherProfile() {
       if (response.data.message === "success") {
         console.log("upper")
         setShowError(false);
-        history.push("/signin")
+        localStorage.removeItem("user")
+        localStorage.removeItem("token")
+        window.location.href="/signin"
       } else {
         console.log("lower")
         setShowError(true);
